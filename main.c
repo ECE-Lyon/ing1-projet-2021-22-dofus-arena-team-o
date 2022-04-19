@@ -1,4 +1,5 @@
-//
-// Created by nelma on 19/04/2022.
-//
+#include <stdio.h>
 
+int main(){
+    printf("yes");
+}
