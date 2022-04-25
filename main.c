@@ -271,7 +271,7 @@ int main() {
                 printf("%d   %d\n", height, width) ;
                 switch (gameModes) {
                     case MENU : {
-                        al_draw_bitmap(background, 0, 0, 0);
+                        al_draw_scaled_bitmap(background, 0, 0, 1920, 1080, 0, 0, width, height, 0);
                         drawMenu(rect1, rect2, rect3, height, width) ;
                         break ;
                     }
