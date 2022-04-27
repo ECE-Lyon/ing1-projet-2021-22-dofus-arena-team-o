@@ -5,136 +5,119 @@
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_image.h>
 
-#define RULESPAGEMAX 10
+#define RULESPAGEMAX 5
 
 enum gameMode {PLAY, RULES, TEAM, MENU, END};
 
-void drawRules(int* pages, int height, int width) {
+void drawRules(int* pages, float height, float width) {
     ALLEGRO_COLOR jauneLogo = al_map_rgb(255, 204, 51) ;
     ALLEGRO_COLOR marronLogo = al_map_rgb(102, 51, 0) ;
-    ALLEGRO_FONT* gameFont = al_load_ttf_font("../MagicCardsNormal.ttf", 72, ALLEGRO_ALIGN_LEFT) ;
+    ALLEGRO_FONT* gameFont = al_load_ttf_font("../MagicCardsNormal.ttf", 2*width/55, ALLEGRO_ALIGN_LEFT) ;
     if(*pages < RULESPAGEMAX) {
-        al_draw_circle(13 * width / 15, 11 * height / 13, 50, jauneLogo, 4) ;
-        al_draw_line(13 * width / 15 - 30, 11 * height / 13, 13 * width / 15 + 30, 11 * height / 13, jauneLogo, 3);
-        al_draw_line(13 * width / 15 + 30, 11 * height / 13, 13 * width / 15 + 10, 11 * height / 13 - 25, jauneLogo, 3);
-        al_draw_line(13 * width / 15 + 30, 11 * height / 13, 13 * width / 15 + 10, 11 * height / 13 + 25, jauneLogo, 3);
+        al_draw_circle(13*width/15, 11*height/13, width/38.4, jauneLogo, 4) ;
+        al_draw_line(13*width/15 - width/64 , 11*height/13, 13*width/15 + width/64, 11*height/13, jauneLogo, 3);
+        al_draw_line(13*width/15 + width/64, 11*height/13, 13*width/15 + width/192, 11*height/13 - height/43.2 , jauneLogo, 3);
+        al_draw_line(13*width/15 + width/64, 11*height/13, 13*width/15 + width/192, 11*height/13 + height/43.2 , jauneLogo, 3);
     }
     if(*pages > 1) {
-        al_draw_circle(2 * width / 15, 11 * height / 13, 50, jauneLogo, 4) ;
-        al_draw_line(2 * width / 15 - 30, 11 * height / 13, 2 * width / 15 + 30, 11 * height / 13, jauneLogo, 3) ;
-        al_draw_line(2 * width / 15 - 30, 11 * height / 13, 2 * width / 15 - 10 , 11 * height / 13 - 25, jauneLogo, 3) ;
-        al_draw_line(2 * width / 15 - 30, 11 * height / 13, 2 * width / 15 - 10 , 11 * height / 13 + 25, jauneLogo, 3) ;
+        al_draw_circle(2*width/15, 11*height/13, 50, jauneLogo, 4) ;
+        al_draw_line(2*width/15 - width/64, 11*height/13, 2*width/15 + width/64, 11*height/13, jauneLogo, 3) ;
+        al_draw_line(2*width/15 - width/64, 11*height/13, 2*width/15 - width/192 , 11*height/13 - height/43.2, jauneLogo, 3) ;
+        al_draw_line(2*width/15 - width/64, 11*height/13, 2*width/15 - width/192 , 11*height/13 + height/43.2, jauneLogo, 3) ;
     }
-    al_draw_text(gameFont, marronLogo, 15, 15, ALLEGRO_ALIGN_LEFT, "RETURN") ;
-    al_draw_rectangle(5, 5, 300, 80, marronLogo, 3) ;
-    al_draw_textf(gameFont, jauneLogo, 7.5 * width / 15, 11 * height / 13 + 60, ALLEGRO_ALIGN_CENTER, "%d / %d", *pages, RULESPAGEMAX) ;
+    al_draw_text(gameFont, marronLogo, width/90, height/50, ALLEGRO_ALIGN_LEFT, "RETURN") ;
+    al_draw_rectangle(width/384, height/216, 2*width/13, 2*height/27, marronLogo, 3) ;
+    al_draw_textf(gameFont, jauneLogo, 7.5*width/15, 11*height/13 + height/18, ALLEGRO_ALIGN_CENTER, "%d / %d", *pages, RULESPAGEMAX) ;
     al_destroy_font(gameFont) ;
 }
 
 
-void drawTeam(int height, int width) {
+void drawTeam(float height, float width) {
     ALLEGRO_BITMAP* moi = al_load_bitmap("../InfoPhotoM150.PNG") ;
     ALLEGRO_BITMAP* toi = al_load_bitmap("../InfoPhotoW150.PNG") ;
-    ALLEGRO_FONT *gameFont = al_load_ttf_font("../MagicCardsNormal.ttf", 70, ALLEGRO_ALIGN_LEFT);
-    al_draw_filled_circle(width / 4, height / 4, 110, al_map_rgb(255, 255, 255)) ;
-    al_draw_circle(width / 4, height / 4, 110, al_map_rgb(255, 0, 0), 5) ;
-    al_draw_bitmap(moi, width / 4 - 75, height / 4 - 75, 0) ;
-    al_draw_text(gameFont, al_map_rgb(255, 0, 0), width / 4 , height / 4 + 120, ALLEGRO_ALIGN_CENTER, "Nel") ;
+    ALLEGRO_FONT *gameFont = al_load_ttf_font("../MagicCardsNormal.ttf", 2*width/55, ALLEGRO_ALIGN_LEFT);
+    al_draw_filled_circle(width/4, height/4, width/17.3, al_map_rgb(255, 255, 255)) ;
+    al_draw_circle(width/4, height/4, width/17.3, al_map_rgb(255, 0, 0), 5) ;
+    al_draw_scaled_bitmap(moi, 0, 0, 150, 149,width/4 - 5*width/128, height/4 - 5*height/72, width/5, 2*width/17.3 - height/27, 0) ;
+    al_draw_text(gameFont, al_map_rgb(255, 0, 0), width/4 , height/4 + height/9, ALLEGRO_ALIGN_CENTER, "Nel") ;
 
-    al_draw_filled_circle(3 * width / 4 , height / 4, 110, al_map_rgb(255, 255, 255)) ;
-    al_draw_circle(3 * width / 4, height / 4, 110, al_map_rgb(255, 0, 0), 5) ;
-    al_draw_bitmap(toi, 3 * width / 4 - 75, height / 4 - 75, ALLEGRO_FLIP_HORIZONTAL) ;
-    al_draw_text(gameFont, al_map_rgb(255, 0, 0), 3 * width / 4 , height / 4 + 120, ALLEGRO_ALIGN_CENTER, "Zelie") ;
+    al_draw_filled_circle(3*width/4 , height/4, width/17.3, al_map_rgb(255, 255, 255)) ;
+    al_draw_circle(3 * width / 4, height / 4, width/17.3, al_map_rgb(255, 0, 0), 5) ;
+    al_draw_scaled_bitmap(toi, 0, 0, 150, 149, 3*width/4 - 5*width/128, height/4 - 5*height/72, 2*width/17.3 - width/48, 2*width/17.3 - height/27, ALLEGRO_FLIP_HORIZONTAL) ;
+    al_draw_text(gameFont, al_map_rgb(255, 0, 0), 3*width/4 , height/4 + height/9, ALLEGRO_ALIGN_CENTER, "Zelie") ;
 
-    al_draw_filled_circle(width / 4, 3 * height / 4, 110, al_map_rgb(255, 255, 255)) ;
-    al_draw_circle(width / 4, 3 * height / 4, 110, al_map_rgb(255, 0, 0), 5) ;
-    al_draw_bitmap(moi, width / 4 - 75, 3 * height / 4 - 75, ALLEGRO_FLIP_HORIZONTAL) ;
-    al_draw_text(gameFont, al_map_rgb(255, 0, 0), width / 4 , 3 * height / 4 + 120, ALLEGRO_ALIGN_CENTER, "Fares") ;
+    al_draw_filled_circle(width/4, 3*height/4, width/17.3, al_map_rgb(255, 255, 255)) ;
+    al_draw_circle(width/4, 3*height/4, width/17.3, al_map_rgb(255, 0, 0), 5) ;
+    al_draw_scaled_bitmap(moi, 0, 0, 150, 149, width/4 - 5*width/128, 3*height/4 - 5*height/72, 2*width/17.3 - width/48, 2*width/17.3 - height/27, ALLEGRO_FLIP_HORIZONTAL) ;
+    al_draw_text(gameFont, al_map_rgb(255, 0, 0), width / 4 , 3*height/4 + height/9, ALLEGRO_ALIGN_CENTER, "Fares") ;
 
-    al_draw_filled_circle(3 * width / 4, 3 * height / 4, 110, al_map_rgb(255, 255, 255)) ;
-    al_draw_circle(3 * width / 4, 3 * height / 4, 110, al_map_rgb(255, 0, 0), 5) ;
-    al_draw_bitmap(toi, 3 * width / 4 - 75, 3 * height / 4 - 75, 0) ;
-    al_draw_text(gameFont, al_map_rgb(255, 0, 0), 3 * width / 4 , 3 * height / 4 + 120, ALLEGRO_ALIGN_CENTER, "Ilayda") ;
+    al_draw_filled_circle(3*width/4, 3*height/4, width/17.3, al_map_rgb(255, 255, 255)) ;
+    al_draw_circle(3*width/4, 3*height/4, width/17.3, al_map_rgb(255, 0, 0), 5) ;
+    al_draw_scaled_bitmap(toi, 0, 0, 150, 149, 3*width/4 - 5*width/128, 3*height/4 - 5*height/72, 2*width/17.3 - width/48, 2*width/17.3 - height/27, 0) ;
+    al_draw_text(gameFont, al_map_rgb(255, 0, 0), 3*width/4 , 3*height/4 + height/9, ALLEGRO_ALIGN_CENTER, "Ilayda") ;
 
-    al_draw_text(gameFont, al_map_rgb(255, 0, 0), 15, 15, ALLEGRO_ALIGN_LEFT, "RETURN") ;
-    al_draw_rectangle(5, 5, 300, 80, al_map_rgb(255, 0, 0), 3) ;
+    al_draw_text(gameFont, al_map_rgb(255, 0, 0), width/90, height/50, ALLEGRO_ALIGN_LEFT, "RETURN") ;
+    al_draw_rectangle(5, 5, 5*width/32, 2*height/27, al_map_rgb(255, 0, 0), 3) ;
     al_destroy_bitmap(moi) ;
     al_destroy_bitmap(toi) ;
     al_destroy_font(gameFont) ;
 }
 
-void drawMenu(int rect1, int rect2, int rect3, int height, int width) {
+void drawMenu(int rect1, int rect2, int rect3, float height, float width) {
     unsigned char alpha ;
     double gradient = 255 ;
+    float thickness1 = (29*height/54 - 25*height/54) / 40 ;
+    float thickness2 = (5*height/9 - 4*height/9) / 40 ;
     ALLEGRO_COLOR jauneLogo = al_map_rgb(255, 204, 51) ;
     ALLEGRO_COLOR marronLogo = al_map_rgb(102, 51, 0) ;
-    ALLEGRO_FONT *gameFont = al_load_ttf_font("../MagicCardsNormal.ttf", 70, ALLEGRO_ALIGN_LEFT);
-    ALLEGRO_FONT *gameFont1 = al_load_ttf_font("../MagicCardsNormal.ttf", 90, ALLEGRO_ALIGN_LEFT);
-    for (int i = 0; i < 40; i++) {
+    ALLEGRO_FONT *gameFont = al_load_ttf_font("../MagicCardsNormal.ttf", 7*width/198, ALLEGRO_ALIGN_LEFT);
+    ALLEGRO_FONT *gameFont1 = al_load_ttf_font("../MagicCardsNormal.ttf", width/22, ALLEGRO_ALIGN_LEFT);
+    for (float i = 0; i < 40; i++) {
         alpha = (unsigned char) gradient;
         if (!rect1) {
-            al_draw_line(0, height / 2 - 40 + 2 * i, 300, height / 2 - 40 + 2 * i,
-                         al_map_rgba(155, 204, 51, alpha), 2);
-            al_draw_line(300, height / 2 - 40 + 2 * i, 300 + i, height / 2 - 40 + 2 * i,
-                         al_map_rgba(155, 204, 51, alpha), 2);
-            al_draw_line(0, 500, 300, 500, marronLogo, 6);
-            al_draw_line(0, 580, 340, 580, marronLogo, 6);
-            al_draw_line(0, 500, 0, 580, marronLogo, 6);
-            al_draw_line(300, 500, 340, 580, marronLogo, 6);
+            al_draw_line(0, 25*height/54 + thickness1*i, 5*width/32 + (thickness1/2)*i , 25*height/54 + thickness1*i,
+                         al_map_rgba(155, 204, 51, alpha), thickness1);
         } else {
-            al_draw_line(0, height / 2 - 60 + 3 * i, 320, height / 2 - 60 + 3 * i,
-                         al_map_rgba(155, 204, 51, alpha), 3);
-            al_draw_line(320, height / 2 - 60 + 3 * i, 320 + i * 1.5, height / 2 - 60 + 3 * i,
-                         al_map_rgba(155, 204, 51, alpha), 3);
-            al_draw_line(0, height / 2 - 60, 320, height / 2 - 60 , marronLogo, 6);
-            al_draw_line(0, height / 2 + 60, 320, height / 2 + 60, marronLogo, 6);
-            al_draw_line(0, height / 2 - 60, 0, height / 2 + 60, marronLogo, 6);
-            al_draw_line(317, height / 2 - 60, 377, height / 2 + 60, marronLogo, 6);
-            al_draw_line(320, height / 2 + 60, 380, height / 2 + 60, marronLogo, 6);
+            al_draw_line(0, 4*height/9 + thickness2*i, 21*width/128 + (thickness2/2)*i, 4*height/9 + thickness2*i,
+                         al_map_rgba(155, 204, 51, alpha), thickness2);
+            al_draw_line(0, 4*height/9, 53*width/320, 4*height/9, marronLogo, 6);
+            al_draw_line(0, 5*height/9, 21*width/128 + (thickness2/2)*40, 5*height/9, marronLogo, 6);
+            al_draw_line(0, 4*height/9, 0, 5*height/9, marronLogo, 6);
+            al_draw_line(21*width/128, 4*height/9, 21*width/128 + (thickness2/2)*40, 5*height/9, marronLogo, 6);
         }
         if (!rect2) {
-            al_draw_line(0, height / 2 + 80 + 2 * i, 300, height / 2 + 80 + 2 * i,
-                         al_map_rgba(155, 204, 51, alpha), 2);
-            al_draw_line(300, height / 2 + 80 + 2 * i, 300 + i, height / 2 + 80 + 2 * i,
-                         al_map_rgba(155, 204, 51, alpha), 2);
+            al_draw_line(0, height/2 + 2*height/27 + thickness1*i, 5*width/32 + (thickness1/2)*i, height/2 + 2*height/27 + thickness1*i,
+                         al_map_rgba(155, 204, 51, alpha), thickness1);
         } else {
-            al_draw_line(0, height / 2 + 60 + 3 * i, 320, height / 2 + 60 + 3 * i,
-                         al_map_rgba(155, 204, 51, alpha), 3);
-            al_draw_line(320, height / 2 + 60 + 3 * i, 320 + i * 1.5, height / 2 + 60 + 3 * i,
-                         al_map_rgba(155, 204, 51, alpha), 3);
-            al_draw_line(0, 600, 320, 600, marronLogo, 6);
-            al_draw_line(0, 720, 320, 720, marronLogo, 6);
-            al_draw_line(0, 600, 0, 720, marronLogo, 6);
-            al_draw_line(317, 600, 377, 720, marronLogo, 6);
-            al_draw_line(320, 720, 380, 720, marronLogo, 6);
+            al_draw_line(0, 5*height/9 + thickness2*i, 21*width/128 + (thickness2/2)*i, 5*height/9 + thickness2*i,
+                         al_map_rgba(155, 204, 51, alpha), thickness2);
+            al_draw_line(0, 5*height/9, 53*width/320, 5*height/9, marronLogo, 6);
+            al_draw_line(0, 2*height/3, 21*width/128 + (thickness2/2)*40, 2*height/3, marronLogo, 6);
+            al_draw_line(0, 5*height/9, 0, 2*height/3, marronLogo, 6);
+            al_draw_line(21*width/128, 5*height/9, 21*width/128 + (thickness2/2)*40, 2*height/3, marronLogo, 6);
         }
         if (!rect3) {
-            al_draw_line(0, height / 2 + 200 + 2 * i, 300, height / 2 + 200 + 2 * i,
-                         al_map_rgba(155, 204, 51, alpha), 2);
-            al_draw_line(300, height / 2 + 200 + 2 * i, 300 + i, height / 2 + 200 + 2 * i,
-                         al_map_rgba(155, 204, 51, alpha), 2);
+            al_draw_line(0, height/2 + 5*height/27 + thickness1*i, 5*width/32 + (thickness1/2)*i, height/2 + 5*height/27 + thickness1*i,
+                         al_map_rgba(155, 204, 51, alpha), thickness1);
         } else {
-            al_draw_line(0, height / 2 + 180 + 3 * i, 320, height / 2 + 180 + 3 * i,
-                         al_map_rgba(155, 204, 51, alpha), 3);
-            al_draw_line(320, height / 2 + 180 + 3 * i, 320 + i * 1.5, height / 2 + 180 + 3 * i,
-                         al_map_rgba(155, 204, 51, alpha), 3);
-            al_draw_line(0, 720, 320, 720, marronLogo, 6);
-            al_draw_line(0, 840, 320, 840, marronLogo, 6);
-            al_draw_line(0, 720, 0, 840, marronLogo, 6);
-            al_draw_line(317, 720, 377, 840, marronLogo, 6);
-            al_draw_line(320, 840, 380, 840, marronLogo, 6);
+            al_draw_line(0, 2*height/3 + thickness2*i, 21*width/128 + (thickness2/2)*i, 2*height/3 + thickness2*i,
+                         al_map_rgba(155, 204, 51, alpha), thickness2);
+            al_draw_line(0, 2*height/3, 53*width/320, 2*height/3, marronLogo, 6);
+            al_draw_line(0, 7*height/9, 21*width/128 + (thickness2/2)*40, 7*height/9, marronLogo, 6);
+            al_draw_line(0, 2*height/3, 0, 7*height/9, marronLogo, 6);
+            al_draw_line(21*width/128, 2*height/3, 21*width/128 + (thickness2/2)*40, 7*height/9, marronLogo, 6);
         }
-        gradient -=33.5;
+        gradient -=31.875;
     }
     if (!rect1) {
-        al_draw_textf(gameFont, marronLogo, 68, 512, ALLEGRO_ALIGN_LEFT, "PLAY");
-    } else al_draw_textf(gameFont1, marronLogo, 60, 505, ALLEGRO_ALIGN_LEFT, "PLAY");
+        al_draw_textf(gameFont, marronLogo, 17*width/480, 64*height/135, ALLEGRO_ALIGN_LEFT, "PLAY");
+    } else al_draw_textf(gameFont1, marronLogo, width/38, 7*height/15, ALLEGRO_ALIGN_LEFT, "PLAY");
     if (!rect2) {
-        al_draw_textf(gameFont, marronLogo, 50, 630, ALLEGRO_ALIGN_LEFT, "RULES");
-    } else al_draw_textf(gameFont1, marronLogo, 34, 622, ALLEGRO_ALIGN_LEFT, "RULES");
+        al_draw_textf(gameFont, marronLogo, width/38.4, 7.05*height/12, ALLEGRO_ALIGN_LEFT, "RULES");
+    } else al_draw_textf(gameFont1, marronLogo, width/56.5, height/1.74, ALLEGRO_ALIGN_LEFT, "RULES");
     if (!rect3) {
-        al_draw_textf(gameFont, marronLogo, 50, 754, ALLEGRO_ALIGN_LEFT, "TEAM");
-    } else al_draw_textf(gameFont1, marronLogo, 45, 745, ALLEGRO_ALIGN_LEFT, "TEAM");
+        al_draw_textf(gameFont, marronLogo, width/38.4, height/1.43, ALLEGRO_ALIGN_LEFT, "TEAM");
+    } else al_draw_textf(gameFont1, marronLogo, 3*width/128, height/1.45, ALLEGRO_ALIGN_LEFT, "TEAM");
     gradient = 255;
     al_destroy_font(gameFont);
     al_destroy_font(gameFont1);
@@ -155,7 +138,7 @@ int main() {
     al_init_ttf_addon();
     al_init_primitives_addon() ;
 
-    al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW) ;
+    //al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW) ;
 
     ALLEGRO_FONT *ttf = al_load_ttf_font("../Achafont.ttf", 145, ALLEGRO_ALIGN_LEFT) ;
     ALLEGRO_FONT *surlign = al_load_ttf_font("../Achafout.ttf", 145, ALLEGRO_ALIGN_LEFT) ;
@@ -172,9 +155,9 @@ int main() {
     ALLEGRO_COLOR jauneLogo = al_map_rgb(255, 204, 51) ;
     ALLEGRO_COLOR marronLogo = al_map_rgb(102, 51, 0) ;
 
-    display = al_create_display(800, 600);
-    int height = al_get_display_height(display) ;
-    int width = al_get_display_width(display) ;
+    display = al_create_display(1000, 800);
+    float height = (float) al_get_display_height(display) ;
+    float width = (float) al_get_display_width(display) ;
 
 
     queue = al_create_event_queue();
@@ -218,17 +201,17 @@ int main() {
                     if ((event.mouse.button & 1) == 1) {
                         switch (gameModes) {
                             case MENU : {
-                                if (mouse_x < 300 && mouse_x > 0 && mouse_y < 580 && mouse_y > 500) {
+                                if (mouse_x < 5*width/32 && mouse_x > 0 && mouse_y < 29*height/54 && mouse_y > 25*height/54) {
                                     gameModes = PLAY;
-                                } else if (mouse_x < 300 && mouse_x > 0 && mouse_y < 700 && mouse_y > 620) {
+                                } else if (mouse_x < 5*width/32 && mouse_x > 0 && mouse_y < 35*height/54 && mouse_y > 31*height/54) {
                                     gameModes = RULES;
-                                } else if (mouse_x < 300 && mouse_x > 0 && mouse_y < 820 && mouse_y > 740) {
+                                } else if (mouse_x < 5*width/32 && mouse_x > 0 && mouse_y < 41*height/54 && mouse_y > 37*height/54) {
                                     gameModes = TEAM;
                                 }
                                 break ;
                             }
                             case TEAM : {
-                                if (event.mouse.x < 300 && event.mouse.x > 5 && event.mouse.y < 80 && event.mouse.y > 5) {
+                                if (event.mouse.x < 5*width/32 && event.mouse.x > 5 && event.mouse.y < 2*height/27 && event.mouse.y > 5) {
                                     gameModes = MENU;
                                 }
                                 break ;
@@ -244,7 +227,7 @@ int main() {
                                         page--;
                                     }
                                 }
-                                if (event.mouse.x < 300 && event.mouse.x > 5 && event.mouse.y < 80 && event.mouse.y > 5) {
+                                if (event.mouse.x < 5*width/32 && event.mouse.x > 5 && event.mouse.y < 80 && event.mouse.y > 5) {
                                     gameModes = MENU;
                                     page = 1 ;
                                 }
@@ -255,14 +238,14 @@ int main() {
                     break;
                 }
                 case ALLEGRO_EVENT_TIMER : {
-                    if (mouse_x < 300 && mouse_x > 0 && mouse_y < height / 2 + 40 && mouse_y > height / 2 - 40) {
-                        rect1 = 1;
+                    if (mouse_x < 5*width/32 && mouse_x > 0 && mouse_y < 29*height/54 && mouse_y > 25*height/54) {
+                        rect1 = 1 ;
                     } else rect1 = 0;
-                    if (mouse_x < 300 && mouse_x > 0 && mouse_y < height / 2 + 160 && mouse_y > height / 2 + 80) {
-                        rect2 = 1;
+                    if (mouse_x < 5*width/32 && mouse_x > 0 && mouse_y < 35*height/54 && mouse_y > 31*height/54) {
+                        rect2 = 1 ;
                     } else rect2 = 0;
-                    if (mouse_x < 300 && mouse_x > 0 && mouse_y < height / 2 + 280 && mouse_y > height / 2 + 200) {
-                        rect3 = 1;
+                    if (mouse_x < 5*width/32 && mouse_x > 0 && mouse_y < 41*height/54 && mouse_y > 37*height/54) {
+                        rect3 = 1 ;
                     } else rect3 = 0;
                     draw = 1;
                 }
@@ -277,15 +260,15 @@ int main() {
                     }
                     case TEAM : {
                         drawTeam(height, width) ;
-                        if (mouse_x < 300 && mouse_x > 5 && mouse_y < 80 && mouse_y > 5) {
-                            al_draw_rectangle(5, 5, 300, 80, al_map_rgb(155, 204, 107), 4) ;
+                        if ((float) mouse_x < 5*width/32 && mouse_x > 5 && (float) mouse_y < 2*height/27 && mouse_y > 5) {
+                            al_draw_rectangle(5, 5, 5*width/32, 2*height/27, al_map_rgb(155, 204, 107), 4) ;
                         }
                         break ;
                     }
                     case RULES : {
                         drawRules(&page, height, width) ;
-                        if (mouse_x < 300 && mouse_x > 5 && mouse_y < 80 && mouse_y > 5) {
-                            al_draw_rectangle(5, 5, 300, 80, al_map_rgb(155, 204, 107), 4) ;
+                        if ((float) mouse_x < 5*width/32 && mouse_x > 5 && (float) mouse_y < 2*height/27 && mouse_y > 5) {
+                            al_draw_rectangle(5, 5, 5*width/32, 2*height/27, al_map_rgb(155, 204, 107), 4) ;
                         }
                         break ;
                     }
