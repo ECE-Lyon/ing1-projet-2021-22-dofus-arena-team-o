@@ -10,9 +10,10 @@
 enum gameMode {PLAY, RULES, TEAM, MENU, END};
 
 void drawRules(int* pages, float height, float width) {
+    int police = 2*width/55 ;
     ALLEGRO_COLOR jauneLogo = al_map_rgb(255, 204, 51) ;
     ALLEGRO_COLOR marronLogo = al_map_rgb(102, 51, 0) ;
-    ALLEGRO_FONT* gameFont = al_load_ttf_font("../MagicCardsNormal.ttf", 2*width/55, ALLEGRO_ALIGN_LEFT) ;
+    ALLEGRO_FONT* gameFont = al_load_ttf_font("../MagicCardsNormal.ttf", police, ALLEGRO_ALIGN_LEFT) ;
     if(*pages < RULESPAGEMAX) {
         al_draw_circle(13*width/15, 11*height/13, width/38.4, jauneLogo, 4) ;
         al_draw_line(13*width/15 - width/64 , 11*height/13, 13*width/15 + width/64, 11*height/13, jauneLogo, 3);
@@ -20,44 +21,45 @@ void drawRules(int* pages, float height, float width) {
         al_draw_line(13*width/15 + width/64, 11*height/13, 13*width/15 + width/192, 11*height/13 + height/43.2 , jauneLogo, 3);
     }
     if(*pages > 1) {
-        al_draw_circle(2*width/15, 11*height/13, 50, jauneLogo, 4) ;
+        al_draw_circle(2*width/15, 11*height/13, width/38.4, jauneLogo, 4) ;
         al_draw_line(2*width/15 - width/64, 11*height/13, 2*width/15 + width/64, 11*height/13, jauneLogo, 3) ;
         al_draw_line(2*width/15 - width/64, 11*height/13, 2*width/15 - width/192 , 11*height/13 - height/43.2, jauneLogo, 3) ;
         al_draw_line(2*width/15 - width/64, 11*height/13, 2*width/15 - width/192 , 11*height/13 + height/43.2, jauneLogo, 3) ;
     }
-    al_draw_text(gameFont, marronLogo, width/90, height/50, ALLEGRO_ALIGN_LEFT, "RETURN") ;
-    al_draw_rectangle(width/384, height/216, 2*width/13, 2*height/27, marronLogo, 3) ;
+    al_draw_text(gameFont, al_map_rgb(255, 0, 0), (5*width/32 - width/384)/2 + police/10, (2*height/27-height/216)/2 - police/3, ALLEGRO_ALIGN_CENTER, "RETURN") ;
+    al_draw_rectangle(width/384, height/216, 5*width/32, 2*height/27, al_map_rgb(255, 0, 0), 3) ;
     al_draw_textf(gameFont, jauneLogo, 7.5*width/15, 11*height/13 + height/18, ALLEGRO_ALIGN_CENTER, "%d / %d", *pages, RULESPAGEMAX) ;
     al_destroy_font(gameFont) ;
 }
 
 
 void drawTeam(float height, float width) {
+   float police = 2*width/55 ;
     ALLEGRO_BITMAP* moi = al_load_bitmap("../InfoPhotoM150.PNG") ;
     ALLEGRO_BITMAP* toi = al_load_bitmap("../InfoPhotoW150.PNG") ;
-    ALLEGRO_FONT *gameFont = al_load_ttf_font("../MagicCardsNormal.ttf", 2*width/55, ALLEGRO_ALIGN_LEFT);
-    al_draw_filled_circle(width/4, height/4, width/17.3, al_map_rgb(255, 255, 255)) ;
-    al_draw_circle(width/4, height/4, width/17.3, al_map_rgb(255, 0, 0), 5) ;
-    al_draw_scaled_bitmap(moi, 0, 0, 150, 149,width/4 - 5*width/128, height/4 - 5*height/72, width/5, 2*width/17.3 - height/27, 0) ;
+    ALLEGRO_FONT *gameFont = al_load_ttf_font("../MagicCardsNormal.ttf", police, ALLEGRO_ALIGN_LEFT);
+    al_draw_filled_circle(width/4, height/4, width*150/1920, al_map_rgb(255, 255, 255)) ;
+    al_draw_circle(width/4, height/4, width*150/1920, al_map_rgb(255, 0, 0), 5) ;
+    al_draw_scaled_bitmap(moi, 0, 0, 150, 149,width/4 - 5*width/128, height/4 - 5*height/72, width*150/1920, height*149/1080, 0) ;
     al_draw_text(gameFont, al_map_rgb(255, 0, 0), width/4 , height/4 + height/9, ALLEGRO_ALIGN_CENTER, "Nel") ;
 
-    al_draw_filled_circle(3*width/4 , height/4, width/17.3, al_map_rgb(255, 255, 255)) ;
-    al_draw_circle(3 * width / 4, height / 4, width/17.3, al_map_rgb(255, 0, 0), 5) ;
-    al_draw_scaled_bitmap(toi, 0, 0, 150, 149, 3*width/4 - 5*width/128, height/4 - 5*height/72, 2*width/17.3 - width/48, 2*width/17.3 - height/27, ALLEGRO_FLIP_HORIZONTAL) ;
+    al_draw_filled_circle(3*width/4 , height/4, width*150/1920, al_map_rgb(255, 255, 255)) ;
+    al_draw_circle(3 * width / 4, height / 4, width*150/1920, al_map_rgb(255, 0, 0), 5) ;
+    al_draw_scaled_bitmap(toi, 0, 0, 150, 149, 3*width/4 - 5*width/128, height/4 - 5*height/72, width*150/1920, height*149/1080, ALLEGRO_FLIP_HORIZONTAL) ;
     al_draw_text(gameFont, al_map_rgb(255, 0, 0), 3*width/4 , height/4 + height/9, ALLEGRO_ALIGN_CENTER, "Zelie") ;
 
-    al_draw_filled_circle(width/4, 3*height/4, width/17.3, al_map_rgb(255, 255, 255)) ;
-    al_draw_circle(width/4, 3*height/4, width/17.3, al_map_rgb(255, 0, 0), 5) ;
-    al_draw_scaled_bitmap(moi, 0, 0, 150, 149, width/4 - 5*width/128, 3*height/4 - 5*height/72, 2*width/17.3 - width/48, 2*width/17.3 - height/27, ALLEGRO_FLIP_HORIZONTAL) ;
+    al_draw_filled_circle(width/4, 3*height/4, width*150/1920, al_map_rgb(255, 255, 255)) ;
+    al_draw_circle(width/4, 3*height/4, width*150/1920, al_map_rgb(255, 0, 0), 5) ;
+    al_draw_scaled_bitmap(moi, 0, 0, 150, 149, width/4 - 5*width/128, 3*height/4 - 5*height/72, width*150/1920, height*149/1080, ALLEGRO_FLIP_HORIZONTAL) ;
     al_draw_text(gameFont, al_map_rgb(255, 0, 0), width / 4 , 3*height/4 + height/9, ALLEGRO_ALIGN_CENTER, "Fares") ;
 
-    al_draw_filled_circle(3*width/4, 3*height/4, width/17.3, al_map_rgb(255, 255, 255)) ;
-    al_draw_circle(3*width/4, 3*height/4, width/17.3, al_map_rgb(255, 0, 0), 5) ;
-    al_draw_scaled_bitmap(toi, 0, 0, 150, 149, 3*width/4 - 5*width/128, 3*height/4 - 5*height/72, 2*width/17.3 - width/48, 2*width/17.3 - height/27, 0) ;
+    al_draw_filled_circle(3*width/4, 3*height/4, width*150/1920, al_map_rgb(255, 255, 255)) ;
+    al_draw_circle(3*width/4, 3*height/4, width*150/1920, al_map_rgb(255, 0, 0), 5) ;
+    al_draw_scaled_bitmap(toi, 0, 0, 150, 149, 3*width/4 - 5*width/128, 3*height/4 - 5*height/72, width*150/1920, height*149/1080, 0) ;
     al_draw_text(gameFont, al_map_rgb(255, 0, 0), 3*width/4 , 3*height/4 + height/9, ALLEGRO_ALIGN_CENTER, "Ilayda") ;
 
-    al_draw_text(gameFont, al_map_rgb(255, 0, 0), width/90, height/50, ALLEGRO_ALIGN_LEFT, "RETURN") ;
-    al_draw_rectangle(5, 5, 5*width/32, 2*height/27, al_map_rgb(255, 0, 0), 3) ;
+    al_draw_text(gameFont, al_map_rgb(255, 0, 0), (5*width/32 - width/384)/2 + police/10, (2*height/27-height/216)/2 - police/3, ALLEGRO_ALIGN_CENTER, "RETURN") ;
+    al_draw_rectangle(width/384, height/216, 5*width/32, 2*height/27, al_map_rgb(255, 0, 0), 3) ;
     al_destroy_bitmap(moi) ;
     al_destroy_bitmap(toi) ;
     al_destroy_font(gameFont) ;
@@ -211,7 +213,7 @@ int main() {
                                 break ;
                             }
                             case TEAM : {
-                                if (event.mouse.x < 5*width/32 && event.mouse.x > 5 && event.mouse.y < 2*height/27 && event.mouse.y > 5) {
+                                if (event.mouse.x < 5*width/32 && event.mouse.x > width/384 && event.mouse.y < 2*height/27 && event.mouse.y > height/216) {
                                     gameModes = MENU;
                                 }
                                 break ;
@@ -227,7 +229,7 @@ int main() {
                                         page--;
                                     }
                                 }
-                                if (event.mouse.x < 5*width/32 && event.mouse.x > 5 && event.mouse.y < 80 && event.mouse.y > 5) {
+                                if (event.mouse.x < 5*width/32 && event.mouse.x > width/384 && event.mouse.y < 2*height/27 && event.mouse.y > height/216) {
                                     gameModes = MENU;
                                     page = 1 ;
                                 }
@@ -260,14 +262,14 @@ int main() {
                     }
                     case TEAM : {
                         drawTeam(height, width) ;
-                        if ((float) mouse_x < 5*width/32 && mouse_x > 5 && (float) mouse_y < 2*height/27 && mouse_y > 5) {
+                        if ((float) mouse_x < 5*width/32 && mouse_x > width/384 && (float) mouse_y < 2*height/27 && mouse_y > height/216) {
                             al_draw_rectangle(5, 5, 5*width/32, 2*height/27, al_map_rgb(155, 204, 107), 4) ;
                         }
                         break ;
                     }
                     case RULES : {
                         drawRules(&page, height, width) ;
-                        if ((float) mouse_x < 5*width/32 && mouse_x > 5 && (float) mouse_y < 2*height/27 && mouse_y > 5) {
+                        if ((float) mouse_x < 5*width/32 && mouse_x > width/384 && (float) mouse_y < 2*height/27 && mouse_y > height/216) {
                             al_draw_rectangle(5, 5, 5*width/32, 2*height/27, al_map_rgb(155, 204, 107), 4) ;
                         }
                         break ;
