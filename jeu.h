@@ -20,7 +20,7 @@ typedef struct {
     int gameMode ;
     } Menu;
 
-void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y);
+void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y, ALLEGRO_FONT* gameFontRegles);
 void drawTeam(float height, float width, int mouse_x, int mouse_y);
 void drawMenu(int rect1, int rect2, int rect3, float height, float width);
 void drawMenuV2(Menu* mainMenu, float height, float width);

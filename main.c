@@ -40,10 +40,13 @@ int main() {
     mainMenu.currentEndTheta = 2*PI ;
     int mouse_x = 0, mouse_y = 0 ;
 
-    display = al_create_display(1000, 800);
+    display = al_create_display(1300, 1000);
     float height = (float) al_get_display_height(display) ;
     float width = (float) al_get_display_width(display) ;
+    al_set_window_position(display, 0, 0);
 
+    ALLEGRO_FONT* gameFontRegles = al_load_ttf_font("../Font/Rumpi.ttf",  40, ALLEGRO_ALIGN_LEFT) ;
+    ALLEGRO_COLOR gameColor = al_map_rgb(255, 0, 0) ;
 
     queue = al_create_event_queue();
     assert(queue);
@@ -136,6 +139,7 @@ int main() {
                     break;
                 }
                 case ALLEGRO_EVENT_TIMER : {
+                    printf("%d,  %d\n", mouse_x, mouse_y) ;
                     /// MENU V1 ::::::
                     /*if (mouse_x < 5*width/32 && mouse_x > 0 && mouse_y < 29*height/54 && mouse_y > 25*height/54) {
                         mainMenu.playRect = 1 ;
@@ -163,8 +167,8 @@ int main() {
                         break ;
                     }
                     case RULES : {
-                        drawRules(&page, height, width, mouse_x, mouse_y) ;
-                        break ;
+                        drawRules(&page, height, width, mouse_x, mouse_y, gameFontRegles);
+                        break;
                     }
                     case PLAY : {
                         break ;
