@@ -279,10 +279,10 @@ void drawPlay(Map map[20][20],ALLEGRO_EVENT event,int mouse_x,int mouse_y,ALLEGR
         }
     }
     for (int i = 0; i < mapX+1; i++) {
-        al_draw_line(i * scalex, 1218 - i * scaley, 1465 + i * scalex, height - scaley * i, black, 3);
+        al_draw_line(i * scalex, height/1.8 - i * scaley, width/2.25 + i * scalex, height - scaley * i, black, 3);
     }
     for (int i=0;i<mapY+1;i++){
-        al_draw_line(1837+i*scalex,i*scaley,i*scalex,1222+scaley*i, black,3);
+        al_draw_line(width/1.8+i*scalex,i*scaley,i*scalex,height/1.8+scaley*i, black,3);
     }
 
     for (int j=0;j<mapY;j++) {
@@ -303,6 +303,11 @@ void drawPlay(Map map[20][20],ALLEGRO_EVENT event,int mouse_x,int mouse_y,ALLEGR
 
         }
     }
+}
+
+void deplacementJoueur(Joueur joueur[]){
+
+
 }
 
 

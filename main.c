@@ -30,6 +30,9 @@ int main() {
     ALLEGRO_BITMAP *background = al_load_bitmap("../Bitmap/BG.jpg");
     ALLEGRO_COLOR black = al_map_rgb(0, 0, 0);
     ALLEGRO_COLOR red = al_map_rgb(255, 0, 0);
+    ALLEGRO_COLOR white = al_map_rgb(255, 255, 255);
+    ALLEGRO_COLOR vert = al_map_rgba(93, 127, 51, 255);
+    ALLEGRO_COLOR gris = al_map_rgb(128,128,128) ;
     ALLEGRO_COLOR jauneLogo = al_map_rgb(255, 204, 51);
     ALLEGRO_COLOR marronLogo = al_map_rgb(102, 51, 0);
     ALLEGRO_COLOR gameColor = al_map_rgb(255, 0, 0);
@@ -41,6 +44,7 @@ int main() {
     int rotation = 0;
     Menu mainMenu;
     Map map[20][20];
+    Joueur joueur[4];
 
     ///INITIALISATION DE NOS VARIABLES (A FAIRE DANS UNE FONCTION)
     mainMenu.ecran.width = (float) al_get_display_width(display) ;
@@ -175,7 +179,7 @@ int main() {
                         break;
                     }
                     case PLAY : {
-                        drawPlay(map,event,mouse_x,mouse_y,display);
+                        drawPlay(map,event,mouse_x,mouse_y,display,white,black,gris,vert,red);
 
                     break;
                 }
