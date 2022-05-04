@@ -33,6 +33,7 @@ int main() {
     int rotation = 0 ;
     Menu mainMenu ;
     Map map[20][20] ;
+    Joueur joueur[4];
 
     mainMenu.gameMode = MENU ;
     mainMenu.playRect = 0 ;

@@ -26,6 +26,10 @@ typedef struct {
     int t;
 } Map;
 
+typedef struct {
+    int x,y,click;
+} Joueur ;
+
 
 void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y, ALLEGRO_FONT* gameFontRegles);
 void drawTeam(float height, float width, int mouse_x, int mouse_y);
