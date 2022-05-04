@@ -61,6 +61,6 @@ void deplacementJoueur(Joueur *joueur[],Map map[20][20]);
 bool collisionCercle(int x,int y,Map map[20][20],int i,int j,double width);
 void menuSouris(Menu* mainMenu, float height, float width, int mouse_x, int mouse_y) ;
 void drawPlay2(float width, float height, int mouse_x, int mouse_y) ;
-bool collisionCercle(int x,int y,Map map[20][20],int i,int j);
+
 
 #endif

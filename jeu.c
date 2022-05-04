@@ -247,7 +247,7 @@ void drawPlay2(float width, float height, int mouse_x, int mouse_y) {
 
 bool collisionCercle(int x,int y,Map map[20][20],int i,int j,double width){
     int d2 = (x-map[i][j].x)*(x-map[i][j].x) + (y- map[i][j].y)*(y-map[i][j].y);
-    if (d2>(width/59*width/59))
+    if (d2>(width/60*width/60))
         return false;
     else
         return true;
