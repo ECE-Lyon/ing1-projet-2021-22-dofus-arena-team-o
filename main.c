@@ -90,6 +90,7 @@ int main() {
             }
             case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN : {
                 if ((event.mouse.button & 1) == 1) {
+                    map[0][0].t=1;
                     switch (mainMenu.gameMode) {
                         case MENU : {
                             if (mouse_x < 157 * width / 275 && mouse_x > 118 * width / 275 &&
@@ -105,63 +106,76 @@ int main() {
                                 mainMenu.gameMode = TEAM;;
                             }
 
-                            break;
-                        }
-                        case TEAM : {
-                            if (event.mouse.x < 5 * width / 32 && event.mouse.x > width / 384 &&
-                                event.mouse.y < 2 * height / 27 && event.mouse.y > height / 216) {
-                                mainMenu.gameMode = MENU;
+                                break ;
                             }
-                            break;
-                        }
-                        case RULES : {
-                            if ((mouse_x - 13 * width / 15) * (mouse_x - 13 * width / 15) +
-                                (mouse_y - 11 * height / 13) * (mouse_y - 11 * height / 13) < 50 * 50) {
-                                if (page + 1 <= RULESPAGEMAX) {
-                                    page++;
+                            case TEAM : {
+                                if (event.mouse.x < 5*width/32 && event.mouse.x > width/384 && event.mouse.y < 2*height/27 && event.mouse.y > height/216) {
+                                    mainMenu.gameMode = MENU;
                                 }
+                                break ;
                             }
-                            if ((mouse_x - 2 * width / 15) * (mouse_x - 2 * width / 15) +
-                                (mouse_y - 11 * height / 13) * (mouse_y - 11 * height / 13) < 50 * 50) {
-                                if (page - 1 >= 1) {
-                                    page--;
+                            case RULES : {
+                                if((mouse_x - 13 * width / 15) * (mouse_x - 13 * width / 15) + (mouse_y - 11 * height / 13) * (mouse_y - 11 * height / 13) < 50 * 50) {
+                                    if(page + 1 <= RULESPAGEMAX) {
+                                        page++;
+                                    }
                                 }
+                                if((mouse_x - 2 * width / 15) * (mouse_x - 2 * width / 15) + (mouse_y - 11 * height / 13) * (mouse_y - 11 * height / 13) < 50 * 50) {
+                                    if(page - 1 >= 1) {
+                                        page--;
+                                    }
+                                }
+                                if (event.mouse.x < 5*width/32 && event.mouse.x > width/384 && event.mouse.y < 2*height/27 && event.mouse.y > height/216) {
+                                    mainMenu.gameMode = MENU;
+                                    page = 1 ;
+                                }
+                                break ;
                             }
-                            if (event.mouse.x < 5 * width / 32 && event.mouse.x > width / 384 &&
-                                event.mouse.y < 2 * height / 27 && event.mouse.y > height / 216) {
-                                mainMenu.gameMode = MENU;
-                                page = 1;
-                            }
-                            break;
                         }
                     }
+                    break;
+                }
+            case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
+                if ((event.mouse.button & 1) == 1) {
+                    map[0][0].t=0;
                 }
                 break;
-            }
-            case ALLEGRO_EVENT_TIMER : {
-                printf("%d,  %d\n", mouse_x, mouse_y);
-                menuSouris(&mainMenu, height, width, mouse_x, mouse_y);
-                draw = 1;
-            }
-        }
-        if (draw) {
-            al_draw_scaled_bitmap(background, 0, 0, 7680, 4320, 0, 0, width, height, 0);
-            switch (mainMenu.gameMode) {
-                case MENU : {
-                    drawMenuV2(&mainMenu, gameFont);
-                    break;
-                }
-                case TEAM : {
-                    drawTeam(height, width, mouse_x, mouse_y, gameFont);
-                    break;
 
+            case ALLEGRO_EVENT_TIMER : {
+                    printf("%d,  %d\n", mouse_x, mouse_y) ;
+                    /// MENU V1 ::::::
+                    /*if (mouse_x < 5*width/32 && mouse_x > 0 && mouse_y < 29*height/54 && mouse_y > 25*height/54) {
+                        mainMenu.playRect = 1 ;
+                    } else mainMenu.playRect = 0;
+                    if (mouse_x < 5*width/32 && mouse_x > 0 && mouse_y < 35*height/54 && mouse_y > 31*height/54) {
+                        mainMenu.rulesRect = 1 ;
+                    } else mainMenu.rulesRect = 0;
+                    if (mouse_x < 5*width/32 && mouse_x > 0 && mouse_y < 41*height/54 && mouse_y > 37*height/54) {
+                        mainMenu.teamRect = 1 ;
+                    } else mainMenu.teamRect = 0;*/
+                    /// MENU V2 :::::::
+                    menuSouris(&mainMenu, height, width, mouse_x, mouse_y) ;
+                    draw = 1;
                 }
-                case RULES : {
-                    drawRules(&page, height, width, mouse_x, mouse_y, gameFontRegles, gameFont);
-                    break;
-                }
-                case PLAY : {
-                    drawPlay(map, event, mouse_x, mouse_y, display);
+            }
+            if (draw) {
+                al_draw_scaled_bitmap(background, 0, 0, 7680, 4320, 0, 0, width, height, 0);
+                switch (mainMenu.gameMode) {
+                    case MENU : {
+                        drawMenuV2(&mainMenu, height, width) ;
+                        break ;
+                    }
+                    case TEAM : {
+                        drawTeam(height, width, mouse_x, mouse_y) ;
+                        break ;
+
+                    }
+                    case RULES : {
+                        drawRules(&page, height, width, mouse_x, mouse_y, gameFontRegles);
+                        break;
+                    }
+                    case PLAY : {
+                        drawPlay(map,event,mouse_x,mouse_y,display);
 
                     break;
                 }
