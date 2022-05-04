@@ -301,9 +301,9 @@ void menuClick(Menu* mainMenu, float height, float width, int mouse_x, int mouse
     }
 }
 
-bool collisionCercle(int x,int y,Map map[20][20],int i,int j){
+bool collisionCercle(int x,int y,Map map[20][20],int i,int j,double width){
     int d2 = (x-map[i][j].x)*(x-map[i][j].x) + (y- map[i][j].y)*(y-map[i][j].y);
-    if (d2>56*56)
+    if (d2>(width/59*width/59))
         return false;
     else
         return true;
@@ -317,7 +317,7 @@ void drawPlay(Map map[20][20],ALLEGRO_EVENT event,int mouse_x,int mouse_y,ALLEGR
     for (int j=0;j<mapY;j++) {
         for (int i = 0; i < mapX; i++) {
             map[i][j].x=  scalex + i * scalex + j * scalex;
-            map[i][j].y= 1220 - i * scaley + j * scaley;
+            map[i][j].y= height/1.8 - i * scaley + j * scaley;
             al_draw_filled_triangle(map[i][j].x - scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -
                                                                                                                        scaley, white);
             al_draw_filled_triangle(map[i][j].x + scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -
@@ -333,7 +333,7 @@ void drawPlay(Map map[20][20],ALLEGRO_EVENT event,int mouse_x,int mouse_y,ALLEGR
 
     for (int j=0;j<mapY;j++) {
         for (int i = 0; i < mapX; i++) {
-            if(collisionCercle(mouse_x, mouse_y, map, i, j) == true ){
+            if(collisionCercle(mouse_x, mouse_y, map, i, j,width) == true ){
                 al_draw_filled_triangle(map[i][j].x - scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -
                                                                                                                            scaley, vert);
                 al_draw_filled_triangle(map[i][j].x + scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -
@@ -351,10 +351,29 @@ void drawPlay(Map map[20][20],ALLEGRO_EVENT event,int mouse_x,int mouse_y,ALLEGR
     }
 }
 
-void deplacementJoueur(Joueur joueur[]){
+/*void deplacementJoueur(Joueur *joueur[],Map map[20][20]){
+    joueur[0]->x = map[0][0].x;
+    joueur[0]->y = map[0][0].y;
+    if(joueur[0]->t==1) {
+        if (joueur[0]->xp< map[joueur[0]->a][joueur[0]->b].x && joueur[0]->xp != map[joueur[0]->a][joueur[0]->b].x){
+            joueur[0]->xp = joueur[0]->xp + 1;
+        }
+        if (joueur[0]->xp>map[joueur[0]->a][joueur[0]->b].x && joueur[0]->xp != map[joueur[0]->a][joueur[0]->b].x){
+            joueur[0]->xp = joueur[0]->xp - 1;
+        }
 
 
-}
+        if (joueur[0]->xp == map[joueur[0]->a][joueur[0]->b].x && joueur[0]->yp != map[joueur[0]->a][joueur[0]->b].y && joueur[0]->yp<map[joueur[0]->a][joueur[0]->b].y) {
+            joueur[0]->yp = joueur[0]->yp + 1;
+        }
+        if (joueur[0]->xp == map[joueur[0]->a][joueur[0]->b].x && joueur[0]->yp != map[joueur[0]->a][joueur[0]->b].y && joueur[0]->yp>map[joueur[0]->a][joueur[0]->b].y) {
+            joueur[0]->yp = joueur[0]->yp - 1;
+        }
+
+        if (joueur[0]->xp ==map[joueur[0]->a][joueur[0]->b].x && joueur[0]->yp==map[joueur[0]->a][joueur[0]->b].y){joueur[0]->t=0;}
+    }
+
+}*/
 
 
 

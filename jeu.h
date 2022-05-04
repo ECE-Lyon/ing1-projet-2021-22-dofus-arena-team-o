@@ -27,7 +27,8 @@ typedef struct {
 } Map;
 
 typedef struct {
-    int x,y,click;
+    double x,y,xp,yp;
+    int a,b,t;
 } Joueur ;
 
 
@@ -38,6 +39,7 @@ void drawPlay(Map map[20][20],ALLEGRO_EVENT event,int mouse_x,int mouse_y,ALLEGR
 void drawMenuV2(Menu* mainMenu, float height, float width);
 void moveGameModeArc(Menu** mainMenu) ;
 void menuClick(Menu* mainMenu, float height, float width, int mouse_x, int mouse_y) ;
-bool collisionCercle(int x,int y,Map map[20][20],int i,int j);
+void deplacementJoueur(Joueur *joueur[],Map map[20][20]);
+bool collisionCercle(int x,int y,Map map[20][20],int i,int j,double width);
 
 #endif
