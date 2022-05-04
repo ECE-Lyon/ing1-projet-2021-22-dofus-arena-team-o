@@ -86,6 +86,7 @@ int main() {
                 }
                 case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN : {
                     if ((event.mouse.button & 1) == 1) {
+                        map[0][0].t=1;
                         switch (mainMenu.gameMode) {
                             case MENU : {
                                 if (mouse_x < 157*width/275 && mouse_x > 118*width/275 && mouse_y < 38*height/99 && mouse_y > 7*height/80) {
@@ -127,8 +128,14 @@ int main() {
                     }
                     break;
                 }
+                case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
+                    if ((event.mouse.button & 1) == 1) {
+                        map[0][0].t=0;
+                    }
+                    break;
+                    
                 case ALLEGRO_EVENT_TIMER : {
-                    printf("%d,  %d\n", mouse_x, mouse_y) ;
+                    //printf("%d,  %d\n", mouse_x, mouse_y) ;
                     /// MENU V1 ::::::
                     /*if (mouse_x < 5*width/32 && mouse_x > 0 && mouse_y < 29*height/54 && mouse_y > 25*height/54) {
                         mainMenu.playRect = 1 ;

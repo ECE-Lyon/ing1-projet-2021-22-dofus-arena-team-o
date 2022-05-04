@@ -319,34 +319,13 @@ void drawPlay(Map map[20][20],ALLEGRO_EVENT event,int mouse_x,int mouse_y,ALLEGR
             map[i][j].x=  scalex + i * scalex + j * scalex;
             map[i][j].y= 1220 - i * scaley + j * scaley;
         }
-
     }
-    switch (event.type) {
-        case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
-            if ((event.mouse.button & 1) == 1) {
-                map[0][0].t = 1;
-
-            }
-            break;
-
-
-        case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
-            if ((event.mouse.button & 1) == 1) {
-                map[0][0].t = 0;
-
-            }
-            break;
-
-    }
-    printf("%d",map[0][0].t);
     for (int i = 0; i < mapX+1; i++) {
         al_draw_line(i * scalex, 1218 - i * scaley, 1465 + i * scalex, height - scaley * i, al_map_rgb(128, 128, 128), 3);
     }
     for (int i=0;i<mapY+1;i++){
         al_draw_line(1837+i*scalex,i*scaley,i*scalex,1222+scaley*i, al_map_rgb(128,128,128),3);
     }
-
-
 
     for (int j=0;j<mapY;j++) {
         for (int i = 0; i < mapX; i++) {
