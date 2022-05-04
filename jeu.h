@@ -46,7 +46,8 @@ typedef struct {
 } Map;
 
 typedef struct {
-    int x,y,click;
+    double x,y,xp,yp;
+    int a,b,t;
 } Joueur ;
 
 
@@ -55,8 +56,11 @@ void drawTeam(float height, float width, int mouse_x, int mouse_y, ALLEGRO_FONT 
 void drawPlay(Map map[20][20],ALLEGRO_EVENT event,int mouse_x,int mouse_y,ALLEGRO_DISPLAY *display, ALLEGRO_COLOR white, ALLEGRO_COLOR black, ALLEGRO_COLOR gris,ALLEGRO_COLOR vert,ALLEGRO_COLOR red);
 void drawMenuV2(Menu* mainMenu, ALLEGRO_FONT *gameFont);
 void moveGameModeArc(Menu** mainMenu) ;
+void menuClick(Menu* mainMenu, float height, float width, int mouse_x, int mouse_y) ;
+void deplacementJoueur(Joueur *joueur[],Map map[20][20]);
+bool collisionCercle(int x,int y,Map map[20][20],int i,int j,double width);
 void menuSouris(Menu* mainMenu, float height, float width, int mouse_x, int mouse_y) ;
 void drawPlay2(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT *gameFontRegles, int* nbJoueur) ;
-bool collisionCercle(int x,int y,Map map[20][20],int i,int j);
+
 
 #endif
