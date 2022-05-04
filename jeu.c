@@ -309,7 +309,7 @@ bool collisionCercle(int x,int y,Map map[20][20],int i,int j){
         return true;
 }
 
-void drawPlay(Map map[20][20],ALLEGRO_EVENT event,int mouse_x,int mouse_y,ALLEGRO_DISPLAY *display) {
+void drawPlay(Map map[20][20],ALLEGRO_EVENT event,int mouse_x,int mouse_y,ALLEGRO_DISPLAY *display,ALLEGRO_COLOR white, ALLEGRO_COLOR black, ALLEGRO_COLOR gris,ALLEGRO_COLOR vert,ALLEGRO_COLOR red) {
     double height = al_get_display_height(display);
     double width = al_get_display_width(display);
     double scalex = 50.0*width/1800.0;
@@ -318,27 +318,31 @@ void drawPlay(Map map[20][20],ALLEGRO_EVENT event,int mouse_x,int mouse_y,ALLEGR
         for (int i = 0; i < mapX; i++) {
             map[i][j].x=  scalex + i * scalex + j * scalex;
             map[i][j].y= 1220 - i * scaley + j * scaley;
+            al_draw_filled_triangle(map[i][j].x - scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -
+                                                                                                                       scaley, white);
+            al_draw_filled_triangle(map[i][j].x + scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -
+                                                                                                                       scaley, white);
         }
     }
     for (int i = 0; i < mapX+1; i++) {
-        al_draw_line(i * scalex, 1218 - i * scaley, 1465 + i * scalex, height - scaley * i, al_map_rgb(128, 128, 128), 3);
+        al_draw_line(i * scalex, 1218 - i * scaley, 1465 + i * scalex, height - scaley * i, black, 3);
     }
     for (int i=0;i<mapY+1;i++){
-        al_draw_line(1837+i*scalex,i*scaley,i*scalex,1222+scaley*i, al_map_rgb(128,128,128),3);
+        al_draw_line(1837+i*scalex,i*scaley,i*scalex,1222+scaley*i, black,3);
     }
 
     for (int j=0;j<mapY;j++) {
         for (int i = 0; i < mapX; i++) {
             if(collisionCercle(mouse_x, mouse_y, map, i, j) == true ){
                 al_draw_filled_triangle(map[i][j].x - scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -
-                                                                                                                           scaley, al_map_rgba(93, 127, 51, 255));
+                                                                                                                           scaley, vert);
                 al_draw_filled_triangle(map[i][j].x + scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -
-                                                                                                                           scaley, al_map_rgba(93, 127, 51, 255));
+                                                                                                                           scaley, vert);
                 if(map[0][0].t==1){
                     al_draw_filled_triangle(map[i][j].x - scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -
-                                                                                                                               scaley, al_map_rgba(255, 0, 0, 255));
+                                                                                                                               scaley, red);
                     al_draw_filled_triangle(map[i][j].x + scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -
-                                                                                                                               scaley, al_map_rgba(255, 0, 0, 255));
+                                                                                                                               scaley, red);
 
                 }
             }

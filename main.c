@@ -23,6 +23,9 @@ int main() {
 
     ///CREATOON DES VARIABLES
     ALLEGRO_COLOR black = al_map_rgb(0, 0, 0);
+    ALLEGRO_COLOR white = al_map_rgb(255, 255, 255);
+    ALLEGRO_COLOR vert = al_map_rgba(93, 127, 51, 255);
+    ALLEGRO_COLOR gris = al_map_rgb(128,128,128);
     ALLEGRO_COLOR red = al_map_rgb(255, 0, 0);
     ALLEGRO_COLOR jauneLogo = al_map_rgb(255, 204, 51) ;
     ALLEGRO_COLOR marronLogo = al_map_rgb(102, 51, 0) ;
@@ -133,7 +136,7 @@ int main() {
                         map[0][0].t=0;
                     }
                     break;
-                    
+
                 case ALLEGRO_EVENT_TIMER : {
                     //printf("%d,  %d\n", mouse_x, mouse_y) ;
                     /// MENU V1 ::::::
@@ -168,7 +171,7 @@ int main() {
                         break;
                     }
                     case PLAY : {
-                        drawPlay(map,event,mouse_x,mouse_y,display);
+                        drawPlay(map,event,mouse_x,mouse_y,display,white,black,gris,vert,red);
 
                         break ;
                     }
