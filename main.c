@@ -29,6 +29,7 @@ int main() {
     int isFin = 0, draw = 0;
     int rotation = 0 ;
     Menu mainMenu ;
+    Map map[20][20] ;
 
     mainMenu.gameMode = MENU ;
     mainMenu.playRect = 0 ;
@@ -61,10 +62,8 @@ int main() {
     al_clear_to_color(black);
     //al_draw_text(ttf, al_map_rgb(255, 25, 15), 875, 270, ALLEGRO_ALIGN_LEFT, "PLAY");
     ALLEGRO_BITMAP* background = al_load_bitmap("../Bitmap/BG.jpg") ;
-    al_flip_display();
     al_start_timer(times);
     while(!isFin) {
-        while (mainMenu.gameMode != PLAY && !isFin) {
             al_wait_for_event(queue, &event);
             switch (event.type) {
                 case ALLEGRO_EVENT_KEY_DOWN : {
@@ -86,16 +85,6 @@ int main() {
                     if ((event.mouse.button & 1) == 1) {
                         switch (mainMenu.gameMode) {
                             case MENU : {
-                                /// MENU V1 :::::::
-                                /*if (mouse_x < 5*width/32 && mouse_x > 0 && mouse_y < 29*height/54 && mouse_y > 25*height/54) {
-                                    mainMenu.gameMode = PLAY;
-                                } else if (mouse_x < 5*width/32 && mouse_x > 0 && mouse_y < 35*height/54 && mouse_y > 31*height/54) {
-                                    mainMenu.gameMode = RULES;
-                                } else if (mouse_x < 5*width/32 && mouse_x > 0 && mouse_y < 41*height/54 && mouse_y > 37*height/54) {
-                                    mainMenu.gameMode = TEAM;
-                                }*/
-
-                                /// MENU V2 :::::
                                 if (mouse_x < 157*width/275 && mouse_x > 118*width/275 && mouse_y < 38*height/99 && mouse_y > 7*height/80) {
                                     mainMenu.gameMode = PLAY;
                                 }
@@ -161,12 +150,15 @@ int main() {
                     case TEAM : {
                         drawTeam(height, width, mouse_x, mouse_y) ;
                         break ;
+
                     }
                     case RULES : {
                         drawRules(&page, height, width, mouse_x, mouse_y) ;
                         break ;
                     }
                     case PLAY : {
+                        drawPlay(map,event,mouse_x,mouse_y,display);
+
                         break ;
                     }
                 }
@@ -174,7 +166,6 @@ int main() {
                 al_clear_to_color(black);
                 draw = 0;
             }
-        }
     }
     return 0;
 }

@@ -9,6 +9,8 @@
 #include <allegro5/allegro_image.h>
 
 #define RULESPAGEMAX 7
+#define mapX 20
+#define mapY 16
 
 #define PI 3.141592
 
@@ -18,13 +20,21 @@ typedef struct {
     int playRect, rulesRect, teamRect ;
     float startTheta, endTheta, currentTheta, currentEndTheta ;
     int gameMode ;
-    } Menu;
+} Menu;
+
+typedef struct {
+    double x,y;
+    int t;
+} Map;
+
 
 void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y);
 void drawTeam(float height, float width, int mouse_x, int mouse_y);
 void drawMenu(int rect1, int rect2, int rect3, float height, float width);
+void drawPlay(Map map[20][20],ALLEGRO_EVENT event,int mouse_x,int mouse_y,ALLEGRO_DISPLAY *display);
 void drawMenuV2(Menu* mainMenu, float height, float width);
 void moveGameModeArc(Menu** mainMenu) ;
 void menuClick(Menu* mainMenu, float height, float width, int mouse_x, int mouse_y) ;
+bool collisionCercle(int x,int y,Map map[20][20],int i,int j);
 
 #endif
