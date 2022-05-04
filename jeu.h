@@ -8,7 +8,7 @@
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_image.h>
 
-#define RULESPAGEMAX 7
+#define RULESPAGEMAX 3
 #define mapX 20
 #define mapY 16
 
@@ -56,7 +56,7 @@ void drawPlay(Map map[20][20],ALLEGRO_EVENT event,int mouse_x,int mouse_y,ALLEGR
 void drawMenuV2(Menu* mainMenu, ALLEGRO_FONT *gameFont);
 void moveGameModeArc(Menu** mainMenu) ;
 void menuSouris(Menu* mainMenu, float height, float width, int mouse_x, int mouse_y) ;
-void drawPlay2(float width, float height, int mouse_x, int mouse_y) ;
+void drawPlay2(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT *gameFontRegles, int* nbJoueur) ;
 bool collisionCercle(int x,int y,Map map[20][20],int i,int j);
 
 #endif

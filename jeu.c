@@ -30,11 +30,11 @@ void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y, 
         else al_draw_filled_circle(2 * width / 15, 11 * height / 13, width / 38.4, al_map_rgb(250, 250, 250));
     }
 
-
     ///GRAND RECTANGLE AU MILIEU
-    for(int i = 0 ; i < 40 ; i++) {
-        al_draw_line(width/5, height/6 + thickness*i,4*width/5, height/6 + thickness*i, al_map_rgb(200 - 4*i, 255, 50), thickness);
-    }
+    /*for(int i = 0 ; i < 40 ; i++) {
+        al_draw_line(width/5, height/6 + thickness*i,4*width/5, height/6 + thickness*i, al_map_rgb(219 - 3*i, 182 - 2*i, 193 - i), thickness);
+    }*/
+    al_draw_filled_rectangle(width/5, height/6, 4 * (width /5), 5 * (height/6) , al_map_rgba(219, 112, 147, 200));
 
     ///FLECHE DROITE
     if(*pages < RULESPAGEMAX) {
@@ -230,19 +230,28 @@ void menuSouris(Menu* mainMenu, float height, float width, int mouse_x, int mous
     }
 }
 
-void drawPlay2(float width, float height, int mouse_x, int mouse_y) {
+void drawPlay2(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT *gameFontRegles, int* nbJoueur) {
+
     al_draw_filled_rectangle(0, 0, width, height, al_map_rgba(150, 150, 150, 150));
 
     float police = 2 * width / 55;
     ALLEGRO_COLOR gameColor = al_map_rgb(222, 35, 35);
     ALLEGRO_COLOR ecriture = al_map_rgb(20, 20, 20);
-    ALLEGRO_FONT *gameFont = al_load_ttf_font("../Font/MagicCardsNormal.ttf", police, ALLEGRO_ALIGN_LEFT);
 
     al_draw_filled_rectangle(0, 0, 1920, 5 * height / 27, al_map_rgb(100, 100, 100));
     al_draw_filled_triangle(0, 0, 0, 500, 500, 150, al_map_rgb(100, 100, 100));
 
     al_draw_filled_rectangle(0, 0, 1920, 4 * height / 27, al_map_rgb(150, 150, 150));
     al_draw_filled_triangle(0, 0, 0, 400, 150, 150, al_map_rgb(150, 150, 150));
+
+    // demander le nombre de joueur
+    al_draw_textf(gameFontRegles, al_map_rgb(0, 0, 0), 1000, 75, ALLEGRO_ALIGN_CENTER,"Combien de joueurs etes-vous ?");
+    al_draw_filled_circle(400, 500, 100, al_map_rgba(219, 112, 147, 200));
+    al_draw_text(gameFontRegles, al_map_rgb(0, 0, 0), 400, 475, ALLEGRO_ALIGN_CENTER, "2");
+    al_draw_filled_circle(950, 500, 100, al_map_rgba(219, 112, 147, 200));
+    al_draw_text(gameFontRegles, al_map_rgb(0, 0, 0), 950, 475, ALLEGRO_ALIGN_CENTER, "3");
+    al_draw_filled_circle(1500, 500, 100, al_map_rgba(219, 112, 147, 200));
+    al_draw_text(gameFontRegles, al_map_rgb(0, 0, 0), 1500, 475, ALLEGRO_ALIGN_CENTER, "4");
 }
 
 bool collisionCercle(int x,int y,Map map[20][20],int i,int j) {

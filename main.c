@@ -45,6 +45,7 @@ int main() {
     Menu mainMenu;
     Map map[20][20];
     Joueur joueur[4];
+    int nbJoueur = 0;
 
     ///INITIALISATION DE NOS VARIABLES (A FAIRE DANS UNE FONCTION)
     mainMenu.ecran.width = (float) al_get_display_width(display) ;
@@ -135,6 +136,16 @@ int main() {
                                 }
                                 break ;
                             }
+                            case PLAY : {
+                                if (((mouse_x - 400) * (mouse_x - 400)) + ((mouse_y - 500) * (mouse_y - 500)) < 100 * 100) {
+                                        nbJoueur = 2;
+                                } else if (((mouse_x - 950) * (mouse_x - 950)) + ((mouse_y - 500) * (mouse_y - 500)) < 100 * 100) {
+                                        nbJoueur = 3;
+                                } else if (((mouse_x - 1500) * (mouse_x - 1500)) + ((mouse_y - 500) * (mouse_y - 500)) < 100 * 100) {
+                                        nbJoueur = 4;
+                                }
+                            }
+
                         }
                     }
                     break;
@@ -179,7 +190,8 @@ int main() {
                         break;
                     }
                     case PLAY : {
-                        drawPlay(map,event,mouse_x,mouse_y,display,white,black,gris,vert,red);
+                        //drawPlay(map,event,mouse_x,mouse_y,display,white,black,gris,vert,red);
+                        drawPlay2(width, height, mouse_x, mouse_y, gameFontRegles, &nbJoueur) ;
 
                     break;
                 }
