@@ -28,7 +28,7 @@ typedef struct {
 } Map;
 
 
-void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y);
+void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y, ALLEGRO_FONT* gameFontRegles);
 void drawTeam(float height, float width, int mouse_x, int mouse_y);
 void drawMenu(int rect1, int rect2, int rect3, float height, float width);
 void drawPlay(Map map[20][20],ALLEGRO_EVENT event,int mouse_x,int mouse_y,ALLEGRO_DISPLAY *display);
