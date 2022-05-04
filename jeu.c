@@ -6,8 +6,6 @@ void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y, 
     float thickness = (5*height/6 - height/6) / 40 ;
     ALLEGRO_COLOR vert = al_map_rgb(200, 255, 50) ;
     ALLEGRO_COLOR gameColor = al_map_rgb(20, 20, 20) ;
-    ALLEGRO_FONT* gameFont = al_load_ttf_font("../Font/MagicCardsNormal.ttf", police, ALLEGRO_ALIGN_LEFT) ;
-    //ALLEGRO_FONT* gameFontRegles = al_load_ttf_font("../Font/Rumpi.ttf", policeRegles, ALLEGRO_ALIGN_LEFT) ;
 
     ///FOND D'ECRAN GRISATRE
     al_draw_filled_rectangle(0, 0, width, height, al_map_rgba(150, 150, 150, 150)) ;
@@ -107,9 +105,6 @@ void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y, 
 
 void drawTeam(float height, float width, int mouse_x, int mouse_y, ALLEGRO_FONT *gameFont) {
     float police = 2*width/55 ;
-    ALLEGRO_BITMAP* moi = al_load_bitmap("../Bitmap/InfoPhotoM150.PNG") ;
-    ALLEGRO_BITMAP* toi = al_load_bitmap("../Bitmap/InfoPhotoW150.PNG") ;
-    ALLEGRO_FONT *gameFont = al_load_ttf_font("../Font/MagicCardsNormal.ttf", police, ALLEGRO_ALIGN_LEFT);
     ALLEGRO_COLOR gameColor = al_map_rgb(20, 20, 20) ;
 
     ///FOND D'ECRAN GRISATRE

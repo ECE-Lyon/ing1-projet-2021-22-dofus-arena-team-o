@@ -166,16 +166,16 @@ int main() {
                 al_draw_scaled_bitmap(background, 0, 0, 7680, 4320, 0, 0, width, height, 0);
                 switch (mainMenu.gameMode) {
                     case MENU : {
-                        drawMenuV2(&mainMenu, height, width) ;
+                        drawMenuV2(&mainMenu, gameFont) ;
                         break ;
                     }
                     case TEAM : {
-                        drawTeam(height, width, mouse_x, mouse_y) ;
+                        drawTeam(height, width, mouse_x, mouse_y, gameFont) ;
                         break ;
 
                     }
                     case RULES : {
-                        drawRules(&page, height, width, mouse_x, mouse_y, gameFontRegles);
+                        drawRules(&page, height, width, mouse_x, mouse_y, gameFontRegles, gameFont);
                         break;
                     }
                     case PLAY : {
