@@ -11,6 +11,8 @@
 #define RULESPAGEMAX 3
 #define mapX 20
 #define mapY 16
+#define MAXNOM  10
+
 
 #define PI 3.141592
 
@@ -32,6 +34,14 @@ typedef struct {
     ArcDeCercle arc ;
     infoEcran ecran ;
 } Menu;
+
+typedef struct Info{
+    int x, y; //position
+    char* pseudo[MAXNOM];
+    int PV, PM, PA;
+    struct Info* next;
+
+}InfosJoueur;
 
 typedef struct {
     int pages;
@@ -61,6 +71,12 @@ void deplacementJoueur(Joueur *joueur[],Map map[20][20]);
 bool collisionCercle(int x,int y,Map map[20][20],int i,int j,double width);
 void menuSouris(Menu* mainMenu, float height, float width, int mouse_x, int mouse_y) ;
 void drawPlay2(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT *gameFontRegles, int* nbJoueur) ;
+
+
+
+char alphabet(int keycode);
+char* getPseudo();
+
 
 
 #endif

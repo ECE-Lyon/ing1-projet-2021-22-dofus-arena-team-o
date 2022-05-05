@@ -92,7 +92,6 @@ void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y, 
             al_draw_textf(gameFontRegles, gameColor, 400 , 400, ALLEGRO_ALIGN_LEFT, " (voisines). Elles sont beaucoup moins puissantes qu'un sort, mais ne coutent") ;
             al_draw_textf(gameFontRegles, gameColor, 400 , 450, ALLEGRO_ALIGN_LEFT, " que 2 PA. Elles peuvent enlever entre 1 et 5 PV a l'ennemi, avec 1 chance ") ;
             al_draw_textf(gameFontRegles, gameColor, 400 , 500, ALLEGRO_ALIGN_LEFT, " sur 10 d'echouer (et donc n'enlever aucun PV).") ;
-            al_draw_textf(gameFontRegles, gameColor, 900 , 700, ALLEGRO_ALIGN_LEFT, "Have fun !!") ;
             break;
         }
     }
@@ -320,19 +319,117 @@ void drawPlay(Map map[20][20],ALLEGRO_EVENT event,int mouse_x,int mouse_y,ALLEGR
         if (joueur[0]->xp>map[joueur[0]->a][joueur[0]->b].x && joueur[0]->xp != map[joueur[0]->a][joueur[0]->b].x){
             joueur[0]->xp = joueur[0]->xp - 1;
         }
+*/
 
-
-        if (joueur[0]->xp == map[joueur[0]->a][joueur[0]->b].x && joueur[0]->yp != map[joueur[0]->a][joueur[0]->b].y && joueur[0]->yp<map[joueur[0]->a][joueur[0]->b].y) {
-            joueur[0]->yp = joueur[0]->yp + 1;
-        }
-        if (joueur[0]->xp == map[joueur[0]->a][joueur[0]->b].x && joueur[0]->yp != map[joueur[0]->a][joueur[0]->b].y && joueur[0]->yp>map[joueur[0]->a][joueur[0]->b].y) {
-            joueur[0]->yp = joueur[0]->yp - 1;
-        }
-
-        if (joueur[0]->xp ==map[joueur[0]->a][joueur[0]->b].x && joueur[0]->yp==map[joueur[0]->a][joueur[0]->b].y){joueur[0]->t=0;}
+char alphabet (int keycode){
+    char lettreAppuye;
+    switch (keycode) {
+        case ALLEGRO_KEY_Q:
+            lettreAppuye = 'a';
+            break;
+        case ALLEGRO_KEY_B:
+            lettreAppuye = 'b';
+            break;
+        case ALLEGRO_KEY_C:
+            lettreAppuye = 'c';
+            break;
+        case ALLEGRO_KEY_D:
+            lettreAppuye = 'd';
+            break;
+        case ALLEGRO_KEY_E:
+            lettreAppuye = 'e';
+            break;
+        case ALLEGRO_KEY_F:
+            lettreAppuye = 'f';
+            break;
+        case ALLEGRO_KEY_G:
+            lettreAppuye = 'g';
+            break;
+        case ALLEGRO_KEY_H:
+            lettreAppuye = 'h';
+            break;
+        case ALLEGRO_KEY_I:
+            lettreAppuye = 'i';
+            break;
+        case ALLEGRO_KEY_J:
+            lettreAppuye = 'j';
+            break;
+        case ALLEGRO_KEY_K:
+            lettreAppuye = 'k';
+            break;
+        case ALLEGRO_KEY_L:
+            lettreAppuye = 'l';
+            break;
+        case ALLEGRO_KEY_M:
+            lettreAppuye = 'm';
+            break;
+        case ALLEGRO_KEY_N:
+            lettreAppuye = 'n';
+            break;
+        case ALLEGRO_KEY_O:
+            lettreAppuye = 'o';
+            break;
+        case ALLEGRO_KEY_P:
+            lettreAppuye = 'p';
+            break;
+        case ALLEGRO_KEY_A:
+            lettreAppuye = 'q';
+            break;
+        case ALLEGRO_KEY_R:
+            lettreAppuye = 'r';
+            break;
+        case ALLEGRO_KEY_S:
+            lettreAppuye = 's';
+            break;
+        case ALLEGRO_KEY_T:
+            lettreAppuye = 't';
+            break;
+        case ALLEGRO_KEY_U:
+            lettreAppuye = 'u';
+            break;
+        case ALLEGRO_KEY_V:
+            lettreAppuye = 'v';
+            break;
+        case ALLEGRO_KEY_Z:
+            lettreAppuye = 'w';
+            break;
+        case ALLEGRO_KEY_X:
+            lettreAppuye = 'x';
+            break;
+        case ALLEGRO_KEY_Y:
+            lettreAppuye = 'Y';
+            break;
+        case ALLEGRO_KEY_W:
+            lettreAppuye = 'z';
+            break;
     }
+    return lettreAppuye;
+}
 
-}*/
 
 
+InfosJoueur* insererDesJoueursALaFin(InfosJoueur** maillonJoueur) {
+    if (*maillonJoueur == NULL) {
+        *maillonJoueur = malloc(sizeof(InfosJoueur));
+        (*maillonJoueur)->next = *maillonJoueur;
+    } else {
+        InfosJoueur *nvJoueur = NULL;
+        for (nvJoueur = *maillonJoueur; nvJoueur->next != *maillonJoueur; nvJoueur = nvJoueur->next) {
+        }
+        nvJoueur->next = malloc(sizeof(InfosJoueur));
+        return nvJoueur->next;
+    }
+}
 
+void remplirDonneeJoueur (InfosJoueur** UnMaillonJoueur){
+    (*UnMaillonJoueur)->pseudo = getPseudo();
+}
+
+char* getPseudo(InfosJoueur* joueur){  // maillonJoueur.pseudo
+    int nbLettre = 0;
+    if (nbLettre < MAXNOM && nbLettre!= '\0'){
+        scanf("%s", joueur->pseudo);
+        nbLettre++;
+    }
+    return joueur->pseudo;
+}
