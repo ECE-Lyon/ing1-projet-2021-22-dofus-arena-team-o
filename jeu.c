@@ -230,7 +230,7 @@ void menuSouris(Menu* mainMenu, float height, float width, int mouse_x, int mous
 }
 //void drawPlay
 
-void drawCarrePerso ()
+
 void drawPlay2(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT * gameFont, ALLEGRO_FONT *gameFontRegles, int* nbJoueur) {
 
     al_draw_filled_rectangle(0, 0, width, height, al_map_rgba(150, 150, 150, 150));
@@ -373,6 +373,12 @@ void drawChooseCharacter(float height, float width,ALLEGRO_FONT * gameFont, int*
 
     }
    // rectangle 1    x1 : 530, x2 : 830  /  rectangle 2    x1 : 930,   x2 : 1230 / rectangle 3   x1 : 1330, x2 : 1660 / rectangle 4  x1 : 1730, x2 : 2030
+
+    al_draw_filled_rectangle(0, 0, width, 5 * height / 27, al_map_rgb(246, 97, 65));
+    al_draw_filled_rectangle(0, 0, width, 5 * height / 27, al_map_rgb(168, 218, 67));
+    al_draw_filled_rectangle(0, 0, width, 5 * height / 27, al_map_rgb(240, 139, 229));
+    al_draw_filled_rectangle(0, 0, width, 5 * height / 27, al_map_rgb(139, 240, 228));
+
 }
 
 int getRandomInteger(int min, int max){

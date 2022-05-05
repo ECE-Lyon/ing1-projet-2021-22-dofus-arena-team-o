@@ -207,6 +207,7 @@ int main() {
                     case PLAY : {
                         //drawPlay(map,event,mouse_x,mouse_y,display,white,black,gris,vert,red);
                         drawChooseCharacter(height, width, gameFont, &nbJoueur, mouse_x, mouse_y) ;
+                        //drawCarrePerso()
                         //drawPlay2(width, height, mouse_x, mouse_y, gameFont,gameFontRegles, &nbJoueur) ;
                         //afficherPseudo(joueur2, width, height, gameFont1, 1) ;
                     break;
