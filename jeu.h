@@ -39,8 +39,6 @@ typedef struct Info{
     int x, y; //position
     char* pseudo[MAXNOM];
     int PV, PM, PA;
-    struct Info* next;
-
 }InfosJoueur;
 
 typedef struct {

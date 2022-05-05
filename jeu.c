@@ -408,28 +408,24 @@ char alphabet (int keycode){
 
 
 
-InfosJoueur* insererDesJoueursALaFin(InfosJoueur** maillonJoueur) {
-    if (*maillonJoueur == NULL) {
-        *maillonJoueur = malloc(sizeof(InfosJoueur));
-        (*maillonJoueur)->next = *maillonJoueur;
-    } else {
-        InfosJoueur *nvJoueur = NULL;
-        for (nvJoueur = *maillonJoueur; nvJoueur->next != *maillonJoueur; nvJoueur = nvJoueur->next) {
+
+// autre methode pour entrer un nom
+
+void entrerPseudo (ALLEGRO_EVENT* event, InfosJoueur tabJoueur[], int joueurActuel){
+    int numCharPseudo = 0;
+    if (event.type == ALLEGRO_KEY_DOWN){
+        if ( numCharPseudo < MAXNOM && event.keyboard.keycode >= ALLEGRO_KEY_A && event.keyboard.keycode <= ALLEGRO_KEY_Z) {
+            tabJoueur[joueurActuel].pseudo[numCharPseudo] = (char) (event.keyboard.keycode + 96);
+            numCharPseudo++;
         }
-        nvJoueur->next = malloc(sizeof(InfosJoueur));
-        return nvJoueur->next;
+        if (event.keyboard.keycode == ALLEGRO_KEY_BACKSPACE){
+            if (numCharPseudo >= 1){
+                numCharPseudo--;
+                tabJoueur[joueurActuel].pseudo[numCharPseudo] = '\0';
+            }
+        }
     }
 }
 
-void remplirDonneeJoueur (InfosJoueur** UnMaillonJoueur){
-    (*UnMaillonJoueur)->pseudo = getPseudo();
-}
 
-char* getPseudo(InfosJoueur* joueur){  // maillonJoueur.pseudo
-    int nbLettre = 0;
-    if (nbLettre < MAXNOM && nbLettre!= '\0'){
-        scanf("%s", joueur->pseudo);
-        nbLettre++;
-    }
-    return joueur->pseudo;
-}
+
