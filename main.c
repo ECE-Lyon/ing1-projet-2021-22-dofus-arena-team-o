@@ -67,8 +67,7 @@ int main() {
     mainMenu.arc.currentEndTheta = 2 * PI;
     InfosJoueur* joueur2= malloc(4*sizeof (InfosJoueur)) ;
 
-    strcpy(joueur2->pseudo, "");
-    int mouse_x = 0, mouse_y = 0;
+    float mouse_x = 0, mouse_y = 0;
     int page = 1;
 
     ///INITIALISATION DU TIMER
@@ -107,64 +106,70 @@ int main() {
             }
             case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN : {
                 if ((event.mouse.button & 1) == 1) {
-                    map[0][0].t=1;
+                    map[0][0].t = 1;
                     switch (mainMenu.gameMode) {
                         case MENU : {
                             if (mouse_x < 157 * width / 275 && mouse_x > 118 * width / 275 &&
-                                mouse_y < 38 * height / 99 && mouse_y > 7 * height / 80) {
+                                    mouse_y < 38 * height / 99 && mouse_y > 7 * height / 80) {
                                 mainMenu.gameMode = PLAY;
                             }
-                            if (mouse_x < 49 * width / 110 && mouse_x > 21 * width / 110 &&
-                                mouse_y < 322 * height / 495 && mouse_y > 4 * height / 9) {
+                            if (mouse_x < 49 * width / 110 && mouse_x > 21 * width / 110 && mouse_y < 322 * height / 495 && mouse_y > 4 * height / 9) {
                                 mainMenu.gameMode = RULES;
                             }
                             if (mouse_x < 89 * width / 110 && mouse_x > 61 * width / 110 &&
-                                mouse_y < 322 * height / 495 && mouse_y > 4 * height / 9) {
+                                    mouse_y < 322 * height / 495 && mouse_y > 4 * height / 9) {
                                 mainMenu.gameMode = TEAM;;
                             }
 
-                                break ;
-                            }
-                            case TEAM : {
-                                if (event.mouse.x < 5*width/32 && event.mouse.x > width/384 && event.mouse.y < 2*height/27 && event.mouse.y > height/216) {
-                                    mainMenu.gameMode = MENU;
-                                }
-                                break ;
-                            }
-                            case RULES : {
-                                if((mouse_x - 13 * width / 15) * (mouse_x - 13 * width / 15) + (mouse_y - 11 * height / 13) * (mouse_y - 11 * height / 13) < 50 * 50) {
-                                    if(page + 1 <= RULESPAGEMAX) {
-                                        page++;
-                                    }
-                                }
-                                if((mouse_x - 2 * width / 15) * (mouse_x - 2 * width / 15) + (mouse_y - 11 * height / 13) * (mouse_y - 11 * height / 13) < 50 * 50) {
-                                    if(page - 1 >= 1) {
-                                        page--;
-                                    }
-                                }
-                                if (event.mouse.x < 5*width/32 && event.mouse.x > width/384 && event.mouse.y < 2*height/27 && event.mouse.y > height/216) {
-                                    mainMenu.gameMode = MENU;
-                                    page = 1 ;
-                                }
-                                break ;
-                            }
-                            case PLAY : {
-                                if (event.mouse.x < 5*width/32 && event.mouse.x > width/384 && event.mouse.y < 2*height/27 && event.mouse.y > height/216) {
-                                    mainMenu.gameMode = MENU;
-                                }
-                                if (((mouse_x - 400) * (mouse_x - 400)) + ((mouse_y - 500) * (mouse_y - 500)) < 100 * 100) {
-                                        nbJoueur = 2;
-                                } else if (((mouse_x - 950) * (mouse_x - 950)) + ((mouse_y - 500) * (mouse_y - 500)) < 100 * 100) {
-                                        nbJoueur = 3;
-                                } else if (((mouse_x - 1500) * (mouse_x - 1500)) + ((mouse_y - 500) * (mouse_y - 500)) < 100 * 100) {
-                                        nbJoueur = 4;
-                                }
-                            }
-
+                            break;
                         }
+                        case TEAM : {
+                            if (mouse_x < 5 * width / 32 && mouse_x > width / 384 &&
+                                    mouse_y < 2 * height / 27 && mouse_y > height / 216) {
+                                mainMenu.gameMode = MENU;
+                            }
+                            break;
+                        }
+                        case RULES : {
+                            if ((mouse_x - 13 * width / 15) * (mouse_x - 13 * width / 15) +
+                                (mouse_y - 11 * height / 13) * (mouse_y - 11 * height / 13) < 50 * 50) {
+                                if (page + 1 <= RULESPAGEMAX) {
+                                    page++;
+                                }
+                            }
+                            if ((mouse_x - 2 * width / 15) * (mouse_x - 2 * width / 15) +
+                                (mouse_y - 11 * height / 13) * (mouse_y - 11 * height / 13) < 50 * 50) {
+                                if (page - 1 >= 1) {
+                                    page--;
+                                }
+                            }
+                            if (mouse_x < 5 * width / 32 && mouse_x > width / 384 &&
+                                    mouse_y < 2 * height / 27 && mouse_y > height / 216) {
+                                mainMenu.gameMode = MENU;
+                                page = 1;
+                            }
+                            break;
+                        }
+                        case PLAY : {
+                            if (mouse_x < 5 * width / 32 && mouse_x > width / 384 &&
+                                    mouse_y < 2 * height / 27 && mouse_y > height / 216) {
+                                mainMenu.gameMode = MENU;
+                            }
+                            if (((mouse_x - 400) * (mouse_x - 400)) + ((mouse_y - 500) * (mouse_y - 500)) < 100 * 100) {
+                                nbJoueur = 2;
+                            } else if (((mouse_x - 950) * (mouse_x - 950)) + ((mouse_y - 500) * (mouse_y - 500)) <
+                                       100 * 100) {
+                                nbJoueur = 3;
+                            } else if (((mouse_x - 1500) * (mouse_x - 1500)) + ((mouse_y - 500) * (mouse_y - 500)) <
+                                       100 * 100) {
+                                nbJoueur = 4;
+                            }
+                        }
+
                     }
-                    break;
                 }
+                break;
+            }
             case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
                 if ((event.mouse.button & 1) == 1) {
                     map[0][0].t=0;
