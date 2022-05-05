@@ -409,97 +409,22 @@ char alphabet (int keycode, int* nbLettre){
         return lettreAppuye ;
     }
     else if(keycode == ALLEGRO_KEY_BACKSPACE) {
-        (*nbLettre) -- ;
+        if(*nbLettre > 0) {
+            (*nbLettre)--;
+        }
         return '\0';
     }
-    /*switch (keycode) {
-        case ALLEGRO_KEY_A:
-            lettreAppuye = 'a';
-            break;
-        case ALLEGRO_KEY_B:
-            lettreAppuye = 'b';
-            break;
-        case ALLEGRO_KEY_C:
-            lettreAppuye = 'c';
-            break;
-        case ALLEGRO_KEY_D:
-            lettreAppuye = 'd';
-            break;
-        case ALLEGRO_KEY_E:
-            lettreAppuye = 'e';
-            break;
-        case ALLEGRO_KEY_F:
-            lettreAppuye = 'f';
-            break;
-        case ALLEGRO_KEY_G:
-            lettreAppuye = 'g';
-            break;
-        case ALLEGRO_KEY_H:
-            lettreAppuye = 'h';
-            break;
-        case ALLEGRO_KEY_I:
-            lettreAppuye = 'i';
-            break;
-        case ALLEGRO_KEY_J:
-            lettreAppuye = 'j';
-            break;
-        case ALLEGRO_KEY_K:
-            lettreAppuye = 'k';
-            break;
-        case ALLEGRO_KEY_L:
-            lettreAppuye = 'l';
-            break;
-        case ALLEGRO_KEY_M:
-            lettreAppuye = 'm';
-            break;
-        case ALLEGRO_KEY_N:
-            lettreAppuye = 'n';
-            break;
-        case ALLEGRO_KEY_O:
-            lettreAppuye = 'o';
-            break;
-        case ALLEGRO_KEY_P:
-            lettreAppuye = 'p';
-            break;
-        case ALLEGRO_KEY_Q:
-            lettreAppuye = 'q';
-            break;
-        case ALLEGRO_KEY_R:
-            lettreAppuye = 'r';
-            break;
-        case ALLEGRO_KEY_S:
-            lettreAppuye = 's';
-            break;
-        case ALLEGRO_KEY_T:
-            lettreAppuye = 't';
-            break;
-        case ALLEGRO_KEY_U:
-            lettreAppuye = 'u';
-            break;
-        case ALLEGRO_KEY_V:
-            lettreAppuye = 'v';
-            break;
-        case ALLEGRO_KEY_Z:
-            lettreAppuye = 'w';
-            break;
-        case ALLEGRO_KEY_X:
-            lettreAppuye = 'x';
-            break;
-        case ALLEGRO_KEY_Y:
-            lettreAppuye = 'Y';
-            break;
-        case ALLEGRO_KEY_W:
-            lettreAppuye = 'z';
-            break;
-    }*/
+    else if(keycode == ALLEGRO_KEY_SPACE) {
+        return ' ';
+    }
     else return 0 ;
 }
 
 void mettrePseudo(InfosJoueur** joueur, char lettre, int quelJoueurEstSelectionne, int* nbLettre) {
-    if(*nbLettre + 1 < MAXNOM) {
+    if(*nbLettre < MAXNOM) {
         (*joueur)[quelJoueurEstSelectionne - 1].pseudo[*nbLettre] = lettre ;
     }
-    if(lettre != '\0' && *nbLettre < MAXNOM) {
+    if(lettre != '\0' && *nbLettre < MAXNOM-1) {
         (*nbLettre)++ ;
     }
 }
