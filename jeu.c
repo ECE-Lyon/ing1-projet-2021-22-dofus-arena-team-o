@@ -17,7 +17,7 @@ void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y, 
     else   al_draw_filled_rectangle(width/384, height/216, 5*width/32, 2*height/27, al_map_rgb(250,250,250)) ;
     if(*pages < RULESPAGEMAX) {
         if ((mouse_x - 13 * width / 15) * (mouse_x - 13 * width / 15) +
-            (mouse_y - 11 * height / 13) * (mouse_y - 11 * height / 13) < width/38.4 * width/38.4) {
+            (mouse_y - 11 * height / 13) * (mouse_y - 11 * height / 13) < width / 38.4 * width / 38.4) {
             al_draw_filled_circle(13 * width / 15, 11 * height / 13, width / 38.4, al_map_rgb(200, 200, 200));
         }
         else al_draw_filled_circle(13*width/15, 11*height/13, width/38.4, al_map_rgb(250,250,250)) ;
@@ -57,44 +57,7 @@ void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y, 
 
 
     ///DIFFERENTES PAGES DES REGLES
-    switch(*pages){
-        case 1 : {
-            //x1 : width/5, y1 : height/6 , x2: 4*width/5 , y2 : 5*height/6
-            al_draw_text(gameFontRegles, gameColor, 950 , 200, ALLEGRO_ALIGN_CENTER, "Regles ") ;
-            al_draw_textf(gameFontRegles, gameColor, 400 , 300, ALLEGRO_ALIGN_LEFT, "       Classes :  ") ;
-            al_draw_textf(gameFontRegles, gameColor, 400 , 350, ALLEGRO_ALIGN_LEFT, " Au debut du jeu, chaque joueur a le choix entre plusieurs Classes. ") ;
-            al_draw_textf(gameFontRegles, gameColor, 400 , 400, ALLEGRO_ALIGN_LEFT, " La classe d'un personnage definit son apparence et les sorts dont il dispose. ") ;
-            al_draw_textf(gameFontRegles, gameColor, 400 , 500, ALLEGRO_ALIGN_LEFT, "       Tour : ");
-            al_draw_textf(gameFontRegles, gameColor, 400 , 550, ALLEGRO_ALIGN_LEFT, " Lorsque c'est a un joueur de jouer, il dispose de 15 secondes pour faire ses ");
-            al_draw_textf(gameFontRegles, gameColor, 400 , 600, ALLEGRO_ALIGN_LEFT, " actions, dans n'importe quel ordre : ");
-            al_draw_textf(gameFontRegles, gameColor, 400 , 650, ALLEGRO_ALIGN_LEFT, " - Se deplacer, dans la limite de ses PM, ");
-            al_draw_textf(gameFontRegles, gameColor, 400 , 700, ALLEGRO_ALIGN_LEFT, " - Attaquer, dans la limite de ses PA, ");
-            al_draw_textf(gameFontRegles, gameColor, 400 , 750, ALLEGRO_ALIGN_LEFT, " - Passer son tour. ");
-            break;
-        }
-        case 2 : {
-            al_draw_text(gameFontRegles, gameColor, 950 , 200, ALLEGRO_ALIGN_CENTER, "Suite ") ;
-            al_draw_textf(gameFontRegles, gameColor, 400 , 300, ALLEGRO_ALIGN_LEFT, " Au bout de 15 secondes, le jeu passe automatiquement au personnage ") ;
-            al_draw_textf(gameFontRegles, gameColor, 400 , 350, ALLEGRO_ALIGN_LEFT, " suivant. Si le joueur termine ses actions avant les 15s, il peut cliquer sur") ;
-            al_draw_textf(gameFontRegles, gameColor, 400 , 400, ALLEGRO_ALIGN_LEFT, " le bouton Personnage suivant") ;
-            al_draw_textf(gameFontRegles, gameColor, 400 , 500, ALLEGRO_ALIGN_LEFT, "       Attaques : ") ;
-            al_draw_textf(gameFontRegles, gameColor, 400 , 550, ALLEGRO_ALIGN_LEFT, " Le but du jeu etant de gagner la bataille, chaque joueur, peut, lorsque c'est ");
-            al_draw_textf(gameFontRegles, gameColor, 400 , 600, ALLEGRO_ALIGN_LEFT, " son tour, lancer des sorts ou attaquer au corps a corps. Lorsqu'un ");
-            al_draw_textf(gameFontRegles, gameColor, 400 , 650, ALLEGRO_ALIGN_LEFT, " personnage subit une attaque, il perd des PV calcules aleatoirement ");
-            al_draw_textf(gameFontRegles, gameColor, 400 , 700, ALLEGRO_ALIGN_LEFT, " en fonction de la puissance de l'attaque. Par exemple une attaque ");
-            al_draw_textf(gameFontRegles, gameColor, 400 , 750, ALLEGRO_ALIGN_LEFT, " enleve 8 PV, plus ou moins 4 PV, et elle a une chance sur 12 d'echouer.");
-            break;
-        }
-        case 3 : {
-            al_draw_text(gameFontRegles, gameColor, 950 , 200, ALLEGRO_ALIGN_CENTER, "Suite ") ;
-            al_draw_textf(gameFontRegles, gameColor, 400 , 300, ALLEGRO_ALIGN_LEFT, "       Attaque au corps a corps : ") ;
-            al_draw_textf(gameFontRegles, gameColor, 400 , 350, ALLEGRO_ALIGN_LEFT, " L'attaque au corps a corps n'est possible que sur les cases adjacentes ") ;
-            al_draw_textf(gameFontRegles, gameColor, 400 , 400, ALLEGRO_ALIGN_LEFT, " (voisines). Elles sont beaucoup moins puissantes qu'un sort, mais ne coutent") ;
-            al_draw_textf(gameFontRegles, gameColor, 400 , 450, ALLEGRO_ALIGN_LEFT, " que 2 PA. Elles peuvent enlever entre 1 et 5 PV a l'ennemi, avec 1 chance ") ;
-            al_draw_textf(gameFontRegles, gameColor, 400 , 500, ALLEGRO_ALIGN_LEFT, " sur 10 d'echouer (et donc n'enlever aucun PV).") ;
-            break;
-        }
-    }
+    afficherPages(*pages, gameFontRegles, gameColor, height, width) ;
 
     ///BOUTON RETURN
     al_draw_text(gameFont, gameColor, (5*width/32 - width/384)/2 + police/10, (2*height/27-height/216)/2 - police/3, ALLEGRO_ALIGN_CENTER, "RETURN") ;
@@ -102,39 +65,75 @@ void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y, 
     al_draw_textf(gameFont, gameColor, 7.5 * width / 15, 11 * height / 13 + height / 18, ALLEGRO_ALIGN_CENTER, "%d / %d", *pages, RULESPAGEMAX) ;
 }
 
+void afficherPages(int pages, ALLEGRO_FONT* gameFontRegles, ALLEGRO_COLOR gameColor, float height, float width ) {
+    switch(pages){
+        case 1 : {
+            //x1 : width/5, y1 : height/6 , x2: 4*width/5 , y2 : 5*height/6
+            al_draw_text(gameFontRegles, gameColor, 95 * width / 192 , height/ 5.4, ALLEGRO_ALIGN_CENTER, "Regles ") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/ 3.6, ALLEGRO_ALIGN_LEFT, "       Classes :  ") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , 35 * height / 108, ALLEGRO_ALIGN_LEFT, " Au debut du jeu, chaque joueur a le choix entre plusieurs Classes. ") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/ 2.7, ALLEGRO_ALIGN_LEFT, " La classe d'un personnage definit son apparence et les sorts dont il dispose. ") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , 25 * height/ 54, ALLEGRO_ALIGN_LEFT, "       Tour : ");
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , 55 * height / 108, ALLEGRO_ALIGN_LEFT, " Lorsque c'est a un joueur de jouer, il dispose de 15 secondes pour faire ses ");
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/ 1.8, ALLEGRO_ALIGN_LEFT, " actions, dans n'importe quel ordre : ");
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , 65 * height / 108, ALLEGRO_ALIGN_LEFT, " - Se deplacer, dans la limite de ses PM, ");
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , 35*height/54, ALLEGRO_ALIGN_LEFT, " - Attaquer, dans la limite de ses PA, ");
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/1.44, ALLEGRO_ALIGN_LEFT, " - Passer son tour. ");
+            break;
+        }
+        case 2 : {
+            al_draw_text(gameFontRegles, gameColor, 95 * width/192 , height/5.4, ALLEGRO_ALIGN_CENTER, "Suite ") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/3.6, ALLEGRO_ALIGN_LEFT, " Au bout de 15 secondes, le jeu passe automatiquement au personnage ") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , 35*height/108, ALLEGRO_ALIGN_LEFT, " suivant. Si le joueur termine ses actions avant les 15s, il peut cliquer sur") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/2.7, ALLEGRO_ALIGN_LEFT, " le bouton Personnage suivant") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/2.16, ALLEGRO_ALIGN_LEFT, "       Attaques : ") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , 55*height/108, ALLEGRO_ALIGN_LEFT, " Le but du jeu etant de gagner la bataille, chaque joueur, peut, lorsque c'est ");
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/1.8, ALLEGRO_ALIGN_LEFT, " son tour, lancer des sorts ou attaquer au corps a corps. Lorsqu'un ");
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , 65*height/108, ALLEGRO_ALIGN_LEFT, " personnage subit une attaque, il perd des PV calcules aleatoirement ");
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , 35*height/54, ALLEGRO_ALIGN_LEFT, " en fonction de la puissance de l'attaque. Par exemple une attaque ");
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/1.44, ALLEGRO_ALIGN_LEFT, " enleve 8 PV, plus ou moins 4 PV, et elle a une chance sur 12 d'echouer.");
+            break;
+        }
+        case 3 : {
+            al_draw_text(gameFontRegles, gameColor, 95*width/192 , height/5.4, ALLEGRO_ALIGN_CENTER, "Suite ") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/3.6, ALLEGRO_ALIGN_LEFT, "       Attaque au corps a corps : ") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , 35* height/108, ALLEGRO_ALIGN_LEFT, " L'attaque au corps a corps n'est possible que sur les cases adjacentes ") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/2.7, ALLEGRO_ALIGN_LEFT, " (voisines). Elles sont beaucoup moins puissantes qu'un sort, mais ne coutent") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/2.4, ALLEGRO_ALIGN_LEFT, " que 2 PA. Elles peuvent enlever entre 1 et 5 PV a l'ennemi, avec 1 chance ") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/2.16, ALLEGRO_ALIGN_LEFT, " sur 10 d'echouer (et donc n'enlever aucun PV).") ;
+            break;
+        }
+    }
+}
 
-void drawTeam(float height, float width, int mouse_x, int mouse_y, ALLEGRO_FONT *gameFont) {
+
+void drawTeam(float height, float width, int mouse_x, int mouse_y, ALLEGRO_FONT *gameFont, ALLEGRO_BITMAP* team) {
     float police = 2*width/55 ;
     ALLEGRO_COLOR gameColor = al_map_rgb(20, 20, 20) ;
 
     ///FOND D'ECRAN GRISATRE
     al_draw_filled_rectangle(0, 0, width, height, al_map_rgba(150, 150, 150, 150)) ;
 
+    al_draw_filled_rectangle(width/5, height/6, 4 * (width /5), 5 * (height/6) , al_map_rgba(219, 112, 147, 200));
+
+    al_draw_scaled_bitmap(team, 0, 0, 1034, 704, (width/5) + (3*width/32), height/5 + height/27, 1034*1.05, 704*1.05, 0) ;
     ///ON FAIT SURBRILLER LES CASES RETURN ET LES BOUTONS SI LA SOURIS SE TROUVE DESSUS
     if ((float) mouse_x < 5*width/32 && mouse_x > width/384 && (float) mouse_y < 2*height/27 && mouse_y > height/216) {
         al_draw_filled_rectangle(width/384, height/216, 5*width/32, 2*height/27, al_map_rgb(200,200,200)) ;
     }
     else   al_draw_filled_rectangle(width/384, height/216, 5*width/32, 2*height/27, al_map_rgb(250,250,250)) ;
 
-    ///NEL
-    al_draw_filled_circle(width/4, height/4, width*150/2100, al_map_rgb(255, 255, 255)) ;
-    al_draw_circle(width/4, height/4, width*150/2100, gameColor, 5) ;
-    al_draw_text(gameFont, gameColor, width/4 , height/4 + height/7, ALLEGRO_ALIGN_CENTER, "Nel") ;
+    ///Zelie
+    al_draw_text(gameFont, gameColor, width/4 , height/5.4, ALLEGRO_ALIGN_CENTER, "Zelie") ;
 
-    ///ZELIE
-    al_draw_filled_circle(3*width/4 , height/4, width*150/2100, al_map_rgb(255, 255, 255)) ;
-    al_draw_circle(3 * width / 4, height / 4, width*150/2100, gameColor, 5) ;
-    al_draw_text(gameFont, gameColor, 3*width/4 , height/4 + height/7, ALLEGRO_ALIGN_CENTER, "Zelie") ;
+    ///Nel
+    al_draw_text(gameFont, gameColor, 3*width/4 , height/5.4, ALLEGRO_ALIGN_CENTER, "Nel") ;
 
     ///FARES
-    al_draw_filled_circle(width/4, 3*height/4, width*150/2100, al_map_rgb(255, 255, 255)) ;
-    al_draw_circle(width/4, 3*height/4, width*150/2100, gameColor, 5) ;
-    al_draw_text(gameFont, gameColor, width / 4 , 3*height/4 + height/7, ALLEGRO_ALIGN_CENTER, "Fares") ;
+    al_draw_text(gameFont, gameColor, width / 4 , height/1.35, ALLEGRO_ALIGN_CENTER, "Fares") ;
 
     ///ILAYDA
-    al_draw_filled_circle(3*width/4, 3*height/4, width*150/2100, al_map_rgb(255, 255, 255)) ;
-    al_draw_circle(3*width/4, 3*height/4, width*150/2100, gameColor, 5) ;
-    al_draw_text(gameFont, gameColor, 3*width/4 , 3*height/4 + height/7, ALLEGRO_ALIGN_CENTER, "Ilayda") ;
+    al_draw_text(gameFont, gameColor, 3*width/4 , height/1.35, ALLEGRO_ALIGN_CENTER, "Ilayda") ;
 
     ///BOUTON RETURN
     al_draw_text(gameFont, gameColor, (5*width/32 - width/384)/2 + police/10, (2*height/27-height/216)/2 - police/3, ALLEGRO_ALIGN_CENTER, "RETURN") ;
@@ -230,7 +229,7 @@ void menuSouris(Menu* mainMenu, float height, float width, int mouse_x, int mous
     }
 }
 
-void drawPlay2(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT *gameFontRegles, int* nbJoueur) {
+void drawPlay2(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT * gameFont, ALLEGRO_FONT *gameFontRegles, int* nbJoueur) {
 
     al_draw_filled_rectangle(0, 0, width, height, al_map_rgba(150, 150, 150, 150));
 
@@ -238,20 +237,49 @@ void drawPlay2(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT
     ALLEGRO_COLOR gameColor = al_map_rgb(222, 35, 35);
     ALLEGRO_COLOR ecriture = al_map_rgb(20, 20, 20);
 
-    al_draw_filled_rectangle(0, 0, 1920, 5 * height / 27, al_map_rgb(100, 100, 100));
-    al_draw_filled_triangle(0, 0, 0, 500, 500, 150, al_map_rgb(100, 100, 100));
+    al_draw_filled_rectangle(0, 0, width, 5 * height / 27, al_map_rgb(100, 100, 100));
+    al_draw_filled_triangle(0, 0, 0, height/2.16, width/3.84, height/7.2, al_map_rgb(100, 100, 100));
+    al_draw_filled_rectangle(0, 0, width, 4 * height / 27, al_map_rgb(150, 150, 150));
+    al_draw_filled_triangle(0, 0, 0, 41*height/108, 37*width/192, height/7.2, al_map_rgb(150, 150, 150));
 
-    al_draw_filled_rectangle(0, 0, 1920, 4 * height / 27, al_map_rgb(150, 150, 150));
-    al_draw_filled_triangle(0, 0, 0, 400, 150, 150, al_map_rgb(150, 150, 150));
 
-    // demander le nombre de joueur
+    al_draw_filled_circle(29*width/32, height/13.5, 60, al_map_rgb(100, 100, 100)) ;
+    al_draw_filled_rectangle(7*width/8,   height/12, 15*width/16, height/10.8, al_map_rgb(150, 150, 150)) ;
+    al_draw_filled_rectangle(341*width/384,   height/54, 347*width/384, 7*height/54, al_map_rgb(150, 150, 150)) ;
+
+    // bouton return
+    if ((float) mouse_x < 5*width/32 && mouse_x > width/384 && (float) mouse_y < 2*height/27 && mouse_y > height/216) {
+        al_draw_filled_rectangle(width/384, height/216, 5*width/32, 2*height/27, al_map_rgb(200,200,200)) ;
+        al_draw_text(gameFont, al_map_rgb(0, 0, 0), (5*width/32 - width/384)/2 + police/10, (2*height/27-height/216)/2 - police/3, ALLEGRO_ALIGN_CENTER, "RETURN") ;
+    }
+    else   {
+        al_draw_filled_rectangle(width/384, height/216, 5*width/32, 2*height/27, al_map_rgb(255,255,255)) ;
+        al_draw_text(gameFont, al_map_rgb(0, 0, 0), (5*width/32 - width/384)/2 + police/10, (2*height/27-height/216)/2 - police/3, ALLEGRO_ALIGN_CENTER, "RETURN") ;
+    }
+
+    // bouton 2, 3, 4
     al_draw_textf(gameFontRegles, al_map_rgb(0, 0, 0), 1000, 75, ALLEGRO_ALIGN_CENTER,"Combien de joueurs etes-vous ?");
-    al_draw_filled_circle(400, 500, 100, al_map_rgba(219, 112, 147, 200));
-    al_draw_text(gameFontRegles, al_map_rgb(0, 0, 0), 400, 475, ALLEGRO_ALIGN_CENTER, "2");
-    al_draw_filled_circle(950, 500, 100, al_map_rgba(219, 112, 147, 200));
-    al_draw_text(gameFontRegles, al_map_rgb(0, 0, 0), 950, 475, ALLEGRO_ALIGN_CENTER, "3");
-    al_draw_filled_circle(1500, 500, 100, al_map_rgba(219, 112, 147, 200));
-    al_draw_text(gameFontRegles, al_map_rgb(0, 0, 0), 1500, 475, ALLEGRO_ALIGN_CENTER, "4");
+    al_draw_filled_circle(5*width/24, height/2.16, 100, al_map_rgba(219, 112, 147, 200));
+    al_draw_text(gameFontRegles, al_map_rgb(0, 0, 0), width/4.8, 95*height/216, ALLEGRO_ALIGN_CENTER, "2");
+    al_draw_filled_circle(95*width/192, height/2.16, 100, al_map_rgba(219, 112, 147, 200));
+    al_draw_text(gameFontRegles, al_map_rgb(0, 0, 0), 95*width/192, 95*height/216, ALLEGRO_ALIGN_CENTER, "3");
+    al_draw_filled_circle(width/1.28, height/2.16, 100, al_map_rgba(219, 112, 147, 200));
+    al_draw_text(gameFontRegles, al_map_rgb(0, 0, 0), width/1.28, 95*height/216, ALLEGRO_ALIGN_CENTER, "4");
+
+    // si on est sur la case, elle change de couleur
+    if((mouse_x - width/4.8)*(mouse_x - width/4.8) + (mouse_y - height/2.16)*(mouse_y - height/2.16) < 100*100){
+        al_draw_filled_circle(width/4.8, height/2.16, 100, al_map_rgb(219, 112, 147));
+        al_draw_text(gameFontRegles, al_map_rgb(0, 0, 0), width/4.8, 95*height/216, ALLEGRO_ALIGN_CENTER, "2");
+    }
+    else if((mouse_x - 95*width/192)*(mouse_x - 95*width/192) + (mouse_y - height/2.16)*(mouse_y - height/2.16) < 100*100){
+        al_draw_filled_circle(95*width/192, height/2.16, 100, al_map_rgb(219, 112, 147));
+        al_draw_text(gameFontRegles, al_map_rgb(0, 0, 0), 95*width/192, 95*height/216, ALLEGRO_ALIGN_CENTER, "3");
+    }
+    else if((mouse_x - width/1.28)*(mouse_x - width/1.28) + (mouse_y - height/2.16)*(mouse_y - height/2.16) < 100*100){
+        al_draw_filled_circle(width/1.28, height/2.16, 100, al_map_rgb(219, 112, 147));
+        al_draw_text(gameFontRegles, al_map_rgb(0, 0, 0), width/1.28, 95*height/216, ALLEGRO_ALIGN_CENTER, "4");
+    }
+
 }
 
 bool collisionCercle(int x,int y,Map map[20][20],int i,int j,double width){
