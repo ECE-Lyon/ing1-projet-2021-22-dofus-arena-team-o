@@ -36,7 +36,7 @@ int main() {
     ALLEGRO_COLOR gameColor = al_map_rgb(255, 0, 0);
     ALLEGRO_FONT *gameFont1 = al_load_ttf_font("../Font/Nintendo.ttf", 72, ALLEGRO_ALIGN_LEFT) ;
     ALLEGRO_FONT *gameFont = al_load_ttf_font("../Font/MagicCardsNormal.ttf", 2 * width / 55, ALLEGRO_ALIGN_LEFT);
-    ALLEGRO_FONT *gameFontRegles = al_load_ttf_font("../Font/Rumpi.ttf", 40, ALLEGRO_ALIGN_LEFT);
+    ALLEGRO_FONT *gameFontRegles = al_load_ttf_font("../Font/Rumpi.ttf", width/48, ALLEGRO_ALIGN_LEFT);
     ALLEGRO_BITMAP *background = al_load_bitmap("../Bitmap/BG.jpg");
     ALLEGRO_BITMAP *team = al_load_bitmap("../Bitmap/capture.PNG");
 
@@ -206,9 +206,9 @@ int main() {
                     }
                     case PLAY : {
                         //drawPlay(map,event,mouse_x,mouse_y,display,white,black,gris,vert,red);
-                        drawChooseCharacter(height, width, 3) ;
-                        afficherPseudo(joueur2, width, height, gameFont1, 1) ;
-                        //drawPlay2(width, height, mouse_x, mouse_y, gameFont,gameFontRegles, &nbJoueur) ;
+                        //drawChooseCharacter(height, width, 3) ;
+                        //afficherPseudo(joueur2, width, height, gameFont1, 1) ;
+                        drawPlay2(width, height, mouse_x, mouse_y, gameFont,gameFontRegles, &nbJoueur) ;
                         //drawChooseCharacter(height, width, 3) ;
                     break;
                 }
@@ -223,29 +223,3 @@ int main() {
 
 
 
-
-
-
-/*
-mainMenu.ecran.width = (float) al_get_display_width(display);
-mainMenu.ecran.height = (float) al_get_display_height(display);
-mainMenu.gameMode = MENU ;
-mainMenu.playRect = 0 ;
-mainMenu.rulesRect = 0 ;
-mainMenu.teamRect = 0 ;
-mainMenu.arc.startTheta = 0 ;
-mainMenu.arc.endTheta = 2*PI ;
-mainMenu.arc.currentTheta = 0 ;
-mainMenu.arc.currentEndTheta = 2*PI ;
-
-int mouse_x = 0, mouse_y = 0 ;
-int page = 1;
-
-display = al_create_display(1920, 1080);
-
-
-queue = al_create_event_queue();
-assert(queue);
-unsigned char alpha ;
-double gradient = 255 ;
-int page = 1 ;*/
