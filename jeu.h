@@ -12,8 +12,7 @@
 #define RULESPAGEMAX 3
 #define mapX 20
 #define mapY 16
-#define MAXNOM  10
-
+#define MAXNOM 11
 
 #define PI 3.141592
 
@@ -36,12 +35,6 @@ typedef struct {
     infoEcran ecran ;
 } Menu;
 
-typedef struct Info{
-    int x, y; //position
-    char* pseudo[MAXNOM];
-    int PV, PM, PA;
-}InfosJoueur;
-
 typedef struct {
     int pages;
     infoEcran ecran ;
@@ -60,6 +53,12 @@ typedef struct {
     int a,b,t;
 } Joueur ;
 
+typedef struct Info{
+    int x, y; //position
+    char pseudo[MAXNOM];
+    int PV, PM, PA;
+}InfosJoueur;
+
 
 void afficherPages(int pages, ALLEGRO_FONT* gameFontRegles, ALLEGRO_COLOR gameColor, float height, float width) ;
 void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y, ALLEGRO_FONT* gameFontRegles, ALLEGRO_FONT *gameFont);
@@ -73,10 +72,11 @@ void menuSouris(Menu* mainMenu, float height, float width, int mouse_x, int mous
 void drawPlay2(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT * gameFont,ALLEGRO_FONT *gameFontRegles, int* nbJoueur) ;
 void drawChooseCharacter(float height, float width, int nbJoueur)  ;
 
+char alphabet (int keycode, int* nbLettre) ;
+char* getPseudo(InfosJoueur* joueur) ;
 
-char alphabet(int keycode);
-char* getPseudo();
-
+void mettrePseudo(InfosJoueur** joueur, char lettre, int quelJoueurEstSelectionne, int* nbLettre) ;
+void afficherPseudo(InfosJoueur* joueur, float width, float height, ALLEGRO_FONT* gameFont, int nbJoueur) ;
 
 
 #endif

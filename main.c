@@ -24,7 +24,6 @@ int main() {
     float height = (float) al_get_display_height(display);
     float width = (float) al_get_display_width(display);
     al_set_window_position(display, 0, 0);
-    ALLEGRO_FONT *gameFontRegles = al_load_ttf_font("../Font/Rumpi.ttf", 40, ALLEGRO_ALIGN_LEFT);
 
     ///CREATOON DES VARIABLES
     ALLEGRO_COLOR black = al_map_rgb(0, 0, 0);
@@ -35,7 +34,9 @@ int main() {
     ALLEGRO_COLOR jauneLogo = al_map_rgb(255, 204, 51);
     ALLEGRO_COLOR marronLogo = al_map_rgb(102, 51, 0);
     ALLEGRO_COLOR gameColor = al_map_rgb(255, 0, 0);
+    ALLEGRO_FONT *gameFont1 = al_load_ttf_font("../Font/Nintendo.ttf", 72, ALLEGRO_ALIGN_LEFT) ;
     ALLEGRO_FONT *gameFont = al_load_ttf_font("../Font/MagicCardsNormal.ttf", 2 * width / 55, ALLEGRO_ALIGN_LEFT);
+    ALLEGRO_FONT *gameFontRegles = al_load_ttf_font("../Font/Rumpi.ttf", 40, ALLEGRO_ALIGN_LEFT);
     ALLEGRO_BITMAP *background = al_load_bitmap("../Bitmap/BG.jpg");
     ALLEGRO_BITMAP *team = al_load_bitmap("../Bitmap/capture.PNG");
 
@@ -43,11 +44,12 @@ int main() {
     assert(queue);
 
     int isFin = 0, draw = 0;
-    int rotation = 0;
+    char rotation ;
     Menu mainMenu;
     Map map[20][20];
     Joueur joueur[4];
     int nbJoueur = 0;
+    int nbLettre = 0;
 
     InfosJoueur* maillonJoueur = NULL;
 
@@ -63,8 +65,9 @@ int main() {
     mainMenu.arc.endTheta = 2 * PI;
     mainMenu.arc.currentTheta = 0;
     mainMenu.arc.currentEndTheta = 2 * PI;
+    InfosJoueur* joueur2= malloc(4*sizeof (InfosJoueur)) ;
 
-
+    strcpy(joueur2->pseudo, "");
     int mouse_x = 0, mouse_y = 0;
     int page = 1;
 
@@ -87,6 +90,10 @@ int main() {
                         mainMenu.gameMode = END;
                         isFin = 1;
                         break;
+                    }
+                    default : {
+                        rotation =  alphabet(event.keyboard.keycode, &nbLettre) ;
+                        mettrePseudo(&joueur2, rotation, 1, &nbLettre) ;
                     }
                 }
                 break;
@@ -165,7 +172,7 @@ int main() {
                 break;
 
             case ALLEGRO_EVENT_TIMER : {
-                    printf("%d,  %d\n", mouse_x, mouse_y) ;
+                //printf("%d,  %d\n", mouse_x, mouse_y) ;
                     /// MENU V1 ::::::
                     /*if (mouse_x < 5*width/32 && mouse_x > 0 && mouse_y < 29*height/54 && mouse_y > 25*height/54) {
                         mainMenu.playRect = 1 ;
@@ -189,7 +196,7 @@ int main() {
                         break ;
                     }
                     case TEAM : {
-                        drawTeam(height, width, mouse_x, mouse_y, gameFont, team) ;
+                        drawTeam(height, width, mouse_x, mouse_y, gameFont, team);
                         break ;
 
                     }
@@ -199,7 +206,9 @@ int main() {
                     }
                     case PLAY : {
                         //drawPlay(map,event,mouse_x,mouse_y,display,white,black,gris,vert,red);
-                        drawPlay2(width, height, mouse_x, mouse_y, gameFont,gameFontRegles, &nbJoueur) ;
+                        drawChooseCharacter(height, width, 3) ;
+                        afficherPseudo(joueur2, width, height, gameFont1, 1) ;
+                        //drawPlay2(width, height, mouse_x, mouse_y, gameFont,gameFontRegles, &nbJoueur) ;
                         //drawChooseCharacter(height, width, 3) ;
                     break;
                 }
@@ -215,8 +224,6 @@ int main() {
 
 
 
-
-InfosJoueur* maillonJoueur = NULL;
 
 
 /*
