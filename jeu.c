@@ -92,6 +92,7 @@ void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y, 
             al_draw_textf(gameFontRegles, gameColor, 400 , 400, ALLEGRO_ALIGN_LEFT, " (voisines). Elles sont beaucoup moins puissantes qu'un sort, mais ne coutent") ;
             al_draw_textf(gameFontRegles, gameColor, 400 , 450, ALLEGRO_ALIGN_LEFT, " que 2 PA. Elles peuvent enlever entre 1 et 5 PV a l'ennemi, avec 1 chance ") ;
             al_draw_textf(gameFontRegles, gameColor, 400 , 500, ALLEGRO_ALIGN_LEFT, " sur 10 d'echouer (et donc n'enlever aucun PV).") ;
+            al_draw_textf(gameFontRegles, gameColor, 900 , 700, ALLEGRO_ALIGN_LEFT, "Have fun !!") ;
             break;
         }
     }
