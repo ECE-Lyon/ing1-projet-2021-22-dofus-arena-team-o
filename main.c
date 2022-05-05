@@ -86,6 +86,11 @@ int main() {
     int mouse_x = 0, mouse_y = 0;
     int page = 1;
 
+
+    ///INITIALISATION CLASSE
+    joueur2->classe = VIDE;
+
+
     ///INITIALISATION DU TIMER
     times = al_create_timer(0.02);
 
@@ -229,12 +234,9 @@ int main() {
                     }
                     case PLAY : {
                         //drawPlay(map,event,mouse_x,mouse_y,display,white,black,gris,vert,red);
-                        drawChooseCharacter(height, width, gameFont, &nbJoueur, mouse_x, mouse_y) ;
-                        //drawCarrePerso()
+                        drawChooseCharacter(height, width, gameFont1, &nbJoueur, mouse_x, mouse_y) ;
+                        afficherPseudo(joueur2, width, height, gameFont1, 1) ;
                         //drawPlay2(width, height, mouse_x, mouse_y, gameFont,gameFontRegles, &nbJoueur) ;
-                        //afficherPseudo(joueur2, width, height, gameFont1, 1) ;
-                        drawPlay2(width, height, mouse_x, mouse_y, gameFont,gameFontRegles, &nbJoueur) ;
-                        //drawChooseCharacter(height, width, 3) ;
                     break;
                 }
             }

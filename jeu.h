@@ -17,6 +17,8 @@
 #define PI 3.141592
 
 enum gameMode {PLAY, RULES, TEAM, MENU, END};
+enum classe {VIDE, MARIO,LUIGI,KIRBY,PEACH,ZELDA};
+
 
 typedef struct {
     int mouse_x, mouse_y ;
@@ -60,6 +62,7 @@ typedef struct Info{
     int x, y; //position
     char pseudo[MAXNOM];
     int PV, PM, PA;
+    int classe; //1 : mario      2 : Luigi     3 : Kirby     4: Peach     5 : Zelda
 }InfosJoueur;
 
 
@@ -73,7 +76,7 @@ void deplacementJoueur(Joueur joueur[],Map map[20][20],double scalex,double scal
 bool collisionCercle(int x,int y,Map map[20][20],int i,int j,double width);
 void menuSouris(Menu* mainMenu, float height, float width, int mouse_x, int mouse_y) ;
 void drawPlay2(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT * gameFont,ALLEGRO_FONT *gameFontRegles, int* nbJoueur) ;
-void drawChooseCharacter(float height, float width,ALLEGRO_FONT * gameFont, int* nbJoueur,int mouse_x, int mouse_y);
+void drawChooseCharacter(float height, float width, ALLEGRO_FONT* gameFont, int* nbJoueur,int mouse_x, int mouse_y, InfosJoueur** joueur);
 char alphabet (int keycode, int* nbLettre) ;
 char* getPseudo(InfosJoueur* joueur) ;
 
