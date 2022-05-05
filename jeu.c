@@ -115,7 +115,7 @@ void drawTeam(float height, float width, int mouse_x, int mouse_y, ALLEGRO_FONT 
     ///FOND D'ECRAN GRISATRE
     al_draw_filled_rectangle(0, 0, width, height, al_map_rgba(150, 150, 150, 150)) ;
 
-    al_draw_scaled_bitmap(team, 0, 0, 1034, 704, width/5, height/5, 1034*1.05, 704*1.05, 0) ;
+    al_draw_scaled_bitmap(team, 0, 0, 1034, 704, 0, 0, 1034*1.05, 704*1.05, 0) ;
     ///ON FAIT SURBRILLER LES CASES RETURN ET LES BOUTONS SI LA SOURIS SE TROUVE DESSUS
     if ((float) mouse_x < 5*width/32 && mouse_x > width/384 && (float) mouse_y < 2*height/27 && mouse_y > height/216) {
         al_draw_filled_rectangle(width/384, height/216, 5*width/32, 2*height/27, al_map_rgb(200,200,200)) ;
@@ -320,8 +320,8 @@ void drawChooseCharacter(float height, float width, int nbJoueur) {
     al_draw_filled_rectangle(1705,   20, 1735, 140, al_map_rgb(150, 150, 150)) ;
 
     for(int i = 0 ; i < 4 ; i++) {
-        al_draw_filled_rounded_rectangle(width/2 - 600 - 250 + i*500, 2*height/3, (width/2 - 600 - 250 + i*500) + 300, height+15, 10, 10,
-                                         al_map_rgb(105-10*i, 60*i , 100 + 50*i)) ;
+        al_draw_filled_rounded_rectangle(width/2 - 600 - 150 + i*400, 2*height/3, (width/2 - 600 - 150 + i*400) + 300, height+15, 10, 10,
+                                         al_map_rgb(255 - i*255, 0 + 128*i , 0 + 128/2*i + 50*i)) ;
     }
     ///BOUTON RETURN
 }
@@ -350,5 +350,138 @@ void drawChooseCharacter(float height, float width, int nbJoueur) {
 
 }*/
 
+
+
+
+
+
+
+
+
+
+
+
+char alphabet (int keycode, int* nbLettre){
+    char lettreAppuye;
+    if(keycode >= ALLEGRO_KEY_A && keycode <= ALLEGRO_KEY_Z) {
+        lettreAppuye = (char) (keycode+96) ;
+        return lettreAppuye ;
+    }
+    else if(keycode == ALLEGRO_KEY_BACKSPACE) {
+        (*nbLettre) -- ;
+        return '\0';
+    }
+    /*switch (keycode) {
+        case ALLEGRO_KEY_A:
+            lettreAppuye = 'a';
+            break;
+        case ALLEGRO_KEY_B:
+            lettreAppuye = 'b';
+            break;
+        case ALLEGRO_KEY_C:
+            lettreAppuye = 'c';
+            break;
+        case ALLEGRO_KEY_D:
+            lettreAppuye = 'd';
+            break;
+        case ALLEGRO_KEY_E:
+            lettreAppuye = 'e';
+            break;
+        case ALLEGRO_KEY_F:
+            lettreAppuye = 'f';
+            break;
+        case ALLEGRO_KEY_G:
+            lettreAppuye = 'g';
+            break;
+        case ALLEGRO_KEY_H:
+            lettreAppuye = 'h';
+            break;
+        case ALLEGRO_KEY_I:
+            lettreAppuye = 'i';
+            break;
+        case ALLEGRO_KEY_J:
+            lettreAppuye = 'j';
+            break;
+        case ALLEGRO_KEY_K:
+            lettreAppuye = 'k';
+            break;
+        case ALLEGRO_KEY_L:
+            lettreAppuye = 'l';
+            break;
+        case ALLEGRO_KEY_M:
+            lettreAppuye = 'm';
+            break;
+        case ALLEGRO_KEY_N:
+            lettreAppuye = 'n';
+            break;
+        case ALLEGRO_KEY_O:
+            lettreAppuye = 'o';
+            break;
+        case ALLEGRO_KEY_P:
+            lettreAppuye = 'p';
+            break;
+        case ALLEGRO_KEY_Q:
+            lettreAppuye = 'q';
+            break;
+        case ALLEGRO_KEY_R:
+            lettreAppuye = 'r';
+            break;
+        case ALLEGRO_KEY_S:
+            lettreAppuye = 's';
+            break;
+        case ALLEGRO_KEY_T:
+            lettreAppuye = 't';
+            break;
+        case ALLEGRO_KEY_U:
+            lettreAppuye = 'u';
+            break;
+        case ALLEGRO_KEY_V:
+            lettreAppuye = 'v';
+            break;
+        case ALLEGRO_KEY_Z:
+            lettreAppuye = 'w';
+            break;
+        case ALLEGRO_KEY_X:
+            lettreAppuye = 'x';
+            break;
+        case ALLEGRO_KEY_Y:
+            lettreAppuye = 'Y';
+            break;
+        case ALLEGRO_KEY_W:
+            lettreAppuye = 'z';
+            break;
+    }*/
+    else return 0 ;
+}
+
+void mettrePseudo(InfosJoueur** joueur, char lettre, int quelJoueurEstSelectionne, int* nbLettre) {
+    if(*nbLettre + 1 < MAXNOM) {
+        (*joueur)[quelJoueurEstSelectionne - 1].pseudo[*nbLettre] = lettre ;
+    }
+    if(lettre != '\0' && *nbLettre < MAXNOM) {
+        (*nbLettre)++ ;
+    }
+}
+
+void afficherPseudo(InfosJoueur* joueur, float width, float height, ALLEGRO_FONT* gameFont, int nbJoueur) {
+    for(int i = 0 ; i < nbJoueur ; i++) {
+        al_draw_textf(gameFont, al_map_rgb(20, 20, 20), width/2 - 600 - 20 + i*400, 2*height/3, ALLEGRO_ALIGN_LEFT, "%s", joueur->pseudo) ;
+    }
+}
+
+
+
+char* getPseudo(InfosJoueur* joueur) {  // maillonJoueur.pseudo
+    int nbLettre = 0;
+    if (nbLettre < MAXNOM && nbLettre != '\0') {
+        scanf("%s", joueur->pseudo);
+        nbLettre++;
+    }
+    return joueur->pseudo;
+}
+
+/**void remplirDonneeJoueur (InfosJoueur** UnMaillonJoueur){
+    (*UnMaillonJoueur)->pseudo = getPseudo();
+}**/
 
 

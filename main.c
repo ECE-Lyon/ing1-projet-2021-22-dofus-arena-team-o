@@ -42,11 +42,12 @@ int main() {
     assert(queue);
 
     int isFin = 0, draw = 0;
-    int rotation = 0;
+    char rotation ;
     Menu mainMenu;
     Map map[20][20];
     Joueur joueur[4];
     int nbJoueur = 0;
+    int nbLettre = 0;
 
     ///INITIALISATION DE NOS VARIABLES (A FAIRE DANS UNE FONCTION)
     mainMenu.ecran.width = (float) al_get_display_width(display) ;
@@ -59,8 +60,9 @@ int main() {
     mainMenu.arc.endTheta = 2 * PI;
     mainMenu.arc.currentTheta = 0;
     mainMenu.arc.currentEndTheta = 2 * PI;
+    InfosJoueur* joueur2= malloc(4*sizeof (InfosJoueur)) ;
 
-
+    strcpy(joueur2->pseudo, "");
     int mouse_x = 0, mouse_y = 0;
     int page = 1;
 
@@ -83,6 +85,10 @@ int main() {
                         mainMenu.gameMode = END;
                         isFin = 1;
                         break;
+                    }
+                    default : {
+                        rotation =  alphabet(event.keyboard.keycode, &nbLettre) ;
+                        mettrePseudo(&joueur2, rotation, 1, &nbLettre) ;
                     }
                 }
                 break;
@@ -158,7 +164,7 @@ int main() {
                 break;
 
             case ALLEGRO_EVENT_TIMER : {
-                    printf("%d,  %d\n", mouse_x, mouse_y) ;
+                //printf("%d,  %d\n", mouse_x, mouse_y) ;
                     /// MENU V1 ::::::
                     /*if (mouse_x < 5*width/32 && mouse_x > 0 && mouse_y < 29*height/54 && mouse_y > 25*height/54) {
                         mainMenu.playRect = 1 ;
@@ -182,9 +188,8 @@ int main() {
                         break ;
                     }
                     case TEAM : {
-                        drawTeam(height, width, mouse_x, mouse_y, gameFont, team) ;
+                        drawTeam(height, width, mouse_x, mouse_y, gameFont, team);
                         break ;
-
                     }
                     case RULES : {
                         drawRules(&page, height, width, mouse_x, mouse_y, gameFontRegles, gameFont);
@@ -194,6 +199,7 @@ int main() {
                         //drawPlay(map,event,mouse_x,mouse_y,display,white,black,gris,vert,red);
                         //drawPlay2(width, height, mouse_x, mouse_y, gameFontRegles, &nbJoueur) ;
                         drawChooseCharacter(height, width, 3) ;
+                        afficherPseudo(joueur2, width, height, gameFont, 1) ;
                     break;
                 }
             }
