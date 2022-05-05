@@ -228,7 +228,9 @@ void menuSouris(Menu* mainMenu, float height, float width, int mouse_x, int mous
         mainMenu->arc.endTheta = 2*PI ;
     }
 }
+//void drawPlay
 
+void drawCarrePerso ()
 void drawPlay2(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT * gameFont, ALLEGRO_FONT *gameFontRegles, int* nbJoueur) {
 
     al_draw_filled_rectangle(0, 0, width, height, al_map_rgba(150, 150, 150, 150));
@@ -337,8 +339,10 @@ void drawPlay(Map map[20][20],ALLEGRO_EVENT event,int mouse_x,int mouse_y,ALLEGR
     }
 }
 
-void drawChooseCharacter(float height, float width, int nbJoueur) {
+void drawChooseCharacter(float height, float width,ALLEGRO_FONT * gameFont, int* nbJoueur,int mouse_x, int mouse_y) {
     al_draw_filled_rectangle(0, 0, width, height, al_map_rgba(150, 150, 150, 150));
+
+    float police = 2 * width / 55;
 
     al_draw_filled_rectangle(0, 0, width, 5 * height / 27, al_map_rgb(100, 100, 100));
     al_draw_filled_triangle(0, 0, 0, height/2.16, width/3.84, height/7.2, al_map_rgb(100, 100, 100));
@@ -355,7 +359,20 @@ void drawChooseCharacter(float height, float width, int nbJoueur) {
         al_draw_filled_rounded_rectangle(width/2 - 600 - 150 + i*400, 2*height/3, (width/2 - 600 - 150 + i*400) + 300, height+15, 10, 10,
                                          al_map_rgb(255 - i*255, 0 + 128*i , 0 + 128/2*i + 50*i)) ;
     }
-    ///BOUTON RETURN
+
+    ////////////bouton return/////////////
+    if ((float) mouse_x < 5*width/32 && mouse_x > width/384 && (float) mouse_y < 2*height/27 && mouse_y > height/216) {
+        al_draw_filled_rectangle(width/384, height/216, 5*width/32, 2*height/27, al_map_rgb(200,200,200)) ;
+        al_draw_text(gameFont, al_map_rgb(0, 0, 0), (5*width/32 - width/384)/2 + police/10, (2*height/27-height/216)/2 - police/3, ALLEGRO_ALIGN_CENTER, "RETURN") ;
+    }
+    else   {
+        //al_draw_filled_rectangle(width/384, 5*width/32, 2*height/27, al_map_rgb(255,255,255));
+        al_draw_text(gameFont, al_map_rgb(0, 0, 0), (5*width/32 - width/384)/2 + police/10, (2*height/27-height/216)/2 - police/3, ALLEGRO_ALIGN_CENTER, "RETURN") ;
+    }
+    if((float) mouse_x < 53*(width/256) && mouse_x >  83*width/256 && (float) mouse_y < height && mouse_y > 2*height/3){
+
+    }
+   // rectangle 1    x1 : 530, x2 : 830  /  rectangle 2    x1 : 930,   x2 : 1230 / rectangle 3   x1 : 1330, x2 : 1660 / rectangle 4  x1 : 1730, x2 : 2030
 }
 
 int getRandomInteger(int min, int max){
@@ -395,10 +412,11 @@ void entrerPseudo (ALLEGRO_EVENT* event, InfosJoueur tabJoueur[], int joueurActu
         }
     }
 }
-
-
-
 */
+
+
+
+
 
 
 
