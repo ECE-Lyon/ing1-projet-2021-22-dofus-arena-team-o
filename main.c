@@ -218,6 +218,7 @@ int main() {
 
 InfosJoueur* maillonJoueur = NULL;
 
+
 /*
 mainMenu.ecran.width = (float) al_get_display_width(display);
 mainMenu.ecran.height = (float) al_get_display_height(display);

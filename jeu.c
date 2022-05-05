@@ -458,9 +458,9 @@ char alphabet (int keycode){
     return lettreAppuye;
 }
 
+*/
 
-
-
+/*
 // autre methode pour entrer un nom
 
 void entrerPseudo (ALLEGRO_EVENT* event, InfosJoueur tabJoueur[], int joueurActuel){
