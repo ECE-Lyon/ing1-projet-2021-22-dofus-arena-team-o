@@ -242,29 +242,3 @@ int main() {
 
 
 
-
-
-
-/*
-mainMenu.ecran.width = (float) al_get_display_width(display);
-mainMenu.ecran.height = (float) al_get_display_height(display);
-mainMenu.gameMode = MENU ;
-mainMenu.playRect = 0 ;
-mainMenu.rulesRect = 0 ;
-mainMenu.teamRect = 0 ;
-mainMenu.arc.startTheta = 0 ;
-mainMenu.arc.endTheta = 2*PI ;
-mainMenu.arc.currentTheta = 0 ;
-mainMenu.arc.currentEndTheta = 2*PI ;
-
-int mouse_x = 0, mouse_y = 0 ;
-int page = 1;
-
-display = al_create_display(1920, 1080);
-
-
-queue = al_create_event_queue();
-assert(queue);
-unsigned char alpha ;
-double gradient = 255 ;
-int page = 1 ;*/
