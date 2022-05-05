@@ -51,16 +51,16 @@ typedef struct {
 } Joueur ;
 
 
+void afficherPages(int pages, ALLEGRO_FONT* gameFontRegles, ALLEGRO_COLOR gameColor) ;
 void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y, ALLEGRO_FONT* gameFontRegles, ALLEGRO_FONT *gameFont);
-void drawTeam(float height, float width, int mouse_x, int mouse_y, ALLEGRO_FONT *gameFont);
+void drawTeam(float height, float width, int mouse_x, int mouse_y, ALLEGRO_FONT *gameFont, ALLEGRO_BITMAP* team);
 void drawPlay(Map map[20][20],ALLEGRO_EVENT event,int mouse_x,int mouse_y,ALLEGRO_DISPLAY *display, ALLEGRO_COLOR white, ALLEGRO_COLOR black, ALLEGRO_COLOR gris,ALLEGRO_COLOR vert,ALLEGRO_COLOR red);
 void drawMenuV2(Menu* mainMenu, ALLEGRO_FONT *gameFont);
 void moveGameModeArc(Menu** mainMenu) ;
-void menuClick(Menu* mainMenu, float height, float width, int mouse_x, int mouse_y) ;
 void deplacementJoueur(Joueur *joueur[],Map map[20][20]);
 bool collisionCercle(int x,int y,Map map[20][20],int i,int j,double width);
 void menuSouris(Menu* mainMenu, float height, float width, int mouse_x, int mouse_y) ;
 void drawPlay2(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT *gameFontRegles, int* nbJoueur) ;
-
+void drawChooseCharacter(float height, float width, int nbJoueur)  ;
 
 #endif

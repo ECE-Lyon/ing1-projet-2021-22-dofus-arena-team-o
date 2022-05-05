@@ -17,14 +17,14 @@ void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y, 
     else   al_draw_filled_rectangle(width/384, height/216, 5*width/32, 2*height/27, al_map_rgb(250,250,250)) ;
     if(*pages < RULESPAGEMAX) {
         if ((mouse_x - 13 * width / 15) * (mouse_x - 13 * width / 15) +
-            (mouse_y - 11 * height / 13) * (mouse_y - 11 * height / 13) < 50 * 50) {
+            (mouse_y - 11 * height / 13) * (mouse_y - 11 * height / 13) < width / 38.4 * width / 38.4) {
             al_draw_filled_circle(13 * width / 15, 11 * height / 13, width / 38.4, al_map_rgb(200, 200, 200));
         }
         else al_draw_filled_circle(13*width/15, 11*height/13, width/38.4, al_map_rgb(250,250,250)) ;
     }
     if(*pages > 1) {
         if ((mouse_x - 2 * width / 15) * (mouse_x - 2 * width / 15) +
-            (mouse_y - 11 * height / 13) * (mouse_y - 11 * height / 13) < 50 * 50) {
+            (mouse_y - 11 * height / 13) * (mouse_y - 11 * height / 13) < width / 38.4 * width / 38.4) {
             al_draw_filled_circle(2 * width / 15, 11 * height / 13, width / 38.4, al_map_rgb(200, 200, 200));
         }
         else al_draw_filled_circle(2 * width / 15, 11 * height / 13, width / 38.4, al_map_rgb(250, 250, 250));
@@ -57,7 +57,16 @@ void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y, 
 
 
     ///DIFFERENTES PAGES DES REGLES
-    switch(*pages){
+    afficherPages(*pages, gameFontRegles, gameColor) ;
+
+    ///BOUTON RETURN
+    al_draw_text(gameFont, gameColor, (5*width/32 - width/384)/2 + police/10, (2*height/27-height/216)/2 - police/3, ALLEGRO_ALIGN_CENTER, "RETURN") ;
+    al_draw_rectangle(width/384, height/216, 5*width/32, 2*height/27, gameColor, 3) ;
+    al_draw_textf(gameFont, gameColor, 7.5 * width / 15, 11 * height / 13 + height / 18, ALLEGRO_ALIGN_CENTER, "%d / %d", *pages, RULESPAGEMAX) ;
+}
+
+void afficherPages(int pages, ALLEGRO_FONT* gameFontRegles, ALLEGRO_COLOR gameColor) {
+    switch(pages){
         case 1 : {
             //x1 : width/5, y1 : height/6 , x2: 4*width/5 , y2 : 5*height/6
             al_draw_text(gameFontRegles, gameColor, 950 , 200, ALLEGRO_ALIGN_CENTER, "Regles ") ;
@@ -96,21 +105,17 @@ void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y, 
             break;
         }
     }
-
-    ///BOUTON RETURN
-    al_draw_text(gameFont, gameColor, (5*width/32 - width/384)/2 + police/10, (2*height/27-height/216)/2 - police/3, ALLEGRO_ALIGN_CENTER, "RETURN") ;
-    al_draw_rectangle(width/384, height/216, 5*width/32, 2*height/27, gameColor, 3) ;
-    al_draw_textf(gameFont, gameColor, 7.5 * width / 15, 11 * height / 13 + height / 18, ALLEGRO_ALIGN_CENTER, "%d / %d", *pages, RULESPAGEMAX) ;
 }
 
 
-void drawTeam(float height, float width, int mouse_x, int mouse_y, ALLEGRO_FONT *gameFont) {
+void drawTeam(float height, float width, int mouse_x, int mouse_y, ALLEGRO_FONT *gameFont, ALLEGRO_BITMAP* team) {
     float police = 2*width/55 ;
     ALLEGRO_COLOR gameColor = al_map_rgb(20, 20, 20) ;
 
     ///FOND D'ECRAN GRISATRE
     al_draw_filled_rectangle(0, 0, width, height, al_map_rgba(150, 150, 150, 150)) ;
 
+    al_draw_scaled_bitmap(team, 0, 0, 1034, 704, width/5, height/5, 1034*1.05, 704*1.05, 0) ;
     ///ON FAIT SURBRILLER LES CASES RETURN ET LES BOUTONS SI LA SOURIS SE TROUVE DESSUS
     if ((float) mouse_x < 5*width/32 && mouse_x > width/384 && (float) mouse_y < 2*height/27 && mouse_y > height/216) {
         al_draw_filled_rectangle(width/384, height/216, 5*width/32, 2*height/27, al_map_rgb(200,200,200)) ;
@@ -118,23 +123,15 @@ void drawTeam(float height, float width, int mouse_x, int mouse_y, ALLEGRO_FONT 
     else   al_draw_filled_rectangle(width/384, height/216, 5*width/32, 2*height/27, al_map_rgb(250,250,250)) ;
 
     ///NEL
-    al_draw_filled_circle(width/4, height/4, width*150/2100, al_map_rgb(255, 255, 255)) ;
-    al_draw_circle(width/4, height/4, width*150/2100, gameColor, 5) ;
-    al_draw_text(gameFont, gameColor, width/4 , height/4 + height/7, ALLEGRO_ALIGN_CENTER, "Nel") ;
+   al_draw_text(gameFont, gameColor, width/4 , height/4 + height/7, ALLEGRO_ALIGN_CENTER, "Nel") ;
 
     ///ZELIE
-    al_draw_filled_circle(3*width/4 , height/4, width*150/2100, al_map_rgb(255, 255, 255)) ;
-    al_draw_circle(3 * width / 4, height / 4, width*150/2100, gameColor, 5) ;
     al_draw_text(gameFont, gameColor, 3*width/4 , height/4 + height/7, ALLEGRO_ALIGN_CENTER, "Zelie") ;
 
     ///FARES
-    al_draw_filled_circle(width/4, 3*height/4, width*150/2100, al_map_rgb(255, 255, 255)) ;
-    al_draw_circle(width/4, 3*height/4, width*150/2100, gameColor, 5) ;
     al_draw_text(gameFont, gameColor, width / 4 , 3*height/4 + height/7, ALLEGRO_ALIGN_CENTER, "Fares") ;
 
     ///ILAYDA
-    al_draw_filled_circle(3*width/4, 3*height/4, width*150/2100, al_map_rgb(255, 255, 255)) ;
-    al_draw_circle(3*width/4, 3*height/4, width*150/2100, gameColor, 5) ;
     al_draw_text(gameFont, gameColor, 3*width/4 , 3*height/4 + height/7, ALLEGRO_ALIGN_CENTER, "Ilayda") ;
 
     ///BOUTON RETURN
@@ -308,6 +305,25 @@ void drawPlay(Map map[20][20],ALLEGRO_EVENT event,int mouse_x,int mouse_y,ALLEGR
 
         }
     }
+}
+
+void drawChooseCharacter(float height, float width, int nbJoueur) {
+    al_draw_filled_rectangle(0, 0, width, height, al_map_rgba(150, 150, 150, 150));
+
+    al_draw_filled_rectangle(0, 0, width, 5 * height / 27, al_map_rgb(100, 100, 100));
+    al_draw_filled_triangle(0, 0, 0, 500, 500, 150, al_map_rgb(100, 100, 100));
+    al_draw_filled_rectangle(0, 0, width, 4 * height / 27, al_map_rgb(150, 150, 150));
+    al_draw_filled_triangle(0, 0, 0, 410, 370, 150, al_map_rgb(150, 150, 150));
+
+    al_draw_filled_circle(1740, 80, 60, al_map_rgb(100, 100, 100)) ;
+    al_draw_filled_rectangle(1680,   90, 1800, 100, al_map_rgb(150, 150, 150)) ;
+    al_draw_filled_rectangle(1705,   20, 1735, 140, al_map_rgb(150, 150, 150)) ;
+
+    for(int i = 0 ; i < 4 ; i++) {
+        al_draw_filled_rounded_rectangle(width/2 - 600 - 250 + i*500, 2*height/3, (width/2 - 600 - 250 + i*500) + 300, height+15, 10, 10,
+                                         al_map_rgb(105-10*i, 60*i , 100 + 50*i)) ;
+    }
+    ///BOUTON RETURN
 }
 
 /*void deplacementJoueur(Joueur *joueur[],Map map[20][20]){

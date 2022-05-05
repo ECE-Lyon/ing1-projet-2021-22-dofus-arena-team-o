@@ -27,7 +27,6 @@ int main() {
     ALLEGRO_FONT *gameFontRegles = al_load_ttf_font("../Font/Rumpi.ttf", 40, ALLEGRO_ALIGN_LEFT);
 
     ///CREATOON DES VARIABLES
-    ALLEGRO_BITMAP *background = al_load_bitmap("../Bitmap/BG.jpg");
     ALLEGRO_COLOR black = al_map_rgb(0, 0, 0);
     ALLEGRO_COLOR red = al_map_rgb(255, 0, 0);
     ALLEGRO_COLOR white = al_map_rgb(255, 255, 255);
@@ -37,6 +36,8 @@ int main() {
     ALLEGRO_COLOR marronLogo = al_map_rgb(102, 51, 0);
     ALLEGRO_COLOR gameColor = al_map_rgb(255, 0, 0);
     ALLEGRO_FONT *gameFont = al_load_ttf_font("../Font/MagicCardsNormal.ttf", 2 * width / 55, ALLEGRO_ALIGN_LEFT);
+    ALLEGRO_BITMAP *background = al_load_bitmap("../Bitmap/BG.jpg");
+    ALLEGRO_BITMAP *team = al_load_bitmap("../Bitmap/team.PNG");
     queue = al_create_event_queue();
     assert(queue);
 
@@ -181,7 +182,7 @@ int main() {
                         break ;
                     }
                     case TEAM : {
-                        drawTeam(height, width, mouse_x, mouse_y, gameFont) ;
+                        drawTeam(height, width, mouse_x, mouse_y, gameFont, team) ;
                         break ;
 
                     }
@@ -191,8 +192,8 @@ int main() {
                     }
                     case PLAY : {
                         //drawPlay(map,event,mouse_x,mouse_y,display,white,black,gris,vert,red);
-                        drawPlay2(width, height, mouse_x, mouse_y, gameFontRegles, &nbJoueur) ;
-
+                        //drawPlay2(width, height, mouse_x, mouse_y, gameFontRegles, &nbJoueur) ;
+                        drawChooseCharacter(height, width, 3) ;
                     break;
                 }
             }
