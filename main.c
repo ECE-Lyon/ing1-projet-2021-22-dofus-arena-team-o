@@ -36,6 +36,7 @@ int main() {
     ALLEGRO_COLOR gameColor = al_map_rgb(255, 0, 0);
     ALLEGRO_FONT *gameFont1 = al_load_ttf_font("../Font/Nintendo.ttf", 72, ALLEGRO_ALIGN_LEFT) ;
     ALLEGRO_FONT *gameFont = al_load_ttf_font("../Font/MagicCardsNormal.ttf", 2 * width / 55, ALLEGRO_ALIGN_LEFT);
+    ALLEGRO_FONT *gameFont2 = al_load_ttf_font("../Font/MagicCardsNormal.ttf", 10, ALLEGRO_ALIGN_LEFT);
     ALLEGRO_FONT *gameFontRegles = al_load_ttf_font("../Font/Rumpi.ttf", 40, ALLEGRO_ALIGN_LEFT);
     ALLEGRO_BITMAP *background = al_load_bitmap("../Bitmap/BG.jpg");
     ALLEGRO_BITMAP *team = al_load_bitmap("../Bitmap/capture.PNG");
@@ -65,6 +66,20 @@ int main() {
     mainMenu.arc.endTheta = 2 * PI;
     mainMenu.arc.currentTheta = 0;
     mainMenu.arc.currentEndTheta = 2 * PI;
+    double scalex = 50.0*width/1800.0;
+    double scaley = 50.0*height/1800.0;
+    for (int j=0;j<mapY;j++) {
+        for (int i = 0; i < mapX; i++) {
+            map[i][j].x =  scalex + i * scalex + j * scalex;
+            map[i][j].y = height/1.8 - i * scaley + j * scaley;
+
+        }
+    }
+    joueur[0].xp = map[0][0].x;
+    joueur[0].yp = map[0][0].y;
+    joueur[0].caseX=0;
+    joueur[0].caseY=0;
+    joueur[0].s = 0;
     InfosJoueur* joueur2= malloc(4*sizeof (InfosJoueur)) ;
 
     float mouse_x = 0, mouse_y = 0;
@@ -173,10 +188,12 @@ int main() {
             case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
                 if ((event.mouse.button & 1) == 1) {
                     map[0][0].t=0;
+
                 }
                 break;
 
             case ALLEGRO_EVENT_TIMER : {
+                    //printf("%d,  %d\n", mouse_x, mouse_y) ;
                 //printf("%d,  %d\n", mouse_x, mouse_y) ;
                     /// MENU V1 ::::::
                     /*if (mouse_x < 5*width/32 && mouse_x > 0 && mouse_y < 29*height/54 && mouse_y > 25*height/54) {
@@ -210,13 +227,15 @@ int main() {
                         break;
                     }
                     case PLAY : {
-                        //drawPlay(map,event,mouse_x,mouse_y,display,white,black,gris,vert,red);
-                        drawChooseCharacter(height, width, 3) ;
-                        afficherPseudo(joueur2, width, height, gameFont1, 1) ;
+                        drawPlay(joueur,map,event,mouse_x,mouse_y,display,white,black,gris,vert,red);
+                        deplacementJoueur(joueur,map,scalex,scaley);
+                        al_draw_circle(joueur[0].xp,joueur[0].yp,50,black,3);
+                        //afficherPseudo(joueur2, width, height, gameFont1, 1) ;
                         //drawPlay2(width, height, mouse_x, mouse_y, gameFont,gameFontRegles, &nbJoueur) ;
                         //drawChooseCharacter(height, width, 3) ;
                     break;
                 }
+
             }
             al_flip_display();
             al_clear_to_color(black);
@@ -228,29 +247,3 @@ int main() {
 
 
 
-
-
-
-/*
-mainMenu.ecran.width = (float) al_get_display_width(display);
-mainMenu.ecran.height = (float) al_get_display_height(display);
-mainMenu.gameMode = MENU ;
-mainMenu.playRect = 0 ;
-mainMenu.rulesRect = 0 ;
-mainMenu.teamRect = 0 ;
-mainMenu.arc.startTheta = 0 ;
-mainMenu.arc.endTheta = 2*PI ;
-mainMenu.arc.currentTheta = 0 ;
-mainMenu.arc.currentEndTheta = 2*PI ;
-
-int mouse_x = 0, mouse_y = 0 ;
-int page = 1;
-
-display = al_create_display(1920, 1080);
-
-
-queue = al_create_event_queue();
-assert(queue);
-unsigned char alpha ;
-double gradient = 255 ;
-int page = 1 ;*/
