@@ -17,7 +17,7 @@ void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y, 
     else   al_draw_filled_rectangle(width/384, height/216, 5*width/32, 2*height/27, al_map_rgb(250,250,250)) ;
     if(*pages < RULESPAGEMAX) {
         if ((mouse_x - 13 * width / 15) * (mouse_x - 13 * width / 15) +
-            (mouse_y - 11 * height / 13) * (mouse_y - 11 * height / 13) < 50 * 50) {
+            (mouse_y - 11 * height / 13) * (mouse_y - 11 * height / 13) < width/38.4 * width/38.4) {
             al_draw_filled_circle(13 * width / 15, 11 * height / 13, width / 38.4, al_map_rgb(200, 200, 200));
         }
         else al_draw_filled_circle(13*width/15, 11*height/13, width/38.4, al_map_rgb(250,250,250)) ;
@@ -262,31 +262,33 @@ bool collisionCercle(int x,int y,Map map[20][20],int i,int j,double width){
         return true;
 }
 
-void drawPlay(Map map[20][20],ALLEGRO_EVENT event,int mouse_x,int mouse_y,ALLEGRO_DISPLAY *display,ALLEGRO_COLOR white, ALLEGRO_COLOR black, ALLEGRO_COLOR gris,ALLEGRO_COLOR vert,ALLEGRO_COLOR red) {
+void drawPlay(Joueur joueur[],Map map[20][20],ALLEGRO_EVENT event,int mouse_x,int mouse_y,ALLEGRO_DISPLAY *display,ALLEGRO_COLOR white, ALLEGRO_COLOR black, ALLEGRO_COLOR gris,ALLEGRO_COLOR vert,ALLEGRO_COLOR red) {
     double height = al_get_display_height(display);
     double width = al_get_display_width(display);
     double scalex = 50.0*width/1800.0;
     double scaley = 50.0*height/1800.0;
-    float police = 2 * width / 55;
+    float police = 50;
     ALLEGRO_COLOR gameColor = al_map_rgb(222, 35, 35);
     ALLEGRO_COLOR ecriture = al_map_rgb(20, 20, 20);
-    ALLEGRO_FONT *gameFont = al_load_ttf_font("../Font/MagicCardsNormal.ttf", police, ALLEGRO_ALIGN_LEFT);
+    ALLEGRO_FONT *gameFont2 = al_load_ttf_font("../Font/MagicCardsNormal.ttf", police, ALLEGRO_ALIGN_LEFT);
 
     for (int j=0;j<mapY;j++) {
         for (int i = 0; i < mapX; i++) {
-            map[i][j].x=  scalex + i * scalex + j * scalex;
-            map[i][j].y= height/1.8 - i * scaley + j * scaley;
+
+
             al_draw_filled_triangle(map[i][j].x - scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -
                                                                                                                        scaley, white);
             al_draw_filled_triangle(map[i][j].x + scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -
                                                                                                                        scaley, white);
+            //al_draw_textf(gameFont2, gameColor, map[i][j].x-20 , map[i][j].y-30, ALLEGRO_ALIGN_CENTER, " %d / %d",i,j) ;
+
         }
     }
     for (int i = 0; i < mapX+1; i++) {
-        al_draw_line(i * scalex, height/1.8 - i * scaley, width/2.25 + i * scalex, height - scaley * i, black, 3);
+        al_draw_line(i * scalex, height/1.8 - i * scaley, width/2.25+i*scalex , height - i * scaley, black, 2);
     }
     for (int i=0;i<mapY+1;i++){
-        al_draw_line(width/1.8+i*scalex,i*scaley,i*scalex,height/1.8+scaley*i, black,3);
+        al_draw_line(width/1.8+i*scalex,i*scaley,i*scalex,height/1.8+scaley*i, black,2);
     }
 
     for (int j=0;j<mapY;j++) {
@@ -296,42 +298,109 @@ void drawPlay(Map map[20][20],ALLEGRO_EVENT event,int mouse_x,int mouse_y,ALLEGR
                                                                                                                            scaley, vert);
                 al_draw_filled_triangle(map[i][j].x + scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -
                                                                                                                            scaley, vert);
-                if(map[0][0].t==1){
+                if(map[0][0].t == 1 && joueur[0].s == 0){
+                    joueur[0].s=1;
+                    joueur[0].a=i;
+                    joueur[0].b=j;
+                    joueur[0].t=1;
                     al_draw_filled_triangle(map[i][j].x - scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -
                                                                                                                                scaley, red);
                     al_draw_filled_triangle(map[i][j].x + scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -
                                                                                                                                scaley, red);
-
                 }
             }
 
         }
     }
+    al_destroy_font(gameFont2);
 }
 
-/*void deplacementJoueur(Joueur *joueur[],Map map[20][20]){
-    joueur[0]->x = map[0][0].x;
-    joueur[0]->y = map[0][0].y;
-    if(joueur[0]->t==1) {
-        if (joueur[0]->xp< map[joueur[0]->a][joueur[0]->b].x && joueur[0]->xp != map[joueur[0]->a][joueur[0]->b].x){
-            joueur[0]->xp = joueur[0]->xp + 1;
+void caseJoueur(Joueur joueur[],Map map[20][20]){
+    for (int j=0;j<mapY;j++) {
+        for (int i = 0; i < mapX; i++) {
+            if (joueur[0].xp>map[i][j].x-40 && joueur[0].xp<map[i][j].x+40 && joueur[0].yp>map[i][j].y-40 && joueur[0].yp<map[i][j].y+40 ){
+                joueur[0].caseX=i;
+                joueur[0].caseY=j;
+                printf("%d , %d\n",joueur[0].caseX,joueur[0].caseY);
+            }
         }
-        if (joueur[0]->xp>map[joueur[0]->a][joueur[0]->b].x && joueur[0]->xp != map[joueur[0]->a][joueur[0]->b].x){
-            joueur[0]->xp = joueur[0]->xp - 1;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+void deplacementJoueur(Joueur joueur[], Map map[20][20],double scalex,double scaley){
+    double depX=0;
+    double depY=0;
+
+
+    if(joueur[0].t==1 && joueur[0].s==1) {
+        if (joueur[0].caseX<joueur[0].a){
+            depX = 1;
+        }
+
+        if (joueur[0].caseX>joueur[0].a){
+            depX = -1;
+        }
+
+        if (joueur[0].caseY<joueur[0].b){
+            depY = scaley/scalex;
+        }
+
+        if (joueur[0].caseY>joueur[0].b){
+            depY = -scaley/scalex;
+        }
+
+        if (joueur[0].caseX == joueur[0].a && joueur[0].caseY < joueur[0].b ){
+            depX = 1;
+            depY = scaley/scalex;
+        }
+
+        if (joueur[0].caseX == joueur[0].a && joueur[0].caseY > joueur[0].b ){
+            depX = -1;
+            depY = -scaley/scalex;
+        }
+
+        if (joueur[0].caseX < joueur[0].a && joueur[0].caseY == joueur[0].b ){
+            depX = 1;
+            depY = -scaley/scalex;
+        }
+
+        if (joueur[0].caseX > joueur[0].a && joueur[0].caseY == joueur[0].b ){
+            depX = -1;
+            depY = scaley/scalex;
+        }
+
+        for (int j=0;j<mapY;j++) {
+            for (int i = 0; i < mapX; i++) {
+                if (joueur[0].xp>map[i][j].x-2 && joueur[0].xp<map[i][j].x+2 && joueur[0].yp>map[i][j].y-2 && joueur[0].yp<map[i][j].y+2 ){
+                    joueur[0].caseX=i;
+                    joueur[0].caseY=j;
+                    printf("%d , %d\n",joueur[0].caseX,joueur[0].caseY);
+
+                }
+            }
         }
 
 
-        if (joueur[0]->xp == map[joueur[0]->a][joueur[0]->b].x && joueur[0]->yp != map[joueur[0]->a][joueur[0]->b].y && joueur[0]->yp<map[joueur[0]->a][joueur[0]->b].y) {
-            joueur[0]->yp = joueur[0]->yp + 1;
-        }
-        if (joueur[0]->xp == map[joueur[0]->a][joueur[0]->b].x && joueur[0]->yp != map[joueur[0]->a][joueur[0]->b].y && joueur[0]->yp>map[joueur[0]->a][joueur[0]->b].y) {
-            joueur[0]->yp = joueur[0]->yp - 1;
-        }
 
-        if (joueur[0]->xp ==map[joueur[0]->a][joueur[0]->b].x && joueur[0]->yp==map[joueur[0]->a][joueur[0]->b].y){joueur[0]->t=0;}
+        joueur[0].xp = joueur[0].xp + depX;
+        joueur[0].yp = joueur[0].yp + depY;
+
+
+        if (joueur[0].caseX == joueur[0].a && joueur[0].caseY==joueur[0].b){joueur[0].s=0;}
     }
 
-}*/
+}
 
 
 

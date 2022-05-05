@@ -37,6 +37,7 @@ int main() {
     ALLEGRO_COLOR marronLogo = al_map_rgb(102, 51, 0);
     ALLEGRO_COLOR gameColor = al_map_rgb(255, 0, 0);
     ALLEGRO_FONT *gameFont = al_load_ttf_font("../Font/MagicCardsNormal.ttf", 2 * width / 55, ALLEGRO_ALIGN_LEFT);
+    ALLEGRO_FONT *gameFont2 = al_load_ttf_font("../Font/MagicCardsNormal.ttf", 10, ALLEGRO_ALIGN_LEFT);
     queue = al_create_event_queue();
     assert(queue);
 
@@ -58,6 +59,20 @@ int main() {
     mainMenu.arc.endTheta = 2 * PI;
     mainMenu.arc.currentTheta = 0;
     mainMenu.arc.currentEndTheta = 2 * PI;
+    double scalex = 50.0*width/1800.0;
+    double scaley = 50.0*height/1800.0;
+    for (int j=0;j<mapY;j++) {
+        for (int i = 0; i < mapX; i++) {
+            map[i][j].x =  scalex + i * scalex + j * scalex;
+            map[i][j].y = height/1.8 - i * scaley + j * scaley;
+
+        }
+    }
+    joueur[0].xp = map[0][0].x;
+    joueur[0].yp = map[0][0].y;
+    joueur[0].caseX=0;
+    joueur[0].caseY=0;
+    joueur[0].s = 0;
 
 
     int mouse_x = 0, mouse_y = 0;
@@ -153,11 +168,12 @@ int main() {
             case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
                 if ((event.mouse.button & 1) == 1) {
                     map[0][0].t=0;
+
                 }
                 break;
 
             case ALLEGRO_EVENT_TIMER : {
-                    printf("%d,  %d\n", mouse_x, mouse_y) ;
+                    //printf("%d,  %d\n", mouse_x, mouse_y) ;
                     /// MENU V1 ::::::
                     /*if (mouse_x < 5*width/32 && mouse_x > 0 && mouse_y < 29*height/54 && mouse_y > 25*height/54) {
                         mainMenu.playRect = 1 ;
@@ -190,11 +206,16 @@ int main() {
                         break;
                     }
                     case PLAY : {
-                        //drawPlay(map,event,mouse_x,mouse_y,display,white,black,gris,vert,red);
-                        drawPlay2(width, height, mouse_x, mouse_y, gameFontRegles, &nbJoueur) ;
+                        drawPlay(joueur,map,event,mouse_x,mouse_y,display,white,black,gris,vert,red);
+                        //drawPlay2(width, height, mouse_x, mouse_y, gameFontRegles, &nbJoueur) ;
+
+                        deplacementJoueur(joueur,map,scalex,scaley);
+                        al_draw_circle(joueur[0].xp,joueur[0].yp,50,black,3);
+
 
                     break;
                 }
+
             }
             al_flip_display();
             al_clear_to_color(black);
