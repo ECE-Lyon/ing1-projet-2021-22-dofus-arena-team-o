@@ -7,6 +7,7 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_image.h>
+#include <time.h>
 
 #define RULESPAGEMAX 3
 #define mapX 20
@@ -41,6 +42,7 @@ typedef struct {
 
 
 void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y, ALLEGRO_FONT* gameFontRegles, ALLEGRO_FONT* gameFont);
+
 typedef struct {
     double x,y;
     int t;
@@ -67,7 +69,7 @@ void moveGameModeArc(Menu** mainMenu) ;
 void deplacementJoueur(Joueur *joueur[],Map map[20][20]);
 bool collisionCercle(int x,int y,Map map[20][20],int i,int j,double width);
 void menuSouris(Menu* mainMenu, float height, float width, int mouse_x, int mouse_y) ;
-void drawPlay2(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT *gameFontRegles, int* nbJoueur) ;
+void drawPlay2(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT * gameFont,ALLEGRO_FONT *gameFontRegles, int* nbJoueur) ;
 void drawChooseCharacter(float height, float width, int nbJoueur)  ;
 
 char alphabet (int keycode, int* nbLettre) ;
