@@ -223,15 +223,9 @@ int main() {
                     }
                     case PLAY : {
                         drawPlay(joueur,map,event,mouse_x,mouse_y,display,white,black,gris,vert,red);
-                        //drawPlay2(width, height, mouse_x, mouse_y, gameFontRegles, &nbJoueur) ;
-
                         deplacementJoueur(joueur,map,scalex,scaley);
                         al_draw_circle(joueur[0].xp,joueur[0].yp,50,black,3);
-
-
-                        //drawPlay(map,event,mouse_x,mouse_y,display,white,black,gris,vert,red);
-                        drawChooseCharacter(height, width, 3) ;
-                        afficherPseudo(joueur2, width, height, gameFont1, 1) ;
+                        //afficherPseudo(joueur2, width, height, gameFont1, 1) ;
                         //drawPlay2(width, height, mouse_x, mouse_y, gameFont,gameFontRegles, &nbJoueur) ;
                         //drawChooseCharacter(height, width, 3) ;
                     break;
