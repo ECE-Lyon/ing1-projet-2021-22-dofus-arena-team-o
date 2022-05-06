@@ -1,6 +1,5 @@
 
 #include "menu.h"
-#include "jeu.h"
 #include "map.h"
 
 int main() {
@@ -251,6 +250,7 @@ int main() {
                     case PLAY : {
                         drawPlay(joueur,map,mouse_x,mouse_y,width,height,scalex,scaley,display,white,black,gris,vert,red);
                         deplacementJoueur(joueur,map,scalex,scaley);
+                        dessinerQuadrillage(width,height,scalex,scaley,black);
                         al_draw_circle(joueur[0].x,joueur[0].y,50,black,3);
                         //choixJoueur(width, height, mouse_x, mouse_y, gameFont1, &nbJoueur) ;
                         //drawChooseCharacter(height, width,joueurQuiJoue) ;
