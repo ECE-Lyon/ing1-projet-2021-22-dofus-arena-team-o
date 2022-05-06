@@ -23,10 +23,11 @@ int main() {
 
     ///CREATION DU DISPLAY
     al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW);
-    display = al_create_display(1300, 1000);
+    display = al_create_display(1920, 1080);
     double height = al_get_display_height(display);
     double width = al_get_display_width(display);
     al_set_window_position(display, 0, 0);
+
 
     ///CREATOON DES VARIABLES
     ALLEGRO_COLOR black = al_map_rgb(0, 0, 0);
@@ -39,10 +40,13 @@ int main() {
     ///FONT
     ALLEGRO_FONT *gameFont1 = al_load_ttf_font("../Font/Nintendo.ttf", 72, ALLEGRO_ALIGN_LEFT) ;
     ALLEGRO_FONT *gameFont = al_load_ttf_font("../Font/MagicCardsNormal.ttf", 2 * width / 55, ALLEGRO_ALIGN_LEFT);
+    ALLEGRO_FONT *gameFont2 = al_load_ttf_font("../Font/MagicCardsNormal.ttf", 10, ALLEGRO_ALIGN_LEFT);
     ALLEGRO_FONT *gameFontRegles = al_load_ttf_font("../Font/Rumpi.ttf", 40, ALLEGRO_ALIGN_LEFT);
+
     ///BITMAP
     ALLEGRO_BITMAP *background = al_load_bitmap("../Bitmap/BG.jpg");
     ALLEGRO_BITMAP *team = al_load_bitmap("../Bitmap/capture.PNG");
+    ALLEGRO_BITMAP *kirby = al_load_bitmap("../Bitmap/Kirby_Icone.png") ;
 
     queue = al_create_event_queue();
     assert(queue);
@@ -51,23 +55,19 @@ int main() {
     char lettre ;
     Menu mainMenu;
     Map map[20][20];
-    InfosJoueur* joueur = malloc(4 * sizeof (InfosJoueur)) ;
+    Joueurs* joueur = malloc(4 * sizeof (Joueurs)) ;
+    InfosSurLesJoueurs infoJoueur ;
+    int play ;
     int nbJoueur = 0;
     int nbLettre = 0;
     int joueurQuiJoue = 0 ;
 
 
     ///INITIALISATION DE NOS VARIABLES (A FAIRE DANS UNE FONCTION)
-    mainMenu.ecran.width = (float) al_get_display_width(display) ;
-    mainMenu.ecran.height = (float) al_get_display_height(display) ;
-    mainMenu.gameMode = MENU;
-    mainMenu.playRect = 0;
-    mainMenu.rulesRect = 0;
-    mainMenu.teamRect = 0;
-    mainMenu.arc.startTheta = 0;
-    mainMenu.arc.endTheta = 2 * PI;
-    mainMenu.arc.currentTheta = 0;
-    mainMenu.arc.currentEndTheta = 2 * PI;
+    initialiserMenu(&mainMenu, width, height) ;
+    initialiserJoueur(joueur, &infoJoueur) ;
+
+    ///METTRE CA DANS UNE FONCTION
     double scalex = 50.0*width/1800.0;
     double scaley = 50.0*height/1800.0;
     for (int j=0;j<mapY;j++) {
@@ -81,11 +81,6 @@ int main() {
     joueur[0].y = map[0][0].y;
     joueur[0].caseX=0;
     joueur[0].caseY=0;
-    joueur[0].dep = 0;
-    for(int i = 0 ; i < 4 ; i++) {
-        strcpy(joueur[i].pseudo, "");
-        joueur[i].nbLettrePseudo = 0 ;
-    }
     float mouse_x = 0, mouse_y = 0;
     int page = 1;
 
@@ -105,7 +100,6 @@ int main() {
 
     al_start_timer(times);
     while (!isFin) {
-        printf("%s / %s / %s / %s\n", joueur[0].pseudo, joueur[1].pseudo, joueur[2].pseudo, joueur[3].pseudo) ;
         al_wait_for_event(queue, &event);
         switch (event.type) {
             case ALLEGRO_EVENT_KEY_DOWN : {
@@ -124,8 +118,7 @@ int main() {
                         break ;
                     }
                     default: {
-                        lettre =  alphabet(event.keyboard.keycode, &joueur[joueurQuiJoue].nbLettrePseudo) ;
-                        mettrePseudo(&joueur, lettre , joueurQuiJoue, &joueur[joueurQuiJoue].nbLettrePseudo) ;
+                        mettrePseudo(&joueur, alphabet(event.keyboard.keycode, &joueur[joueurQuiJoue].nbLettrePseudo) , infoJoueur.joueurQuiJoue, &joueur[joueurQuiJoue].nbLettrePseudo) ;
                         break ;
                     }
 
@@ -191,13 +184,13 @@ int main() {
                                 mainMenu.gameMode = MENU;
                             }
                             if (((mouse_x - 400) * (mouse_x - 400)) + ((mouse_y - 500) * (mouse_y - 500)) < 100 * 100) {
-                                nbJoueur = 2;
+                                infoJoueur.nbJoueur = 2;
                             } else if (((mouse_x - 950) * (mouse_x - 950)) + ((mouse_y - 500) * (mouse_y - 500)) <
                                        100 * 100) {
-                                nbJoueur = 3;
+                                infoJoueur.nbJoueur = 3;
                             } else if (((mouse_x - 1500) * (mouse_x - 1500)) + ((mouse_y - 500) * (mouse_y - 500)) <
                                        100 * 100) {
-                                nbJoueur = 4;
+                                infoJoueur.nbJoueur = 4;
                             }
                         }
 
@@ -213,7 +206,7 @@ int main() {
                 break;
 
             case ALLEGRO_EVENT_TIMER : {
-                    //printf("%d,  %d\n", mouse_x, mouse_y) ;
+                printf("%s / %s / %s / %s\n", joueur[0].pseudo, joueur[1].pseudo, joueur[2].pseudo, joueur[3].pseudo) ;
                 //printf("%d,  %d\n", mouse_x, mouse_y) ;
                     /// MENU V1 ::::::
                     /*if (mouse_x < 5*width/32 && mouse_x > 0 && mouse_y < 29*height/54 && mouse_y > 25*height/54) {
@@ -247,12 +240,12 @@ int main() {
                         break;
                     }
                     case PLAY : {
-                        drawPlay(joueur,map,mouse_x,mouse_y,width,height,scalex,scaley,display,white,black,gris,vert,red);
-                        deplacementJoueur(joueur,map,scalex,scaley);
-                        al_draw_circle(joueur[0].x,joueur[0].y,50,black,3);
+                        //drawPlay(joueur,map,event,mouse_x,mouse_y,display,white,black,gris,vert,red);
+                        //deplacementJoueur(joueur,map,scalex,scaley);
+                        //al_draw_circle(joueur[0].xp,joueur[0].yp,50,black,3);
                         //choixJoueur(width, height, mouse_x, mouse_y, gameFont1, &nbJoueur) ;
-                        //drawChooseCharacter(height, width,joueurQuiJoue) ;
-                        //afficherPseudo(joueur2, width, height, gameFont1, 4) ;
+                        drawChooseCharacter(height, width,gameFont1, &nbJoueur, mouse_x, mouse_y, &joueur) ;
+                        afficherPseudo(joueur, width, height, gameFont1, 4) ;
                     break;
                 }
 

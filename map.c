@@ -8,7 +8,7 @@ bool collisionCercle(int x,int y,Map map[20][20],int i,int j,double width){
         return true;
 }
 
-void drawPlay(InfosJoueur *joueur,Map map[20][20],int mouse_x,int mouse_y,double width, double height, double scalex, double scaley, ALLEGRO_DISPLAY *display,ALLEGRO_COLOR white, ALLEGRO_COLOR black, ALLEGRO_COLOR gris,ALLEGRO_COLOR vert,ALLEGRO_COLOR red) {
+void drawPlay(Joueurs *joueur,Map map[20][20],int mouse_x,int mouse_y,double width, double height, double scalex, double scaley, ALLEGRO_DISPLAY *display,ALLEGRO_COLOR white, ALLEGRO_COLOR black, ALLEGRO_COLOR gris,ALLEGRO_COLOR vert,ALLEGRO_COLOR red) {
 
     for (int j=0;j<mapY;j++) {
         for (int i = 0; i < mapX; i++) {
@@ -50,7 +50,7 @@ void drawPlay(InfosJoueur *joueur,Map map[20][20],int mouse_x,int mouse_y,double
     }
 }
 
-void caseJoueur(InfosJoueur *joueur,Map map[20][20]){
+void caseJoueur(Joueurs *joueur,Map map[20][20]){
     for (int j=0;j<mapY;j++) {
         for (int i = 0; i < mapX; i++) {
             if (joueur[0].x>map[i][j].x-2 && joueur[0].x<map[i][j].x+2 && joueur[0].y>map[i][j].y-2 && joueur[0].y<map[i][j].y+2 ){
@@ -62,7 +62,7 @@ void caseJoueur(InfosJoueur *joueur,Map map[20][20]){
     }
 }
 
-void deplacementJoueur(InfosJoueur *joueur, Map map[20][20],double scalex,double scaley){
+void deplacementJoueur(Joueurs *joueur, Map map[20][20],double scalex,double scaley){
     double depX=0;
     double depY=0;
 
