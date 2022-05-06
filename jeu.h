@@ -18,12 +18,23 @@
 
 enum gameMode {PLAY, RULES, TEAM, MENU, END};
 enum personnage {VIDE, MARIO,LUIGI,KIRBY,PEACH,ZELDA};
+enum play {CHOIXNBJOUEUR, CHOIXCLASSE, JEU};
 
+
+typedef struct {
+    int mouse_x, mouse_y ;
+    double height, width ;
+} InfoEcran;
+
+typedef struct {
+    int nbJoueur, joueurQuiJoue ;
+} InfosSurLesJoueurs;
 
 typedef struct {
     //enum personnage type = MARIO;
     ALLEGRO_BITMAP* image;
 }Perso;
+
 
 
 typedef struct {
@@ -38,23 +49,19 @@ typedef struct Info{
     int nbLettrePseudo ;
     int PV, PM, PA;
     Classe classe; //1 : mario      2 : Luigi     3 : Kirby     4: Peach     5 : Zelda
-}InfosJoueur;
+}Joueurs;
 
-typedef struct {
-    int mouse_x, mouse_y ;
-    float height, width ;
-} infoEcran;
-
-
+///INITIALISER LES JOUEURS
+void initialiserJoueur(Joueurs* joueur, InfosSurLesJoueurs* infoJoueur) ;
 
 ///FONCTION POUR COMMENCER A JOUER
 void choixJoueur(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT * gameFont, int* nbJoueur) ;
-void drawChooseCharacter(float height, float width, ALLEGRO_FONT* gameFont, int* nbJoueur,int mouse_x, int mouse_y, InfosJoueur** joueur);
+void drawChooseCharacter(float height, float width, ALLEGRO_FONT* gameFont, int* nbJoueur,int mouse_x, int mouse_y, Joueurs** joueur);
 
 ///RENTRER UN PSEUDO
 char alphabet (int keycode, int* nbLettre) ;
-void mettrePseudo(InfosJoueur** joueur, char lettre, int quelJoueurEstSelectionne, int* nbLettre) ;
-void afficherPseudo(InfosJoueur* joueur, float width, float height, ALLEGRO_FONT* gameFont, int nbJoueur) ;
+void mettrePseudo(Joueurs** joueur, char lettre, int quelJoueurEstSelectionne, int* nbLettre) ;
+void afficherPseudo(Joueurs* joueur, float width, float height, ALLEGRO_FONT* gameFont, int nbJoueur) ;
 
 
 #endif

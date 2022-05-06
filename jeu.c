@@ -1,12 +1,25 @@
 #include "jeu.h"
 
+void InitialiserEcran (InfoEcran* ecran, double width, double height) {
+    ecran->width = width ;
+    ecran->height = height ;
+}
+
+void initialiserJoueur(Joueurs* joueur, InfosSurLesJoueurs* infoJoueur) {
+    for(int i = 0 ; i < 4 ; i++) {
+        strcpy(joueur[i].pseudo, "");
+        joueur[i].nbLettrePseudo = 0 ;
+    }
+    infoJoueur->nbJoueur = 0 ;
+    infoJoueur->joueurQuiJoue = 0 ;
+}
+
+
 void choixJoueur(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT* gameFont, int* nbJoueur) {
     /// FOND D'ECRAN GRISTARE
     al_draw_filled_rectangle(0, 0, width, height, al_map_rgba(150, 150, 150, 150));
 
     float police = 2 * width / 55;
-    ALLEGRO_COLOR gameColor = al_map_rgb(222, 35, 35);
-    ALLEGRO_COLOR ecriture = al_map_rgb(20, 20, 20);
 
     ///AFFICHAGE GRIS DU HAUT STYLE
     al_draw_filled_rectangle(0, 0, width, 5 * height / 27, al_map_rgb(100, 100, 100));
@@ -54,7 +67,7 @@ void choixJoueur(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FO
 
 }
 
-void drawChooseCharacter(float height, float width, ALLEGRO_FONT* gameFont, int* nbJoueur,int mouse_x, int mouse_y, InfosJoueur** joueur) {
+void drawChooseCharacter(float height, float width, ALLEGRO_FONT* gameFont, int* nbJoueur,int mouse_x, int mouse_y, Joueurs** joueur) {
     al_draw_filled_rectangle(0, 0, width, height, al_map_rgba(150, 150, 150, 150));
 
     float police = 2 * width / 55;
@@ -97,12 +110,16 @@ void drawChooseCharacter(float height, float width, ALLEGRO_FONT* gameFont, int*
 
 /////////////Choisir un personnage/////////////////
 
-    al_draw_filled_rectangle(width/5.76, 7*height/18, width/3.6, height/1.8, al_map_rgb(246, 97, 65));
-    al_draw_filled_rectangle(width/3.2, 7*height/18, width/2.4,height/1.8, al_map_rgb(168, 218, 67));
-    al_draw_filled_rectangle(65*width/144, 7*height/18, width/1.8, height/1.8, al_map_rgb(240, 139, 229));
-    al_draw_filled_rectangle(85*width/144,7*height/18, width/1.44, height/1.8, al_map_rgb(139, 240, 228));
-    al_draw_filled_rectangle(35*width/48,7*height/18, width/1.2, height/1.8, al_map_rgb(190, 130, 200));
+    al_draw_filled_rectangle(25*width/144, 7*height/18, 5*width/18, 5*height/9, al_map_rgb(246, 97, 65));
+    al_draw_filled_rectangle(5*width/16, 7*height/18, 5*width/12,5*height/9, al_map_rgb(168, 218, 67));
+    al_draw_filled_rectangle(65*width/144, 7*height/18, 5*width/9, 5*height/9, al_map_rgb(240, 139, 229));
+    al_draw_filled_rectangle(85*width/144,7*height/18, 25*width/36, 5*height/9, al_map_rgb(139, 240, 228));
+    al_draw_filled_rectangle(35*width/48,7*height/18, 5*width/6, 5*height/9, al_map_rgb(190, 130, 200));
 
+   /*al_draw_filled_rectangle(360, 1665, 715, 1767, al_map_rgb(216, 216, 216));
+    al_draw_filled_rectangle(960, 1665, 1315, 1767, al_map_rgb(216, 216, 216));
+    al_draw_filled_rectangle(1560, 1665, 1915, 1767, al_map_rgb(216, 216, 216));
+    al_draw_filled_rectangle(2160, 1665, 2515, 1767, al_map_rgb(216, 216, 216)) ;*/
     al_draw_filled_rectangle(width/8, 37*height/40, 143*width/576, 589*height/600, al_map_rgb(216, 216, 216));
     al_draw_filled_rectangle(width/3, 37*height/40, 263*width/576, 589*height/600, al_map_rgb(216, 216, 216));
     al_draw_filled_rectangle(13*width/24, 37*height/40, 383*width/576, 589*height/600, al_map_rgb(216, 216, 216));
@@ -175,10 +192,6 @@ void entrerPseudo (ALLEGRO_EVENT* event, InfosJoueur tabJoueur[], int joueurActu
 
 */
 
-
-
-
-
 char alphabet (int keycode, int* nbLettre){
     char lettreAppuye;
     if(keycode >= ALLEGRO_KEY_A && keycode <= ALLEGRO_KEY_Z) {
@@ -197,24 +210,26 @@ char alphabet (int keycode, int* nbLettre){
     else return 0 ;
 }
 
-void mettrePseudo(InfosJoueur** joueur, char lettre, int quelJoueurEstSelectionne, int* nbLettre) {
+void mettrePseudo(Joueurs** joueur, char lettre, int quelJoueurEstSelectionne, int* nbLettre) {
     if(*nbLettre+1 < MAXNOM) {
         (*joueur)[quelJoueurEstSelectionne].pseudo[*nbLettre] = lettre ;
+        (*joueur)[quelJoueurEstSelectionne].pseudo[*nbLettre+1] = '\0' ;
     }
     if(lettre != '\0' && *nbLettre < MAXNOM-1) {
         (*nbLettre)++ ;
     }
+    else {
+        (*joueur)[quelJoueurEstSelectionne].pseudo[*nbLettre] = '\0' ;
+    }
 }
 
-void afficherPseudo(InfosJoueur* joueur, float width, float height, ALLEGRO_FONT* gameFont, int nbJoueur) {
+void afficherPseudo(Joueurs* joueur, float width, float height, ALLEGRO_FONT* gameFont, int nbJoueur) {
     for (int i = 0; i < nbJoueur; i++) {
         al_draw_textf(gameFont, al_map_rgb(20, 20, 20), (17 * width / 64 - 7.5 * width / 64) / 0.8 + (width/4.8)*i, 46 * height / 50,
                       ALLEGRO_ALIGN_CENTER, "%s", joueur[i].pseudo);
     }
 }
 
-
-
-/*void remplirDonneeJoueur (InfosJoueur** UnMaillonJoueur){
+/*void remplirDonneeJoueur (Joueurs** UnMaillonJoueur){
     (*UnMaillonJoueur)->pseudo = getPseudo();
 }*/

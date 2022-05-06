@@ -1,6 +1,5 @@
 
 #include "menu.h"
-#include "jeu.h"
 #include "map.h"
 
 int main() {
@@ -29,8 +28,6 @@ int main() {
     al_set_window_position(display, 0, 0);
 
 
-    //printf("X = %d\nY = %d", al_get_display_width(display), al_get_display_height(display));
-
     ///CREATOON DES VARIABLES
     ALLEGRO_COLOR black = al_map_rgb(0, 0, 0);
     ALLEGRO_COLOR red = al_map_rgb(255, 0, 0);
@@ -44,9 +41,11 @@ int main() {
     ALLEGRO_FONT *gameFont = al_load_ttf_font("../Font/MagicCardsNormal.ttf", 2 * width / 55, ALLEGRO_ALIGN_LEFT);
     ALLEGRO_FONT *gameFont2 = al_load_ttf_font("../Font/MagicCardsNormal.ttf", 10, ALLEGRO_ALIGN_LEFT);
     ALLEGRO_FONT *gameFontRegles = al_load_ttf_font("../Font/Rumpi.ttf", 40, ALLEGRO_ALIGN_LEFT);
+
     ///BITMAP
     ALLEGRO_BITMAP *background = al_load_bitmap("../Bitmap/BG.jpg");
     ALLEGRO_BITMAP *team = al_load_bitmap("../Bitmap/capture.PNG");
+    ALLEGRO_BITMAP *kirby = al_load_bitmap("../Bitmap/Kirby_Icone.png") ;
 
     queue = al_create_event_queue();
     assert(queue);
@@ -55,23 +54,19 @@ int main() {
     char lettre ;
     Menu mainMenu;
     Map map[20][20];
-    InfosJoueur* joueur = malloc(4 * sizeof (InfosJoueur)) ;
+    Joueurs* joueur = malloc(4 * sizeof (Joueurs)) ;
+    InfosSurLesJoueurs infoJoueur ;
+    int play ;
     int nbJoueur = 0;
     int nbLettre = 0;
     int joueurQuiJoue = 0 ;
 
 
     ///INITIALISATION DE NOS VARIABLES (A FAIRE DANS UNE FONCTION)
-    mainMenu.ecran.width = (float) al_get_display_width(display) ;
-    mainMenu.ecran.height = (float) al_get_display_height(display) ;
-    mainMenu.gameMode = MENU;
-    mainMenu.playRect = 0;
-    mainMenu.rulesRect = 0;
-    mainMenu.teamRect = 0;
-    mainMenu.arc.startTheta = 0;
-    mainMenu.arc.endTheta = 2 * PI;
-    mainMenu.arc.currentTheta = 0;
-    mainMenu.arc.currentEndTheta = 2 * PI;
+    initialiserMenu(&mainMenu, width, height) ;
+    initialiserJoueur(joueur, &infoJoueur) ;
+
+    ///METTRE CA DANS UNE FONCTION
     double scalex = 50.0*width/1800.0;
     double scaley = 50.0*height/1800.0;
     for (int j=0;j<mapY;j++) {
@@ -129,8 +124,7 @@ int main() {
                         break ;
                     }
                     default: {
-                        lettre =  alphabet(event.keyboard.keycode, &joueur[joueurQuiJoue].nbLettrePseudo) ;
-                        mettrePseudo(&joueur, lettre , joueurQuiJoue, &joueur[joueurQuiJoue].nbLettrePseudo) ;
+                        mettrePseudo(&joueur, alphabet(event.keyboard.keycode, &joueur[joueurQuiJoue].nbLettrePseudo) , infoJoueur.joueurQuiJoue, &joueur[joueurQuiJoue].nbLettrePseudo) ;
                         break ;
                     }
 
@@ -205,13 +199,13 @@ int main() {
                                 mainMenu.gameMode = MENU;
                             }
                             if (((mouse_x - 400) * (mouse_x - 400)) + ((mouse_y - 500) * (mouse_y - 500)) < 100 * 100) {
-                                nbJoueur = 2;
+                                infoJoueur.nbJoueur = 2;
                             } else if (((mouse_x - 950) * (mouse_x - 950)) + ((mouse_y - 500) * (mouse_y - 500)) <
                                        100 * 100) {
-                                nbJoueur = 3;
+                                infoJoueur.nbJoueur = 3;
                             } else if (((mouse_x - 1500) * (mouse_x - 1500)) + ((mouse_y - 500) * (mouse_y - 500)) <
                                        100 * 100) {
-                                nbJoueur = 4;
+                                infoJoueur.nbJoueur = 4;
                             }
                         }
 
@@ -261,12 +255,14 @@ int main() {
                         break;
                     }
                     case PLAY : {
-                        //drawPlay(joueur,map,mouse_x,mouse_y,width,height,scalex,scaley,display,white,black,gris,vert,red);
-                        //deplacementJoueur(joueur,map,scalex,scaley);
-                        //al_draw_circle(joueur[0].x,joueur[0].y,50,black,3);
+                        drawPlay(joueur,map,mouse_x,mouse_y,width,height,scalex,scaley,display,white,black,gris,vert,red);
+                        deplacementJoueur(joueur,map,scalex,scaley);
+                        dessinerQuadrillage(width,height,scalex,scaley,black);
+                        al_draw_circle(joueur[0].x,joueur[0].y,50,black,3);
                         //choixJoueur(width, height, mouse_x, mouse_y, gameFont1, &nbJoueur) ;
                         //drawChooseCharacter(height, width,joueurQuiJoue) ;
                         //afficherPseudo(joueur2, width, height, gameFont1, 4) ;
+                        //drawChooseCharacter(height, width,joueurQuiJoue) ;
                         //drawPlay(map,event,mouse_x,mouse_y,display,white,black,gris,vert,red);
                         drawChooseCharacter(height, width, gameFont1, &nbJoueur, mouse_x, mouse_y, &joueur) ;
                         afficherPseudo(joueur, width, height, gameFont1, 1) ;
