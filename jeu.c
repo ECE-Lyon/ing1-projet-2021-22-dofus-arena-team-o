@@ -133,10 +133,6 @@ void attribuerBitmapPersonnage(InfosJoueur** joueurActuel, ALLEGRO_FONT* gameFon
 }
 
 
-
-
-
-
 int getRandomInteger(int min, int max){
     int nbAleatoire = rand()%(max-min+1)+min;
     return nbAleatoire;

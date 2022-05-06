@@ -97,7 +97,7 @@ int main() {
 
 
     ///INITIALISATION CLASSE
-    joueur->classe = VIDE;
+    //joueur[].classe = 0;
 
 
     ///INITIALISATION DU TIMER
@@ -152,6 +152,14 @@ int main() {
                             if (mouse_x < 157 * width / 275 && mouse_x > 118 * width / 275 &&
                                     mouse_y < 38 * height / 99 && mouse_y > 7 * height / 80) {
                                 mainMenu.gameMode = PLAY;
+                                if ((float) mouse_x < width/3.6 && mouse_x > width/5.76 && (float) mouse_y < height/1.8 && mouse_y > 7*height/18) {
+                                    al_draw_filled_rectangle(7 * width / 64 + width / 38.4,
+                                                             2 * (height / 3) + height / 18,
+                                                             7 * width / 64 + 37 * width / 288,
+                                                             2 * (height / 3) + 19 * height / 90,
+                                                             al_map_rgb(246, 97, 65));
+                                }
+
                             }
                             if (mouse_x < 49 * width / 110 && mouse_x > 21 * width / 110 && mouse_y < 322 * height / 495 && mouse_y > 4 * height / 9) {
                                 mainMenu.gameMode = RULES;
@@ -160,6 +168,7 @@ int main() {
                                     mouse_y < 322 * height / 495 && mouse_y > 4 * height / 9) {
                                 mainMenu.gameMode = TEAM;;
                             }
+
 
                             break;
                         }
@@ -259,8 +268,8 @@ int main() {
                         //drawChooseCharacter(height, width,joueurQuiJoue) ;
                         //afficherPseudo(joueur2, width, height, gameFont1, 4) ;
                         //drawPlay(map,event,mouse_x,mouse_y,display,white,black,gris,vert,red);
-                        drawChooseCharacter(height, width, gameFont1, &nbJoueur, mouse_x, mouse_y) ;
-                        afficherPseudo(joueur2, width, height, gameFont1, 1) ;
+                        drawChooseCharacter(height, width, gameFont1, &nbJoueur, mouse_x, mouse_y, &joueur) ;
+                        afficherPseudo(joueur, width, height, gameFont1, 1) ;
                         //drawPlay2(width, height, mouse_x, mouse_y, gameFont,gameFontRegles, &nbJoueur) ;
                     break;
                 }
