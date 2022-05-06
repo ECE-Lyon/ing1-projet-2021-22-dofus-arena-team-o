@@ -1,6 +1,6 @@
 #include "jeu.h"
 
-void InitialiserEcran (InfoEcran* ecran, double width, double height) {
+void initialiserEcran (InfoEcran* ecran, double width, double height) {
     ecran->width = width ;
     ecran->height = height ;
 }
@@ -67,19 +67,19 @@ void choixJoueur(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FO
 
 }
 
-void drawChooseCharacter(float height, float width, ALLEGRO_FONT* gameFont, int* nbJoueur,int mouse_x, int mouse_y, Joueurs** joueur) {
-    al_draw_filled_rectangle(0, 0, width, height, al_map_rgba(150, 150, 150, 150));
+void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, int* nbJoueur, Joueurs** joueur, ALLEGRO_BITMAP* kirby, ALLEGRO_BITMAP* pacman) {
+    al_draw_filled_rectangle(0, 0, ecran.width, ecran.height, al_map_rgba(150, 150, 150, 150));
 
-    float police = 2 * width / 55;
+    float police = 2 * ecran.width / 55;
 
-    al_draw_filled_rectangle(0, 0, width, 5 * height / 27, al_map_rgb(100, 100, 100));
-    al_draw_filled_triangle(0, 0, 0, height/2.16, width/3.84, height/7.2, al_map_rgb(100, 100, 100));
-    al_draw_filled_rectangle(0, 0, width, 4 * height / 27, al_map_rgb(150, 150, 150));
-    al_draw_filled_triangle(0, 0, 0, 41*height/108, 37*width/192, height/7.2, al_map_rgb(150, 150, 150));
+    al_draw_filled_rectangle(0, 0, ecran.width, 5 * ecran.height / 27, al_map_rgb(100, 100, 100));
+    al_draw_filled_triangle(0, 0, 0, ecran.height/2.16, ecran.width/3.84, ecran.height/7.2, al_map_rgb(100, 100, 100));
+    al_draw_filled_rectangle(0, 0, ecran.width, 4 * ecran.height / 27, al_map_rgb(150, 150, 150));
+    al_draw_filled_triangle(0, 0, 0, 41*ecran.height/108, 37*ecran.width/192, ecran.height/7.2, al_map_rgb(150, 150, 150));
 
-    al_draw_filled_circle(29*width/32, height/13.5, width/32, al_map_rgb(100, 100, 100)) ;
-    al_draw_filled_rectangle(7*width/8,   height/12, 15*width/16, height/10.8, al_map_rgb(150, 150, 150)) ;
-    al_draw_filled_rectangle(341*width/384,   height/54, 347*width/384, 7*height/54, al_map_rgb(150, 150, 150)) ;
+    al_draw_filled_circle(29*ecran.width/32, ecran.height/13.5, ecran.width/32, al_map_rgb(100, 100, 100)) ;
+    al_draw_filled_rectangle(7*ecran.width/8,   ecran.height/12, 15*ecran.width/16, ecran.height/10.8, al_map_rgb(150, 150, 150)) ;
+    al_draw_filled_rectangle(341*ecran.width/384,   ecran.height/54, 347*ecran.width/384, 7*ecran.height/54, al_map_rgb(150, 150, 150)) ;
 
     /** Met pas cet merde la
     for(int i = 0 ; i < 4 ; i++) {
@@ -88,50 +88,50 @@ void drawChooseCharacter(float height, float width, ALLEGRO_FONT* gameFont, int*
         al_draw_filled_rounded_rectangle(width/2 - 600 - 150 + i*400, 2*height/3, (width/2 - 600 - 150 + i*400) + 300, height+15, 10, 10,
                                          al_map_rgb(255 - i*255, 0 + 128*i , 0 + 128/2*i + 50*i)) ;
     }**/
-    al_draw_filled_rounded_rectangle(7*width/64, 2*height/3, 17*width/64, height+15, 10, 10,
+    al_draw_filled_rounded_rectangle(7*ecran.width/64, 2*ecran.height/3, 17*ecran.width/64, ecran.height+15, 10, 10,
                                      al_map_rgb(255 , 0 , 0));
-    al_draw_filled_rounded_rectangle(61*width/192, 2*height/3, 91*width/192, height+15, 10, 10,
+    al_draw_filled_rounded_rectangle(61*ecran.width/192, 2*ecran.height/3, 91*ecran.width/192, ecran.height+15, 10, 10,
                                      al_map_rgb(200 , 200 , 0));
-    al_draw_filled_rounded_rectangle(101*width/192, 2*height/3, 131*width/192, height+15, 10, 10,
+    al_draw_filled_rounded_rectangle(101*ecran.width/192, 2*ecran.height/3, 131*ecran.width/192, ecran.height+15, 10, 10,
                                      al_map_rgb( 0, 255, 0));
-    al_draw_filled_rounded_rectangle(47*width/64, 2*height/3, 57*width/64, height+15, 10, 10,
+    al_draw_filled_rounded_rectangle(47*ecran.width/64, 2*ecran.height/3, 57*ecran.width/64, ecran.height+15, 10, 10,
                                      al_map_rgb( 0, 69, 128));
 
     ////////////bouton return/////////////
-    if ((float) mouse_x < 5*width/32 && mouse_x > width/384 && (float) mouse_y < 2*height/27 && mouse_y > height/216) {
-        al_draw_filled_rectangle(width/384, height/216, 5*width/32, 2*height/27, al_map_rgb(200,200,200)) ;
-        al_draw_text(gameFont, al_map_rgb(0, 0, 0), (5*width/32 - width/384)/2 + police/10, (2*height/27-height/216)/2 - police/3, ALLEGRO_ALIGN_CENTER, "RETURN") ;
+    if ((float) ecran.mouse_x < 5*ecran.width/32 && ecran.mouse_x > ecran.width/384 && (float)ecran.mouse_y < 2*ecran.height/27 && ecran.mouse_y > ecran.height/216) {
+        al_draw_filled_rectangle(ecran.width/384, ecran.height/216, 5*ecran.width/32, 2*ecran.height/27, al_map_rgb(200,200,200)) ;
+        al_draw_text(gameFont, al_map_rgb(0, 0, 0), (5*ecran.width/32 - ecran.width/384)/2 + police/10, (2*ecran.height/27-ecran.height/216)/2 - police/3, ALLEGRO_ALIGN_CENTER, "RETURN") ;
     }
     else   {
-        al_draw_filled_rectangle(width/384, height/216, 5*width/32, 2*height/27, al_map_rgb(255,255,255));
-        al_draw_text(gameFont, al_map_rgb(0, 0, 0), (5*width/32 - width/384)/2 + police/10, (2*height/27-height/216)/2 - police/3, ALLEGRO_ALIGN_CENTER, "RETURN") ;
+        al_draw_filled_rectangle(ecran.width/384, ecran.height/216, 5*ecran.width/32, 2*ecran.height/27, al_map_rgb(255,255,255));
+        al_draw_text(gameFont, al_map_rgb(0, 0, 0), (5*ecran.width/32 - ecran.width/384)/2 + police/10, (2*ecran.height/27-ecran.height/216)/2 - police/3, ALLEGRO_ALIGN_CENTER, "RETURN") ;
     }
 
 
 /////////////Choisir un personnage/////////////////
 
-    al_draw_filled_rectangle(25*width/144, 7*height/18, 5*width/18, 5*height/9, al_map_rgb(246, 97, 65));
-    al_draw_filled_rectangle(5*width/16, 7*height/18, 5*width/12,5*height/9, al_map_rgb(168, 218, 67));
-    al_draw_filled_rectangle(65*width/144, 7*height/18, 5*width/9, 5*height/9, al_map_rgb(240, 139, 229));
-    al_draw_filled_rectangle(85*width/144,7*height/18, 25*width/36, 5*height/9, al_map_rgb(139, 240, 228));
-    al_draw_filled_rectangle(35*width/48,7*height/18, 5*width/6, 5*height/9, al_map_rgb(190, 130, 200));
+    al_draw_filled_rectangle(25*ecran.width/144, 7*ecran.height/18, 5*ecran.width/18, 5*ecran.height/9, al_map_rgb(246, 97, 65));
+    al_draw_scaled_bitmap(kirby, 0, 0, 4389, 4389, 25*ecran.width/144, 7*ecran.height/18, 4389/24.383,4389/24.383, 0) ;
 
-   /*al_draw_filled_rectangle(360, 1665, 715, 1767, al_map_rgb(216, 216, 216));
-    al_draw_filled_rectangle(960, 1665, 1315, 1767, al_map_rgb(216, 216, 216));
-    al_draw_filled_rectangle(1560, 1665, 1915, 1767, al_map_rgb(216, 216, 216));
-    al_draw_filled_rectangle(2160, 1665, 2515, 1767, al_map_rgb(216, 216, 216)) ;*/
-    al_draw_filled_rectangle(width/8, 37*height/40, 143*width/576, 589*height/600, al_map_rgb(216, 216, 216));
-    al_draw_filled_rectangle(width/3, 37*height/40, 263*width/576, 589*height/600, al_map_rgb(216, 216, 216));
-    al_draw_filled_rectangle(13*width/24, 37*height/40, 383*width/576, 589*height/600, al_map_rgb(216, 216, 216));
-    al_draw_filled_rectangle(3*width/4, 37*height/40, 503*width/576, 589*height/600, al_map_rgb(216, 216, 216)) ;
+    al_draw_filled_rectangle(5*ecran.width/16, 7*ecran.height/18, 5*ecran.width/12,5*ecran.height/9, al_map_rgb(168, 218, 67));
+    al_draw_scaled_bitmap(pacman, 0, 0, 1000, 1000, 5*ecran.width/16, 7*ecran.height/18, 1000/5.6 ,1000/5.6, 0) ;
 
+
+    al_draw_filled_rectangle(65*ecran.width/144, 7*ecran.height/18, 5*ecran.width/9, 5*ecran.height/9, al_map_rgb(240, 139, 229));
+    al_draw_filled_rectangle(85*ecran.width/144,7*ecran.height/18, 25*ecran.width/36, 5*ecran.height/9, al_map_rgb(139, 240, 228));
+    al_draw_filled_rectangle(35*ecran.width/48,7*ecran.height/18, 5*ecran.width/6, 5*ecran.height/9, al_map_rgb(190, 130, 200));
+
+    al_draw_filled_rectangle(ecran.width/8, 37*ecran.height/40, 143*ecran.width/576, 589*ecran.height/600, al_map_rgb(216, 216, 216));
+    al_draw_filled_rectangle(ecran.width/3, 37*ecran.height/40, 263*ecran.width/576, 589*ecran.height/600, al_map_rgb(216, 216, 216));
+    al_draw_filled_rectangle(13*ecran.width/24, 37*ecran.height/40, 383*ecran.width/576, 589*ecran.height/600, al_map_rgb(216, 216, 216));
+    al_draw_filled_rectangle(3*ecran.width/4, 37*ecran.height/40, 503*ecran.width/576, 589*ecran.height/600, al_map_rgb(216, 216, 216)) ;
 
     // classe[MARIO] = (float) mouse_x < 800 && mouse_x > 500 && (float) mouse_y < 1000 && mouse_y > 700;
 
     //switch ((*joueur)->classe){
         //case MARIO :
-            if ((float) mouse_x < width/3.6 && mouse_x > width/5.76 && (float) mouse_y < height/1.8 && mouse_y > 7*height/18) {
-            al_draw_filled_rectangle(7 * width / 64 + width/38.4, 2 * (height / 3) + height/18, 7 * width / 64 + 37*width/288 , 2 * (height / 3) + 19*height/90,
+            if ((float) ecran.mouse_x < ecran.width/3.6 && ecran.mouse_x > ecran.width/5.76 && (float) ecran.mouse_y < ecran.height/1.8 && ecran.mouse_y > 7*ecran.height/18) {
+            al_draw_filled_rectangle(7 * ecran.width / 64 + ecran.width/38.4, 2 * (ecran.height / 3) + ecran.height/18, 7 * ecran.width / 64 + 37*ecran.width/288 , 2 * (ecran.height / 3) + 19*ecran.height/90,
                                      al_map_rgb(246, 97, 65));
         //}
     }
@@ -141,12 +141,12 @@ void drawChooseCharacter(float height, float width, ALLEGRO_FONT* gameFont, int*
 }
 
 void attribuerBitmapPersonnage(Joueurs** joueurActuel, ALLEGRO_FONT* gameFont){
-    (*joueurActuel)->classe.personnage[VIDE].image  = gameFont;
+    /*(*joueurActuel)->classe.personnage[VIDE].image  = gameFont;
     (*joueurActuel)->classe.personnage[MARIO].image = gameFont;
     (*joueurActuel)->classe.personnage[LUIGI].image = gameFont;
     (*joueurActuel)->classe.personnage[KIRBY].image = gameFont;
     (*joueurActuel)->classe.personnage[PEACH].image = gameFont;
-    (*joueurActuel)->classe.personnage[ZELDA].image = gameFont;
+    (*joueurActuel)->classe.personnage[ZELDA].image = gameFont; */
 }
 
 

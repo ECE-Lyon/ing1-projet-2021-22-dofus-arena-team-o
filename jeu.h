@@ -33,14 +33,11 @@ typedef struct {
 typedef struct {
     //enum personnage type = MARIO;
     ALLEGRO_BITMAP* image;
-}Perso;
+    int sort ;
+}Classe;
 
 
 
-typedef struct {
-    Perso personnage[5];
-    int sort;  //par ex       1-> sort "empècher ladversaire de marcher           2-> sort "Tuer son prochain
-} Classe;
 
 typedef struct Info{
     double x,y;
@@ -51,12 +48,18 @@ typedef struct Info{
     Classe classe; //1 : mario      2 : Luigi     3 : Kirby     4: Peach     5 : Zelda
 }Joueurs;
 
-///INITIALISER LES JOUEURS
+typedef struct {
+    InfosSurLesJoueurs info ;
+    Joueurs* joueur ;
+    Classe classes[5] ;
+}Jeu;
+
+void initialiserEcran (InfoEcran* ecran, double width, double height) ;
 void initialiserJoueur(Joueurs* joueur, InfosSurLesJoueurs* infoJoueur) ;
 
 ///FONCTION POUR COMMENCER A JOUER
 void choixJoueur(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT * gameFont, int* nbJoueur) ;
-void drawChooseCharacter(float height, float width, ALLEGRO_FONT* gameFont, int* nbJoueur,int mouse_x, int mouse_y, Joueurs** joueur);
+void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, int* nbJoueur, Joueurs** joueur, ALLEGRO_BITMAP* kirby, ALLEGRO_BITMAP* pacman);
 
 ///RENTRER UN PSEUDO
 char alphabet (int keycode, int* nbLettre) ;
