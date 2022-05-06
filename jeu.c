@@ -15,7 +15,7 @@ void initialiserJoueur(Joueurs* joueur, InfosSurLesJoueurs* infoJoueur) {
 }
 
 
-void choixJoueur(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT* gameFont, int* nbJoueur) {
+void choixJoueur(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT* gameFont, InfosSurLesJoueurs* infoJoueur) {
     /// FOND D'ECRAN GRISTARE
     al_draw_filled_rectangle(0, 0, width, height, al_map_rgba(150, 150, 150, 150));
 
@@ -42,7 +42,17 @@ void choixJoueur(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FO
         al_draw_text(gameFont, al_map_rgb(0, 0, 0), (5*width/32 - width/384)/2 + police/10, (2*height/27-height/216)/2 - police/3, ALLEGRO_ALIGN_CENTER, "RETURN") ;
     }
 
-    /// BOUTON 2 3 4
+    /// BOUTON SUIVANT
+    if ((float) mouse_x < 383*width/384 && mouse_x > width/1.2 && (float) mouse_y < 215*height/216 && mouse_y > height/1.08) {
+        al_draw_filled_rectangle(width/1.2, 215*height/216, 383*width/384, height/1.08, al_map_rgb(200,200,200)) ;
+        al_draw_text(gameFont, al_map_rgb(0, 0, 0), 59*width/64 + police/10, 103*height/108 - police/3, ALLEGRO_ALIGN_CENTER, "SUIVANT") ;
+    }
+    else   {
+        al_draw_filled_rectangle(width/1.2, 215*height/216, 383*width/384, height/1.08, al_map_rgb(255,255,255)) ;
+        al_draw_text(gameFont, al_map_rgb(0, 0, 0), 59*width/64 + police/10, 103*height/108 - police/3, ALLEGRO_ALIGN_CENTER, "SUIVANT") ;
+    }
+
+    /// BOUTONS 2 3 4
     al_draw_textf(gameFont, al_map_rgb(0, 0, 0), 1000, 75, ALLEGRO_ALIGN_CENTER, "Combien de joueurs etes vous ?");
     al_draw_filled_circle(5*width/24, height/2.16, 100, al_map_rgba(219, 112, 147, 200));
     al_draw_text(gameFont, al_map_rgb(0, 0, 0), width / 4.8, 95 * height / 216, ALLEGRO_ALIGN_CENTER, "2");
@@ -50,6 +60,7 @@ void choixJoueur(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FO
     al_draw_text(gameFont, al_map_rgb(0, 0, 0), 95 * width / 192, 95 * height / 216, ALLEGRO_ALIGN_CENTER, "3");
     al_draw_filled_circle(width/1.28, height/2.16, 100, al_map_rgba(219, 112, 147, 200));
     al_draw_text(gameFont, al_map_rgb(0, 0, 0), width / 1.28, 95 * height / 216, ALLEGRO_ALIGN_CENTER, "4");
+    al_draw_textf(gameFont, al_map_rgb(0, 0, 0), 95*width/192, height/1.6,ALLEGRO_ALIGN_CENTER, "Vous avez selectionne %d joueurs", infoJoueur->nbJoueur);
 
     // si on est sur la case, elle change de couleur
     if((mouse_x - width/4.8)*(mouse_x - width/4.8) + (mouse_y - height/2.16)*(mouse_y - height/2.16) < 100*100){
@@ -64,7 +75,6 @@ void choixJoueur(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FO
         al_draw_filled_circle(width/1.28, height/2.16, 100, al_map_rgb(219, 112, 147));
         al_draw_text(gameFont, al_map_rgb(0, 0, 0), width / 1.28, 95 * height / 216, ALLEGRO_ALIGN_CENTER, "4");
     }
-
 }
 
 void drawChooseCharacter(float height, float width, ALLEGRO_FONT* gameFont, int* nbJoueur,int mouse_x, int mouse_y, Joueurs** joueur) {

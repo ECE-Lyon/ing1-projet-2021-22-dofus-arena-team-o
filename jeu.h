@@ -43,7 +43,7 @@ typedef struct Info{
 void initialiserJoueur(Joueurs* joueur, InfosSurLesJoueurs* infoJoueur) ;
 
 ///FONCTION POUR COMMENCER A JOUER
-void choixJoueur(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT * gameFont, int* nbJoueur) ;
+void choixJoueur(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT * gameFont, InfosSurLesJoueurs* infojoueur) ;
 void drawChooseCharacter(float height, float width, ALLEGRO_FONT* gameFont, int* nbJoueur,int mouse_x, int mouse_y, Joueurs** joueur);
 
 ///RENTRER UN PSEUDO

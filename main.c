@@ -1,4 +1,3 @@
-
 #include "menu.h"
 #include "map.h"
 
@@ -57,7 +56,6 @@ int main() {
     Joueurs* joueur = malloc(4 * sizeof (Joueurs)) ;
     InfosSurLesJoueurs infoJoueur ;
     int play ;
-    int nbJoueur = 0;
     int nbLettre = 0;
     int joueurQuiJoue = 0 ;
 
@@ -190,13 +188,11 @@ int main() {
                                     mouse_y < 2 * height / 27 && mouse_y > height / 216) {
                                 mainMenu.gameMode = MENU;
                             }
-                            if (((mouse_x - 400) * (mouse_x - 400)) + ((mouse_y - 500) * (mouse_y - 500)) < 100 * 100) {
+                            if ((mouse_x - width/4.8)*(mouse_x - width/4.8) + (mouse_y - height/2.16)*(mouse_y - height/2.16) < 100*100) {
                                 infoJoueur.nbJoueur = 2;
-                            } else if (((mouse_x - 950) * (mouse_x - 950)) + ((mouse_y - 500) * (mouse_y - 500)) <
-                                       100 * 100) {
+                            } else if ((mouse_x - 95*width/192)*(mouse_x - 95*width/192) + (mouse_y - height/2.16)*(mouse_y - height/2.16) < 100*100){
                                 infoJoueur.nbJoueur = 3;
-                            } else if (((mouse_x - 1500) * (mouse_x - 1500)) + ((mouse_y - 500) * (mouse_y - 500)) <
-                                       100 * 100) {
+                            } else if ((mouse_x - width/1.28)*(mouse_x - width/1.28) + (mouse_y - height/2.16)*(mouse_y - height/2.16) < 100*100){
                                 infoJoueur.nbJoueur = 4;
                             }
                         }
@@ -247,17 +243,16 @@ int main() {
                         break;
                     }
                     case PLAY : {
-                        drawPlay(joueur,map,mouse_x,mouse_y,width,height,scalex,scaley,display,white,black,gris,vert,red);
-                        deplacementJoueur(joueur,map,scalex,scaley);
-                        dessinerQuadrillage(width,height,scalex,scaley,black);
-                        al_draw_circle(joueur[0].x,joueur[0].y,50,black,3);
-                        //choixJoueur(width, height, mouse_x, mouse_y, gameFont1, &nbJoueur) ;
+                        choixJoueur(width, height, mouse_x, mouse_y, gameFont1, &infoJoueur);
+                        //drawPlay(joueur,map,mouse_x,mouse_y,width,height,scalex,scaley,display,white,black,gris,vert,red);
+                        //deplacementJoueur(joueur,map,scalex,scaley);
+                        //dessinerQuadrillage(width,height,scalex,scaley,black);
+                        //al_draw_circle(joueur[0].x,joueur[0].y,50,black,3);
                         //drawChooseCharacter(height, width,joueurQuiJoue) ;
                         //afficherPseudo(joueur2, width, height, gameFont1, 4) ;
                         //drawChooseCharacter(height, width,joueurQuiJoue) ;
                         //drawPlay(map,event,mouse_x,mouse_y,display,white,black,gris,vert,red);
                         //drawChooseCharacter(height, width, gameFont1, &nbJoueur, mouse_x, mouse_y, &joueur2);
-                        //drawPlay2(width, height, mouse_x, mouse_y, gameFont,gameFontRegles, &nbJoueur) ;
                     break;
                 }
 
