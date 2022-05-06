@@ -89,6 +89,11 @@ int main() {
     float mouse_x = 0, mouse_y = 0;
     int page = 1;
 
+
+    ///INITIALISATION CLASSE
+    joueur->classe = VIDE;
+
+
     ///INITIALISATION DU TIMER
     times = al_create_timer(0.02);
 

@@ -17,6 +17,8 @@
 #define PI 3.141592
 
 enum gameMode {PLAY, RULES, TEAM, MENU, END};
+enum classe {VIDE, MARIO,LUIGI,KIRBY,PEACH,ZELDA};
+
 
 typedef struct {
     int mouse_x, mouse_y ;
@@ -29,11 +31,12 @@ typedef struct Info{
     char pseudo[MAXNOM];
     int nbLettrePseudo ;
     int PV, PM, PA;
+    int classe; //1 : mario      2 : Luigi     3 : Kirby     4: Peach     5 : Zelda
 }InfosJoueur;
 
 ///FONCTION POUR COMMENCER A JOUER
 void choixJoueur(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT * gameFont, int* nbJoueur) ;
-void drawChooseCharacter(float height, float width, int nbJoueur)  ;
+void drawChooseCharacter(float height, float width, ALLEGRO_FONT* gameFont, int* nbJoueur,int mouse_x, int mouse_y, InfosJoueur** joueur);
 
 ///RENTRER UN PSEUDO
 char alphabet (int keycode, int* nbLettre) ;

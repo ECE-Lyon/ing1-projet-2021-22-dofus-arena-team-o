@@ -54,8 +54,10 @@ void choixJoueur(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FO
 
 }
 
-void drawChooseCharacter(float height, float width, int nbJoueur) {
+void drawChooseCharacter(float height, float width, ALLEGRO_FONT* gameFont, int* nbJoueur,int mouse_x, int mouse_y, InfosJoueur** joueur) {
     al_draw_filled_rectangle(0, 0, width, height, al_map_rgba(150, 150, 150, 150));
+
+    float police = 2 * width / 55;
 
     al_draw_filled_rectangle(0, 0, width, 5 * height / 27, al_map_rgb(100, 100, 100));
     al_draw_filled_triangle(0, 0, 0, height/2.16, width/3.84, height/7.2, al_map_rgb(100, 100, 100));
@@ -74,20 +76,71 @@ void drawChooseCharacter(float height, float width, int nbJoueur) {
                                          al_map_rgb(255 - i*255, 0 + 128*i , 0 + 128/2*i + 50*i)) ;
     }**/
     al_draw_filled_rounded_rectangle(7*width/64, 2*height/3, 17*width/64, height+15, 10, 10,
-                                     al_map_rgb(255 , 0 , 0)) ;
+                                     al_map_rgb(255 , 0 , 0));
     al_draw_filled_rounded_rectangle(61*width/192, 2*height/3, 91*width/192, height+15, 10, 10,
-                                     al_map_rgb(200 , 200 , 0)) ;
+                                     al_map_rgb(200 , 200 , 0));
     al_draw_filled_rounded_rectangle(101*width/192, 2*height/3, 131*width/192, height+15, 10, 10,
-                                     al_map_rgb( 0, 255, 0)) ;
+                                     al_map_rgb( 0, 255, 0));
     al_draw_filled_rounded_rectangle(47*width/64, 2*height/3, 57*width/64, height+15, 10, 10,
-                                     al_map_rgb( 0, 69, 128)) ;
-    ///BOUTON RETURN
+                                     al_map_rgb( 0, 69, 128));
+
+    ////////////bouton return/////////////
+    if ((float) mouse_x < 5*width/32 && mouse_x > width/384 && (float) mouse_y < 2*height/27 && mouse_y > height/216) {
+        al_draw_filled_rectangle(width/384, height/216, 5*width/32, 2*height/27, al_map_rgb(200,200,200)) ;
+        al_draw_text(gameFont, al_map_rgb(0, 0, 0), (5*width/32 - width/384)/2 + police/10, (2*height/27-height/216)/2 - police/3, ALLEGRO_ALIGN_CENTER, "RETURN") ;
+    }
+    else   {
+        al_draw_filled_rectangle(width/384, height/216, 5*width/32, 2*height/27, al_map_rgb(255,255,255));
+        al_draw_text(gameFont, al_map_rgb(0, 0, 0), (5*width/32 - width/384)/2 + police/10, (2*height/27-height/216)/2 - police/3, ALLEGRO_ALIGN_CENTER, "RETURN") ;
+    }
+
+
+/////////////Choisir un personnage/////////////////
+
+    al_draw_filled_rectangle(500, 700, 800, 1000, al_map_rgb(246, 97, 65));
+    al_draw_filled_rectangle(900, 700, 1200,1000, al_map_rgb(168, 218, 67));
+    al_draw_filled_rectangle(1300, 700, 1600, 1000, al_map_rgb(240, 139, 229));
+    al_draw_filled_rectangle(1700,700, 2000, 1000, al_map_rgb(139, 240, 228));
+    al_draw_filled_rectangle(2100,700, 2400, 1000, al_map_rgb(190, 130, 200));
+
+    al_draw_filled_rectangle(360, 1665, 715, 1767, al_map_rgb(216, 216, 216));
+    al_draw_filled_rectangle(960, 1665, 1315, 1767, al_map_rgb(216, 216, 216));
+    al_draw_filled_rectangle(1560, 1665, 1915, 1767, al_map_rgb(216, 216, 216));
+    al_draw_filled_rectangle(2160, 1665, 2515, 1767, al_map_rgb(216, 216, 216)) ;
+
+    switch ((*joueur)->classe){
+        case MARIO :
+            if ((float) mouse_x < 800 && mouse_x > 500 && (float) mouse_y < 1000 && mouse_y > 700) {
+            al_draw_filled_rectangle(7 * width / 64 + 75, 2 * (height / 3) + 100, 7 * width / 64 + 75 +295 , 2 * (height / 3) + 380,
+                                     al_map_rgb(246, 97, 65));
+        }
+    }
+
+
+    //for(int i = 0; i<=nbJoueur; i++){
+
+
+
 }
 
 int getRandomInteger(int min, int max){
     int nbAleatoire = rand()%(max-min+1)+min;
     return nbAleatoire;
 }
+
+/*void deplacementJoueur(Joueur *joueur[],Map map[20][20]){
+    joueur[0]->x = map[0][0].x;
+    joueur[0]->y = map[0][0].y;
+    if(joueur[0]->t==1) {
+        if (joueur[0]->xp< map[joueur[0]->a][joueur[0]->b].x && joueur[0]->xp != map[joueur[0]->a][joueur[0]->b].x){
+            joueur[0]->xp = joueur[0]->xp + 1;
+        }
+        if (joueur[0]->xp>map[joueur[0]->a][joueur[0]->b].x && joueur[0]->xp != map[joueur[0]->a][joueur[0]->b].x){
+            joueur[0]->xp = joueur[0]->xp - 1;
+        }
+*/
+
+
 
 /*
 // autre methode pour entrer un nom
@@ -142,16 +195,6 @@ void mettrePseudo(InfosJoueur** joueur, char lettre, int quelJoueurEstSelectionn
         (*nbLettre)++ ;
     }
 }
-
-/*
-al_draw_filled_rounded_rectangle(7*width/64, 2*height/3, 17*width/64, height+15, 10, 10,
-al_map_rgb(255 , 0 , 0)) ;
-al_draw_filled_rounded_rectangle(61*width/192, 2*height/3, 91*width/192, height+15, 10, 10,
-al_map_rgb(200 , 200 , 0)) ;
-al_draw_filled_rounded_rectangle(101*width/192, 2*height/3, 131*width/192, height+15, 10, 10,
-al_map_rgb( 0, 255, 0)) ;
-al_draw_filled_rounded_rectangle(47*width/64, 2*height/3, 57*width/64, height+15, 10, 10,
-al_map_rgb( 0, 69, 128)) ;*/
 
 void afficherPseudo(InfosJoueur* joueur, float width, float height, ALLEGRO_FONT* gameFont, int nbJoueur) {
     for (int i = 0; i < nbJoueur; i++) {
