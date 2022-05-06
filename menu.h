@@ -31,7 +31,7 @@ typedef struct {
 
 void initialiserMenu(Menu* mainMenu, float width, float height) ;
 void drawMenuV2(Menu* mainMenu, ALLEGRO_FONT *gameFont);
-void menuSouris(Menu* mainMenu, float height, float width, int mouse_x, int mouse_y) ;
+void menuSouris(Menu* mainMenu, InfoEcran ecran) ;
 void moveGameModeArc(Menu** mainMenu) ;
 void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y, ALLEGRO_FONT* gameFontRegles, ALLEGRO_FONT* gameFont);
 void afficherPages(int pages, ALLEGRO_FONT* gameFontRegles, ALLEGRO_COLOR gameColor, float height, float width) ;

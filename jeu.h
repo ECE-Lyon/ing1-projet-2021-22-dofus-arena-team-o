@@ -36,26 +36,32 @@ typedef struct {
     int sort ;
 }Classe;
 
-
-
-
 typedef struct Info{
     double x,y;
     int xArrive, yArrive, caseX, caseY,caseXDepart,caseYDepart, actif, dep;
     char pseudo[MAXNOM];
     int nbLettrePseudo ;
-    int PV, PM, PA;
-    Classe classe; //1 : mario      2 : Luigi     3 : Kirby     4: Peach     5 : Zelda
+    int PV, PM, PA, aChoisiClasse;
+    Classe classe;//1 : mario      2 : Luigi     3 : Kirby     4: Peach     5 : Zelda
 }Joueurs;
 
 typedef struct {
     InfosSurLesJoueurs info ;
     Joueurs* joueur ;
     Classe classes[5] ;
-}Jeu;
+    int gameMode ;
+}Jeux;
+
+typedef struct {
+    double x,y;
+    int t;
+    bool obstacle;
+
+} Map;
 
 void initialiserEcran (InfoEcran* ecran, double width, double height) ;
-void initialiserJoueur(Joueurs* joueur, InfosSurLesJoueurs* infoJoueur) ;
+void initialiserJeu(Jeux* jeu) ;
+void initialiserJoueur(Jeux* jeu, Map map[20][20]) ;
 
 ///FONCTION POUR COMMENCER A JOUER
 void choixJoueur(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT * gameFont, InfosSurLesJoueurs* infojoueur) ;

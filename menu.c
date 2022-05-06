@@ -218,19 +218,19 @@ void moveGameModeArc(Menu** mainMenu) {
     }
 }
 
-void menuSouris(Menu* mainMenu, float height, float width, int mouse_x, int mouse_y) {
+void menuSouris(Menu* mainMenu, InfoEcran ecran) {
     /// SI LA SOURIS LE SITUE SUR UN DES BOUTONS DU MENU, ON CHANGE L'ANGLE DE L'ARC
-    if (mouse_x < 157*width/275 && mouse_x > 118*width/275 && mouse_y < 38*height/99 && mouse_y > 7*height/80) {
+    if (ecran.mouse_x < 157* ecran.width/275 && ecran.mouse_x > 118*ecran.width/275 && ecran.mouse_y < 38*ecran.height/99 && ecran.mouse_y > 7*ecran.height/80) {
         mainMenu->playRect = 1 ;
         mainMenu->arc.startTheta = 4*PI/3 ;
         mainMenu->arc.endTheta = 2*PI/5 ;
     }
-    else if (mouse_x < 49*width/110 && mouse_x > 21*width/110 && mouse_y < 322*height/495 && mouse_y > 4*height/9) {
+    else if (ecran.mouse_x < 49*ecran.width/110 && ecran.mouse_x > 21*ecran.width/110 && ecran.mouse_y < 322*ecran.height/495 && ecran.mouse_y > 4*ecran.height/9) {
         mainMenu->rulesRect = 1 ;
         mainMenu->arc.startTheta = 3*PI/4 ;
         mainMenu->arc.endTheta = 4*PI/11 ;
     }
-    else if (mouse_x < 89*width/110 && mouse_x > 61*width/110 && mouse_y < 322*height/495 && mouse_y > 4*height/9) {
+    else if (ecran.mouse_x < 89*ecran.width/110 && ecran.mouse_x > 61*ecran.width/110 && ecran.mouse_y < 322*ecran.height/495 && ecran.mouse_y > 4*ecran.height/9) {
         mainMenu->teamRect = 1 ;
         mainMenu->arc.startTheta = 23*PI/12 ;
         mainMenu->arc.endTheta = 4*PI/11 ;
