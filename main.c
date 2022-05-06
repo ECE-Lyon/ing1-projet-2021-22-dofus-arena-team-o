@@ -138,8 +138,8 @@ int main() {
             case ALLEGRO_EVENT_MOUSE_AXES : {
                 mouse_x = event.mouse.x;
                 mouse_y = event.mouse.y;
-                mainMenu.ecran.mouse_x = event.mouse.x;
-                mainMenu.ecran.mouse_y = event.mouse.y;
+                ecran.mouse_x = event.mouse.x;
+                ecran.mouse_y = event.mouse.y;
                 break;
             }
             case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN : {

@@ -143,8 +143,30 @@ void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, int* nbJoueur,
             if ((float) ecran.mouse_x < ecran.width/3.6 && ecran.mouse_x > ecran.width/5.76 && (float) ecran.mouse_y < ecran.height/1.8 && ecran.mouse_y > 7*ecran.height/18) {
             al_draw_filled_rectangle(7 * ecran.width / 64 + ecran.width/38.4, 2 * (ecran.height / 3) + ecran.height/18, 7 * ecran.width / 64 + 37*ecran.width/288 , 2 * (ecran.height / 3) + 19*ecran.height/90,
                                      al_map_rgb(246, 97, 65));
-        //}
-    }
+
+            }
+
+            //case pacman
+
+            else if ((float) ecran.mouse_x < 5*ecran.width/12 && ecran.mouse_x > 5*ecran.width/16 && (float) ecran.mouse_y < 5*ecran.height/9 && ecran.mouse_y >7*ecran.height/18) {
+            al_draw_filled_rectangle(7 * ecran.width / 64 + ecran.width/38.4, 2 * (ecran.height / 3) + ecran.height/18, 7 * ecran.width / 64 + 37*ecran.width/288 , 2 * (ecran.height / 3) + 19*ecran.height/90,
+                                     al_map_rgb(168, 218, 67));
+            }
+
+            //case  rose
+
+            else if ((float) ecran.mouse_x < 5*ecran.width/12 && ecran.mouse_x > 5*ecran.width/9 && (float) ecran.mouse_y < 5*ecran.height/9 && ecran.mouse_y >7*ecran.height/18) {
+                al_draw_filled_rectangle(7 * ecran.width / 64 + ecran.width / 38.4,
+                                         2 * (ecran.height / 3) + ecran.height / 18,
+                                         7 * ecran.width / 64 + 37 * ecran.width / 288,
+                                         2 * (ecran.height / 3) + 19 * ecran.height / 90,
+                                         al_map_rgb(168, 218, 67));
+            }
+
+
+
+
+
 
 
     //for(int i = 0; i<=nbJoueur; i++){
