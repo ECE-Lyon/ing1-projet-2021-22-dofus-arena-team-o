@@ -48,6 +48,8 @@ int main() {
     ALLEGRO_BITMAP *team = al_load_bitmap("../Bitmap/capture.PNG");
     ALLEGRO_BITMAP *kirbyIcone = al_load_bitmap("../Bitmap/Kirby_Icone.png");
     ALLEGRO_BITMAP *pacmanIcone = al_load_bitmap("../Bitmap/PacMan_Icone.png");
+    ALLEGRO_BITMAP *peachIcone = al_load_bitmap("../Bitmap/Peach_Icone.png");
+
 
 
     queue = al_create_event_queue();
@@ -76,6 +78,7 @@ int main() {
     }
 
     ///INITIALISATION DE NOS VARIABLES
+    initialiserIconeClasse(pacmanIcone, kirbyIcone, peachIcone, jeu.classes) ;
     initialiserMenu(&mainMenu, width, height);
     initialiserJeu(&jeu);
     initialiserEcran(&ecran, width, height);
@@ -303,7 +306,7 @@ int main() {
                     }
                     case CHOIXCLASSE : {
                         al_draw_scaled_bitmap(background, 0, 0, 7680, 4320, 0, 0, width, height, 0);
-                        drawChooseCharacter(ecran, gameFont1, &nbJoueur, &jeu.joueur, kirbyIcone, pacmanIcone, bigGameFont);
+                        drawChooseCharacter(ecran, gameFont1, jeu, bigGameFont);
                         afficherPseudo(jeu, width, height, gameFont1);
                         break;
                     }

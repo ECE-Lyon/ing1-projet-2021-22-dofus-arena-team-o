@@ -17,7 +17,7 @@
 #define PI 3.141592
 
 enum gameMode {PLAY, RULES, TEAM, MENU, END};
-enum personnage {VIDE, MARIO,LUIGI,KIRBY,PEACH,ZELDA};
+enum personnage {VIDE, MARIO, PACMAN, KIRBY, PEACH,DONKEY_KONG};
 enum play {CHOIXNBJOUEUR, CHOIXCLASSE, JEU};
 
 
@@ -42,9 +42,10 @@ typedef struct Info{
     char pseudo[MAXNOM];
     int nbLettrePseudo ;
     int PV, PM, PA, aChoisiClasse;
-    Classe classe;//1 : mario      2 : Luigi     3 : Kirby     4: Peach     5 : Zelda
+    int classe; //1 : mario      2 : Luigi     3 : Kirby     4: Peach     5 : Zelda
 }Joueurs;
 
+///STRUCTURE PRINCIPALE DU JEU
 typedef struct {
     InfosSurLesJoueurs info ;
     Joueurs* joueur ;
@@ -59,13 +60,14 @@ typedef struct {
 
 } Map;
 
+void initialiserIconeClasse(ALLEGRO_BITMAP* pacman, ALLEGRO_BITMAP* kirby, ALLEGRO_BITMAP* peach, Classe* classes) ;
 void initialiserEcran (InfoEcran* ecran, double width, double height) ;
 void initialiserJeu(Jeux* jeu) ;
 void initialiserJoueur(Jeux* jeu, Map map[20][20]) ;
 
 ///FONCTION POUR COMMENCER A JOUER
 void choixJoueur(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT * gameFont, InfosSurLesJoueurs* infojoueur) ;
-void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, int* nbJoueur, Joueurs** joueur, ALLEGRO_BITMAP* kirby, ALLEGRO_BITMAP* pacman, ALLEGRO_FONT* bigGameFont);
+void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLEGRO_FONT* bigGameFont);
 
 ///RENTRER UN PSEUDO
 char alphabet (int keycode, int* nbLettre) ;
