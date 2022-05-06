@@ -34,7 +34,10 @@ void drawPlay(Joueurs *joueur,Map map[20][20],int mouse_x,int mouse_y,double wid
                                                                                                                            scaley, vert);
                 al_draw_filled_triangle(map[i][j].x + scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -
                                                                                                                            scaley, vert);
+
                 if(map[0][0].t == 1 && joueur[0].dep == 0){
+                    joueur[0].caseXDepart= joueur[0].caseX;
+                    joueur[0].caseYDepart= joueur[0].caseY;
                     joueur[0].dep=1;
                     joueur[0].xArrive=i;
                     joueur[0].yArrive=j;
@@ -44,6 +47,11 @@ void drawPlay(Joueurs *joueur,Map map[20][20],int mouse_x,int mouse_y,double wid
                     al_draw_filled_triangle(map[i][j].x + scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -
                                                                                                                                scaley, red);
                 }
+                if (joueur[0].dep == 0){
+                    joueur[0].xArrive=i;
+                    joueur[0].yArrive=j;
+                }
+
             }
 
         }
@@ -53,7 +61,7 @@ void drawPlay(Joueurs *joueur,Map map[20][20],int mouse_x,int mouse_y,double wid
 void caseJoueur(Joueurs *joueur,Map map[20][20]){
     for (int j=0;j<mapY;j++) {
         for (int i = 0; i < mapX; i++) {
-            if (joueur[0].x>map[i][j].x-2 && joueur[0].x<map[i][j].x+2 && joueur[0].y>map[i][j].y-2 && joueur[0].y<map[i][j].y+2 ){
+            if (joueur[0].x>map[i][j].x-1 && joueur[0].x<map[i][j].x+1 && joueur[0].y>map[i][j].y-1 && joueur[0].y<map[i][j].y+1 ){
                 joueur[0].caseX=i;
                 joueur[0].caseY=j;
                 printf("%d , %d\n",joueur[0].caseX,joueur[0].caseY);
@@ -63,8 +71,34 @@ void caseJoueur(Joueurs *joueur,Map map[20][20]){
 }
 
 void deplacementJoueur(Joueurs *joueur, Map map[20][20],double scalex,double scaley){
+    ALLEGRO_COLOR vert = al_map_rgba(93, 127, 51, 255);
     double depX=0;
     double depY=0;
+
+    caseJoueur(joueur,map);
+
+    // Boucle sur x
+    for (int i = joueur[0].caseXDepart ; i < joueur[0].xArrive-joueur[0].caseX+1; i++) {
+        al_draw_filled_triangle(map[joueur[0].caseX+i][joueur[0].yArrive].x - scalex, map[joueur[0].caseX+i][joueur[0].yArrive].y, map[joueur[0].caseX+i][joueur[0].yArrive].x, map[joueur[0].caseX+i][joueur[0].yArrive].y + scaley, map[joueur[0].caseX+i][joueur[0].yArrive].x, map[joueur[0].caseX+i][joueur[0].yArrive].y -
+                                                                                                                                                                                                                                                                                   scaley, vert);
+        al_draw_filled_triangle(map[joueur[0].caseX+i][joueur[0].yArrive].x + scalex, map[joueur[0].caseX+i][joueur[0].yArrive].y, map[joueur[0].caseX+i][joueur[0].yArrive].x, map[joueur[0].caseX+i][joueur[0].yArrive].y + scaley, map[joueur[0].caseX+i][joueur[0].yArrive].x, map[joueur[0].caseX+i][joueur[0].yArrive].y -
+                                                                                                                                                                                                                                                                                   scaley, vert);
+
+    }
+    // Boucle sur y
+    for (int j = joueur[0].caseYDepart; j<joueur[0].yArrive-joueur[0].caseY;j++) {
+
+        al_draw_filled_triangle(map[joueur[0].caseX][joueur[0].caseY+j].x - scalex, map[joueur[0].caseX][joueur[0].caseY+j].y, map[joueur[0].caseX][joueur[0].caseY+j].x, map[joueur[0].caseX][joueur[0].caseY+j].y + scaley, map[joueur[0].caseX][joueur[0].caseY+j].x, map[joueur[0].caseX][joueur[0].caseY+j].y -
+                                                                                                                                                                                                                                                                         scaley, vert);
+        al_draw_filled_triangle(map[joueur[0].caseX][joueur[0].caseY+j].x + scalex, map[joueur[0].caseX][joueur[0].caseY+j].y, map[joueur[0].caseX][joueur[0].caseY+j].x, map[joueur[0].caseX][joueur[0].caseY+j].y + scaley, map[joueur[0].caseX][joueur[0].caseY+j].x, map[joueur[0].caseX][joueur[0].caseY+j].y -
+                                                                                                                                                                                                                                                                         scaley, vert);
+
+
+    }
+
+
+
+
 
     if(joueur[0].actif==1 && joueur[0].dep==1) {
         if (joueur[0].caseX<joueur[0].xArrive){
@@ -105,11 +139,13 @@ void deplacementJoueur(Joueurs *joueur, Map map[20][20],double scalex,double sca
 
         caseJoueur(joueur,map);
 
+
         joueur[0].x = joueur[0].x + depX;
         joueur[0].y = joueur[0].y + depY;
 
 
         if (joueur[0].caseX == joueur[0].xArrive && joueur[0].caseY==joueur[0].yArrive){joueur[0].dep=0;}
     }
+
 
 }

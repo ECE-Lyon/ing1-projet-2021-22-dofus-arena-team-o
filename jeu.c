@@ -120,11 +120,15 @@ void drawChooseCharacter(float height, float width, ALLEGRO_FONT* gameFont, int*
     al_draw_filled_rectangle(960, 1665, 1315, 1767, al_map_rgb(216, 216, 216));
     al_draw_filled_rectangle(1560, 1665, 1915, 1767, al_map_rgb(216, 216, 216));
     al_draw_filled_rectangle(2160, 1665, 2515, 1767, al_map_rgb(216, 216, 216)) ;*/
+    al_draw_filled_rectangle(width/8, 37*height/40, 143*width/576, 589*height/600, al_map_rgb(216, 216, 216));
+    al_draw_filled_rectangle(width/3, 37*height/40, 263*width/576, 589*height/600, al_map_rgb(216, 216, 216));
+    al_draw_filled_rectangle(13*width/24, 37*height/40, 383*width/576, 589*height/600, al_map_rgb(216, 216, 216));
+    al_draw_filled_rectangle(3*width/4, 37*height/40, 503*width/576, 589*height/600, al_map_rgb(216, 216, 216)) ;
 
     switch ((*joueur)->classe){
         case MARIO :
-            if ((float) mouse_x < 800 && mouse_x > 500 && (float) mouse_y < 1000 && mouse_y > 700) {
-            al_draw_filled_rectangle(7 * width / 64 + 75, 2 * (height / 3) + 100, 7 * width / 64 + 75 +295 , 2 * (height / 3) + 380,
+            if ((float) mouse_x < width/3.6 && mouse_x > width/5.76 && (float) mouse_y < height/1.8 && mouse_y > 7*height/18) {
+            al_draw_filled_rectangle(7 * width / 64 + width/38.4, 2 * (height / 3) + height/18, 7 * width / 64 + 37*width/288 , 2 * (height / 3) + 19*height/90,
                                      al_map_rgb(246, 97, 65));
         }
     }
@@ -158,7 +162,7 @@ int getRandomInteger(int min, int max){
 /*
 // autre methode pour entrer un nom
 
-void entrerPseudo (ALLEGRO_EVENT* event, Joueurs tabJoueur[], int joueurActuel){
+void entrerPseudo (ALLEGRO_EVENT* event, InfosJoueur tabJoueur[], int joueurActuel){
     int numCharPseudo = 0;
     if (event.type == ALLEGRO_KEY_DOWN){
         if ( numCharPseudo < MAXNOM && event.keyboard.keycode >= ALLEGRO_KEY_A && event.keyboard.keycode <= ALLEGRO_KEY_Z) {

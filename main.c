@@ -23,7 +23,7 @@ int main() {
 
     ///CREATION DU DISPLAY
     al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW);
-    display = al_create_display(1920, 1080);
+    display = al_create_display(1300, 1000);
     double height = al_get_display_height(display);
     double width = al_get_display_width(display);
     al_set_window_position(display, 0, 0);
@@ -81,6 +81,13 @@ int main() {
     joueur[0].y = map[0][0].y;
     joueur[0].caseX=0;
     joueur[0].caseY=0;
+    joueur[0].caseXDepart= joueur[0].caseX;
+    joueur[0].caseYDepart= joueur[0].caseY;
+    joueur[0].dep = 0;
+    for(int i = 0 ; i < 4 ; i++) {
+        strcpy(joueur[i].pseudo, "");
+        joueur[i].nbLettrePseudo = 0 ;
+    }
     float mouse_x = 0, mouse_y = 0;
     int page = 1;
 
@@ -100,6 +107,7 @@ int main() {
 
     al_start_timer(times);
     while (!isFin) {
+        //printf("%s / %s / %s / %s\n", joueur[0].pseudo, joueur[1].pseudo, joueur[2].pseudo, joueur[3].pseudo) ;
         al_wait_for_event(queue, &event);
         switch (event.type) {
             case ALLEGRO_EVENT_KEY_DOWN : {
@@ -206,7 +214,7 @@ int main() {
                 break;
 
             case ALLEGRO_EVENT_TIMER : {
-                printf("%s / %s / %s / %s\n", joueur[0].pseudo, joueur[1].pseudo, joueur[2].pseudo, joueur[3].pseudo) ;
+                    //printf("%d,  %d\n", mouse_x, mouse_y) ;
                 //printf("%d,  %d\n", mouse_x, mouse_y) ;
                     /// MENU V1 ::::::
                     /*if (mouse_x < 5*width/32 && mouse_x > 0 && mouse_y < 29*height/54 && mouse_y > 25*height/54) {
