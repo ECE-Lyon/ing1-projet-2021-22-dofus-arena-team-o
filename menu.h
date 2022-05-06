@@ -21,14 +21,15 @@ typedef struct {
 typedef struct {
     int playRect, rulesRect, teamRect, gameMode;
     ArcDeCercle arc ;
-    infoEcran ecran ;
+    InfoEcran ecran ;
 } Menu;
 
 typedef struct {
     int pages;
-    infoEcran ecran ;
+    InfoEcran ecran ;
 } Rules;
 
+void initialiserMenu(Menu* mainMenu, float width, float height) ;
 void drawMenuV2(Menu* mainMenu, ALLEGRO_FONT *gameFont);
 void menuSouris(Menu* mainMenu, float height, float width, int mouse_x, int mouse_y) ;
 void moveGameModeArc(Menu** mainMenu) ;

@@ -1,5 +1,17 @@
 #include "menu.h"
 
+void initialiserMenu(Menu* mainMenu, float width, float height) {
+    mainMenu->ecran.width = width ;
+    mainMenu->ecran.height = height ;
+    mainMenu->gameMode = MENU;
+    mainMenu->playRect = 0;
+    mainMenu->rulesRect = 0;
+    mainMenu->teamRect = 0;
+    mainMenu->arc.startTheta = 0;
+    mainMenu->arc.endTheta = 2 * PI;
+    mainMenu->arc.currentTheta = 0;
+    mainMenu->arc.currentEndTheta = 2 * PI;
+}
 
 
 void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y, ALLEGRO_FONT* gameFontRegles, ALLEGRO_FONT* gameFont) {
