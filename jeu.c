@@ -97,21 +97,21 @@ void drawChooseCharacter(float height, float width, ALLEGRO_FONT* gameFont, int*
 
 /////////////Choisir un personnage/////////////////
 
-    al_draw_filled_rectangle(500, 700, 800, 1000, al_map_rgb(246, 97, 65));
-    al_draw_filled_rectangle(900, 700, 1200,1000, al_map_rgb(168, 218, 67));
-    al_draw_filled_rectangle(1300, 700, 1600, 1000, al_map_rgb(240, 139, 229));
-    al_draw_filled_rectangle(1700,700, 2000, 1000, al_map_rgb(139, 240, 228));
-    al_draw_filled_rectangle(2100,700, 2400, 1000, al_map_rgb(190, 130, 200));
+    al_draw_filled_rectangle(width/5.76, 7*height/18, width/3.6, height/1.8, al_map_rgb(246, 97, 65));
+    al_draw_filled_rectangle(width/3.2, 7*height/18, width/2.4,height/1.8, al_map_rgb(168, 218, 67));
+    al_draw_filled_rectangle(65*width/144, 7*height/18, width/1.8, height/1.8, al_map_rgb(240, 139, 229));
+    al_draw_filled_rectangle(85*width/144,7*height/18, width/1.44, height/1.8, al_map_rgb(139, 240, 228));
+    al_draw_filled_rectangle(35*width/48,7*height/18, width/1.2, height/1.8, al_map_rgb(190, 130, 200));
 
-    al_draw_filled_rectangle(360, 1665, 715, 1767, al_map_rgb(216, 216, 216));
-    al_draw_filled_rectangle(960, 1665, 1315, 1767, al_map_rgb(216, 216, 216));
-    al_draw_filled_rectangle(1560, 1665, 1915, 1767, al_map_rgb(216, 216, 216));
-    al_draw_filled_rectangle(2160, 1665, 2515, 1767, al_map_rgb(216, 216, 216)) ;
+    al_draw_filled_rectangle(width/8, 37*height/40, 143*width/576, 589*height/600, al_map_rgb(216, 216, 216));
+    al_draw_filled_rectangle(width/3, 37*height/40, 263*width/576, 589*height/600, al_map_rgb(216, 216, 216));
+    al_draw_filled_rectangle(13*width/24, 37*height/40, 383*width/576, 589*height/600, al_map_rgb(216, 216, 216));
+    al_draw_filled_rectangle(3*width/4, 37*height/40, 503*width/576, 589*height/600, al_map_rgb(216, 216, 216)) ;
 
     switch ((*joueur)->classe){
         case MARIO :
-            if ((float) mouse_x < 800 && mouse_x > 500 && (float) mouse_y < 1000 && mouse_y > 700) {
-            al_draw_filled_rectangle(7 * width / 64 + 75, 2 * (height / 3) + 100, 7 * width / 64 + 75 +295 , 2 * (height / 3) + 380,
+            if ((float) mouse_x < width/3.6 && mouse_x > width/5.76 && (float) mouse_y < height/1.8 && mouse_y > 7*height/18) {
+            al_draw_filled_rectangle(7 * width / 64 + width/38.4, 2 * (height / 3) + height/18, 7 * width / 64 + 37*width/288 , 2 * (height / 3) + 19*height/90,
                                      al_map_rgb(246, 97, 65));
         }
     }
