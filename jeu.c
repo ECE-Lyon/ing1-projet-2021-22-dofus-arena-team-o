@@ -64,7 +64,7 @@ void drawChooseCharacter(float height, float width, ALLEGRO_FONT* gameFont, int*
     al_draw_filled_rectangle(0, 0, width, 4 * height / 27, al_map_rgb(150, 150, 150));
     al_draw_filled_triangle(0, 0, 0, 41*height/108, 37*width/192, height/7.2, al_map_rgb(150, 150, 150));
 
-    al_draw_filled_circle(29*width/32, height/13.5, 60, al_map_rgb(100, 100, 100)) ;
+    al_draw_filled_circle(29*width/32, height/13.5, width/32, al_map_rgb(100, 100, 100)) ;
     al_draw_filled_rectangle(7*width/8,   height/12, 15*width/16, height/10.8, al_map_rgb(150, 150, 150)) ;
     al_draw_filled_rectangle(341*width/384,   height/54, 347*width/384, 7*height/54, al_map_rgb(150, 150, 150)) ;
 
@@ -198,7 +198,7 @@ void mettrePseudo(InfosJoueur** joueur, char lettre, int quelJoueurEstSelectionn
 
 void afficherPseudo(InfosJoueur* joueur, float width, float height, ALLEGRO_FONT* gameFont, int nbJoueur) {
     for (int i = 0; i < nbJoueur; i++) {
-        al_draw_textf(gameFont, al_map_rgb(20, 20, 20), (17 * width / 64 - 7.5 * width / 64) / 0.8 + 400*i, 46 * height / 50,
+        al_draw_textf(gameFont, al_map_rgb(20, 20, 20), (17 * width / 64 - 7.5 * width / 64) / 0.8 + (width/4.8)*i, 46 * height / 50,
                       ALLEGRO_ALIGN_CENTER, "%s", joueur[i].pseudo);
     }
 }

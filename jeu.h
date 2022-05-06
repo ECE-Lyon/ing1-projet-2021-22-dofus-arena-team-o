@@ -26,7 +26,8 @@ typedef struct {
 } infoEcran;
 
 typedef struct Info{
-    int x, y; //position
+    double x,y;
+    int xArrive, yArrive, caseX, caseY, actif, dep;
     char pseudo[MAXNOM];
     int nbLettrePseudo ;
     int PV, PM, PA;
