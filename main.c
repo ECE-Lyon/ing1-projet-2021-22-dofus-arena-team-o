@@ -21,8 +21,8 @@ int main() {
     al_init_primitives_addon();
 
     ///CREATION DU DISPLAY
-    al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW);
     display = al_create_display(1300, 1000);
+    al_set_display_flag(display, ALLEGRO_FULLSCREEN_WINDOW, true);
     double height = al_get_display_height(display);
     double width = al_get_display_width(display);
     al_set_window_position(display, 0, 0);
@@ -45,7 +45,9 @@ int main() {
     ///BITMAP
     ALLEGRO_BITMAP *background = al_load_bitmap("../Bitmap/BG.jpg");
     ALLEGRO_BITMAP *team = al_load_bitmap("../Bitmap/capture.PNG");
-    ALLEGRO_BITMAP *kirby = al_load_bitmap("../Bitmap/Kirby_Icone.png") ;
+    ALLEGRO_BITMAP *kirbyIcone = al_load_bitmap("../Bitmap/Kirby_Icone.png") ;
+    ALLEGRO_BITMAP *pacmanIcone = al_load_bitmap("../Bitmap/PacMan_Icone.png") ;
+
 
     queue = al_create_event_queue();
     assert(queue);
@@ -53,6 +55,7 @@ int main() {
     int isFin = 0, draw = 0;
     char lettre ;
     Menu mainMenu;
+    InfoEcran ecran ;
     Map map[20][20];
     Joueurs* joueur = malloc(4 * sizeof (Joueurs)) ;
     InfosSurLesJoueurs infoJoueur ;
@@ -65,6 +68,7 @@ int main() {
     ///INITIALISATION DE NOS VARIABLES (A FAIRE DANS UNE FONCTION)
     initialiserMenu(&mainMenu, width, height) ;
     initialiserJoueur(joueur, &infoJoueur) ;
+    initialiserEcran(&ecran, width, height) ;
 
     ///METTRE CA DANS UNE FONCTION
     double scalex = 50.0*width/1800.0;
@@ -92,7 +96,7 @@ int main() {
 
 
     ///INITIALISATION CLASSE
-    joueur->classe = VIDE;
+    //joueur[].classe = 0;
 
 
     ///INITIALISATION DU TIMER
@@ -106,7 +110,6 @@ int main() {
 
     al_start_timer(times);
     while (!isFin) {
-        //printf("%s / %s / %s / %s\n", joueur[0].pseudo, joueur[1].pseudo, joueur[2].pseudo, joueur[3].pseudo) ;
         al_wait_for_event(queue, &event);
         switch (event.type) {
             case ALLEGRO_EVENT_KEY_DOWN : {
@@ -147,6 +150,14 @@ int main() {
                             if (mouse_x < 157 * width / 275 && mouse_x > 118 * width / 275 &&
                                     mouse_y < 38 * height / 99 && mouse_y > 7 * height / 80) {
                                 mainMenu.gameMode = PLAY;
+                                    /*if ((float) mouse_x < width/3.6 && mouse_x > width/5.76 && (float) mouse_y < height/1.8 && mouse_y > 7*height/18) {
+                                    al_draw_filled_rectangle(7 * width / 64 + width / 38.4,
+                                                             2 * (height / 3) + height / 18,
+                                                             7 * width / 64 + 37 * width / 288,
+                                                             2 * (height / 3) + 19 * height / 90,
+                                                             al_map_rgb(246, 97, 65));
+                                }*/
+
                             }
                             if (mouse_x < 49 * width / 110 && mouse_x > 21 * width / 110 && mouse_y < 322 * height / 495 && mouse_y > 4 * height / 9) {
                                 mainMenu.gameMode = RULES;
@@ -155,6 +166,7 @@ int main() {
                                     mouse_y < 322 * height / 495 && mouse_y > 4 * height / 9) {
                                 mainMenu.gameMode = TEAM;;
                             }
+
 
                             break;
                         }
@@ -190,13 +202,11 @@ int main() {
                                     mouse_y < 2 * height / 27 && mouse_y > height / 216) {
                                 mainMenu.gameMode = MENU;
                             }
-                            if (((mouse_x - 400) * (mouse_x - 400)) + ((mouse_y - 500) * (mouse_y - 500)) < 100 * 100) {
+                            if ((mouse_x - width/4.8)*(mouse_x - width/4.8) + (mouse_y - height/2.16)*(mouse_y - height/2.16) < 100*100) {
                                 infoJoueur.nbJoueur = 2;
-                            } else if (((mouse_x - 950) * (mouse_x - 950)) + ((mouse_y - 500) * (mouse_y - 500)) <
-                                       100 * 100) {
+                            } else if ((mouse_x - 95*width/192)*(mouse_x - 95*width/192) + (mouse_y - height/2.16)*(mouse_y - height/2.16) < 100*100){
                                 infoJoueur.nbJoueur = 3;
-                            } else if (((mouse_x - 1500) * (mouse_x - 1500)) + ((mouse_y - 500) * (mouse_y - 500)) <
-                                       100 * 100) {
+                            } else if ((mouse_x - width/1.28)*(mouse_x - width/1.28) + (mouse_y - height/2.16)*(mouse_y - height/2.16) < 100*100){
                                 infoJoueur.nbJoueur = 4;
                             }
                         }
@@ -247,17 +257,13 @@ int main() {
                         break;
                     }
                     case PLAY : {
-                        drawPlay(joueur,map,mouse_x,mouse_y,width,height,scalex,scaley,display,white,black,gris,vert,red);
-                        deplacementJoueur(joueur,map,scalex,scaley);
-                        dessinerQuadrillage(width,height,scalex,scaley,black);
-                        al_draw_circle(joueur[0].x,joueur[0].y,50,black,3);
-                        //choixJoueur(width, height, mouse_x, mouse_y, gameFont1, &nbJoueur) ;
-                        //drawChooseCharacter(height, width,joueurQuiJoue) ;
-                        //afficherPseudo(joueur2, width, height, gameFont1, 4) ;
-                        //drawChooseCharacter(height, width,joueurQuiJoue) ;
-                        //drawPlay(map,event,mouse_x,mouse_y,display,white,black,gris,vert,red);
-                        //drawChooseCharacter(height, width, gameFont1, &nbJoueur, mouse_x, mouse_y, &joueur2);
-                        //drawPlay2(width, height, mouse_x, mouse_y, gameFont,gameFontRegles, &nbJoueur) ;
+                        //drawPlay(joueur,map,mouse_x,mouse_y,width,height,scalex,scaley,display,white,black,gris,vert,red);
+                        //deplacementJoueur(joueur,map,scalex,scaley);
+                        //dessinerQuadrillage(width,height,scalex,scaley,black);
+                        //l_draw_circle(joueur[0].x,joueur[0].y,50,black,3);
+                        choixJoueur(width, height, mouse_x, mouse_y, gameFont1, &nbJoueur) ;
+                        drawChooseCharacter(ecran, gameFont1, &nbJoueur, &joueur, kirbyIcone, pacmanIcone) ;
+                        afficherPseudo(joueur, width, height, gameFont1, 4) ;
                     break;
                 }
 

@@ -17,7 +17,7 @@
 #define PI 3.141592
 
 enum gameMode {PLAY, RULES, TEAM, MENU, END};
-enum classe {VIDE, MARIO,LUIGI,KIRBY,PEACH,ZELDA};
+enum personnage {VIDE, MARIO,LUIGI,KIRBY,PEACH,ZELDA};
 enum play {CHOIXNBJOUEUR, CHOIXCLASSE, JEU};
 
 
@@ -30,21 +30,36 @@ typedef struct {
     int nbJoueur, joueurQuiJoue ;
 } InfosSurLesJoueurs;
 
+typedef struct {
+    //enum personnage type = MARIO;
+    ALLEGRO_BITMAP* image;
+    int sort ;
+}Classe;
+
+
+
+
 typedef struct Info{
     double x,y;
     int xArrive, yArrive, caseX, caseY,caseXDepart,caseYDepart, actif, dep;
     char pseudo[MAXNOM];
     int nbLettrePseudo ;
     int PV, PM, PA;
-    int classe; //1 : mario      2 : Luigi     3 : Kirby     4: Peach     5 : Zelda
+    Classe classe; //1 : mario      2 : Luigi     3 : Kirby     4: Peach     5 : Zelda
 }Joueurs;
 
-///INITIALISER LES JOUEURS
+typedef struct {
+    InfosSurLesJoueurs info ;
+    Joueurs* joueur ;
+    Classe classes[5] ;
+}Jeu;
+
+void initialiserEcran (InfoEcran* ecran, double width, double height) ;
 void initialiserJoueur(Joueurs* joueur, InfosSurLesJoueurs* infoJoueur) ;
 
 ///FONCTION POUR COMMENCER A JOUER
-void choixJoueur(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT * gameFont, int* nbJoueur) ;
-void drawChooseCharacter(float height, float width, ALLEGRO_FONT* gameFont, int* nbJoueur,int mouse_x, int mouse_y, Joueurs** joueur);
+void choixJoueur(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT * gameFont, InfosSurLesJoueurs* infojoueur) ;
+void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, int* nbJoueur, Joueurs** joueur, ALLEGRO_BITMAP* kirby, ALLEGRO_BITMAP* pacman);
 
 ///RENTRER UN PSEUDO
 char alphabet (int keycode, int* nbLettre) ;
