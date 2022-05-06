@@ -21,9 +21,9 @@ int main() {
     al_init_primitives_addon();
 
     ///CREATION DU DISPLAY
-    al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW);
+    //al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW);
     display = al_create_display(1300, 1000);
-    //al_set_display_flag(display, ALLEGRO_FULLSCREEN_WINDOW, true);
+    al_set_display_flag(display, ALLEGRO_FULLSCREEN_WINDOW, true);
     double height = al_get_display_height(display);
     double width = al_get_display_width(display);
     al_set_window_position(display, 0, 0);
@@ -70,8 +70,9 @@ int main() {
     double scaley = 50.0 * height / 1800.0;
     for (int j = 0; j < mapY; j++) {
         for (int i = 0; i < mapX; i++) {
-            map[i][j].x = scalex + i * scalex + j * scalex;
-            map[i][j].y = height / 1.8 - i * scaley + j * scaley;
+            map[i][j].x =  scalex + i * scalex + j * scalex;
+            map[i][j].y = height/1.8 - i * scaley + j * scaley;
+            map[i][j].obstacle=0;
 
         }
     }
