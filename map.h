@@ -9,7 +9,7 @@
 typedef struct {
     double x,y;
     int t;
-    bool obstacle;
+    int obstacle;
 
 } Map;
 

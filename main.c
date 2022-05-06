@@ -77,11 +77,13 @@ int main() {
         for (int i = 0; i < mapX; i++) {
             map[i][j].x =  scalex + i * scalex + j * scalex;
             map[i][j].y = height/1.8 - i * scaley + j * scaley;
+            map[i][j].obstacle=0;
 
         }
     }
     joueur[0].x = map[0][0].x;
     joueur[0].y = map[0][0].y;
+    map[2][0].obstacle=1;
     joueur[0].caseX=0;
     joueur[0].caseY=0;
     joueur[0].caseXDepart= joueur[0].caseX;
@@ -257,13 +259,13 @@ int main() {
                         break;
                     }
                     case PLAY : {
-                        //drawPlay(joueur,map,mouse_x,mouse_y,width,height,scalex,scaley,display,white,black,gris,vert,red);
-                        //deplacementJoueur(joueur,map,scalex,scaley);
-                        //dessinerQuadrillage(width,height,scalex,scaley,black);
-                        //l_draw_circle(joueur[0].x,joueur[0].y,50,black,3);
-                        choixJoueur(width, height, mouse_x, mouse_y, gameFont1, &nbJoueur) ;
-                        drawChooseCharacter(ecran, gameFont1, &nbJoueur, &joueur, kirbyIcone, pacmanIcone) ;
-                        afficherPseudo(joueur, width, height, gameFont1, 4) ;
+                        drawPlay(joueur,map,mouse_x,mouse_y,width,height,scalex,scaley,display,white,black,gris,vert,red);
+                        deplacementJoueur(joueur,map,scalex,scaley);
+                        dessinerQuadrillage(width,height,scalex,scaley,black);
+                        al_draw_circle(joueur[0].x,joueur[0].y,50,black,3);
+                        //choixJoueur(width, height, mouse_x, mouse_y, gameFont1, &nbJoueur) ;
+                        //drawChooseCharacter(ecran, gameFont1, &nbJoueur, &joueur, kirbyIcone, pacmanIcone) ;
+                        //afficherPseudo(joueur, width, height, gameFont1, 4) ;
                     break;
                 }
 
