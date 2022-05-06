@@ -128,19 +128,19 @@ void drawChooseCharacter(float height, float width, ALLEGRO_FONT* gameFont, int*
 
     // classe[MARIO] = (float) mouse_x < 800 && mouse_x > 500 && (float) mouse_y < 1000 && mouse_y > 700;
 
-    switch ((*joueur)->classe){
-        case MARIO :
+    //switch ((*joueur)->classe){
+        //case MARIO :
             if ((float) mouse_x < width/3.6 && mouse_x > width/5.76 && (float) mouse_y < height/1.8 && mouse_y > 7*height/18) {
             al_draw_filled_rectangle(7 * width / 64 + width/38.4, 2 * (height / 3) + height/18, 7 * width / 64 + 37*width/288 , 2 * (height / 3) + 19*height/90,
                                      al_map_rgb(246, 97, 65));
-        }
+        //}
     }
 
 
     //for(int i = 0; i<=nbJoueur; i++){
 }
 
-void attribuerBitmapPersonnage(InfosJoueur** joueurActuel, ALLEGRO_FONT* gameFont){
+void attribuerBitmapPersonnage(Joueurs** joueurActuel, ALLEGRO_FONT* gameFont){
     (*joueurActuel)->classe.personnage[VIDE].image  = gameFont;
     (*joueurActuel)->classe.personnage[MARIO].image = gameFont;
     (*joueurActuel)->classe.personnage[LUIGI].image = gameFont;
