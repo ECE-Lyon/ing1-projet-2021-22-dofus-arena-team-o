@@ -21,9 +21,9 @@ int main() {
     al_init_primitives_addon();
 
     ///CREATION DU DISPLAY
-    //al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW);
+    al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW);
     display = al_create_display(1300, 1000);
-    al_set_display_flag(display, ALLEGRO_FULLSCREEN_WINDOW, true);
+    //al_set_display_flag(display, ALLEGRO_FULLSCREEN_WINDOW, true);
     double height = al_get_display_height(display);
     double width = al_get_display_width(display);
     al_set_window_position(display, 0, 0);
@@ -38,9 +38,9 @@ int main() {
     ALLEGRO_COLOR gameColor = al_map_rgb(255, 0, 0);
 
     ///FONT
+    ALLEGRO_FONT *bigGameFont = al_load_ttf_font("../Font/Nintendo.ttf", 300, ALLEGRO_ALIGN_CENTER);
     ALLEGRO_FONT *gameFont1 = al_load_ttf_font("../Font/Nintendo.ttf", 72, ALLEGRO_ALIGN_LEFT);
     ALLEGRO_FONT *gameFont = al_load_ttf_font("../Font/MagicCardsNormal.ttf", 2 * width / 55, ALLEGRO_ALIGN_LEFT);
-    ALLEGRO_FONT *gameFont2 = al_load_ttf_font("../Font/MagicCardsNormal.ttf", 10, ALLEGRO_ALIGN_LEFT);
     ALLEGRO_FONT *gameFontRegles = al_load_ttf_font("../Font/Rumpi.ttf", 40, ALLEGRO_ALIGN_LEFT);
 
     ///BITMAP
@@ -53,16 +53,14 @@ int main() {
     queue = al_create_event_queue();
     assert(queue);
 
-    int isFin = 0, draw = 0;
-    char lettre;
+    int isFin = 0, draw = 0 ;
     Menu mainMenu;
     InfoEcran ecran;
     Map map[20][20];
     Jeux jeu;
-    int play;
+    jeu.joueur = NULL ;
     int nbJoueur = 0;
-    int nbLettre = 0;
-    int joueurQuiJoue = 0;
+
 
 
     ///METTRE CA DANS UNE FONCTION
@@ -77,7 +75,7 @@ int main() {
         }
     }
 
-    ///INITIALISATION DE NOS VARIABLES (A FAIRE DANS UNE FONCTION)
+    ///INITIALISATION DE NOS VARIABLES
     initialiserMenu(&mainMenu, width, height);
     initialiserJeu(&jeu);
     initialiserEcran(&ecran, width, height);
@@ -251,6 +249,7 @@ int main() {
                                 if (mouse_x < 5 * width / 32 && mouse_x > width / 384 &&
                                     mouse_y < 2 * height / 27 && mouse_y > height / 216) {
                                     mainMenu.gameMode = MENU;
+                                    initialiserJeu(&jeu) ;
                                 }
                                 if ((mouse_x - width / 4.8) * (mouse_x - width / 4.8) +
                                     (mouse_y - height / 2.16) * (mouse_y - height / 2.16) < 100 * 100) {
@@ -273,6 +272,7 @@ int main() {
                                 /// INITIALISER A ZERO SI ON REVIENT AVANT
                                 if (mouse_x < 5 * width / 32 && mouse_x > width / 384 && mouse_y < 2 * height / 27 && mouse_y > height / 216) {
                                     jeu.gameMode = CHOIXNBJOUEUR;
+                                    initialiserJeu(&jeu) ;
                                 }
                                 if ((float) mouse_x < width/3.6 && mouse_x > width/5.76 && (float) mouse_y < height/1.8 && mouse_y > 7*height/18) {
                                     al_draw_filled_rectangle(7 * width / 64 + width / 38.4,2 * (height / 3) + height / 18,7 * width / 64 + 37 * width / 288,2 * (height / 3) + 19 * height / 90,al_map_rgb(246, 97, 65));
@@ -303,8 +303,8 @@ int main() {
                     }
                     case CHOIXCLASSE : {
                         al_draw_scaled_bitmap(background, 0, 0, 7680, 4320, 0, 0, width, height, 0);
-                        drawChooseCharacter(ecran, gameFont1, &nbJoueur, &jeu.joueur, kirbyIcone, pacmanIcone);
-                        afficherPseudo(jeu.joueur, width, height, gameFont1, jeu.info.joueurQuiJoue);
+                        drawChooseCharacter(ecran, gameFont1, &nbJoueur, &jeu.joueur, kirbyIcone, pacmanIcone, bigGameFont);
+                        afficherPseudo(jeu, width, height, gameFont1);
                         break;
                     }
                     case JEU : {

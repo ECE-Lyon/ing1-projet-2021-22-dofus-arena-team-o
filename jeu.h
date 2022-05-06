@@ -65,12 +65,11 @@ void initialiserJoueur(Jeux* jeu, Map map[20][20]) ;
 
 ///FONCTION POUR COMMENCER A JOUER
 void choixJoueur(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT * gameFont, InfosSurLesJoueurs* infojoueur) ;
-void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, int* nbJoueur, Joueurs** joueur, ALLEGRO_BITMAP* kirby, ALLEGRO_BITMAP* pacman);
+void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, int* nbJoueur, Joueurs** joueur, ALLEGRO_BITMAP* kirby, ALLEGRO_BITMAP* pacman, ALLEGRO_FONT* bigGameFont);
 
 ///RENTRER UN PSEUDO
 char alphabet (int keycode, int* nbLettre) ;
 void mettrePseudo(Joueurs** joueur, char lettre, int quelJoueurEstSelectionne, int* nbLettre) ;
-void afficherPseudo(Joueurs* joueur, float width, float height, ALLEGRO_FONT* gameFont, int nbJoueur) ;
-
+void afficherPseudo(Jeux jeu, float width, float height, ALLEGRO_FONT* gameFont) ;
 
 #endif
