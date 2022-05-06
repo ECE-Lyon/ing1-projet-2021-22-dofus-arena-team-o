@@ -17,21 +17,34 @@
 #define PI 3.141592
 
 enum gameMode {PLAY, RULES, TEAM, MENU, END};
-enum classe {VIDE, MARIO,LUIGI,KIRBY,PEACH,ZELDA};
+enum personnage {VIDE, MARIO,LUIGI,KIRBY,PEACH,ZELDA};
 
 
 typedef struct {
-    int mouse_x, mouse_y ;
-    float height, width ;
-} infoEcran;
+    //enum personnage type = MARIO;
+    ALLEGRO_BITMAP* image;
+}Perso;
+
+
+typedef struct {
+    Perso personnage[5];
+    int sort;  //par ex       1-> sort "empècher ladversaire de marcher           2-> sort "Tuer son prochain
+} Classe;
 
 typedef struct Info{
     int x, y; //position
     char pseudo[MAXNOM];
     int nbLettrePseudo ;
     int PV, PM, PA;
-    int classe; //1 : mario      2 : Luigi     3 : Kirby     4: Peach     5 : Zelda
+    Classe classe; //1 : mario      2 : Luigi     3 : Kirby     4: Peach     5 : Zelda
 }InfosJoueur;
+
+typedef struct {
+    int mouse_x, mouse_y ;
+    float height, width ;
+} infoEcran;
+
+
 
 ///FONCTION POUR COMMENCER A JOUER
 void choixJoueur(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT * gameFont, int* nbJoueur) ;

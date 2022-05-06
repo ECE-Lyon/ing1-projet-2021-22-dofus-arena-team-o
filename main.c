@@ -21,12 +21,16 @@ int main() {
     al_init_ttf_addon();
     al_init_primitives_addon();
 
+
     ///CREATION DU DISPLAY
-    al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW);
     display = al_create_display(1300, 1000);
+    al_set_display_flag(display, ALLEGRO_FULLSCREEN_WINDOW, true);
     float height = (float) al_get_display_height(display);
     float width = (float) al_get_display_width(display);
     al_set_window_position(display, 0, 0);
+
+
+    printf("X = %d\nY = %d", al_get_display_width(display), al_get_display_height(display));
 
     ///CREATOON DES VARIABLES
     ALLEGRO_COLOR black = al_map_rgb(0, 0, 0);
@@ -93,7 +97,7 @@ int main() {
 
 
     ///INITIALISATION CLASSE
-    joueur2->classe = VIDE;
+    //joueur2->classe = VIDE;
 
 
     ///INITIALISATION DU TIMER
@@ -252,10 +256,10 @@ int main() {
                         //deplacementJoueur(joueur,map,scalex,scaley);
                         //al_draw_circle(joueur[0].xp,joueur[0].yp,50,black,3);
                         //choixJoueur(width, height, mouse_x, mouse_y, gameFont1, &nbJoueur) ;
-                        drawChooseCharacter(height, width,joueurQuiJoue) ;
-                        afficherPseudo(joueur2, width, height, gameFont1, 4) ;
+                        //drawChooseCharacter(height, width,joueurQuiJoue) ;
+                        //afficherPseudo(joueur2, width, height, gameFont1, 4) ;
                         //drawPlay(map,event,mouse_x,mouse_y,display,white,black,gris,vert,red);
-                        drawChooseCharacter(height, width, gameFont1, &nbJoueur, mouse_x, mouse_y) ;
+                        drawChooseCharacter(height, width, gameFont1, &nbJoueur, mouse_x, mouse_y, &joueur2) ;
                         afficherPseudo(joueur2, width, height, gameFont1, 1) ;
                         //drawPlay2(width, height, mouse_x, mouse_y, gameFont,gameFontRegles, &nbJoueur) ;
                     break;
