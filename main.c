@@ -81,6 +81,8 @@ int main() {
     joueur[0].y = map[0][0].y;
     joueur[0].caseX=0;
     joueur[0].caseY=0;
+    joueur[0].caseXDepart= joueur[0].caseX;
+    joueur[0].caseYDepart= joueur[0].caseY;
     joueur[0].dep = 0;
     for(int i = 0 ; i < 4 ; i++) {
         strcpy(joueur[i].pseudo, "");
@@ -105,7 +107,7 @@ int main() {
 
     al_start_timer(times);
     while (!isFin) {
-        printf("%s / %s / %s / %s\n", joueur[0].pseudo, joueur[1].pseudo, joueur[2].pseudo, joueur[3].pseudo) ;
+        //printf("%s / %s / %s / %s\n", joueur[0].pseudo, joueur[1].pseudo, joueur[2].pseudo, joueur[3].pseudo) ;
         al_wait_for_event(queue, &event);
         switch (event.type) {
             case ALLEGRO_EVENT_KEY_DOWN : {
