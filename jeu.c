@@ -486,7 +486,7 @@ void drawChooseCharacter(float height, float width, ALLEGRO_FONT* gameFont, int*
     al_draw_filled_rectangle(360, 1665, 715, 1767, al_map_rgb(216, 216, 216));
     al_draw_filled_rectangle(960, 1665, 1315, 1767, al_map_rgb(216, 216, 216));
     al_draw_filled_rectangle(1560, 1665, 1915, 1767, al_map_rgb(216, 216, 216));
-    al_draw_filled_rectangle(2160, 1665, 2515, 1767, al_map_rgb(216, 216, 216));
+    al_draw_filled_rectangle(2160, 1665, 2515, 1767, al_map_rgb(216, 216, 216)) ;
 
     switch ((*joueur)->classe){
         case MARIO :
