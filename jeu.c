@@ -8,7 +8,14 @@ void initialiserIconeClasse(ALLEGRO_BITMAP* pacman, ALLEGRO_BITMAP* kirby, ALLEG
     classes[DONKEY_KONG].image = donkey_kong;
 }
 
-void initialiserPVPMPA (){
+void initialiserSort (Classe* sort, ALLEGRO_BITMAP* sortFatal, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* sortRalentir, ALLEGRO_BITMAP* sortSpecial, ALLEGRO_BITMAP* sortStop, ALLEGRO_BITMAP* sortReculer){
+    sort[FATAL].image = sortFatal;
+    sort[FLEMME].image = sortFlemme;
+    sort[RALENTIR].image = sortRalentir;
+    sort[SPECIAL].image = sortSpecial;
+    sort[STOP].image = sortStop;
+    sort[RECULER].image = sortReculer;
+
 }
 
 

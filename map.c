@@ -280,8 +280,6 @@ void deplacementJoueur(Joueurs *joueur, Map map[20][20],double scalex,double sca
         if (joueur[0].caseX == joueur[0].xArrive && joueur[0].caseY==joueur[0].yArrive){joueur[0].dep=0;joueur[0].caseXDepart= joueur[0].caseX;
             joueur[0].caseYDepart= joueur[0].caseY;}
     }
-
-
 }
 
 void dessinerQuadrillage(double  width, double height,double scalex,double scaley,ALLEGRO_COLOR black){

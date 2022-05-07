@@ -97,7 +97,8 @@ int main() {
     }
 
     ///INITIALISATION DE NOS VARIABLES
-    initialiserIconeClasse(pacmanIcone, kirbyIcone, peachIcone, marioIcone, donkey_kongIcone, jeu.classes) ;
+    initialiserIconeClasse(pacmanIcone, kirbyIcone, peachIcone, marioIcone, donkey_kongIcone, jeu.classes);
+    initialiserSort ( sortFatal, sortFlemme, sortRalentir, sortSpecial, sortStop, sortReculer, jeu.classes);
     initialiserMenu(&mainMenu, width, height);
     initialiserJeu(&jeu);
     initialiserEcran(&ecran, width, height);

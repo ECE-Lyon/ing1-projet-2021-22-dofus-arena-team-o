@@ -11,5 +11,9 @@ void deplacementJoueur(Joueurs *joueur,Map map[20][20],double scalex,double scal
 void caseJoueur(Joueurs *joueur,Map map[20][20]);
 bool collisionCercle(int x,int y,Map map[20][20],int i,int j,double width);
 void dessinerQuadrillage(double  width, double height,double scalex,double scaley,ALLEGRO_COLOR black);
+void affichageSorts(ALLEGRO_BITMAP* , InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLEGRO_FONT* bigGameFont);
+
+
+
 
 #endif //ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_O_MAP_H
