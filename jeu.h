@@ -42,7 +42,8 @@ typedef struct Info{
     char pseudo[MAXNOM];
     int nbLettrePseudo ;
     int PV, PM, PA, aChoisiClasse;
-    int classe; //1 : mario      2 : Luigi     3 : Kirby     4: Peach     5 : Zelda
+    int classe;//1 : mario      2 : Luigi     3 : Kirby     4: Peach     5 : Zelda
+
 }Joueurs;
 
 ///STRUCTURE PRINCIPALE DU JEU
@@ -60,7 +61,7 @@ typedef struct {
 
 } Map;
 
-void initialiserIconeClasse(ALLEGRO_BITMAP* pacman, ALLEGRO_BITMAP* kirby, ALLEGRO_BITMAP* peach, Classe* classes) ;
+void initialiserIconeClasse(ALLEGRO_BITMAP* pacman, ALLEGRO_BITMAP* kirby, ALLEGRO_BITMAP* peach, ALLEGRO_BITMAP* mario, Classe* classes) ;
 void initialiserEcran (InfoEcran* ecran, double width, double height) ;
 void initialiserJeu(Jeux* jeu) ;
 void initialiserJoueur(Jeux* jeu, Map map[20][20]) ;

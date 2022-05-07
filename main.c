@@ -22,7 +22,7 @@ int main() {
 
     ///CREATION DU DISPLAY
     al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW);
-    display = al_create_display(1300, 1000);
+    display = al_create_display(800, 600);
     //al_set_display_flag(display, ALLEGRO_FULLSCREEN_WINDOW, true);
     double height = al_get_display_height(display);
     double width = al_get_display_width(display);
@@ -49,7 +49,7 @@ int main() {
     ALLEGRO_BITMAP *kirbyIcone = al_load_bitmap("../Bitmap/Kirby_Icone.png");
     ALLEGRO_BITMAP *pacmanIcone = al_load_bitmap("../Bitmap/PacMan_Icone.png");
     ALLEGRO_BITMAP *peachIcone = al_load_bitmap("../Bitmap/Peach_Icone.png");
-
+    ALLEGRO_BITMAP *marioIcone = al_load_bitmap("../Bitmap/Mario_Icone.png") ;
 
 
     queue = al_create_event_queue();
@@ -78,7 +78,7 @@ int main() {
     }
 
     ///INITIALISATION DE NOS VARIABLES
-    initialiserIconeClasse(pacmanIcone, kirbyIcone, peachIcone, jeu.classes) ;
+    initialiserIconeClasse(pacmanIcone, kirbyIcone, peachIcone, marioIcone, jeu.classes) ;
     initialiserMenu(&mainMenu, width, height);
     initialiserJeu(&jeu);
     initialiserEcran(&ecran, width, height);
