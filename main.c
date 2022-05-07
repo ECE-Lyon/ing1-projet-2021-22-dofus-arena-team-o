@@ -140,7 +140,6 @@ int main() {
                                     mainMenu.gameMode = TEAM;;
                                 }
 
-
                                 break;
                             }
                             case TEAM : {
