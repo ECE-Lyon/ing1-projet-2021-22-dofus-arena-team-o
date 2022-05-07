@@ -29,6 +29,7 @@ void initialiserJoueur(Jeux* jeu, Map map[20][20]) {
         for (int i = 0; i < jeu->info.nbJoueur; i++) {
             strcpy(jeu->joueur[i].pseudo, "");
             (jeu->joueur[i]).nbLettrePseudo = 0;
+            jeu->joueur[i].classe = VIDE ;
         }
         jeu->joueur[0].x = map[0][0].x;
         jeu->joueur[0].y = map[0][0].y;
@@ -177,46 +178,24 @@ void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLE
 
 
     ///5) DONKEY KONG
-    float tailleDonkey_kong = 1500 / longueurCarre;
+    float tailleDonkey_kong = 1200/longueurCarre;
     al_draw_filled_rectangle(35*ecran.width/48,7*ecran.height/18, 5*ecran.width/6, 5*ecran.height/9, al_map_rgb(190, 130, 200));
-    //al_draw_scaled_bitmap(jeu.classes[DONKEY_KONG].image, 0, 0, 2000, 2000,35*ecran.width/48 , 7*ecran.height/18 , 1200/2,1200/2, 0) ;
-    //al_draw_scaled_bitmap(jeu.classes[DONKEY_KONG].image, 0, 0, 2000, 2000, 100*ecran.width/16, 7*ecran.height/18, 1500/tailleDonkey_kong ,1500/tailleDonkey_kong, 0) ;
+    al_draw_scaled_bitmap(jeu.classes[DONKEY_KONG].image, 0, 0, 1200, 1200,35*ecran.width/48 , 7*ecran.height/18 , 1200/tailleDonkey_kong, 1200/tailleDonkey_kong, 0) ;
 
-
-        //case MARIO :
-        if ((float) ecran.mouse_x < ecran.width/3.6 && ecran.mouse_x > ecran.width/5.76 && (float) ecran.mouse_y < ecran.height/1.8 && ecran.mouse_y > 7*ecran.height/18) {
-            al_draw_scaled_bitmap(jeu.classes[KIRBY].image, 0, 0, 4389, 4389, ecran.width/9 + tailleRectangle, 25*ecran.height/36, 17*ecran.width/64 - 7*ecran.width/64,17*ecran.width/64 - 7*ecran.width/64, 0) ;
-
+    for(int i = 0 ; i < jeu.info.nbJoueur ; i++) {
+        switch (jeu.joueur[i].classe) {
+            case KIRBY : al_draw_scaled_bitmap(jeu.classes[KIRBY].image, 0, 0, 4389, 4389, ecran.width/9 + i*tailleRectangle, 25*ecran.height/36, 17*ecran.width/64 - 7*ecran.width/64,17*ecran.width/64 - 7*ecran.width/64, 0) ;
+            case MARIO : al_draw_scaled_bitmap(jeu.classes[MARIO].image, 0, 0, 2000, 2000, 47 * ecran.width / 64 + i*tailleRectangle,17.5*ecran.height/25, 17*ecran.width/64 - 7*ecran.width/64,17*ecran.width/64 - 7*ecran.width/64, 0);
+            case PACMAN : al_draw_scaled_bitmap(jeu.classes[PACMAN].image, 0, 0, 1000, 1000, ecran.width / 9 + i*tailleRectangle,25 * ecran.height / 36, 17*ecran.width/64 - 7*ecran.width/64, 17*ecran.width/64 - 7*ecran.width/64, 0);
+            case PEACH : al_draw_scaled_bitmap(jeu.classes[MARIO].image, 0, 0, 2000, 2000, 47 * ecran.width / 64,17.5*ecran.height/25 + i*tailleRectangle, 17*ecran.width/64 - 7*ecran.width/64,17*ecran.width/64 - 7*ecran.width/64, 0);
+            case DONKEY_KONG : al_draw_scaled_bitmap(jeu.classes[DONKEY_KONG].image, 0, 0, 1200, 1200, 47*ecran.width/64 + i*tailleRectangle,17*ecran.height/25, 17*ecran.width/64 - 7*ecran.width/64, 17*ecran.width/64 - 7*ecran.width/64, 0);
         }
-        //case pacman
-        else if ((float) ecran.mouse_x < 5*ecran.width/12 && ecran.mouse_x > 5*ecran.width/16 && (float) ecran.mouse_y < 5*ecran.height/9 && ecran.mouse_y >7*ecran.height/18) {
-            al_draw_scaled_bitmap(jeu.classes[PACMAN].image, 0, 0, 1000, 1000, ecran.width / 9 + 2*tailleRectangle,25 * ecran.height / 36, 17*ecran.width/64 - 7*ecran.width/64, 17*ecran.width/64 - 7*ecran.width/64, 0);
-        }
-
-        //case  rose
-        else if ((float) ecran.mouse_x < 5 * ecran.width / 9 && ecran.mouse_x > 65 * ecran.width / 144 && (float) ecran.mouse_y < 5*ecran.height/9 && ecran.mouse_y >7*ecran.height/18) {
-            al_draw_scaled_bitmap(jeu.classes[PEACH].image, 0, 0, 1200, 1355, 102*ecran.width/192, 17*ecran.height/25, 17*ecran.width/64 - 7*ecran.width/64, 1355*(17*ecran.width/64 - 7*ecran.width/64)/1200, 0);
-        }
-
-        //case turquoise
-
-    else if ((float) ecran.mouse_x < 25*ecran.width/36 && ecran.mouse_x > 85*ecran.width/144 && (float) ecran.mouse_y < 5*ecran.height/9 && ecran.mouse_y >7*ecran.height/18) {
-            float tailleMarioIcone = 17/(5*taillePacman);
-            al_draw_scaled_bitmap(jeu.classes[MARIO].image, 0, 0, 2000, 2000, 47*ecran.width/64,2*ecran.height/3, 17*(taillePacman*tailleMario), 17*(taillePacman*tailleMario), 0);
     }
 
-   // case violet
-   else if ((float) ecran.mouse_x < 5*ecran.width/6 && ecran.mouse_x > 35*ecran.width/48 && (float) ecran.mouse_y < 5*ecran.height/9 && ecran.mouse_y >7*ecran.height/18) {
-       float tailleMarioIcone = 17/(5*taillePacman);
-       al_draw_scaled_bitmap(jeu.classes[DONKEY_KONG].image, 0, 0, 1200, 1200, 47*ecran.width/64,2*ecran.height/3, 50, 50, 0);
-       //al_draw_filled_rounded_rectangle(47*ecran.width/64, 2*ecran.height/3, 57*ecran.width/64, ecran.height+15, 10, 10,al_map_rgb( 0, 69, 128));
-
-   }
-
-   /// BOUTON PLAY
-   if (((float) ecran.mouse_x - 1829)*((float) ecran.mouse_x - 1829) + ((float) ecran.mouse_y - 980)*((float) ecran.mouse_y - 980) < 80*80 ) {
-    al_draw_filled_circle(1820, 980, 80, al_map_rgb(200, 200, 200));
-    al_draw_text(gameFont, al_map_rgb(0, 0, 0), 1810, 955, ALLEGRO_ALIGN_CENTER, "PLAY") ;
+    /// BOUTON PLAY
+    if (((float) ecran.mouse_x - 1829)*((float) ecran.mouse_x - 1829) + ((float) ecran.mouse_y - 980)*((float) ecran.mouse_y - 980) < 80*80 ) {
+        al_draw_filled_circle(1820, 980, 80, al_map_rgb(200, 200, 200));
+        al_draw_text(gameFont, al_map_rgb(0, 0, 0), 1810, 955, ALLEGRO_ALIGN_CENTER, "PLAY") ;
     }
     else {
         al_draw_filled_circle(1820, 980, 80, al_map_rgba(255, 255, 255, 200));
@@ -257,8 +236,6 @@ int getRandomInteger(int min, int max){
             joueur[0]->xp = joueur[0]->xp - 1;
         }
 */
-
-
 
 /*
 // autre methode pour entrer un nom
