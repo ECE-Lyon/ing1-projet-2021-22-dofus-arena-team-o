@@ -278,8 +278,20 @@ int main() {
                                     jeu.gameMode = CHOIXNBJOUEUR;
                                     initialiserJeu(&jeu) ;
                                 }
-                                if ((float) mouse_x < width/3.6 && mouse_x > width/5.76 && (float) mouse_y < height/1.8 && mouse_y > 7*height/18) {
-                                    al_draw_filled_rectangle(7 * width / 64 + width / 38.4,2 * (height / 3) + height / 18,7 * width / 64 + 37 * width / 288,2 * (height / 3) + 19 * height / 90,al_map_rgb(246, 97, 65));
+                                if ((float) ecran.mouse_x < ecran.width/3.6 && ecran.mouse_x > ecran.width/5.76 && (float) ecran.mouse_y < ecran.height/1.8 && ecran.mouse_y > 7*ecran.height/18) {
+                                    jeu.joueur[jeu.info.joueurQuiJoue].classe = KIRBY ;
+                                }
+                                else if ((float) ecran.mouse_x < 5*ecran.width/12 && ecran.mouse_x > 5*ecran.width/16 && (float) ecran.mouse_y < 5*ecran.height/9 && ecran.mouse_y >7*ecran.height/18) {
+                                    jeu.joueur[jeu.info.joueurQuiJoue].classe = PACMAN ;
+                                }
+                                else if ((float) ecran.mouse_x < 5 * ecran.width / 9 && ecran.mouse_x > 65 * ecran.width / 144 && (float) ecran.mouse_y < 5*ecran.height/9 && ecran.mouse_y >7*ecran.height/18) {
+                                    jeu.joueur[jeu.info.joueurQuiJoue].classe = PEACH ;
+                                }
+                                else if ((float) ecran.mouse_x < 25*ecran.width/36 && ecran.mouse_x > 85*ecran.width/144 && (float) ecran.mouse_y < 5*ecran.height/9 && ecran.mouse_y >7*ecran.height/18) {
+                                    jeu.joueur[jeu.info.joueurQuiJoue].classe = MARIO ;
+                                }
+                                else if ((float) ecran.mouse_x < 5*ecran.width/6 && ecran.mouse_x > 35*ecran.width/48 && (float) ecran.mouse_y < 5*ecran.height/9 && ecran.mouse_y >7*ecran.height/18) {
+;                                   jeu.joueur[jeu.info.joueurQuiJoue].classe = DONKEY_KONG ;
                                 }
                                 if ((float) mouse_x < mouse_x < 383 * width / 384  && mouse_x > width / 1.2  && (float) mouse_y <  215 * height / 216   && mouse_y > height / 1.08  ){
                                     jeu.gameMode = JEU;
