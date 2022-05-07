@@ -291,6 +291,6 @@ void dessinerQuadrillage(double  width, double height,double scalex,double scale
     }
 }
 
-void affichageSorts(ALLEGRO_BITMAP* , InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLEGRO_FONT* bigGameFont){
+/*void affichageSorts( InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLEGRO_FONT* bigGameFont){
 
-}
+}*/

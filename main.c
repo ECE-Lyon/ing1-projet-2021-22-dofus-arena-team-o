@@ -37,13 +37,13 @@ int main() {
     ALLEGRO_COLOR gris = al_map_rgb(128, 128, 128);
     ALLEGRO_COLOR gameColor = al_map_rgb(255, 0, 0);
 
-    ///FONT
+                            ///FONT//////
     ALLEGRO_FONT *bigGameFont = al_load_ttf_font("../Font/Nintendo.ttf", 300, ALLEGRO_ALIGN_CENTER);
     ALLEGRO_FONT *gameFont1 = al_load_ttf_font("../Font/Nintendo.ttf", 72, ALLEGRO_ALIGN_LEFT);
     ALLEGRO_FONT *gameFont = al_load_ttf_font("../Font/MagicCardsNormal.ttf", 2 * width / 55, ALLEGRO_ALIGN_LEFT);
     ALLEGRO_FONT *gameFontRegles = al_load_ttf_font("../Font/Rumpi.ttf", 40, ALLEGRO_ALIGN_LEFT);
 
-                             ///BITMAP
+                             ///BITMAP////
     ALLEGRO_BITMAP *background = al_load_bitmap("../Bitmap/BG.jpg");
     ALLEGRO_BITMAP *team = al_load_bitmap("../Bitmap/capture.PNG");
 
@@ -98,7 +98,7 @@ int main() {
 
     ///INITIALISATION DE NOS VARIABLES
     initialiserIconeClasse(pacmanIcone, kirbyIcone, peachIcone, marioIcone, donkey_kongIcone, jeu.classes);
-    initialiserSort ( sortFatal, sortFlemme, sortRalentir, sortSpecial, sortStop, sortReculer, jeu.classes);
+    //initialiserSort ( sortFatal, sortFlemme, sortRalentir, sortSpecial, sortStop, sortReculer, jeu.classes);
     initialiserMenu(&mainMenu, width, height);
     initialiserJeu(&jeu);
     initialiserEcran(&ecran, width, height);
@@ -231,23 +231,13 @@ int main() {
                             mainMenu.gameMode = END;
                             break;
                         }
-                        case ALLEGRO_KEY_RIGHT : {
-                            jeu.info.joueurQuiJoue++;
-                            break;
-                        }
-                        case ALLEGRO_KEY_LEFT : {
-                            jeu.info.joueurQuiJoue--;
-                            break;
-                        }
                         default: {
                             if (jeu.gameMode == CHOIXCLASSE) {
-                                mettrePseudo(&jeu.joueur,
-                                             alphabet(event.keyboard.keycode,
-                                                      &jeu.joueur[jeu.info.joueurQuiJoue].nbLettrePseudo),
-                                             jeu.info.joueurQuiJoue,
-                                             &jeu.joueur[jeu.info.joueurQuiJoue].nbLettrePseudo);
+                                if (jeu.info.entrerPseudo == TRUE) {
+                                    mettrePseudo(&jeu.joueur,alphabet(event.keyboard.keycode,&jeu.joueur[jeu.info.joueurQuiJoue].nbLettrePseudo),jeu.info.joueurQuiJoue,&jeu.joueur[jeu.info.joueurQuiJoue].nbLettrePseudo);
+                                }
+                                break;
                             }
-                            break;
                         }
                     }
                     break;
@@ -297,20 +287,29 @@ int main() {
                                     jeu.gameMode = CHOIXNBJOUEUR;
                                     initialiserJeu(&jeu) ;
                                 }
-                                if ((float) ecran.mouse_x < ecran.width/3.6 && ecran.mouse_x > ecran.width/5.76 && (float) ecran.mouse_y < ecran.height/1.8 && ecran.mouse_y > 7*ecran.height/18) {
-                                    jeu.joueur[jeu.info.joueurQuiJoue].classe = KIRBY ;
+                                if(jeu.info.entrerPseudo == FALSE) {
+                                    if ((float) ecran.mouse_x < ecran.width / 3.6 &&ecran.mouse_x > ecran.width / 5.76 &&(float) ecran.mouse_y < ecran.height / 1.8 &&ecran.mouse_y > 7 * ecran.height / 18) {
+                                        jeu.joueur[jeu.info.joueurQuiJoue].classe = KIRBY;
+                                    } else if ((float) ecran.mouse_x < 5 * ecran.width / 12 &&ecran.mouse_x > 5 * ecran.width / 16 &&(float) ecran.mouse_y < 5 * ecran.height / 9 &&ecran.mouse_y > 7 * ecran.height / 18) {
+                                        jeu.joueur[jeu.info.joueurQuiJoue].classe = PACMAN;
+                                    } else if ((float) ecran.mouse_x < 5 * ecran.width / 9 &&ecran.mouse_x > 65 * ecran.width / 144 &&(float) ecran.mouse_y < 5 * ecran.height / 9 &&ecran.mouse_y > 7 * ecran.height / 18) {
+                                        jeu.joueur[jeu.info.joueurQuiJoue].classe = PEACH;
+                                    } else if ((float) ecran.mouse_x < 25 * ecran.width / 36 &&ecran.mouse_x > 85 * ecran.width / 144 &&(float) ecran.mouse_y < 5 * ecran.height / 9 &&ecran.mouse_y > 7 * ecran.height / 18) {
+                                        jeu.joueur[jeu.info.joueurQuiJoue].classe = MARIO;
+                                    } else if ((float) ecran.mouse_x < 5 * ecran.width / 6 &&ecran.mouse_x > 35 * ecran.width / 48 &&(float) ecran.mouse_y < 5 * ecran.height / 9 &&ecran.mouse_y > 7 * ecran.height / 18) {
+                                        jeu.joueur[jeu.info.joueurQuiJoue].classe = DONKEY_KONG;
+                                    }
                                 }
-                                else if ((float) ecran.mouse_x < 5*ecran.width/12 && ecran.mouse_x > 5*ecran.width/16 && (float) ecran.mouse_y < 5*ecran.height/9 && ecran.mouse_y >7*ecran.height/18) {
-                                    jeu.joueur[jeu.info.joueurQuiJoue].classe = PACMAN ;
-                                }
-                                else if ((float) ecran.mouse_x < 5 * ecran.width / 9 && ecran.mouse_x > 65 * ecran.width / 144 && (float) ecran.mouse_y < 5*ecran.height/9 && ecran.mouse_y >7*ecran.height/18) {
-                                    jeu.joueur[jeu.info.joueurQuiJoue].classe = PEACH ;
-                                }
-                                else if ((float) ecran.mouse_x < 25*ecran.width/36 && ecran.mouse_x > 85*ecran.width/144 && (float) ecran.mouse_y < 5*ecran.height/9 && ecran.mouse_y >7*ecran.height/18) {
-                                    jeu.joueur[jeu.info.joueurQuiJoue].classe = MARIO ;
-                                }
-                                else if ((float) ecran.mouse_x < 5*ecran.width/6 && ecran.mouse_x > 35*ecran.width/48 && (float) ecran.mouse_y < 5*ecran.height/9 && ecran.mouse_y >7*ecran.height/18) {
-;                                   jeu.joueur[jeu.info.joueurQuiJoue].classe = DONKEY_KONG ;
+                                if((float) ecran.mouse_x < 3*ecran.width/5 && ecran.mouse_x > 2*ecran.width/5 && (float) ecran.mouse_y < 9*ecran.height/27 && ecran.mouse_y > 7*ecran.height/27) {
+                                    if(jeu.info.entrerPseudo == FALSE) {
+                                        jeu.info.entrerPseudo = TRUE;
+                                    }
+                                    else if(jeu.joueur[jeu.info.joueurQuiJoue].pseudo[0] != '\0'){
+                                        if(jeu.info.joueurQuiJoue+1 != jeu.info.nbJoueur) {
+                                            jeu.info.joueurQuiJoue++;
+                                            jeu.info.entrerPseudo = FALSE;
+                                        }
+                                    }
                                 }
                                 if ((float) mouse_x < mouse_x < 383 * width / 384  && mouse_x > width / 1.2  && (float) mouse_y <  215 * height / 216   && mouse_y > height / 1.08  ){
                                     jeu.gameMode = JEU;
