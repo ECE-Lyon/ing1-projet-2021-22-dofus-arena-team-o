@@ -98,7 +98,7 @@ int main() {
 
     ///INITIALISATION DE NOS VARIABLES
     initialiserIconeClasse(pacmanIcone, kirbyIcone, peachIcone, marioIcone, donkey_kongIcone, jeu.classes);
-    initialiserSort ( sortFatal, sortFlemme, sortRalentir, sortSpecial, sortStop, sortReculer, jeu.classes);
+    initialiserSort (jeu.classes, sortFatal, sortFlemme, sortRalentir, sortSpecial, sortStop, sortReculer, afficherSort, afficherPV);
     initialiserMenu(&mainMenu, width, height);
     initialiserJeu(&jeu);
     initialiserEcran(&ecran, width, height);
@@ -351,7 +351,7 @@ int main() {
                         deplacementJoueur(jeu.joueur, map, scalex, scaley);
                         dessinerQuadrillage(width, height, scalex, scaley, black);
                         al_draw_circle(jeu.joueur[0].x, jeu.joueur[0].y, 50, black, 3);
-                       //drawPlate();
+                        drawSort(gameFont1, jeu, ecran);
                         break;
                     }
                 }

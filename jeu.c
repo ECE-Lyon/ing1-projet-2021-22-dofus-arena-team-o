@@ -8,13 +8,15 @@ void initialiserIconeClasse(ALLEGRO_BITMAP* pacman, ALLEGRO_BITMAP* kirby, ALLEG
     classes[DONKEY_KONG].image = donkey_kong;
 }
 
-void initialiserSort (Classe* sort, ALLEGRO_BITMAP* sortFatal, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* sortRalentir, ALLEGRO_BITMAP* sortSpecial, ALLEGRO_BITMAP* sortStop, ALLEGRO_BITMAP* sortReculer){
-    sort[FATAL].image = sortFatal;
-    sort[FLEMME].image = sortFlemme;
-    sort[RALENTIR].image = sortRalentir;
-    sort[SPECIAL].image = sortSpecial;
-    sort[STOP].image = sortStop;
-    sort[RECULER].image = sortReculer;
+void initialiserSort (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* sortRalentir, ALLEGRO_BITMAP* sortSpecial, ALLEGRO_BITMAP* sortStop, ALLEGRO_BITMAP* sortReculer, ALLEGRO_BITMAP* afficherSort, ALLEGRO_BITMAP* afficherPV){
+    classe->sortADisposition[FLEMME].iconeSort = sortFlemme;
+    classe->sortADisposition[RALENTIR].iconeSort = sortRalentir;
+    classe->sortADisposition[SPECIAL].iconeSort = sortSpecial;
+    classe->sortADisposition[STOP].iconeSort = sortStop;
+    classe->sortADisposition[RECULER].iconeSort = sortReculer;
+    classe->sortADisposition[FATAL].iconeSort = sortFatal;
+    classe->sortADisposition[BARRE].iconeSort = afficherSort;
+    classe->sortADisposition[PV].iconeSort = afficherPV;
 
 }
 
@@ -232,64 +234,11 @@ void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLE
     }
 }
 
-/*
-void attribuerBitmapPersonnage(Joueurs** joueurActuel, ALLEGRO_FONT* gameFont){
-    /*(*joueurActuel)->classe.personnage[VIDE].image  = gameFont;
-    (*joueurActuel)->classe.personnage[MARIO].image = gameFont;
-    (*joueurActuel)->classe.personnage[LUIGI].image = gameFont;
-    (*joueurActuel)->classe.personnage[KIRBY].image = gameFont;
-    (*joueurActuel)->classe.personnage[PEACH].image = gameFont;
-    (*joueurActuel)->classe.personnage[ZELDA].image = gameFont;
-
-
-    /*al_draw_filled_rectangle(ecran.width/8, 37*ecran.height/40, 143*ecran.width/576, 589*ecran.height/600, al_map_rgb(216, 216, 216));
-    al_draw_filled_rectangle(ecran.width/3, 37*ecran.height/40, 263*ecran.width/576, 589*ecran.height/600, al_map_rgb(216, 216, 216));
-    al_draw_filled_rectangle(13*ecran.width/24, 37*ecran.height/40, 383*ecran.width/576, 589*ecran.height/600, al_map_rgb(216, 216, 216));
-    al_draw_filled_rectangle(3*ecran.width/4, 37*ecran.height/40, 503*ecran.width/576, 589*ecran.height/600, al_map_rgb(216, 216, 216)) ;
-*/
-
 
 int getRandomInteger(int min, int max){
     int nbAleatoire = rand()%(max-min+1)+min;
     return nbAleatoire;
 }
-
-/*void deplacementJoueur(Joueur *joueur[],Map map[20][20]){
-    joueur[0]->x = map[0][0].x;
-    joueur[0]->y = map[0][0].y;
-    if(joueur[0]->t==1) {
-        if (joueur[0]->xp< map[joueur[0]->a][joueur[0]->b].x && joueur[0]->xp != map[joueur[0]->a][joueur[0]->b].x){
-            joueur[0]->xp = joueur[0]->xp + 1;
-        }
-        if (joueur[0]->xp>map[joueur[0]->a][joueur[0]->b].x && joueur[0]->xp != map[joueur[0]->a][joueur[0]->b].x){
-            joueur[0]->xp = joueur[0]->xp - 1;
-        }
-*/
-
-
-
-/*
-// autre methode pour entrer un nom
-
-void entrerPseudo (ALLEGRO_EVENT* event, InfosJoueur tabJoueur[], int joueurActuel){
-    int numCharPseudo = 0;
-    if (event.type == ALLEGRO_KEY_DOWN){
-        if ( numCharPseudo < MAXNOM && event.keyboard.keycode >= ALLEGRO_KEY_A && event.keyboard.keycode <= ALLEGRO_KEY_Z) {
-            tabJoueur[joueurActuel].pseudo[numCharPseudo] = (char) (event.keyboard.keycode + 96);
-            numCharPseudo++;
-        }
-        if (event.keyboard.keycode == ALLEGRO_KEY_BACKSPACE){
-            if (numCharPseudo >= 1){
-                numCharPseudo--;
-                tabJoueur[joueurActuel].pseudo[numCharPseudo] = '\0';
-            }
-        }
-    }
-}
-
-
-
-*/
 
 char alphabet (int keycode, int* nbLettre){
     char lettreAppuye;
@@ -329,6 +278,38 @@ void afficherPseudo(Jeux jeu, float width, float height, ALLEGRO_FONT* gameFont)
     }
 }
 
-/*void remplirDonneeJoueur (Joueurs** UnMaillonJoueur){
-    (*UnMaillonJoueur)->pseudo = getPseudo();
+
+
+
+// autre methode pour entrer un nom
+/*
+void entrerPseudo (ALLEGRO_EVENT* event, InfosJoueur tabJoueur[], int joueurActuel){
+    int numCharPseudo = 0;
+    if (event.type == ALLEGRO_KEY_DOWN){
+        if ( numCharPseudo < MAXNOM && event.keyboard.keycode >= ALLEGRO_KEY_A && event.keyboard.keycode <= ALLEGRO_KEY_Z) {
+            tabJoueur[joueurActuel].pseudo[numCharPseudo] = (char) (event.keyboard.keycode + 96);
+            numCharPseudo++;
+        }
+        if (event.keyboard.keycode == ALLEGRO_KEY_BACKSPACE){
+            if (numCharPseudo >= 1){
+                numCharPseudo--;
+                tabJoueur[joueurActuel].pseudo[numCharPseudo] = '\0';
+            }
+        }
+    }
 }*/
+
+
+
+/*void deplacementJoueur(Joueur *joueur[],Map map[20][20]){
+    joueur[0]->x = map[0][0].x;
+    joueur[0]->y = map[0][0].y;
+    if(joueur[0]->t==1) {
+        if (joueur[0]->xp< map[joueur[0]->a][joueur[0]->b].x && joueur[0]->xp != map[joueur[0]->a][joueur[0]->b].x){
+            joueur[0]->xp = joueur[0]->xp + 1;
+        }
+        if (joueur[0]->xp>map[joueur[0]->a][joueur[0]->b].x && joueur[0]->xp != map[joueur[0]->a][joueur[0]->b].x){
+            joueur[0]->xp = joueur[0]->xp - 1;
+        }
+*/
+
