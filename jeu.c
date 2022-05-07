@@ -125,7 +125,7 @@ void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLE
 
 
     ///4 RECTANGLES DES JOUEURS
-    float tailleRectangle = 17*ecran.width/64 - 7*ecran.width/64 + 61*ecran.width/192 - 17*ecran.width/64;
+    float tailleRectangle = 17*ecran.width/64 - 7*ecran.width/64 + 61*ecran.width/192 - 17*ecran.width/64 ;
     al_draw_filled_rounded_rectangle(7*ecran.width/64, 2*ecran.height/3, 17*ecran.width/64, ecran.height+15, 10, 10,al_map_rgb(255 , 0 , 0));
     al_draw_text(bigGameFont, al_map_rgb(139, 0, 0), 5*(17*ecran.width/64 - 7*ecran.width/64)/6, 3*ecran.height/4, ALLEGRO_ALIGN_LEFT, "P1") ;
 
