@@ -126,7 +126,7 @@ void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLE
 
 
     ///4 RECTANGLES DES JOUEURS
-    float tailleRectangle = 17*ecran.width/64 - 7*ecran.width/64 + 61*ecran.width/192 - 17*ecran.width/64;
+    float tailleRectangle = 17*ecran.width/64 - 7*ecran.width/64 + 61*ecran.width/192 - 17*ecran.width/64 ;
     al_draw_filled_rounded_rectangle(7*ecran.width/64, 2*ecran.height/3, 17*ecran.width/64, ecran.height+15, 10, 10,al_map_rgb(255 , 0 , 0));
     al_draw_text(bigGameFont, al_map_rgb(139, 0, 0), 5*(17*ecran.width/64 - 7*ecran.width/64)/6, 3*ecran.height/4, ALLEGRO_ALIGN_LEFT, "P1") ;
 
@@ -185,22 +185,17 @@ void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLE
 
         //case MARIO :
         if ((float) ecran.mouse_x < ecran.width/3.6 && ecran.mouse_x > ecran.width/5.76 && (float) ecran.mouse_y < ecran.height/1.8 && ecran.mouse_y > 7*ecran.height/18) {
-            float tailleKirbyIcone = 15/tailleKirby ;
-            al_draw_scaled_bitmap(jeu.classes[KIRBY].image, 0, 0, 4389, 4389, ecran.width/9 + 5* ecran.width/24, 25*ecran.height/36, 4389/15,4389/15, 0) ;
-            al_draw_scaled_bitmap(jeu.classes[KIRBY].image, 0, 0, 4389, 4389, ecran.width/9 + tailleRectangle, 25*ecran.height/36, 4389/(ecran.width/128),4389/(ecran.width/128), 0) ;
+            al_draw_scaled_bitmap(jeu.classes[KIRBY].image, 0, 0, 4389, 4389, ecran.width/9 + tailleRectangle, 25*ecran.height/36, 17*ecran.width/64 - 7*ecran.width/64,17*ecran.width/64 - 7*ecran.width/64, 0) ;
 
         }
         //case pacman
         else if ((float) ecran.mouse_x < 5*ecran.width/12 && ecran.mouse_x > 5*ecran.width/16 && (float) ecran.mouse_y < 5*ecran.height/9 && ecran.mouse_y >7*ecran.height/18) {
-            float taillePacmanIcone = 17/(5*taillePacman);
-            al_draw_scaled_bitmap(jeu.classes[PACMAN].image, 0, 0, 1000, 1000, ecran.width / 9 + 2*tailleRectangle,25 * ecran.height / 36, 1000/(17*ecran.width/9600), 1000/(17*ecran.width/9600), 0);
+            al_draw_scaled_bitmap(jeu.classes[PACMAN].image, 0, 0, 1000, 1000, ecran.width / 9 + 2*tailleRectangle,25 * ecran.height / 36, 17*ecran.width/64 - 7*ecran.width/64, 17*ecran.width/64 - 7*ecran.width/64, 0);
         }
 
         //case  rose
         else if ((float) ecran.mouse_x < 5 * ecran.width / 9 && ecran.mouse_x > 65 * ecran.width / 144 && (float) ecran.mouse_y < 5*ecran.height/9 && ecran.mouse_y >7*ecran.height/18) {
-            float taillePeachIconeX = 37/(10*taillePeachX);
-            float taillePeachIconey = 9/(2*taillePeachY);
-            al_draw_scaled_bitmap(jeu.classes[PEACH].image, 0, 0, 1200, 1355, 102*ecran.width/192, 17*ecran.height/25, 1200/(37*ecran.width/19200), 1355/(3*ecran.width/1280), 0);
+            al_draw_scaled_bitmap(jeu.classes[PEACH].image, 0, 0, 1200, 1355, 102*ecran.width/192, 17*ecran.height/25, 17*ecran.width/64 - 7*ecran.width/64, 1355*(17*ecran.width/64 - 7*ecran.width/64)/1200, 0);
         }
 
         //case turquoise
