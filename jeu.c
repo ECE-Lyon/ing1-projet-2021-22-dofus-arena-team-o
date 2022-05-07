@@ -144,6 +144,7 @@ void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLE
     al_draw_text(bigGameFont, al_map_rgb(21, 21, 118), 29*(91*ecran.width/192 - 61*ecran.width/192)/6, 3*ecran.height/4, ALLEGRO_ALIGN_LEFT, "P4") ;
     //al_draw_filled_rounded_rectangle(47*ecran.width/64, 2*ecran.height/3, 57*ecran.width/64, ecran.height+15, 10, 10,al_map_rgb( 150, 150, 150));
 
+
     ///BOUTON RETURN
     if ((float) ecran.mouse_x < 5*ecran.width/32 && ecran.mouse_x > ecran.width/384 && (float) ecran.mouse_y < 2*ecran.height/27 && ecran.mouse_y > ecran.height/216) {
         al_draw_filled_rectangle(ecran.width/384, ecran.height/216, 5*ecran.width/32, 2*ecran.height/27, al_map_rgb(200,200,200)) ;
@@ -152,6 +153,23 @@ void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLE
     else   {
         al_draw_filled_rectangle(ecran.width/384, ecran.height/216, 5*ecran.width/32, 2*ecran.height/27, al_map_rgb(255,255,255)) ;
         al_draw_text(gameFont, al_map_rgb(0, 0, 0), (5*ecran.width/32 - ecran.width/384)/2 + police/20, (2*ecran.height/27-ecran.height/216)/2 - police/3.5, ALLEGRO_ALIGN_CENTER, "RETURN") ;
+    }
+
+    /// BOUTON SUIVANT
+
+    if ((float) ecran.mouse_x < 383 * ecran.width / 384 && ecran.mouse_x > ecran.width / 1.2 && (float) ecran.mouse_y < 215 * ecran.height / 216 && ecran.mouse_y > ecran.height / 1.08) {
+        al_draw_filled_rectangle(ecran.width / 1.2, 215 * ecran.height / 216, 383 * ecran.width / 384,
+                                 ecran.height / 1.08,
+                                 al_map_rgb(200, 200, 200));
+        al_draw_text(gameFont, al_map_rgb(0, 0, 0), 59 * ecran.width / 64 - police / 50,
+                     103 * ecran.height / 108 - police / 4,
+                     ALLEGRO_ALIGN_CENTER, "SUIVANT");
+        al_draw_filled_rectangle(ecran.width / 1.2, 215 * ecran.height / 216, 383 * ecran.width / 384,
+                                 ecran.height / 1.08,
+                                 al_map_rgb(255, 255, 255));
+        al_draw_text(gameFont, al_map_rgb(0, 0, 0), 59 * ecran.width / 64 - police / 50,
+                     103 * ecran.height / 108 - police / 4,
+                     ALLEGRO_ALIGN_CENTER, "SUIVANT");
     }
 
     ///CHOISIR UN PERSONNAGE :
@@ -220,16 +238,6 @@ void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLE
                               2 * ecran.height / 3, 50, 50, 0);
         //al_draw_filled_rounded_rectangle(47*ecran.width/64, 2*ecran.height/3, 57*ecran.width/64, ecran.height+15, 10, 10,al_map_rgb( 0, 69, 128));
     }
-    /// BOUTON SUIVANT
-
-    al_draw_filled_rectangle(ecran.width / 1.2, 215 * ecran.height / 216, 383 * ecran.width / 384, ecran.height / 1.08,
-                                     al_map_rgb(200, 200, 200));
-    al_draw_text(gameFont, al_map_rgb(0, 0, 0), 59 * ecran.width / 64 - police / 50, 103 * ecran.height / 108 - police / 4,
-                         ALLEGRO_ALIGN_CENTER, "SUIVANT");
-    al_draw_filled_rectangle(ecran.width / 1.2, 215 * ecran.height / 216, 383 * ecran.width / 384, ecran.height / 1.08,
-                                     al_map_rgb(255, 255, 255));
-    al_draw_text(gameFont, al_map_rgb(0, 0, 0), 59 * ecran.width / 64 - police / 50, 103 * ecran.height / 108 - police / 4,
-                         ALLEGRO_ALIGN_CENTER, "SUIVANT");
 
 }
 

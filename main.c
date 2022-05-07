@@ -269,6 +269,7 @@ int main() {
                                     jeu.gameMode = CHOIXCLASSE;
                                     initialiserJoueur(&jeu, map);
                                 }
+
                                 break;
                             }
                             case CHOIXCLASSE : {
@@ -279,6 +280,9 @@ int main() {
                                 }
                                 if ((float) mouse_x < width/3.6 && mouse_x > width/5.76 && (float) mouse_y < height/1.8 && mouse_y > 7*height/18) {
                                     al_draw_filled_rectangle(7 * width / 64 + width / 38.4,2 * (height / 3) + height / 18,7 * width / 64 + 37 * width / 288,2 * (height / 3) + 19 * height / 90,al_map_rgb(246, 97, 65));
+                                }
+                                if ((float) mouse_x < mouse_x < 383 * width / 384  && mouse_x > width / 1.2  && (float) mouse_y <  215 * height / 216   && mouse_y > height / 1.08  ){
+                                    jeu.gameMode = JEU;
                                 }
                                 break;
                             }

@@ -18,7 +18,7 @@
 
 enum gameMode {PLAY, RULES, TEAM, MENU, CHOIXPERSO, END};
 enum personnage {MARIO, PACMAN, KIRBY, PEACH, DONKEY_KONG, VIDE};
-enum play {CHOIXNBJOUEUR, CHOIXCLASSE, JEU};
+enum play {CHOIXNBJOUEUR, CHOIXCLASSE, PLATE, JEU};
 
 
 typedef struct {

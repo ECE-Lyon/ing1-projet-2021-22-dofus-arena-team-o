@@ -13,7 +13,6 @@ void initialiserMenu(Menu* mainMenu, float width, float height) {
     mainMenu->arc.currentEndTheta = 2 * PI;
 }
 
-
 void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y, ALLEGRO_FONT* gameFontRegles, ALLEGRO_FONT* gameFont) {
     int police = 2*width/55 ;
     int policeRegles = 40;
@@ -119,7 +118,6 @@ void afficherPages(int pages, ALLEGRO_FONT* gameFontRegles, ALLEGRO_COLOR gameCo
         }
     }
 }
-
 
 void drawTeam(float height, float width, int mouse_x, int mouse_y, ALLEGRO_FONT *gameFont, ALLEGRO_BITMAP* team) {
     float police = 2*width/55 ;

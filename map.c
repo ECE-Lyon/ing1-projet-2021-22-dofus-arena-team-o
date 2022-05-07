@@ -17,7 +17,7 @@ void drawPlay(Joueurs *joueur,Map map[20][20],int mouse_x,int mouse_y,double wid
             al_draw_filled_triangle(map[i][j].x - scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -
                                                                                                                        scaley, white);
             al_draw_filled_triangle(map[i][j].x + scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -
-                                                                                                                       scaley, white);
+            scaley, white);
         }
     }
 
