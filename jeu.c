@@ -206,12 +206,22 @@ void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLE
     }
 
    // case violet
-        else if ((float) ecran.mouse_x < 5*ecran.width/6 && ecran.mouse_x > 35*ecran.width/48 && (float) ecran.mouse_y < 5*ecran.height/9 && ecran.mouse_y >7*ecran.height/18) {
-            float tailleMarioIcone = 17/(5*taillePacman);
-            al_draw_scaled_bitmap(jeu.classes[DONKEY_KONG].image, 0, 0, 1200, 1200, 47*ecran.width/64,2*ecran.height/3, 50, 50, 0);
-            //al_draw_filled_rounded_rectangle(47*ecran.width/64, 2*ecran.height/3, 57*ecran.width/64, ecran.height+15, 10, 10,al_map_rgb( 0, 69, 128));
+   else if ((float) ecran.mouse_x < 5*ecran.width/6 && ecran.mouse_x > 35*ecran.width/48 && (float) ecran.mouse_y < 5*ecran.height/9 && ecran.mouse_y >7*ecran.height/18) {
+       float tailleMarioIcone = 17/(5*taillePacman);
+       al_draw_scaled_bitmap(jeu.classes[DONKEY_KONG].image, 0, 0, 1200, 1200, 47*ecran.width/64,2*ecran.height/3, 50, 50, 0);
+       //al_draw_filled_rounded_rectangle(47*ecran.width/64, 2*ecran.height/3, 57*ecran.width/64, ecran.height+15, 10, 10,al_map_rgb( 0, 69, 128));
 
-        }
+   }
+
+   /// BOUTON PLAY
+   if (((float) ecran.mouse_x - 1829)*((float) ecran.mouse_x - 1829) + ((float) ecran.mouse_y - 980)*((float) ecran.mouse_y - 980) < 80*80 ) {
+    al_draw_filled_circle(1820, 980, 80, al_map_rgb(200, 200, 200));
+    al_draw_text(gameFont, al_map_rgb(0, 0, 0), 1810, 955, ALLEGRO_ALIGN_CENTER, "PLAY") ;
+    }
+    else {
+        al_draw_filled_circle(1820, 980, 80, al_map_rgba(255, 255, 255, 200));
+        al_draw_text(gameFont, al_map_rgb(0, 0, 0), 1810, 955, ALLEGRO_ALIGN_CENTER, "PLAY") ;
+    }
 }
 
 /*
