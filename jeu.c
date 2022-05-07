@@ -193,13 +193,13 @@ void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLE
     }
 
     /// BOUTON PLAY
-    if (((float) ecran.mouse_x - 1829)*((float) ecran.mouse_x - 1829) + ((float) ecran.mouse_y - 980)*((float) ecran.mouse_y - 980) < 80*80 ) {
-        al_draw_filled_circle(1820, 980, 80, al_map_rgb(200, 200, 200));
-        al_draw_text(gameFont, al_map_rgb(0, 0, 0), 1810, 955, ALLEGRO_ALIGN_CENTER, "PLAY") ;
+    if (((float) ecran.mouse_x - 1829*ecran.width/1920)*((float) ecran.mouse_x - 1829*ecran.width/1920) + ((float) ecran.mouse_y - 49*ecran.height/54)*((float) ecran.mouse_y - 49*ecran.height/54) < 80*80 ) {
+        al_draw_filled_circle(1829*ecran.width/1920, 49*ecran.height/54, 80, al_map_rgb(200, 200, 200));
+        al_draw_text(gameFont, al_map_rgb(0, 0, 0), 91*ecran.width/96, 191*ecran.height/216, ALLEGRO_ALIGN_CENTER, "PLAY") ;
     }
     else {
-        al_draw_filled_circle(1820, 980, 80, al_map_rgba(255, 255, 255, 200));
-        al_draw_text(gameFont, al_map_rgb(0, 0, 0), 1810, 955, ALLEGRO_ALIGN_CENTER, "PLAY") ;
+        al_draw_filled_circle(1829*ecran.width/1920, 49*ecran.height/54, 80, al_map_rgba(255, 255, 255, 200));
+        al_draw_text(gameFont, al_map_rgb(0, 0, 0), 91*ecran.width/96, 191*ecran.height/216, ALLEGRO_ALIGN_CENTER, "PLAY") ;
     }
 }
 
