@@ -292,3 +292,7 @@ void dessinerQuadrillage(double  width, double height,double scalex,double scale
         al_draw_line(width/1.8+i*scalex,i*scaley,i*scalex,height/1.8+scaley*i, black,2);
     }
 }
+
+void affichageSorts(ALLEGRO_BITMAP* , InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLEGRO_FONT* bigGameFont){
+
+}
