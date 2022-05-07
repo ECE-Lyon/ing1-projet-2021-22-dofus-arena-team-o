@@ -220,6 +220,17 @@ void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLE
                               2 * ecran.height / 3, 50, 50, 0);
         //al_draw_filled_rounded_rectangle(47*ecran.width/64, 2*ecran.height/3, 57*ecran.width/64, ecran.height+15, 10, 10,al_map_rgb( 0, 69, 128));
     }
+    /// BOUTON SUIVANT
+
+    al_draw_filled_rectangle(ecran.width / 1.2, 215 * ecran.height / 216, 383 * ecran.width / 384, ecran.height / 1.08,
+                                     al_map_rgb(200, 200, 200));
+    al_draw_text(gameFont, al_map_rgb(0, 0, 0), 59 * ecran.width / 64 - police / 50, 103 * ecran.height / 108 - police / 4,
+                         ALLEGRO_ALIGN_CENTER, "SUIVANT");
+    al_draw_filled_rectangle(ecran.width / 1.2, 215 * ecran.height / 216, 383 * ecran.width / 384, ecran.height / 1.08,
+                                     al_map_rgb(255, 255, 255));
+    al_draw_text(gameFont, al_map_rgb(0, 0, 0), 59 * ecran.width / 64 - police / 50, 103 * ecran.height / 108 - police / 4,
+                         ALLEGRO_ALIGN_CENTER, "SUIVANT");
+
 }
 
 /*
