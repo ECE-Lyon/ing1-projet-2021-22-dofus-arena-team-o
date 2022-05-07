@@ -291,6 +291,25 @@ void dessinerQuadrillage(double  width, double height,double scalex,double scale
     }
 }
 
-/*void affichageSorts( InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLEGRO_FONT* bigGameFont){
+void drawSort( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran){
+    /*
+    int nbJoueur = 3;
+    for (int i = nbJoueur; i < nbJoueur; i++){
+        al_draw_scaled_bitmap(jeu.classes[KIRBY].image, 0, 0, 800, 800, 500, 1000, 1000 ,900,  0) ;
+    }*/
 
-}*/
+               ///////////////   AFFICHACHAGE  BARRE SORTS //////////////
+    al_draw_scaled_bitmap(jeu.classes->sortADisposition[BARRE].iconeSort, 0, 0, 1000, 2000, 1700, 1580, 1900 ,1345,  0) ;
+    al_draw_scaled_bitmap(jeu.classes->sortADisposition[PV].iconeSort, 0, 0, 1000, 2000, 2200, 0, 1600 ,1300,  0) ;
+
+
+    ///////// On prend pour l'instant en compte que la Classe KIRBY Pour Exemple ///////////////  pck nsm ça marche cette merde
+
+    al_draw_scaled_bitmap(jeu.classes->sortADisposition[STOP].iconeSort, 0, 0, 2000, 2000, 2079, 1620, 800 ,800,  0) ;
+    al_draw_scaled_bitmap(jeu.classes->sortADisposition[SPECIAL].iconeSort, 0, 0, 2000, 2000, 1900, 1610, 915 ,915,  0) ;
+    al_draw_scaled_bitmap(jeu.classes->sortADisposition[RALENTIR].iconeSort, 0, 0, 2000, 2000, 2430, 1600, 839 ,839,  0) ;
+    al_draw_scaled_bitmap(jeu.classes->sortADisposition[FLEMME].iconeSort, 0, 0, 2000, 2000, 2255, 1595, 834 ,834,  0) ;
+    al_draw_scaled_bitmap(jeu.classes->sortADisposition[FATAL].iconeSort, 0, 0, 2000, 2000, 2566, 1615, 880 ,880,  0) ;
+    //al_draw_scaled_bitmap(jeu.classes->sortADisposition[RECULER].iconeSort, 0, 0, 2000, 2000, 2300, 1600, 900 ,900,  0) ;
+
+}
