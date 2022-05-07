@@ -16,7 +16,7 @@
 
 #define PI 3.141592
 
-enum gameMode {PLAY, RULES, TEAM, MENU, END};
+enum gameMode {PLAY, RULES, TEAM, MENU, CHOIXPERSO, END};
 enum personnage {VIDE, MARIO, PACMAN, KIRBY, PEACH,DONKEY_KONG};
 enum play {CHOIXNBJOUEUR, CHOIXCLASSE, JEU};
 
@@ -61,7 +61,7 @@ typedef struct {
 
 } Map;
 
-void initialiserIconeClasse(ALLEGRO_BITMAP* pacman, ALLEGRO_BITMAP* kirby, ALLEGRO_BITMAP* peach, ALLEGRO_BITMAP* mario, Classe* classes) ;
+void initialiserIconeClasse(ALLEGRO_BITMAP* pacman, ALLEGRO_BITMAP* kirby, ALLEGRO_BITMAP* peach, ALLEGRO_BITMAP* mario, ALLEGRO_BITMAP* donkey_kong, Classe* classes);
 void initialiserEcran (InfoEcran* ecran, double width, double height) ;
 void initialiserJeu(Jeux* jeu) ;
 void initialiserJoueur(Jeux* jeu, Map map[20][20]) ;

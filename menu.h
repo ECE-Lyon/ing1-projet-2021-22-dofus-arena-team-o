@@ -19,7 +19,7 @@ typedef struct {
 
 /// A METTRE DANS UN FICHIER .C/.H CAR GRANDE STRUCTURE
 typedef struct {
-    int playRect, rulesRect, teamRect, gameMode;
+    int playRect, rulesRect, teamRect, gameMode, persoRect;
     ArcDeCercle arc ;
     InfoEcran ecran ;
 } Menu;

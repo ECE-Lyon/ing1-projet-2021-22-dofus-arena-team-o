@@ -50,6 +50,7 @@ int main() {
     ALLEGRO_BITMAP *pacmanIcone = al_load_bitmap("../Bitmap/PacMan_Icone.png");
     ALLEGRO_BITMAP *peachIcone = al_load_bitmap("../Bitmap/Peach_Icone.png");
     ALLEGRO_BITMAP *marioIcone = al_load_bitmap("../Bitmap/Mario_Icone.png") ;
+    ALLEGRO_BITMAP *donkey_kongIcone = al_load_bitmap("../Bitmap/DonkeyKong_Icone.png") ;
 
 
     queue = al_create_event_queue();
@@ -78,7 +79,7 @@ int main() {
     }
 
     ///INITIALISATION DE NOS VARIABLES
-    initialiserIconeClasse(pacmanIcone, kirbyIcone, peachIcone, marioIcone, jeu.classes) ;
+    initialiserIconeClasse(pacmanIcone, kirbyIcone, peachIcone, marioIcone, donkey_kongIcone, jeu.classes) ;
     initialiserMenu(&mainMenu, width, height);
     initialiserJeu(&jeu);
     initialiserEcran(&ecran, width, height);

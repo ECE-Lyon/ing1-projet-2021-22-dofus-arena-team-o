@@ -1,10 +1,11 @@
 #include "jeu.h"
 
-void initialiserIconeClasse(ALLEGRO_BITMAP* pacman, ALLEGRO_BITMAP* kirby, ALLEGRO_BITMAP* peach, ALLEGRO_BITMAP* mario, Classe* classes) {
+void initialiserIconeClasse(ALLEGRO_BITMAP* pacman, ALLEGRO_BITMAP* kirby, ALLEGRO_BITMAP* peach, ALLEGRO_BITMAP* mario, ALLEGRO_BITMAP* donkey_kong, Classe* classes) {
     classes[KIRBY].image = kirby ;
     classes[PACMAN].image = pacman ;
     classes[PEACH].image = peach ;
     classes[MARIO].image = mario ;
+    classes[DONKEY_KONG].image = donkey_kong;
 }
 
 void initialiserJeu(Jeux* jeu) {
@@ -174,27 +175,23 @@ void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLE
     al_draw_scaled_bitmap(jeu.classes[MARIO].image, 0, 0, 2000, 2000, 86*ecran.width/144,7*ecran.height/18, 2000/tailleMario ,2000/tailleMario, 0) ;
 
 
-    ///5) ???
+    ///5) DONKEY KONG
+    float tailleDonkey_kong = 1500 / longueurCarre;
     al_draw_filled_rectangle(35*ecran.width/48,7*ecran.height/18, 5*ecran.width/6, 5*ecran.height/9, al_map_rgb(190, 130, 200));
+   // al_draw_scaled_bitmap(jeu.classes[DONKEY_KONG].image, 0, 0, 1000, 1000,35*ecran.width/48 , 7*ecran.height/18, 1000 ,1000, 0) ;
+    //al_draw_scaled_bitmap(jeu.classes[DONKEY_KONG].image, 0, 0, 2000, 2000, 100*ecran.width/16, 7*ecran.height/18, 1500/tailleDonkey_kong ,1500/tailleDonkey_kong, 0) ;
 
-    /*al_draw_filled_rectangle(ecran.width/8, 37*ecran.height/40, 143*ecran.width/576, 589*ecran.height/600, al_map_rgb(216, 216, 216));
-    al_draw_filled_rectangle(ecran.width/3, 37*ecran.height/40, 263*ecran.width/576, 589*ecran.height/600, al_map_rgb(216, 216, 216));
-    al_draw_filled_rectangle(13*ecran.width/24, 37*ecran.height/40, 383*ecran.width/576, 589*ecran.height/600, al_map_rgb(216, 216, 216));
-    al_draw_filled_rectangle(3*ecran.width/4, 37*ecran.height/40, 503*ecran.width/576, 589*ecran.height/600, al_map_rgb(216, 216, 216)) ;
-*/
-    // classe[MARIO] = (float) mouse_x < 800 && mouse_x > 500 && (float) mouse_y < 1000 && mouse_y > 700;
 
-    //switch ((*joueur)->classe){
         //case MARIO :
         if ((float) ecran.mouse_x < ecran.width/3.6 && ecran.mouse_x > ecran.width/5.76 && (float) ecran.mouse_y < ecran.height/1.8 && ecran.mouse_y > 7*ecran.height/18) {
             float tailleKirbyIcone = 15/tailleKirby ;
-            al_draw_scaled_bitmap(jeu.classes[KIRBY].image, 0, 0, 4389, 4389, ecran.width/9 + 400, 25*ecran.height/36, 4389/(tailleKirby*tailleKirbyIcone),4389/(tailleKirby*tailleKirbyIcone), 0) ;
+            al_draw_scaled_bitmap(jeu.classes[KIRBY].image, 0, 0, 4389, 4389, ecran.width/9 + 5* ecran.width/24, 25*ecran.height/36, 4389/15,4389/15, 0) ;
 
         }
         //case pacman
         else if ((float) ecran.mouse_x < 5*ecran.width/12 && ecran.mouse_x > 5*ecran.width/16 && (float) ecran.mouse_y < 5*ecran.height/9 && ecran.mouse_y >7*ecran.height/18) {
             float taillePacmanIcone = 17/(5*taillePacman);
-            al_draw_scaled_bitmap(jeu.classes[PACMAN].image, 0, 0, 1000, 1000, ecran.width / 9 + 800,25 * ecran.height / 36, 1000/(taillePacman*taillePacmanIcone), 1000/(taillePacman*taillePacmanIcone), 0);
+            al_draw_scaled_bitmap(jeu.classes[PACMAN].image, 0, 0, 1000, 1000, ecran.width / 9 ,25 * ecran.height / 36, 1000/(565+ecran.width), 1000/(17*ecran.width / 9600), 0);
         }
 
         //case  rose
@@ -204,24 +201,36 @@ void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLE
             al_draw_scaled_bitmap(jeu.classes[PEACH].image, 0, 0, 1200, 1355, 102*ecran.width/192, 17*ecran.height/25, 1200/3.7, 1355/4.5, 0);
         }
 
+        //case turquoise
 
+    else if ((float) ecran.mouse_x < 25*ecran.width/36 && ecran.mouse_x > 85*ecran.width/144 && (float) ecran.mouse_y < 5*ecran.height/9 && ecran.mouse_y >7*ecran.height/18) {
+            float tailleMarioIcone = 17/(5*taillePacman);
+            al_draw_scaled_bitmap(jeu.classes[MARIO].image, 0, 0, 2000, 2000, 47*ecran.width/64,2*ecran.height/3, 17*(taillePacman*tailleMario), 17*(taillePacman*tailleMario), 0);
+    }
 
+    //case violet
+        else if ((float) ecran.mouse_x < 5*ecran.width/6 && ecran.mouse_x > 35*ecran.width/48 && (float) ecran.mouse_y < 5*ecran.height/9 && ecran.mouse_y >7*ecran.height/18) {
+            float tailleMarioIcone = 17/(5*taillePacman);
+            al_draw_scaled_bitmap(jeu.classes[DONKEY_KONG].image, 0, 0, 800, 800, 47*ecran.width/64,2*ecran.height/3, 17*(tailleDonkey_kong*tailleMario), 17*(tailleDonkey_kong*tailleMario), 0);
 
-
-
-
-
-    //for(int i = 0; i<=nbJoueur; i++){
+        }
 }
 
+/*
 void attribuerBitmapPersonnage(Joueurs** joueurActuel, ALLEGRO_FONT* gameFont){
     /*(*joueurActuel)->classe.personnage[VIDE].image  = gameFont;
     (*joueurActuel)->classe.personnage[MARIO].image = gameFont;
     (*joueurActuel)->classe.personnage[LUIGI].image = gameFont;
     (*joueurActuel)->classe.personnage[KIRBY].image = gameFont;
     (*joueurActuel)->classe.personnage[PEACH].image = gameFont;
-    (*joueurActuel)->classe.personnage[ZELDA].image = gameFont; */
-}
+    (*joueurActuel)->classe.personnage[ZELDA].image = gameFont;
+
+
+    /*al_draw_filled_rectangle(ecran.width/8, 37*ecran.height/40, 143*ecran.width/576, 589*ecran.height/600, al_map_rgb(216, 216, 216));
+    al_draw_filled_rectangle(ecran.width/3, 37*ecran.height/40, 263*ecran.width/576, 589*ecran.height/600, al_map_rgb(216, 216, 216));
+    al_draw_filled_rectangle(13*ecran.width/24, 37*ecran.height/40, 383*ecran.width/576, 589*ecran.height/600, al_map_rgb(216, 216, 216));
+    al_draw_filled_rectangle(3*ecran.width/4, 37*ecran.height/40, 503*ecran.width/576, 589*ecran.height/600, al_map_rgb(216, 216, 216)) ;
+*/
 
 
 int getRandomInteger(int min, int max){
