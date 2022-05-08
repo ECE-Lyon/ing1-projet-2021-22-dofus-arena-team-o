@@ -28,6 +28,7 @@ typedef struct {
 
 typedef struct {
     int nbJoueur, joueurQuiJoue ;
+    bool entrerPseudo ;
 } InfosSurLesJoueurs;
 
 
@@ -52,6 +53,7 @@ typedef struct Info{
     int classe;//1 : mario      2 : Luigi     3 : Kirby     4: Peach     5 : Zelda
 }Joueurs;
 
+
 ///STRUCTURE PRINCIPALE DU JEU
 typedef struct {
     InfosSurLesJoueurs info ;
@@ -64,7 +66,6 @@ typedef struct {
     double x,y;
     int t;
     bool obstacle;
-
 } Map;
 
 void initialiserIconeClasse(ALLEGRO_BITMAP* pacman, ALLEGRO_BITMAP* kirby, ALLEGRO_BITMAP* peach, ALLEGRO_BITMAP* mario, ALLEGRO_BITMAP* donkey_kong, Classe* classes);
