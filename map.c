@@ -291,25 +291,14 @@ void dessinerQuadrillage(double  width, double height,double scalex,double scale
     }
 }
 
-void drawSort( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran){
-    /*
-    int nbJoueur = 3;
-    for (int i = nbJoueur; i < nbJoueur; i++){
-        al_draw_scaled_bitmap(jeu.classes[KIRBY].image, 0, 0, 800, 800, 500, 1000, 1000 ,900,  0) ;
-    }*/
+void drawSort( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran){  //il faudra ajouter dans les parametres la var du nbJoueur pour la boucle de for
 
-               ///////////////   AFFICHACHAGE  BARRE SORTS //////////////
+
+    ///////////////   AFFICHACHAGE  BARRE SORTS //////////////
     al_draw_scaled_bitmap(jeu.classes->sortADisposition[BARRE].iconeSort, 0, 0, 1000, 2000, 1700, 1580, 1900 ,1345,  0) ;
     al_draw_scaled_bitmap(jeu.classes->sortADisposition[PV].iconeSort, 0, 0, 1000, 2000, 2200, 0, 1600 ,1300,  0) ;
 
-
     ///////// On prend pour l'instant en compte que la Classe KIRBY Pour Exemple ///////////////  pck nsm ça marche pas cette merde
-
-    //al_draw_scaled_bitmap(jeu.classes->sortADisposition[SPECIAL].iconeSort, 0, 0, 2000, 2000, 1900, 1610, 915 ,915,  0) ;
-   //al_draw_scaled_bitmap(jeu.classes->sortADisposition[RALENTIR].iconeSort, 0, 0, 2000, 2000, 2430, 1600, 839 ,839,  0) ;
-    //al_draw_scaled_bitmap(jeu.classes->sortADisposition[FLEMME].iconeSort, 0, 0, 2000, 2000, 2255, 1595, 834 ,834,  0) ;
-    //al_draw_scaled_bitmap(jeu.classes->sortADisposition[FATAL].iconeSort, 0, 0, 2000, 2000, 2566, 1615, 880 ,880,  0) ;
-    //al_draw_scaled_bitmap(jeu.classes->sortADisposition[RECULER].iconeSort, 0, 0, 2000, 2000, 2300, 1600, 900 ,900,  0) ;
 
     if ((float) ecran.mouse_x < 2245 && ecran.mouse_x > 2130 && (float) ecran.mouse_y < 1770 && ecran.mouse_y > 1620 ){
         al_draw_scaled_bitmap(jeu.classes->sortADisposition[STOP].iconeSort, 0, 0, 2000, 2000, 2079, 1620, 850 ,850,  0) ;
@@ -334,8 +323,26 @@ void drawSort( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran){
     if ((float) ecran.mouse_x < 2710 && ecran.mouse_x > 2605 && (float) ecran.mouse_y < 1765 && ecran.mouse_y > 1620 ) {
         al_draw_scaled_bitmap(jeu.classes->sortADisposition[FATAL].iconeSort, 0, 0, 2000, 2000, 2566, 1615, 930 ,930,  0) ;
         al_draw_text(gameFont, al_map_rgb(100, 100, 100), 730, 1660, ALLEGRO_ALIGN_CENTER,
-                     "SORT FATAL - ASSOMMEZ VOTRE ADVERSAIRE EN LUI ENLEVANT 3 POINT DE VIR D4UN COUP ");
-    } else { al_draw_scaled_bitmap(jeu.classes->sortADisposition[FATAL].iconeSort, 0, 0, 2000, 2000, 2566, 1615, 880 ,880,  0) ;
-    }
+                     "SORT FATAL - ASSOMMEZ VOTRE ADVERSAIRE EN LUI ENLEVANT 3 POINT DE VIR D'UN COUP ");
+    } else { al_draw_scaled_bitmap(jeu.classes->sortADisposition[FATAL].iconeSort, 0, 0, 2000, 2000, 2566, 1615, 880 ,880,  0) ;}
+
+
+
+/*
+    int nbJoueur = 3;  // o prend par exemple 3 joueurs qui jouent
+    for (int i = nbJoueur; i < nbJoueur; i++) {
+        al_draw_scaled_bitmap(jeu.classes[KIRBY].image, 0, 0, 800, 800, 500, 1000, 1000, 900, 0);
+
+        if ((float) ecran.mouse_x < 2245 && ecran.mouse_x > 2130 && (float) ecran.mouse_y < 1770 &&
+            ecran.mouse_y > 1620) {
+            al_draw_scaled_bitmap(jeu.classes[i].sortADisposition[STOP].iconeSort, 0, 0, 2000, 2000, 2079, 1620, 850,
+                                  850, 0);
+            al_draw_text(gameFont, al_map_rgb(100, 100, 100), 730, 1660, ALLEGRO_ALIGN_CENTER,
+                         "SORT STOP - empechez votre adversaire de jouer au prochain tour ");
+        } else {
+            al_draw_scaled_bitmap(jeu.classes[i].sortADisposition[STOP].iconeSort, 0, 0, 2000, 2000, 2079, 1620, 800, 800,
+                                  0);
+        }
+    }*/
 
 }
