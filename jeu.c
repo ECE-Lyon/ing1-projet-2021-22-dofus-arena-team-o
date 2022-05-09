@@ -29,6 +29,7 @@ void initialiserJeu(Jeux* jeu) {
         free(jeu->joueur) ;
     }
     jeu->joueur = NULL ;
+    jeu->info.entrerPseudo = FALSE ;
 }
 
 void initialiserEcran (InfoEcran* ecran, double width, double height) {
@@ -151,8 +152,6 @@ void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLE
         al_draw_text(gameFont, al_map_rgb(0, 0, 0), ecran.width/2, 5*ecran.height/54, ALLEGRO_ALIGN_CENTER, "Entrez votre pseudo") ;
     }
     else al_draw_text(gameFont, al_map_rgb(0, 0, 0), ecran.width/2, 5*ecran.height/54, ALLEGRO_ALIGN_CENTER, "Entrez votre pseudo") ;
-
-
     if(jeu.joueur[jeu.info.joueurQuiJoue].classe != VIDE) {
         if (jeu.joueur[jeu.info.joueurQuiJoue].pseudo[0] == '\0') {
             if (jeu.info.entrerPseudo == FALSE) {
@@ -176,7 +175,7 @@ void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLE
     al_draw_filled_rounded_rectangle(61*ecran.width/192, 2*ecran.height/3, 91*ecran.width/192, ecran.height+15, 10, 10,al_map_rgb(200 , 200 , 0));
     al_draw_text(bigGameFont, al_map_rgb(153, 153, 0), 13*(91*ecran.width/192 - 61*ecran.width/192)/6, 3*ecran.height/4, ALLEGRO_ALIGN_LEFT, "P2") ;
 
-    ///AFFICHER LE BON NOMBRE DE JOUEUR
+                        ///AFFICHER LE BON NOMBRE DE JOUEUR
     if(jeu.info.nbJoueur > 2) {
         al_draw_filled_rounded_rectangle(101 * ecran.width / 192, 2 * ecran.height / 3, 131 * ecran.width / 192,ecran.height + 15, 10, 10, al_map_rgb(0, 255, 0));
         al_draw_text(bigGameFont, al_map_rgb(0, 139, 0), 21 * (91 * ecran.width / 192 - 61 * ecran.width / 192) / 6,3 * ecran.height / 4, ALLEGRO_ALIGN_LEFT, "P3");

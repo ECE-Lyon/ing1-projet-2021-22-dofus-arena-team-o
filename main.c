@@ -37,37 +37,37 @@ int main() {
     ALLEGRO_COLOR gris = al_map_rgb(128, 128, 128);
     ALLEGRO_COLOR gameColor = al_map_rgb(255, 0, 0);
 
-                            ///FONT//////
+    ///FONT
     ALLEGRO_FONT *bigGameFont = al_load_ttf_font("../Font/Nintendo.ttf", 300, ALLEGRO_ALIGN_CENTER);
     ALLEGRO_FONT *gameFont1 = al_load_ttf_font("../Font/Nintendo.ttf", 72, ALLEGRO_ALIGN_LEFT);
     ALLEGRO_FONT *gameFont = al_load_ttf_font("../Font/MagicCardsNormal.ttf", 2 * width / 55, ALLEGRO_ALIGN_LEFT);
     ALLEGRO_FONT *gameFontRegles = al_load_ttf_font("../Font/Rumpi.ttf", 40, ALLEGRO_ALIGN_LEFT);
 
-                             ///BITMAP////
+    ///BITMAP
     ALLEGRO_BITMAP *background = al_load_bitmap("../Bitmap/BG.jpg");
     ALLEGRO_BITMAP *team = al_load_bitmap("../Bitmap/capture.PNG");
 
-               /////////////////PERSONNAGES/////////////////////
-    ALLEGRO_BITMAP *kirbyIcone = al_load_bitmap("../Bitmap/Kirby_Icone.png");
-    ALLEGRO_BITMAP *pacmanIcone = al_load_bitmap("../Bitmap/PacMan_Icone.png");
-    ALLEGRO_BITMAP *peachIcone = al_load_bitmap("../Bitmap/Peach_Icone.png");
-    ALLEGRO_BITMAP *marioIcone = al_load_bitmap("../Bitmap/Mario_Icone.png") ;
-    ALLEGRO_BITMAP *donkey_kongIcone = al_load_bitmap("../Bitmap/DonkeyKong_Icone.png") ;
+               /////////////////PERSONNAGES LOGO/////////////////////
+    ALLEGRO_BITMAP *kirbyIcone = al_load_bitmap("../Bitmap/Icone/Kirby_Icone.png");
+    ALLEGRO_BITMAP *pacmanIcone = al_load_bitmap("../Bitmap/Icone/PacMan_Icone.png");
+    ALLEGRO_BITMAP *peachIcone = al_load_bitmap("../Bitmap/Icone/Peach_Icone.png");
+    ALLEGRO_BITMAP *marioIcone = al_load_bitmap("../Bitmap/Icone/Mario_Icone.png") ;
+    ALLEGRO_BITMAP *donkey_kongIcone = al_load_bitmap("../Bitmap/Icone/DonkeyKong_Icone.png") ;
 
                /////////////////SORTS/////////////////////
 
-    ALLEGRO_BITMAP * sortFatal= al_load_bitmap("../Bitmap/sortFatal.png");
-    ALLEGRO_BITMAP *sortFlemme = al_load_bitmap("../Bitmap/sortFlemme.png");
-    ALLEGRO_BITMAP *sortRalentir = al_load_bitmap("../Bitmap/sortRalentir.png");
-    ALLEGRO_BITMAP *sortReculer = al_load_bitmap("../Bitmap/sortReculer.png");
-    ALLEGRO_BITMAP *sortSpecial = al_load_bitmap("../Bitmap/sortSpecial.png");
-    ALLEGRO_BITMAP *sortStop = al_load_bitmap("../Bitmap/sortStop.png");
+    ALLEGRO_BITMAP * sortFatal= al_load_bitmap("../Bitmap/Sort/sortFatal.png");
+    ALLEGRO_BITMAP *sortFlemme = al_load_bitmap("../Bitmap/Sort/sortFlemme.png");
+    ALLEGRO_BITMAP *sortRalentir = al_load_bitmap("../Bitmap/Sort/sortRalentir.png");
+    ALLEGRO_BITMAP *sortReculer = al_load_bitmap("../Bitmap/Sort/sortReculer.png");
+    ALLEGRO_BITMAP *sortSpecial = al_load_bitmap("../Bitmap/Sort/sortSpecial.png");
+    ALLEGRO_BITMAP *sortStop = al_load_bitmap("../Bitmap/Sort/sortStop.png");
 
                /////////////////AFFICHAGEPVPMPA/////////////////////
 
-    ALLEGRO_BITMAP *PVversion1 = al_load_bitmap("../Bitmap/PVversion1.png");
-    ALLEGRO_BITMAP *afficherPV = al_load_bitmap("../Bitmap/afficherPV.png");
-    ALLEGRO_BITMAP *afficherSort = al_load_bitmap("../Bitmap/afficherSort.png");
+    ALLEGRO_BITMAP *PVversion1 = al_load_bitmap("../Bitmap/Sort/PVversion1.png");
+    ALLEGRO_BITMAP *afficherPV = al_load_bitmap("../Bitmap/Sort/afficherPV.png");
+    ALLEGRO_BITMAP *afficherSort = al_load_bitmap("../Bitmap/Sort/afficherSort.png");
 
 
 
