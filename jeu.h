@@ -2,6 +2,7 @@
 #define ING1_PROJET_2021_22_DOFUS_ARENA_TEAM_O_JEU_H
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_font.h>
