@@ -92,7 +92,6 @@ int main() {
             map[i][j].x =  scalex + i * scalex + j * scalex;
             map[i][j].y = height/1.8 - i * scaley + j * scaley;
             map[i][j].obstacle=0;
-
         }
     }
 
@@ -318,6 +317,7 @@ int main() {
                             }
                         }
                     }
+                    break;
                 }
                 case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
                     if ((event.mouse.button & 1) == 1) {

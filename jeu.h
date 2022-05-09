@@ -65,7 +65,7 @@ typedef struct {
 typedef struct {
     double x,y;
     int t;
-    bool obstacle;
+    int obstacle;
 } Map;
 
 void initialiserIconeClasse(ALLEGRO_BITMAP* pacman, ALLEGRO_BITMAP* kirby, ALLEGRO_BITMAP* peach, ALLEGRO_BITMAP* mario, ALLEGRO_BITMAP* donkey_kong, Classe* classes);

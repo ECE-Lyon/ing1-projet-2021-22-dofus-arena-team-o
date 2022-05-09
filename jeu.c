@@ -50,6 +50,8 @@ void initialiserJoueur(Jeux* jeu, Map map[20][20]) {
         jeu->joueur[0].caseY = 0;
         jeu->joueur[0].caseXDepart = jeu->joueur[0].caseX;
         jeu->joueur[0].caseYDepart = jeu->joueur[0].caseY;
+        jeu->joueur[0].xArrive=0;
+        jeu->joueur[0].yArrive=0;
         jeu->joueur[0].dep = 0;
     }
 }
