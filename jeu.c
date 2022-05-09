@@ -8,8 +8,48 @@ void initialiserIconeClasse(ALLEGRO_BITMAP* pacman, ALLEGRO_BITMAP* kirby, ALLEG
     classes[DONKEY_KONG].image = donkey_kong;
 }
 
-void initialiserSort (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALLEGRO_BITMAP* sortFlamme, ALLEGRO_BITMAP* sortRalentir, ALLEGRO_BITMAP* sortSpecial, ALLEGRO_BITMAP* sortStop, ALLEGRO_BITMAP* sortReculer, ALLEGRO_BITMAP* afficherSort, ALLEGRO_BITMAP* afficherPV){
-    classe->sortADisposition[FLAMME].iconeSort = sortFlamme;
+void initialiserSortClasseKIRBY (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* sortRalentir, ALLEGRO_BITMAP* sortSpecial, ALLEGRO_BITMAP* sortStop, ALLEGRO_BITMAP* sortReculer, ALLEGRO_BITMAP* afficherSort, ALLEGRO_BITMAP* afficherPV){
+    classe->sortADisposition[FLEMME].iconeSort = sortFlemme;
+    classe->sortADisposition[RALENTIR].iconeSort = sortRalentir;
+    classe->sortADisposition[SPECIAL].iconeSort = sortSpecial;
+    classe->sortADisposition[STOP].iconeSort = sortStop;
+    classe->sortADisposition[RECULER].iconeSort = sortReculer;
+    classe->sortADisposition[FATAL].iconeSort = sortFatal;
+    classe->sortADisposition[BARRE].iconeSort = afficherSort;
+    classe->sortADisposition[PV].iconeSort = afficherPV;
+}
+void initialiserSortClassePACMAN (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* sortRalentir, ALLEGRO_BITMAP* sortSpecial, ALLEGRO_BITMAP* sortStop, ALLEGRO_BITMAP* sortReculer, ALLEGRO_BITMAP* afficherSort, ALLEGRO_BITMAP* afficherPV){
+    classe->sortADisposition[FLEMME].iconeSort = sortFlemme;
+    classe->sortADisposition[RALENTIR].iconeSort = sortRalentir;
+    classe->sortADisposition[SPECIAL].iconeSort = sortSpecial;
+    classe->sortADisposition[STOP].iconeSort = sortStop;
+    classe->sortADisposition[RECULER].iconeSort = sortReculer;
+    classe->sortADisposition[FATAL].iconeSort = sortFatal;
+    classe->sortADisposition[BARRE].iconeSort = afficherSort;
+    classe->sortADisposition[PV].iconeSort = afficherPV;
+}
+void initialiserSortClasseMARIO (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* sortRalentir, ALLEGRO_BITMAP* sortSpecial, ALLEGRO_BITMAP* sortStop, ALLEGRO_BITMAP* sortReculer, ALLEGRO_BITMAP* afficherSort, ALLEGRO_BITMAP* afficherPV){
+    classe->sortADisposition[FLEMME].iconeSort = sortFlemme;
+    classe->sortADisposition[RALENTIR].iconeSort = sortRalentir;
+    classe->sortADisposition[SPECIAL].iconeSort = sortSpecial;
+    classe->sortADisposition[STOP].iconeSort = sortStop;
+    classe->sortADisposition[RECULER].iconeSort = sortReculer;
+    classe->sortADisposition[FATAL].iconeSort = sortFatal;
+    classe->sortADisposition[BARRE].iconeSort = afficherSort;
+    classe->sortADisposition[PV].iconeSort = afficherPV;
+}
+void initialiserSortClassePEACH (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* sortRalentir, ALLEGRO_BITMAP* sortSpecial, ALLEGRO_BITMAP* sortStop, ALLEGRO_BITMAP* sortReculer, ALLEGRO_BITMAP* afficherSort, ALLEGRO_BITMAP* afficherPV){
+    classe->sortADisposition[FLEMME].iconeSort = sortFlemme;
+    classe->sortADisposition[RALENTIR].iconeSort = sortRalentir;
+    classe->sortADisposition[SPECIAL].iconeSort = sortSpecial;
+    classe->sortADisposition[STOP].iconeSort = sortStop;
+    classe->sortADisposition[RECULER].iconeSort = sortReculer;
+    classe->sortADisposition[FATAL].iconeSort = sortFatal;
+    classe->sortADisposition[BARRE].iconeSort = afficherSort;
+    classe->sortADisposition[PV].iconeSort = afficherPV;
+}
+void initialiserSortClasseDONKEYKONG (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* sortRalentir, ALLEGRO_BITMAP* sortSpecial, ALLEGRO_BITMAP* sortStop, ALLEGRO_BITMAP* sortReculer, ALLEGRO_BITMAP* afficherSort, ALLEGRO_BITMAP* afficherPV){
+    classe->sortADisposition[FLEMME].iconeSort = sortFlemme;
     classe->sortADisposition[RALENTIR].iconeSort = sortRalentir;
     classe->sortADisposition[SPECIAL].iconeSort = sortSpecial;
     classe->sortADisposition[STOP].iconeSort = sortStop;

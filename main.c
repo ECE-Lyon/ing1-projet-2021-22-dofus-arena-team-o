@@ -56,14 +56,22 @@ int main() {
 
                /////////////////SORTS/////////////////////
 
-    ALLEGRO_BITMAP * sortFatal= al_load_bitmap("../Bitmap/Sort/sortFatal.png");
     ALLEGRO_BITMAP *sortFlemme = al_load_bitmap("../Bitmap/Sort/sortFlemme.png");
-    ALLEGRO_BITMAP *sortRalentir = al_load_bitmap("../Bitmap/Sort/sortRalentir.png");
-    ALLEGRO_BITMAP *sortReculer = al_load_bitmap("../Bitmap/Sort/sortReculer.png");
-    ALLEGRO_BITMAP *sortSpecial = al_load_bitmap("../Bitmap/Sort/sortSpecial.png");
-    ALLEGRO_BITMAP *sortStop = al_load_bitmap("../Bitmap/Sort/sortStop.png");
+    ALLEGRO_BITMAP *sortFleur = al_load_bitmap("../Bitmap/SortFleur.png");
+    ALLEGRO_BITMAP *sortCorona = al_load_bitmap("../Bitmap/sortCorona.png");
+    ALLEGRO_BITMAP *sortDefence = al_load_bitmap("../Bitmap/sortDefence.png");
+    ALLEGRO_BITMAP *sortSoin = al_load_bitmap("../Bitmap/sortSoin.png");
+    ALLEGRO_BITMAP *sortSaut = al_load_bitmap("../Bitmap/saut.png");
+    ALLEGRO_BITMAP *reculerAdversaire = al_load_bitmap("../Bitmap/reculerAdversaire.png.png");
+    ALLEGRO_BITMAP *couDePoingGant = al_load_bitmap("../Bitmap/poingGant.png.png");
+    ALLEGRO_BITMAP *poing2 = al_load_bitmap("../Bitmap/Poing2.png");
+    ALLEGRO_BITMAP *poing = al_load_bitmap("../Bitmap/poing.png");
+    ALLEGRO_BITMAP *coupDePied = al_load_bitmap("../Bitmap/coupDePied.png");
+    ALLEGRO_BITMAP *coup = al_load_bitmap("../Bitmap/coup.png");
+    ALLEGRO_BITMAP *sortMortel = al_load_bitmap("../Bitmap/sortMortel.png");
 
-               /////////////////AFFICHAGEPVPMPA/////////////////////
+
+    /////////////////AFFICHAGEPVPMPA/////////////////////
 
     ALLEGRO_BITMAP *PVversion1 = al_load_bitmap("../Bitmap/Sort/PVversion1.png");
     ALLEGRO_BITMAP *afficherPV = al_load_bitmap("../Bitmap/Sort/afficherPV.png");
@@ -98,8 +106,11 @@ int main() {
 
     ///INITIALISATION DE NOS VARIABLES
     initialiserIconeClasse(pacmanIcone, kirbyIcone, peachIcone, marioIcone, donkey_kongIcone, jeu.classes);
-    initialiserSort (jeu.classes, sortFatal, sortFlemme, sortRalentir, sortSpecial, sortStop, sortReculer, afficherSort, afficherPV);
-    initialiserMenu(&mainMenu, width, height);
+    //initialiserSort (jeu.classes, sortFatal, sortFlemme, sortRalentir, sortSpecial, sortStop, sortReculer, afficherSort, afficherPV);
+
+
+
+        initialiserMenu(&mainMenu, width, height);
     initialiserJeu(&jeu);
     initialiserEcran(&ecran, width, height);
 
