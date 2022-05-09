@@ -29,7 +29,7 @@ int main() {
     al_set_window_position(display, 0, 0);
 
 
-    ///CREATION DES VARIABLES
+    ///CREATOON DES VARIABLES
     ALLEGRO_COLOR black = al_map_rgb(0, 0, 0);
     ALLEGRO_COLOR red = al_map_rgb(255, 0, 0);
     ALLEGRO_COLOR white = al_map_rgb(255, 255, 255);
@@ -92,6 +92,7 @@ int main() {
             map[i][j].x =  scalex + i * scalex + j * scalex;
             map[i][j].y = height/1.8 - i * scaley + j * scaley;
             map[i][j].obstacle=0;
+
         }
     }
 
@@ -310,14 +311,13 @@ int main() {
                                         }
                                     }
                                 }
-                                if (((float) mouse_x - 1829*ecran.width/1920)*((float) mouse_x - 1829*ecran.width/1920)  + (mouse_y - 49*ecran.height/54)*(mouse_y - 49*ecran.height/54) < 80*80){
+                                if ((float) mouse_x < mouse_x < 383 * width / 384  && mouse_x > width / 1.2  && (float) mouse_y <  215 * height / 216   && mouse_y > height / 1.08  ){
                                     jeu.gameMode = JEU;
                                 }
                                 break;
                             }
                         }
                     }
-                    break;
                 }
                 case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
                     if ((event.mouse.button & 1) == 1) {

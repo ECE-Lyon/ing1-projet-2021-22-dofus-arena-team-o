@@ -8,50 +8,7 @@ void initialiserIconeClasse(ALLEGRO_BITMAP* pacman, ALLEGRO_BITMAP* kirby, ALLEG
     classes[DONKEY_KONG].image = donkey_kong;
 }
 
-void initialiserClasseKIRBY (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* sortRalentir, ALLEGRO_BITMAP* sortSpecial, ALLEGRO_BITMAP* sortStop, ALLEGRO_BITMAP* sortReculer, ALLEGRO_BITMAP* afficherSort, ALLEGRO_BITMAP* afficherPV){
-    classe->sortADisposition[FLEMME].iconeSort = sortFlemme;
-    classe->sortADisposition[RALENTIR].iconeSort = sortRalentir;
-    classe->sortADisposition[SPECIAL].iconeSort = sortSpecial;
-    classe->sortADisposition[STOP].iconeSort = sortStop;
-    classe->sortADisposition[RECULER].iconeSort = sortReculer;
-    classe->sortADisposition[FATAL].iconeSort = sortFatal;
-    classe->sortADisposition[BARRE].iconeSort = afficherSort;
-    classe->sortADisposition[PV].iconeSort = afficherPV;
-}
-
-void initialiserClassePACMAN (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* sortRalentir, ALLEGRO_BITMAP* sortSpecial, ALLEGRO_BITMAP* sortStop, ALLEGRO_BITMAP* sortReculer, ALLEGRO_BITMAP* afficherSort, ALLEGRO_BITMAP* afficherPV){
-    classe->sortADisposition[FLEMME].iconeSort = sortFlemme;
-    classe->sortADisposition[RALENTIR].iconeSort = sortRalentir;
-    classe->sortADisposition[SPECIAL].iconeSort = sortSpecial;
-    classe->sortADisposition[STOP].iconeSort = sortStop;
-    classe->sortADisposition[RECULER].iconeSort = sortReculer;
-    classe->sortADisposition[FATAL].iconeSort = sortFatal;
-    classe->sortADisposition[BARRE].iconeSort = afficherSort;
-    classe->sortADisposition[PV].iconeSort = afficherPV;
-}
-
-void initialiserClassePEACH (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* sortRalentir, ALLEGRO_BITMAP* sortSpecial, ALLEGRO_BITMAP* sortStop, ALLEGRO_BITMAP* sortReculer, ALLEGRO_BITMAP* afficherSort, ALLEGRO_BITMAP* afficherPV){
-    classe->sortADisposition[FLEMME].iconeSort = sortFlemme;
-    classe->sortADisposition[RALENTIR].iconeSort = sortRalentir;
-    classe->sortADisposition[SPECIAL].iconeSort = sortSpecial;
-    classe->sortADisposition[STOP].iconeSort = sortStop;
-    classe->sortADisposition[RECULER].iconeSort = sortReculer;
-    classe->sortADisposition[FATAL].iconeSort = sortFatal;
-    classe->sortADisposition[BARRE].iconeSort = afficherSort;
-    classe->sortADisposition[PV].iconeSort = afficherPV;
-}
-void initialiserClasseMARIO (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* sortRalentir, ALLEGRO_BITMAP* sortSpecial, ALLEGRO_BITMAP* sortStop, ALLEGRO_BITMAP* sortReculer, ALLEGRO_BITMAP* afficherSort, ALLEGRO_BITMAP* afficherPV){
-    classe->sortADisposition[FLEMME].iconeSort = sortFlemme;
-    classe->sortADisposition[RALENTIR].iconeSort = sortRalentir;
-    classe->sortADisposition[SPECIAL].iconeSort = sortSpecial;
-    classe->sortADisposition[STOP].iconeSort = sortStop;
-    classe->sortADisposition[RECULER].iconeSort = sortReculer;
-    classe->sortADisposition[FATAL].iconeSort = sortFatal;
-    classe->sortADisposition[BARRE].iconeSort = afficherSort;
-    classe->sortADisposition[PV].iconeSort = afficherPV;
-}
-
-void initialiserClasseDONKEYKONG (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* sortRalentir, ALLEGRO_BITMAP* sortSpecial, ALLEGRO_BITMAP* sortStop, ALLEGRO_BITMAP* sortReculer, ALLEGRO_BITMAP* afficherSort, ALLEGRO_BITMAP* afficherPV){
+void initialiserSort (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* sortRalentir, ALLEGRO_BITMAP* sortSpecial, ALLEGRO_BITMAP* sortStop, ALLEGRO_BITMAP* sortReculer, ALLEGRO_BITMAP* afficherSort, ALLEGRO_BITMAP* afficherPV){
     classe->sortADisposition[FLEMME].iconeSort = sortFlemme;
     classe->sortADisposition[RALENTIR].iconeSort = sortRalentir;
     classe->sortADisposition[SPECIAL].iconeSort = sortSpecial;
@@ -93,8 +50,6 @@ void initialiserJoueur(Jeux* jeu, Map map[20][20]) {
         jeu->joueur[0].caseY = 0;
         jeu->joueur[0].caseXDepart = jeu->joueur[0].caseX;
         jeu->joueur[0].caseYDepart = jeu->joueur[0].caseY;
-        jeu->joueur[0].xArrive=0;
-        jeu->joueur[0].yArrive=0;
         jeu->joueur[0].dep = 0;
     }
 }
@@ -207,7 +162,6 @@ void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLE
             al_draw_filled_rectangle(2 * ecran.width / 5, 7 * ecran.height / 27, 3 * ecran.width / 5,9 * ecran.height / 27, al_map_rgb(100, 100, 100));
             al_draw_text(gameFont, al_map_rgb(255, 255, 255), 2.5 * ecran.width / 5, 7.4 * ecran.height / 27,ALLEGRO_ALIGN_CENTER, "JOUEUR SUIVANT");
         }
-
     }
 
 
