@@ -291,11 +291,11 @@ void dessinerQuadrillage(double  width, double height,double scalex,double scale
     }
 }
 
-void drawSort( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran){  //il faudra ajouter dans les parametres la var du nbJoueur pour la boucle de for
+void drawSort( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran, ALLEGRO_BITMAP* barreSort){  //il faudra ajouter dans les parametres la var du nbJoueur pour la boucle de for
 
 
     ///////////////   AFFICHACHAGE  BARRE SORTS //////////////
-    al_draw_scaled_bitmap(jeu.classes->sortADisposition[BARRE].iconeSort, 0, 0, 1000, 2000, 1700, 1580, 1900 ,1345,  0) ;
+    al_draw_scaled_bitmap(barreSort, 0, 0, 1000, 2000, 1700, 1580, 1900 ,1345,  0) ;
     al_draw_scaled_bitmap(jeu.classes->sortADisposition[PV].iconeSort, 0, 0, 1000, 2000, 2200, 0, 1600 ,1300,  0) ;
 
     ///////// On prend pour l'instant en compte que la Classe KIRBY Pour Exemple ///////////////  pck nsm ça marche pas cette merde
