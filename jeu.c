@@ -17,7 +17,6 @@ void initialiserSort (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALLEGRO_BITMAP*
     classe->sortADisposition[FATAL].iconeSort = sortFatal;
     classe->sortADisposition[BARRE].iconeSort = afficherSort;
     classe->sortADisposition[PV].iconeSort = afficherPV;
-
 }
 
 
