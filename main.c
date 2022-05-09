@@ -92,6 +92,7 @@ int main() {
             map[i][j].x =  scalex + i * scalex + j * scalex;
             map[i][j].y = height/1.8 - i * scaley + j * scaley;
             map[i][j].obstacle=0;
+
         }
     }
 
@@ -232,7 +233,7 @@ int main() {
                         }
                         default: {
                             if (jeu.gameMode == CHOIXCLASSE) {
-                                if (jeu.info.entrerPseudo == TRUE) {
+                                if (jeu.info.entrerPseudo == true) {
                                     mettrePseudo(&jeu.joueur,alphabet(event.keyboard.keycode,&jeu.joueur[jeu.info.joueurQuiJoue].nbLettrePseudo),jeu.info.joueurQuiJoue,&jeu.joueur[jeu.info.joueurQuiJoue].nbLettrePseudo);
                                 }
                                 break;
@@ -286,7 +287,7 @@ int main() {
                                     jeu.gameMode = CHOIXNBJOUEUR;
                                     initialiserJeu(&jeu) ;
                                 }
-                                if(jeu.info.entrerPseudo == FALSE) {
+                                if(jeu.info.entrerPseudo == false) {
                                     if ((float) ecran.mouse_x < ecran.width / 3.6 &&ecran.mouse_x > ecran.width / 5.76 &&(float) ecran.mouse_y < ecran.height / 1.8 &&ecran.mouse_y > 7 * ecran.height / 18) {
                                         jeu.joueur[jeu.info.joueurQuiJoue].classe = KIRBY;
                                     } else if ((float) ecran.mouse_x < 5 * ecran.width / 12 &&ecran.mouse_x > 5 * ecran.width / 16 &&(float) ecran.mouse_y < 5 * ecran.height / 9 &&ecran.mouse_y > 7 * ecran.height / 18) {
@@ -300,13 +301,13 @@ int main() {
                                     }
                                 }
                                 if((float) ecran.mouse_x < 3*ecran.width/5 && ecran.mouse_x > 2*ecran.width/5 && (float) ecran.mouse_y < 9*ecran.height/27 && ecran.mouse_y > 7*ecran.height/27) {
-                                    if(jeu.info.entrerPseudo == FALSE) {
-                                        jeu.info.entrerPseudo = TRUE;
+                                    if(jeu.info.entrerPseudo == false) {
+                                        jeu.info.entrerPseudo = true;
                                     }
                                     else if(jeu.joueur[jeu.info.joueurQuiJoue].pseudo[0] != '\0'){
                                         if(jeu.info.joueurQuiJoue+1 != jeu.info.nbJoueur) {
                                             jeu.info.joueurQuiJoue++;
-                                            jeu.info.entrerPseudo = FALSE;
+                                            jeu.info.entrerPseudo = false;
                                         }
                                     }
                                 }
@@ -317,7 +318,6 @@ int main() {
                             }
                         }
                     }
-                    break;
                 }
                 case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
                     if ((event.mouse.button & 1) == 1) {

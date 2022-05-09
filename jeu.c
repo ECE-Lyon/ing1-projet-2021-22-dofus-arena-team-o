@@ -28,7 +28,7 @@ void initialiserJeu(Jeux* jeu) {
         free(jeu->joueur) ;
     }
     jeu->joueur = NULL ;
-    jeu->info.entrerPseudo = FALSE ;
+    jeu->info.entrerPseudo = false ;
 }
 
 void initialiserEcran (InfoEcran* ecran, double width, double height) {
@@ -50,8 +50,6 @@ void initialiserJoueur(Jeux* jeu, Map map[20][20]) {
         jeu->joueur[0].caseY = 0;
         jeu->joueur[0].caseXDepart = jeu->joueur[0].caseX;
         jeu->joueur[0].caseYDepart = jeu->joueur[0].caseY;
-        jeu->joueur[0].xArrive=0;
-        jeu->joueur[0].yArrive=0;
         jeu->joueur[0].dep = 0;
     }
 }
@@ -138,7 +136,7 @@ void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLE
 
     ///PASSAGE AU CHOIX DU JOUEUR SUIVANT
     al_draw_textf(gameFont, al_map_rgb(0, 0, 0), ecran.width/2, 1*ecran.height/54, ALLEGRO_ALIGN_CENTER, "Joueur %d", jeu.info.joueurQuiJoue + 1) ;
-    if(jeu.info.entrerPseudo == FALSE) {
+    if(jeu.info.entrerPseudo == false) {
         al_draw_text(gameFont, al_map_rgb(0, 0, 0), ecran.width/2, 5*ecran.height/54, ALLEGRO_ALIGN_CENTER, "Choisissez un personnage") ;
     }
     else if(jeu.joueur[jeu.info.nbJoueur-1].pseudo[0] != '\0') {
@@ -155,7 +153,7 @@ void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLE
     else al_draw_text(gameFont, al_map_rgb(0, 0, 0), ecran.width/2, 5*ecran.height/54, ALLEGRO_ALIGN_CENTER, "Entrez votre pseudo") ;
     if(jeu.joueur[jeu.info.joueurQuiJoue].classe != VIDE) {
         if (jeu.joueur[jeu.info.joueurQuiJoue].pseudo[0] == '\0') {
-            if (jeu.info.entrerPseudo == FALSE) {
+            if (jeu.info.entrerPseudo == false) {
                 al_draw_filled_rectangle(2 * ecran.width / 5, 7 * ecran.height / 27, 3 * ecran.width / 5,9 * ecran.height / 27, al_map_rgb(100, 100, 100));
                 al_draw_text(gameFont, al_map_rgb(255, 255, 255), 2.5 * ecran.width / 5, 7.4 * ecran.height / 27,ALLEGRO_ALIGN_CENTER, "CONFIRMER");
             }
@@ -164,7 +162,6 @@ void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLE
             al_draw_filled_rectangle(2 * ecran.width / 5, 7 * ecran.height / 27, 3 * ecran.width / 5,9 * ecran.height / 27, al_map_rgb(100, 100, 100));
             al_draw_text(gameFont, al_map_rgb(255, 255, 255), 2.5 * ecran.width / 5, 7.4 * ecran.height / 27,ALLEGRO_ALIGN_CENTER, "JOUEUR SUIVANT");
         }
-
     }
 
 
