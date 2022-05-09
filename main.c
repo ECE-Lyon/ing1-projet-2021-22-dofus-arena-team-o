@@ -57,11 +57,18 @@ int main() {
                /////////////////SORTS/////////////////////
 
     ALLEGRO_BITMAP *sortFlemme = al_load_bitmap("../Bitmap/Sort/sortFlemme.png");
-    ALLEGRO_BITMAP * sortFleur = al_load_bitmap("../Bitmap/SortFleur.png");
-    ALLEGRO_BITMAP * sortCorona = al_load_bitmap("../Bitmap/sortCorona.png");
-    ALLEGRO_BITMAP * sortDefence = al_load_bitmap("../Bitmap/sortDefence.png");
-    ALLEGRO_BITMAP * sortSoin = al_load_bitmap("../Bitmap/sortSoin.png");
-
+    ALLEGRO_BITMAP *sortFleur = al_load_bitmap("../Bitmap/SortFleur.png");
+    ALLEGRO_BITMAP *sortCorona = al_load_bitmap("../Bitmap/sortCorona.png");
+    ALLEGRO_BITMAP *sortDefence = al_load_bitmap("../Bitmap/sortDefence.png");
+    ALLEGRO_BITMAP *sortSoin = al_load_bitmap("../Bitmap/sortSoin.png");
+    ALLEGRO_BITMAP *sortSaut = al_load_bitmap("../Bitmap/saut.png");
+    ALLEGRO_BITMAP *reculerAdversaire = al_load_bitmap("../Bitmap/reculerAdversaire.png.png");
+    ALLEGRO_BITMAP *couDePoingGant = al_load_bitmap("../Bitmap/poingGant.png.png");
+    ALLEGRO_BITMAP *poing2 = al_load_bitmap("../Bitmap/Poing2.png");
+    ALLEGRO_BITMAP *poing = al_load_bitmap("../Bitmap/poing.png");
+    ALLEGRO_BITMAP *coupDePied = al_load_bitmap("../Bitmap/coupDePied.png");
+    ALLEGRO_BITMAP *coup = al_load_bitmap("../Bitmap/coup.png");
+    ALLEGRO_BITMAP *sortMortel = al_load_bitmap("../Bitmap/sortMortel.png");
 
 
     /////////////////AFFICHAGEPVPMPA/////////////////////
