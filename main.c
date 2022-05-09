@@ -29,7 +29,7 @@ int main() {
     al_set_window_position(display, 0, 0);
 
 
-    ///CREATOON DES VARIABLES
+    ///CREATION DES VARIABLES
     ALLEGRO_COLOR black = al_map_rgb(0, 0, 0);
     ALLEGRO_COLOR red = al_map_rgb(255, 0, 0);
     ALLEGRO_COLOR white = al_map_rgb(255, 255, 255);
@@ -174,13 +174,13 @@ int main() {
                             }
                             case RULES : {
                                 if ((mouse_x - 13 * width / 15) * (mouse_x - 13 * width / 15) +
-                                    (mouse_y - 11 * height / 13) * (mouse_y - 11 * height / 13) < 50 * 50) {
+                                    (mouse_y - 11 * height / 13) * (mouse_y - 11 * height / 13) < width/38.4 * width/38.4) {
                                     if (page + 1 <= RULESPAGEMAX) {
                                         page++;
                                     }
                                 }
                                 if ((mouse_x - 2 * width / 15) * (mouse_x - 2 * width / 15) +
-                                    (mouse_y - 11 * height / 13) * (mouse_y - 11 * height / 13) < 50 * 50) {
+                                    (mouse_y - 11 * height / 13) * (mouse_y - 11 * height / 13) < width/38.4 * width/38.4) {
                                     if (page - 1 >= 1) {
                                         page--;
                                     }
@@ -268,13 +268,13 @@ int main() {
                                     initialiserJeu(&jeu) ;
                                 }
                                 if ((mouse_x - width / 4.8) * (mouse_x - width / 4.8) +
-                                    (mouse_y - height / 2.16) * (mouse_y - height / 2.16) < 100 * 100) {
+                                    (mouse_y - height / 2.16) * (mouse_y - height / 2.16) < ecran.width/19.2 * ecran.width/19.2) {
                                     jeu.info.nbJoueur = 2;
                                 } else if ((mouse_x - 95 * width / 192) * (mouse_x - 95 * width / 192) +
-                                           (mouse_y - height / 2.16) * (mouse_y - height / 2.16) < 100 * 100) {
+                                           (mouse_y - height / 2.16) * (mouse_y - height / 2.16) < ecran.width/19.2 * ecran.width/19.2) {
                                     jeu.info.nbJoueur = 3;
                                 } else if ((mouse_x - width / 1.28) * (mouse_x - width / 1.28) +
-                                           (mouse_y - height / 2.16) * (mouse_y - height / 2.16) < 100 * 100) {
+                                           (mouse_y - height / 2.16) * (mouse_y - height / 2.16) < ecran.width/19.2 * ecran.width/19.2) {
                                     jeu.info.nbJoueur = 4;
                                 }
                                 if ((float) mouse_x < 383 * width / 384 && mouse_x > width / 1.2 &&
@@ -315,7 +315,7 @@ int main() {
                                         }
                                     }
                                 }
-                                if ((float) mouse_x < mouse_x < 383 * width / 384  && mouse_x > width / 1.2  && (float) mouse_y <  215 * height / 216   && mouse_y > height / 1.08  ){
+                                if (((float) mouse_x - 1829*ecran.width/1920)*((float) mouse_x - 1829*ecran.width/1920)  + (mouse_y - 49*ecran.height/54)*(mouse_y - 49*ecran.height/54) < ecran.width/24 * ecran.width/24){
                                     jeu.gameMode = JEU;
                                 }
                                 break;

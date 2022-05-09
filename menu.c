@@ -17,7 +17,6 @@ void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y, 
     int police = 2*width/55 ;
     int policeRegles = 40;
     float thickness = (5*height/6 - height/6) / 40 ;
-    ALLEGRO_COLOR vert = al_map_rgb(200, 255, 50) ;
     ALLEGRO_COLOR gameColor = al_map_rgb(20, 20, 20) ;
 
     ///FOND D'ECRAN GRISATRE
@@ -44,9 +43,6 @@ void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y, 
     }
 
     ///GRAND RECTANGLE AU MILIEU
-    /*for(int i = 0 ; i < 40 ; i++) {
-        al_draw_line(width/5, height/6 + thickness*i,4*width/5, height/6 + thickness*i, al_map_rgb(219 - 3*i, 182 - 2*i, 193 - i), thickness);
-    }*/
     al_draw_filled_rectangle(width/5, height/6, 4 * (width /5), 5 * (height/6) , al_map_rgba(219, 112, 147, 200));
 
     ///FLECHE DROITE
@@ -153,8 +149,8 @@ void drawTeam(float height, float width, int mouse_x, int mouse_y, ALLEGRO_FONT 
 }
 
 void drawMenuV2(Menu* mainMenu, ALLEGRO_FONT *gameFont) {
-    float thickness1 = (322*mainMenu->ecran.height/495 - 4*mainMenu->ecran.height/9) / 40 ;
-    float thickness2 = (38*mainMenu->ecran.height/99 - 7*mainMenu->ecran.height/80) / 40 ;
+    float thickness1 = (float)(322*mainMenu->ecran.height/495 - 4*mainMenu->ecran.height/9) / 40 ;
+    float thickness2 = (float)(38*mainMenu->ecran.height/99 - 7*mainMenu->ecran.height/80) / 40 ;
     ALLEGRO_COLOR blueLogo = al_map_rgb(222, 35, 35) ;
     ALLEGRO_COLOR ecriture = al_map_rgb(20, 20, 20) ;
 
