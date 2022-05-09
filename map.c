@@ -307,7 +307,7 @@ void drawSort( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran){  //il faudra 
 
     if ((float) ecran.mouse_x < 2065 && ecran.mouse_x > 1960 && (float) ecran.mouse_y < 1765 && ecran.mouse_y > 1620 ){
         al_draw_scaled_bitmap(jeu.classes->sortADisposition[SPECIAL].iconeSort, 0, 0, 2000, 2000, 1900, 1610, 965 ,965,  0) ;
-        al_draw_text(gameFont, al_map_rgb( 100, 100, 100), 730, 1660 , ALLEGRO_ALIGN_CENTER, "SORT SPECIAL - TESTEZ LE SUR VOS ADVERSAIRES ") ;
+        al_draw_text(gameFont, al_map_rgb( 100, 100, 100), 730, 1660  , ALLEGRO_ALIGN_CENTER, "SORT SPECIAL - TESTEZ LE SUR VOS ADVERSAIRES ") ;
     } else { al_draw_scaled_bitmap(jeu.classes->sortADisposition[SPECIAL].iconeSort, 0, 0, 2000, 2000, 1900, 1610, 915 ,915,  0) ;}
 
     if ((float) ecran.mouse_x < 2400 && ecran.mouse_x > 2280 && (float) ecran.mouse_y < 1765 && ecran.mouse_y > 1620 ){
