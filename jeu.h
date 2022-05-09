@@ -20,7 +20,7 @@
 enum gameMode {PLAY, RULES, TEAM, MENU, CHOIXPERSO, END};
 enum personnage {MARIO, PACMAN, KIRBY, PEACH, DONKEY_KONG, VIDE};
 enum play {CHOIXNBJOUEUR, CHOIXCLASSE, PLATE, JEU};
-enum sort {AUCUN, FLEMME, FATAL, RALENTIR, SPECIAL, STOP, RECULER, BARRE, PV};
+enum sort {AUCUN, FLAMME, FATAL, RALENTIR, SPECIAL, STOP, RECULER, BARRE, PV};
 
 typedef struct {
     int mouse_x, mouse_y ;
@@ -52,6 +52,7 @@ typedef struct Info{
     int nbLettrePseudo ;
     int PV, PM, PA, aChoisiClasse;
     int classe;//1 : mario      2 : Luigi     3 : Kirby     4: Peach     5 : Zelda
+    int ordre;
 }Joueurs;
 
 
@@ -66,14 +67,14 @@ typedef struct {
 typedef struct {
     double x,y;
     int t;
-    int obstacle;
+    bool obstacle;
 } Map;
 
 void initialiserIconeClasse(ALLEGRO_BITMAP* pacman, ALLEGRO_BITMAP* kirby, ALLEGRO_BITMAP* peach, ALLEGRO_BITMAP* mario, ALLEGRO_BITMAP* donkey_kong, Classe* classes);
 void initialiserEcran (InfoEcran* ecran, double width, double height) ;
 void initialiserJeu(Jeux* jeu) ;
 void initialiserJoueur(Jeux* jeu, Map map[20][20]) ;
-void initialiserSort (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* sortRalentir, ALLEGRO_BITMAP* sortSpecial, ALLEGRO_BITMAP* sortStop, ALLEGRO_BITMAP* sortReculer, ALLEGRO_BITMAP* afficherSort, ALLEGRO_BITMAP* afficherPV);
+void initialiserSort (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALLEGRO_BITMAP* sortFlamme, ALLEGRO_BITMAP* sortRalentir, ALLEGRO_BITMAP* sortSpecial, ALLEGRO_BITMAP* sortStop, ALLEGRO_BITMAP* sortReculer, ALLEGRO_BITMAP* afficherSort, ALLEGRO_BITMAP* afficherPV);
 
 ///FONCTION POUR COMMENCER A JOUER
 void choixJoueur(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT * gameFont, InfosSurLesJoueurs* infojoueur) ;

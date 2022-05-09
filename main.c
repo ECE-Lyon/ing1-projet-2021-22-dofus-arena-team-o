@@ -56,14 +56,22 @@ int main() {
 
                /////////////////SORTS/////////////////////
 
-    ALLEGRO_BITMAP * sortFatal= al_load_bitmap("../Bitmap/Sort/sortFatal.png");
     ALLEGRO_BITMAP *sortFlemme = al_load_bitmap("../Bitmap/Sort/sortFlemme.png");
-    ALLEGRO_BITMAP *sortRalentir = al_load_bitmap("../Bitmap/Sort/sortRalentir.png");
-    ALLEGRO_BITMAP *sortReculer = al_load_bitmap("../Bitmap/Sort/sortReculer.png");
-    ALLEGRO_BITMAP *sortSpecial = al_load_bitmap("../Bitmap/Sort/sortSpecial.png");
-    ALLEGRO_BITMAP *sortStop = al_load_bitmap("../Bitmap/Sort/sortStop.png");
+    ALLEGRO_BITMAP *sortFleur = al_load_bitmap("../Bitmap/SortFleur.png");
+    ALLEGRO_BITMAP *sortCorona = al_load_bitmap("../Bitmap/sortCorona.png");
+    ALLEGRO_BITMAP *sortDefence = al_load_bitmap("../Bitmap/sortDefence.png");
+    ALLEGRO_BITMAP *sortSoin = al_load_bitmap("../Bitmap/sortSoin.png");
+    ALLEGRO_BITMAP *sortSaut = al_load_bitmap("../Bitmap/saut.png");
+    ALLEGRO_BITMAP *reculerAdversaire = al_load_bitmap("../Bitmap/reculerAdversaire.png.png");
+    ALLEGRO_BITMAP *couDePoingGant = al_load_bitmap("../Bitmap/poingGant.png.png");
+    ALLEGRO_BITMAP *poing2 = al_load_bitmap("../Bitmap/Poing2.png");
+    ALLEGRO_BITMAP *poing = al_load_bitmap("../Bitmap/poing.png");
+    ALLEGRO_BITMAP *coupDePied = al_load_bitmap("../Bitmap/coupDePied.png");
+    ALLEGRO_BITMAP *coup = al_load_bitmap("../Bitmap/coup.png");
+    ALLEGRO_BITMAP *sortMortel = al_load_bitmap("../Bitmap/sortMortel.png");
 
-               /////////////////AFFICHAGEPVPMPA/////////////////////
+
+    /////////////////AFFICHAGEPVPMPA/////////////////////
 
     ALLEGRO_BITMAP *PVversion1 = al_load_bitmap("../Bitmap/Sort/PVversion1.png");
     ALLEGRO_BITMAP *afficherPV = al_load_bitmap("../Bitmap/Sort/afficherPV.png");
@@ -92,13 +100,17 @@ int main() {
             map[i][j].x =  scalex + i * scalex + j * scalex;
             map[i][j].y = height/1.8 - i * scaley + j * scaley;
             map[i][j].obstacle=0;
+
         }
     }
 
     ///INITIALISATION DE NOS VARIABLES
     initialiserIconeClasse(pacmanIcone, kirbyIcone, peachIcone, marioIcone, donkey_kongIcone, jeu.classes);
-    initialiserSort (jeu.classes, sortFatal, sortFlemme, sortRalentir, sortSpecial, sortStop, sortReculer, afficherSort, afficherPV);
-    initialiserMenu(&mainMenu, width, height);
+    //initialiserSort (jeu.classes, sortFatal, sortFlemme, sortRalentir, sortSpecial, sortStop, sortReculer, afficherSort, afficherPV);
+
+
+
+        initialiserMenu(&mainMenu, width, height);
     initialiserJeu(&jeu);
     initialiserEcran(&ecran, width, height);
 
@@ -169,13 +181,13 @@ int main() {
                             }
                             case RULES : {
                                 if ((mouse_x - 13 * width / 15) * (mouse_x - 13 * width / 15) +
-                                    (mouse_y - 11 * height / 13) * (mouse_y - 11 * height / 13) < 50 * 50) {
+                                    (mouse_y - 11 * height / 13) * (mouse_y - 11 * height / 13) < width/38.4 * width/38.4) {
                                     if (page + 1 <= RULESPAGEMAX) {
                                         page++;
                                     }
                                 }
                                 if ((mouse_x - 2 * width / 15) * (mouse_x - 2 * width / 15) +
-                                    (mouse_y - 11 * height / 13) * (mouse_y - 11 * height / 13) < 50 * 50) {
+                                    (mouse_y - 11 * height / 13) * (mouse_y - 11 * height / 13) < width/38.4 * width/38.4) {
                                     if (page - 1 >= 1) {
                                         page--;
                                     }
@@ -232,7 +244,7 @@ int main() {
                         }
                         default: {
                             if (jeu.gameMode == CHOIXCLASSE) {
-                                if (jeu.info.entrerPseudo == TRUE) {
+                                if (jeu.info.entrerPseudo == true) {
                                     mettrePseudo(&jeu.joueur,alphabet(event.keyboard.keycode,&jeu.joueur[jeu.info.joueurQuiJoue].nbLettrePseudo),jeu.info.joueurQuiJoue,&jeu.joueur[jeu.info.joueurQuiJoue].nbLettrePseudo);
                                 }
                                 break;
@@ -263,13 +275,13 @@ int main() {
                                     initialiserJeu(&jeu) ;
                                 }
                                 if ((mouse_x - width / 4.8) * (mouse_x - width / 4.8) +
-                                    (mouse_y - height / 2.16) * (mouse_y - height / 2.16) < 100 * 100) {
+                                    (mouse_y - height / 2.16) * (mouse_y - height / 2.16) < ecran.width/19.2 * ecran.width/19.2) {
                                     jeu.info.nbJoueur = 2;
                                 } else if ((mouse_x - 95 * width / 192) * (mouse_x - 95 * width / 192) +
-                                           (mouse_y - height / 2.16) * (mouse_y - height / 2.16) < 100 * 100) {
+                                           (mouse_y - height / 2.16) * (mouse_y - height / 2.16) < ecran.width/19.2 * ecran.width/19.2) {
                                     jeu.info.nbJoueur = 3;
                                 } else if ((mouse_x - width / 1.28) * (mouse_x - width / 1.28) +
-                                           (mouse_y - height / 2.16) * (mouse_y - height / 2.16) < 100 * 100) {
+                                           (mouse_y - height / 2.16) * (mouse_y - height / 2.16) < ecran.width/19.2 * ecran.width/19.2) {
                                     jeu.info.nbJoueur = 4;
                                 }
                                 if ((float) mouse_x < 383 * width / 384 && mouse_x > width / 1.2 &&
@@ -286,7 +298,7 @@ int main() {
                                     jeu.gameMode = CHOIXNBJOUEUR;
                                     initialiserJeu(&jeu) ;
                                 }
-                                if(jeu.info.entrerPseudo == FALSE) {
+                                if(jeu.info.entrerPseudo == false) {
                                     if ((float) ecran.mouse_x < ecran.width / 3.6 &&ecran.mouse_x > ecran.width / 5.76 &&(float) ecran.mouse_y < ecran.height / 1.8 &&ecran.mouse_y > 7 * ecran.height / 18) {
                                         jeu.joueur[jeu.info.joueurQuiJoue].classe = KIRBY;
                                     } else if ((float) ecran.mouse_x < 5 * ecran.width / 12 &&ecran.mouse_x > 5 * ecran.width / 16 &&(float) ecran.mouse_y < 5 * ecran.height / 9 &&ecran.mouse_y > 7 * ecran.height / 18) {
@@ -300,24 +312,23 @@ int main() {
                                     }
                                 }
                                 if((float) ecran.mouse_x < 3*ecran.width/5 && ecran.mouse_x > 2*ecran.width/5 && (float) ecran.mouse_y < 9*ecran.height/27 && ecran.mouse_y > 7*ecran.height/27) {
-                                    if(jeu.info.entrerPseudo == FALSE) {
-                                        jeu.info.entrerPseudo = TRUE;
+                                    if(jeu.info.entrerPseudo == false) {
+                                        jeu.info.entrerPseudo = true;
                                     }
                                     else if(jeu.joueur[jeu.info.joueurQuiJoue].pseudo[0] != '\0'){
                                         if(jeu.info.joueurQuiJoue+1 != jeu.info.nbJoueur) {
                                             jeu.info.joueurQuiJoue++;
-                                            jeu.info.entrerPseudo = FALSE;
+                                            jeu.info.entrerPseudo = false;
                                         }
                                     }
                                 }
-                                if (((float) mouse_x - 1829*ecran.width/1920)*((float) mouse_x - 1829*ecran.width/1920)  + (mouse_y - 49*ecran.height/54)*(mouse_y - 49*ecran.height/54) < 80*80){
+                                if (((float) mouse_x - 1829*ecran.width/1920)*((float) mouse_x - 1829*ecran.width/1920)  + (mouse_y - 49*ecran.height/54)*(mouse_y - 49*ecran.height/54) < ecran.width/24 * ecran.width/24){
                                     jeu.gameMode = JEU;
                                 }
                                 break;
                             }
                         }
                     }
-                    break;
                 }
                 case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
                     if ((event.mouse.button & 1) == 1) {

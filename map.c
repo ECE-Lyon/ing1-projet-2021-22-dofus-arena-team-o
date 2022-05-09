@@ -303,7 +303,6 @@ void deplacementJoueur(Joueurs *joueur, Map map[20][20],double scalex,double sca
     }
 }
 
-
 void dessinerQuadrillage(double  width, double height,double scalex,double scaley,ALLEGRO_COLOR black){
     for (int i = 0; i < mapX+1; i++) {
         al_draw_line(i * scalex, height/1.8 - i * scaley, width/2.25+i*scalex , height - i * scaley, black, 2);
@@ -322,6 +321,7 @@ void drawSort( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran){  //il faudra 
 
     ///////// On prend pour l'instant en compte que la Classe KIRBY Pour Exemple ///////////////  pck nsm ça marche pas cette merde
 
+    // il faut modifier la police, l'emplacement du texte
     if ((float) ecran.mouse_x < 449*ecran.width/576 && ecran.mouse_x > 71*ecran.width/96 && (float) ecran.mouse_y < 59*ecran.height/60 && ecran.mouse_y > 9*ecran.height/10 ){
         al_draw_scaled_bitmap(jeu.classes->sortADisposition[STOP].iconeSort, 0, 0, 2000, 2000, 231*ecran.width/320, 9*ecran.height/10, 85*ecran.width/288 ,17*ecran.height/36,  0) ;
         al_draw_text(gameFont, al_map_rgb( 100, 100, 100), 73*ecran.width/288, 83*ecran.height/90 , ALLEGRO_ALIGN_CENTER, "SORT STOP - empechez votre adversaire de jouer au prochain tour ") ;
@@ -333,9 +333,9 @@ void drawSort( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran){  //il faudra 
     } else { al_draw_scaled_bitmap(jeu.classes->sortADisposition[SPECIAL].iconeSort, 0, 0, 2000, 2000, 95*ecran.width/144, 161*ecran.height/180, 61*ecran.width/192 ,61*ecran.height/120,  0) ;}
 
     if ((float) ecran.mouse_x < ecran.width/1.2 && ecran.mouse_x > 19*ecran.width/24 && (float) ecran.mouse_y < 353*ecran.height/360 && ecran.mouse_y > 9*ecran.height/10 ){
-        al_draw_scaled_bitmap(jeu.classes->sortADisposition[FLEMME].iconeSort, 0, 0, 2000, 2000, 451*ecran.width/576, 319*ecran.height/360, 221*ecran.width/720 ,221*ecran.height/450,  0) ;
+        al_draw_scaled_bitmap(jeu.classes->sortADisposition[FLAMME].iconeSort, 0, 0, 2000, 2000, 451*ecran.width/576, 319*ecran.height/360, 221*ecran.width/720 ,221*ecran.height/450,  0) ;
         al_draw_text(gameFont, al_map_rgb( 100, 100, 100), 73*ecran.width/288, 83*ecran.height/90 , ALLEGRO_ALIGN_CENTER, "SORT FLAMME - ENLEVEZ UN POINT DE VIE A VOTRE ADVERSAIRE ") ;
-    } else { al_draw_scaled_bitmap(jeu.classes->sortADisposition[FLEMME].iconeSort, 0, 0, 2000, 2000, 451*ecran.width/576, 319*ecran.height/360, 139*ecran.width/480 ,139*ecran.height/300,  0) ;}
+    } else { al_draw_scaled_bitmap(jeu.classes->sortADisposition[FLAMME].iconeSort, 0, 0, 2000, 2000, 451*ecran.width/576, 319*ecran.height/360, 139*ecran.width/480 ,139*ecran.height/300,  0) ;}
 
     if ((float) ecran.mouse_x < 515*ecran.width/576 && ecran.mouse_x > 245*ecran.width/288 && (float) ecran.mouse_y < 353*ecran.height/360&& ecran.mouse_y > 9*ecran.height/10) {
         al_draw_scaled_bitmap(jeu.classes->sortADisposition[RALENTIR].iconeSort, 0, 0, 2000, 2000, 27*ecran.width/32, ecran.height/1.125, 889*ecran.width/2880 ,889*ecran.height/1800,  0);
