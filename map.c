@@ -69,31 +69,77 @@ void caseJoueur(Joueurs *joueur,Map map[20][20]){
 
 void deplacementJoueur(Joueurs *joueur, Map map[20][20],double scalex,double scaley){
     ALLEGRO_COLOR vert = al_map_rgba(93, 127, 51, 255);
+    ALLEGRO_COLOR vert2 = al_map_rgba(93, 127, 51, 150);
     double depX=0;
     double depY=0;
 
     caseJoueur(joueur,map);
-    /*for (int j=0;j<4;j++) {
-        for (int i = 0; i < 4; i++) {
-            if (joueur[0].caseXDepart + i + joueur[0].caseYDepart + j <=3 ){
-            al_draw_filled_triangle(map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].x - scalex,
-                                    map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].y,
-                                    map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].x,
-                                    map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].y + scaley,
-                                    map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].x,
-                                    map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].y -
-                                    scaley, vert);
-            al_draw_filled_triangle(map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].x + scalex,
-                                    map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].y,
-                                    map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].x,
-                                    map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].y + scaley,
-                                    map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].x,
-                                    map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].y -
-                                    scaley, vert);
-        }
-        }
-    }*/
+
     if (joueur[0].dep==0) {
+        for (int j=0;j<4;j++) {
+            for (int i = 0; i < 4; i++) {
+                if (i+ j <=3 ){
+                    al_draw_filled_triangle(map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].x - scalex,
+                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].y,
+                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].x,
+                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].y + scaley,
+                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].x,
+                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].y -
+                                            scaley, vert2);
+                    al_draw_filled_triangle(map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].x + scalex,
+                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].y,
+                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].x,
+                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].y + scaley,
+                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].x,
+                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].y -
+                                            scaley, vert2);
+
+                    al_draw_filled_triangle(map[joueur[0].caseXDepart - i][joueur[0].caseYDepart - j].x - scalex,
+                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart - j].y,
+                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart - j].x,
+                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart - j].y + scaley,
+                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart - j].x,
+                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart - j].y -
+                                            scaley, vert2);
+                    al_draw_filled_triangle(map[joueur[0].caseXDepart - i][joueur[0].caseYDepart - j].x + scalex,
+                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart - j].y,
+                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart - j].x,
+                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart - j].y + scaley,
+                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart - j].x,
+                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart - j].y -
+                                            scaley, vert2);
+
+                    al_draw_filled_triangle(map[joueur[0].caseXDepart + i][joueur[0].caseYDepart - j].x - scalex,
+                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart - j].y,
+                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart - j].x,
+                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart - j].y + scaley,
+                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart - j].x,
+                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart - j].y -
+                                            scaley, vert2);
+                    al_draw_filled_triangle(map[joueur[0].caseXDepart + i][joueur[0].caseYDepart - j].x + scalex,
+                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart - j].y,
+                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart - j].x,
+                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart - j].y + scaley,
+                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart - j].x,
+                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart - j].y -
+                                            scaley, vert2);
+                    al_draw_filled_triangle(map[joueur[0].caseXDepart - i][joueur[0].caseYDepart + j].x - scalex,
+                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart + j].y,
+                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart + j].x,
+                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart + j].y + scaley,
+                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart + j].x,
+                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart + j].y -
+                                            scaley, vert2);
+                    al_draw_filled_triangle(map[joueur[0].caseXDepart - i][joueur[0].caseYDepart + j].x + scalex,
+                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart + j].y,
+                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart + j].x,
+                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart + j].y + scaley,
+                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart + j].x,
+                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart + j].y -
+                                            scaley, vert2);
+                }
+            }
+        }
 
     if ( abs(joueur[0].xArrive-joueur[0].caseXDepart)+abs(joueur[0].yArrive-joueur[0].caseYDepart)<=4 ){
         if (joueur[0].caseX>joueur[0].xArrive){
@@ -312,7 +358,7 @@ void dessinerQuadrillage(double  width, double height,double scalex,double scale
     }
 }
 
-void drawSort( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran){  //il faudra ajouter dans les parametres la var du nbJoueur pour la boucle de for
+/*void drawSort( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran){  //il faudra ajouter dans les parametres la var du nbJoueur pour la boucle de for
 
 
     ///////////////   AFFICHACHAGE  BARRE SORTS //////////////
@@ -350,7 +396,7 @@ void drawSort( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran){  //il faudra 
 
 
 
-/*
+
     int nbJoueur = 3;  // o prend par exemple 3 joueurs qui jouent
     for (int i = nbJoueur; i < nbJoueur; i++) {
         al_draw_scaled_bitmap(jeu.classes[KIRBY].image, 0, 0, 800, 800, 500, 1000, 1000, 900, 0);
@@ -365,6 +411,6 @@ void drawSort( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran){  //il faudra 
             al_draw_scaled_bitmap(jeu.classes[i].sortADisposition[STOP].iconeSort, 0, 0, 2000, 2000, 2079, 1620, 800, 800,
                                   0);
         }
-    }*/
+    }
 
-}
+}*/
