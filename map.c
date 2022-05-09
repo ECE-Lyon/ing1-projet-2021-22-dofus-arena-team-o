@@ -303,6 +303,7 @@ void drawSort( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran){  //il faudra 
 
     ///////// On prend pour l'instant en compte que la Classe KIRBY Pour Exemple ///////////////  pck nsm ça marche pas cette merde
 
+    // il faut modifier la police, l'emplacement du texte
     if ((float) ecran.mouse_x < 449*ecran.width/576 && ecran.mouse_x > 71*ecran.width/96 && (float) ecran.mouse_y < 59*ecran.height/60 && ecran.mouse_y > 9*ecran.height/10 ){
         al_draw_scaled_bitmap(jeu.classes->sortADisposition[STOP].iconeSort, 0, 0, 2000, 2000, 231*ecran.width/320, 9*ecran.height/10, 85*ecran.width/288 ,17*ecran.height/36,  0) ;
         al_draw_text(gameFont, al_map_rgb( 100, 100, 100), 73*ecran.width/288, 83*ecran.height/90 , ALLEGRO_ALIGN_CENTER, "SORT STOP - empechez votre adversaire de jouer au prochain tour ") ;
