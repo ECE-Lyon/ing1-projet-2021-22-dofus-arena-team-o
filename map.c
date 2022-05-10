@@ -358,46 +358,28 @@ void dessinerQuadrillage(double  width, double height,double scalex,double scale
     }
 }
 
-void drawSort( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran, ALLEGRO_BITMAP* barreSort){  //il faudra ajouter dans les parametres la var du nbJoueur pour la boucle de for
+void drawSort( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran, ALLEGRO_BITMAP* barreSort) {  //il faudra ajouter dans les parametres la var du nbJoueur pour la boucle de for
 
 
     ///////////////   AFFICHACHAGE  BARRE SORTS //////////////
-    //al_draw_scaled_bitmap(jeu.classes->sortADisposition[BARRE].iconeSort, 0, 0, 1000, 2000, 85*ecran.width/144, 79*ecran.height/90, 95*ecran.width/144 ,269*ecran.height/360,  0) ;
-    //al_draw_scaled_bitmap(jeu.classes->sortADisposition[PV].iconeSort, 0, 0, 1000, 2000, 55*ecran.width/72, 0, ecran.width/1.8 ,13*ecran.height/18,  0) ;
+    al_draw_scaled_bitmap(barreSort, 0, 0, 1000, 2000, 1800, 1580, 1500 ,1345,  0) ;
+    al_draw_scaled_bitmap(barreSort, 0, 0, 1000, 2000, 0, 1580, 1500 ,1345,  0) ;
 
-    ///////// On prend pour l'instant en compte que la Classe KIRBY Pour Exemple ///////////////  pck nsm ça marche pas cette merde
 
-    // il faut modifier la police, l'emplacement du texte
-    if ((float) ecran.mouse_x < 449*ecran.width/576 && ecran.mouse_x > 71*ecran.width/96 && (float) ecran.mouse_y < 59*ecran.height/60 && ecran.mouse_y > 9*ecran.height/10 ){
-       // al_draw_scaled_bitmap(jeu.classes->sortADisposition[POING].iconeSort, 0, 0, 2000, 2000, 231*ecran.width/320, 9*ecran.height/10, 85*ecran.width/288 ,17*ecran.height/36,  0) ;
-        al_draw_text(gameFont, al_map_rgb( 100, 100, 100), 73*ecran.width/288, 83*ecran.height/90 , ALLEGRO_ALIGN_CENTER, "SORT STOP - empechez votre adversaire de jouer au prochain tour ") ;
-    } else { //al_draw_scaled_bitmap(jeu.classes->sortADisposition[POING].iconeSort, 0, 0, 2000, 2000, 231*ecran.width/320, 9*ecran.height/10, ecran.width/3.6 ,ecran.height/2.25,  0) ;
-         }
+    if ((float) ecran.mouse_x < 2245 && ecran.mouse_x > 2130 && (float) ecran.mouse_y < 1770 && ecran.mouse_y > 1620 ){
+        al_draw_scaled_bitmap(jeu.classes[KIRBY].sortADisposition[POING].iconeSort, 0, 0, 2000, 2000, 2180, 1600, 1340 ,1340,  0) ;
+        al_draw_text(gameFont, al_map_rgb( 100, 100, 100), 730, 1660 , ALLEGRO_ALIGN_CENTER, "COUP DE POING QUI FAIT SUPER MAL") ;
+    } else { al_draw_scaled_bitmap(jeu.classes[KIRBY].sortADisposition[POING].iconeSort, 0, 0, 2000, 2000, 2180, 1600, 1290 ,1290,  0) ;}
 
-    if ((float) ecran.mouse_x < 413*ecran.width/576 && ecran.mouse_x > 49*ecran.width/72 && (float) ecran.mouse_y < 353*ecran.height/360 && ecran.mouse_y > 9*ecran.height/10 ){
-        //al_draw_scaled_bitmap(jeu.classes->sortADisposition[SPECIAL].iconeSort, 0, 0, 2000, 2000, 95*ecran.width/144, 161*ecran.height/180, 193*ecran.width/576 ,193*ecran.height/360,  0) ;
-        al_draw_text(gameFont, al_map_rgb( 100, 100, 100), 73*ecran.width/288, 83*ecran.height/90 , ALLEGRO_ALIGN_CENTER, "SORT SPECIAL - TESTEZ LE SUR VOS ADVERSAIRES ") ;
-    } else { //al_draw_scaled_bitmap(jeu.classes->sortADisposition[SPECIAL].iconeSort, 0, 0, 2000, 2000, 95*ecran.width/144, 161*ecran.height/180, 61*ecran.width/192 ,61*ecran.height/120,  0) ;
-    }
+    if ((float) ecran.mouse_x < 2065 && ecran.mouse_x > 1960 && (float) ecran.mouse_y < 1765 && ecran.mouse_y > 1620 ){
+        al_draw_scaled_bitmap(jeu.classes[KIRBY].sortADisposition[COUPDEPIED].iconeSort, 0, 0, 2000, 2000, 2000, 1590, 1438 ,1438,  0) ;
+        al_draw_text(gameFont, al_map_rgb( 100, 100, 100), 730, 1660 , ALLEGRO_ALIGN_CENTER, "COUP DE PIED DE L'ENFER ") ;
+    } else { al_draw_scaled_bitmap(jeu.classes[KIRBY].sortADisposition[COUPDEPIED].iconeSort, 0, 0, 2000, 2000, 2000, 1590, 1388 ,1388,  0) ;}
 
-    if ((float) ecran.mouse_x < ecran.width/1.2 && ecran.mouse_x > 19*ecran.width/24 && (float) ecran.mouse_y < 353*ecran.height/360 && ecran.mouse_y > 9*ecran.height/10 ){
-        //al_draw_scaled_bitmap(jeu.classes->sortADisposition[FLAMME].iconeSort, 0, 0, 2000, 2000, 451*ecran.width/576, 319*ecran.height/360, 221*ecran.width/720 ,221*ecran.height/450,  0) ;
-        al_draw_text(gameFont, al_map_rgb( 100, 100, 100), 73*ecran.width/288, 83*ecran.height/90 , ALLEGRO_ALIGN_CENTER, "SORT FLAMME - ENLEVEZ UN POINT DE VIE A VOTRE ADVERSAIRE ") ;
-    } else { al_draw_scaled_bitmap(jeu.classes[KIRBY].sortADisposition[FLAMME].iconeSort, 0, 0, 2000, 2000, 451*ecran.width/576, 319*ecran.height/360, 139*ecran.width/480 ,139*ecran.height/300,  0) ;
-        }
-
-    if ((float) ecran.mouse_x < 515*ecran.width/576 && ecran.mouse_x > 245*ecran.width/288 && (float) ecran.mouse_y < 353*ecran.height/360&& ecran.mouse_y > 9*ecran.height/10) {
-       // al_draw_scaled_bitmap(jeu.classes->sortADisposition[SORTFLEUR].iconeSort, 0, 0, 2000, 2000, 27*ecran.width/32, ecran.height/1.125, 889*ecran.width/2880 ,889*ecran.height/1800,  0);
-        al_draw_text(gameFont, al_map_rgb( 100, 100, 100), 73*ecran.width/288, 83*ecran.height/90 , ALLEGRO_ALIGN_CENTER, "SORT RALENTIR - RALENTIR SON ADVERSAIRE ") ;
-    }else { //al_draw_scaled_bitmap(jeu.classes->sortADisposition[SORTFLEUR].iconeSort, 0, 0, 2000, 2000, 27*ecran.width/32, ecran.height/1.125, 839*ecran.width/2880 ,839*ecran.height/1800,  0) ;
-        }
-
-    if ((float) ecran.mouse_x < 271*ecran.width/288 && ecran.mouse_x > 521*ecran.width/576 && (float) ecran.mouse_y < 353*ecran.height/360 && ecran.mouse_y > 9*ecran.height/10 ) {
-    //    al_draw_scaled_bitmap(jeu.classes->sortADisposition[FATAL].iconeSort, 0, 0, 2000, 2000, 1283*ecran.width/1440, 323*ecran.height/360, 31*ecran.width/96 ,31*ecran.height/60,  0) ;
-        al_draw_text(gameFont, al_map_rgb(100, 100, 100), 73*ecran.width/288, 83*ecran.height/90, ALLEGRO_ALIGN_CENTER,
-                     "SORT FATAL - ASSOMMEZ VOTRE ADVERSAIRE EN LUI ENLEVANT 3 POINT DE VIR D'UN COUP ");
-    } else { //al_draw_scaled_bitmap(jeu.classes->sortADisposition[FATAL].iconeSort, 0, 0, 2000, 2000, 1283*ecran.width/1440, 323*ecran.height/360, 11*ecran.width/36 ,22*ecran.height/45,  0) ;
-        }
+    if ((float) ecran.mouse_x < 2400 && ecran.mouse_x > 2280 && (float) ecran.mouse_y < 1765 && ecran.mouse_y > 1620 ){
+        al_draw_scaled_bitmap(jeu.classes[KIRBY].sortADisposition[FLAMME].iconeSort, 0, 0, 2000, 2000, 2390, 1595, 850 ,850,  0) ;
+        al_draw_text(gameFont, al_map_rgb( 100, 100, 100), 730, 1660 , ALLEGRO_ALIGN_CENTER, "SORT FLEMME - ENLEVEZ UN POINT DE VIE A VOTRE ADVERSAIRE ") ;
+    } else { al_draw_scaled_bitmap(jeu.classes[KIRBY].sortADisposition[FLAMME].iconeSort, 0, 0, 2000, 2000, 2390, 1595, 800 ,800,  0) ;}
 
 
 

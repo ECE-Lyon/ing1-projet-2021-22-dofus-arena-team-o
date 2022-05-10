@@ -11,6 +11,7 @@ void initialiserIconeClasse(ALLEGRO_BITMAP* pacman, ALLEGRO_BITMAP* kirby, ALLEG
 
             /// INITIALISATION DES DIFFERENTS SORTS DES CLASSES///
 
+
 void initialiserSortClasseKIRBY (Classe* classe, ALLEGRO_BITMAP* coupDePied, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* poing){
     classe->sortADisposition[FLAMME].iconeSort = sortFlemme;
     classe->sortADisposition[COUPDEPIED].iconeSort =coupDePied;
@@ -32,10 +33,10 @@ void initialiserSortClassePEACH (Classe* classe, ALLEGRO_BITMAP* sortFleur, ALLE
     classe->sortADisposition[SORTSOIN].iconeSort = sortSoin;
     classe->sortADisposition[COUPDEPIED].iconeSort = coupDePied;
 }
-void initialiserSortClasseDONKEYKONG (Classe* classe, ALLEGRO_BITMAP* sortMortel, ALLEGRO_BITMAP* poing, ALLEGRO_BITMAP* poing2){
+void initialiserSortClasseDONKEYKONG (Classe* classe, ALLEGRO_BITMAP* sortMortel, ALLEGRO_BITMAP* poingGANT, ALLEGRO_BITMAP* saut){
     classe->sortADisposition[MORTEL].iconeSort = sortMortel;
-    classe->sortADisposition[POING2].iconeSort = poing2;
-    classe->sortADisposition[POING].iconeSort = poing;
+    classe->sortADisposition[POINGGANT].iconeSort = poingGANT;
+    classe->sortADisposition[SAUT].iconeSort = saut;
 }
 
 

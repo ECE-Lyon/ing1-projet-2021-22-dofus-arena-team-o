@@ -75,7 +75,7 @@ int main() {
 
     /*ALLEGRO_BITMAP *PVversion1 = al_load_bitmap("../Bitmap/Sort/sortUtilisé/PVversion1.png");
     ALLEGRO_BITMAP *afficherPV = al_load_bitmap("../Bitmap/Sort/sortUtilisé/afficherPV.png");*/
-    ALLEGRO_BITMAP *afficherSort = al_load_bitmap("../Bitmap/Sort/sortUtilisé/afficherSort.png");
+    ALLEGRO_BITMAP *afficherSort = al_load_bitmap("../Bitmap/Sort/afficherSort.png");
 
 
 
@@ -326,14 +326,13 @@ int main() {
                                         }
                                     }
                                 }
-                                if ((float) (mouse_x - 1829*ecran.width/1920)*(mouse_x - 1829*ecran.width/1920) + (mouse_y - 49*ecran.height/54)*(mouse_y - 49*ecran.height/54) < ecran.width/24 * ecran.width/24  ){
+                                if (((float) mouse_x - 1829*ecran.width/1920)*((float) mouse_x - 1829*ecran.width/1920)  + (mouse_y - 49*ecran.height/54)*(mouse_y - 49*ecran.height/54) < ecran.width/24 * ecran.width/24){
                                     jeu.gameMode = JEU;
                                 }
                                 break;
                             }
                         }
                     }
-                    break;
                 }
                 case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
                     if ((event.mouse.button & 1) == 1) {
