@@ -373,18 +373,17 @@ void drawSort( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran, ALLEGRO_BITMAP
     } else { al_draw_scaled_bitmap(jeu.classes[KIRBY].sortADisposition[POING].iconeSort, 0, 0, 2000, 2000, 2180, 1600, 1290 ,1290,  0) ;}
 
     if ((float) ecran.mouse_x < 2135 && ecran.mouse_x > 2045 && (float) ecran.mouse_y < 1765 && ecran.mouse_y > 1620 ){
-        al_draw_scaled_bitmap(jeu.classes[KIRBY].sortADisposition[COUPDEPIED].iconeSort, 0, 0, 2000, 2000, 2000, 1568, 1410 ,1410,  0) ;
+        al_draw_scaled_bitmap(jeu.classes[KIRBY].sortADisposition[COUPDEPIED].iconeSort, 0, 0, 2000, 2000, 2000, 1580, 1410 ,1410,  0) ;
         al_draw_text(gameFont, al_map_rgb( 100, 100, 100), 730, 1660 , ALLEGRO_ALIGN_CENTER, "COUP DE PIED DE L'ENFER ") ;
-    } else { al_draw_scaled_bitmap(jeu.classes[KIRBY].sortADisposition[COUPDEPIED].iconeSort, 0, 0, 2000, 2000, 2000, 1568, 1360 ,1360,  0) ;}
+    } else { al_draw_scaled_bitmap(jeu.classes[KIRBY].sortADisposition[COUPDEPIED].iconeSort, 0, 0, 2000, 2000, 2000, 1580, 1360 ,1360,  0) ;}
 
     if ((float) ecran.mouse_x < 2500 && ecran.mouse_x > 2380 && (float) ecran.mouse_y < 1765 && ecran.mouse_y > 1620 ){
         al_draw_scaled_bitmap(jeu.classes[KIRBY].sortADisposition[FLAMME].iconeSort, 0, 0, 2000, 2000, 2390, 1595, 850 ,850,  0) ;
         al_draw_text(gameFont, al_map_rgb( 100, 100, 100), 730, 1660 , ALLEGRO_ALIGN_CENTER, "SORT FLEMME - ENLEVEZ UN POINT DE VIE A VOTRE ADVERSAIRE ") ;
     } else { al_draw_scaled_bitmap(jeu.classes[KIRBY].sortADisposition[FLAMME].iconeSort, 0, 0, 2000, 2000, 2390, 1595, 800 ,800,  0) ;}
 
-*/
-    ///MARIO
 
+    ///MARIO
 
     if ((float) ecran.mouse_x < 2350 && ecran.mouse_x > 2190 && (float) ecran.mouse_y < 1770 && ecran.mouse_y > 1600 ){
         al_draw_scaled_bitmap(jeu.classes[MARIO].sortADisposition[CORONA].iconeSort, 0, 0, 2000, 2000, 2190, 1580, 1270 ,1270,  0) ;
@@ -401,6 +400,61 @@ void drawSort( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran, ALLEGRO_BITMAP
         al_draw_text(gameFont, al_map_rgb( 100, 100, 100), 730, 1660 , ALLEGRO_ALIGN_CENTER, " COUP DE POING ") ;
     } else { al_draw_scaled_bitmap(jeu.classes[MARIO].sortADisposition[POING2].iconeSort, 0, 0, 2000, 2000, 2415, 1595, 1080 ,1080,  0) ;}
 
+
+///PEACH
+
+    if ((float) ecran.mouse_x < 2350 && ecran.mouse_x > 2190 && (float) ecran.mouse_y < 1770 && ecran.mouse_y > 1600 ){
+        al_draw_scaled_bitmap(jeu.classes[PEACH].sortADisposition[SORTFLEUR].iconeSort, 0, 0, 2000, 2000, 2200, 1618, 1160 ,1160,  0) ;
+        al_draw_text(gameFont, al_map_rgb( 100, 100, 100), 730, 1660 , ALLEGRO_ALIGN_CENTER, "Attaque de FLEUR !!!") ;
+    } else { al_draw_scaled_bitmap(jeu.classes[PEACH].sortADisposition[SORTFLEUR].iconeSort, 0, 0, 2000, 2000, 2200, 1618, 1110 ,1110,  0) ;}
+
+    if ((float) ecran.mouse_x < 2135 && ecran.mouse_x > 2045 && (float) ecran.mouse_y < 1765 && ecran.mouse_y > 1620 ){
+        al_draw_scaled_bitmap(jeu.classes[PEACH].sortADisposition[COUPDEPIED].iconeSort, 0, 0, 2000, 2000, 2000, 1580, 1410 ,1410,  0) ;
+        al_draw_text(gameFont, al_map_rgb( 100, 100, 100), 730, 1660 , ALLEGRO_ALIGN_CENTER, "COUP DE PIED DE L'ENFER ") ;
+    } else { al_draw_scaled_bitmap(jeu.classes[PEACH].sortADisposition[COUPDEPIED].iconeSort, 0, 0, 2000, 2000, 2000, 1580, 1360 ,1360,  0) ;}
+
+    if ((float) ecran.mouse_x < 2530 && ecran.mouse_x > 2415 && (float) ecran.mouse_y < 1765 && ecran.mouse_y > 1620 ){
+        al_draw_scaled_bitmap(jeu.classes[PEACH].sortADisposition[SORTSOIN].iconeSort, 0, 0, 2000, 2000, 2415, 1615, 1130 ,1130,  0) ;
+        al_draw_text(gameFont, al_map_rgb( 100, 100, 100), 730, 1660 , ALLEGRO_ALIGN_CENTER, " Et si on mettait un pansements sur vos bobos ") ;
+    } else { al_draw_scaled_bitmap(jeu.classes[PEACH].sortADisposition[SORTSOIN].iconeSort, 0, 0, 2000, 2000, 2415, 1615, 1080 ,1080,  0) ;}
+
+
+///PACMAN
+
+    if ((float) ecran.mouse_x < 2350 && ecran.mouse_x > 2190 && (float) ecran.mouse_y < 1770 && ecran.mouse_y > 1600 ){
+        al_draw_scaled_bitmap(jeu.classes[PACMAN].sortADisposition[RECULERADVERSAIRE].iconeSort, 0, 0, 2000, 2000, 2180, 1600, 1340 ,1340,  0) ;
+        al_draw_text(gameFont, al_map_rgb( 100, 100, 100), 730, 1660 , ALLEGRO_ALIGN_CENTER, "COUP DE POING QUI FAIT VOYAGER SON ADVERSAIRE (CARREMENT)") ;
+    } else { al_draw_scaled_bitmap(jeu.classes[PACMAN].sortADisposition[RECULERADVERSAIRE].iconeSort, 0, 0, 2000, 2000, 2180, 1600, 1290 ,1290,  0) ;}
+
+    if ((float) ecran.mouse_x < 2135 && ecran.mouse_x > 2045 && (float) ecran.mouse_y < 1765 && ecran.mouse_y > 1620 ){
+        al_draw_scaled_bitmap(jeu.classes[PACMAN].sortADisposition[SORTDEFENCE].iconeSort, 0, 0, 2000, 2000, 2000, 1580, 1350 ,1350,  0) ;
+        al_draw_text(gameFont, al_map_rgb( 100, 100, 100), 730, 1660 , ALLEGRO_ALIGN_CENTER, "SORT DEFENCE ") ;
+    } else { al_draw_scaled_bitmap(jeu.classes[PACMAN].sortADisposition[SORTDEFENCE].iconeSort, 0, 0, 2000, 2000, 2000, 1580, 1300 ,1300,  0) ;}
+
+    if ((float) ecran.mouse_x < 2500 && ecran.mouse_x > 2380 && (float) ecran.mouse_y < 1765 && ecran.mouse_y > 1620 ){
+        al_draw_scaled_bitmap(jeu.classes[PACMAN].sortADisposition[FLAMME].iconeSort, 0, 0, 2000, 2000, 2390, 1595, 850 ,850,  0) ;
+        al_draw_text(gameFont, al_map_rgb( 100, 100, 100), 730, 1660 , ALLEGRO_ALIGN_CENTER, "SORT FLEMME - ENLEVEZ UN POINT DE VIE A VOTRE ADVERSAIRE ") ;
+    } else { al_draw_scaled_bitmap(jeu.classes[PACMAN].sortADisposition[FLAMME].iconeSort, 0, 0, 2000, 2000, 2390, 1595, 800 ,800,  0) ;}
+
+*/
+
+
+///DONKEY KONG
+
+       if ((float) ecran.mouse_x < 2350 && ecran.mouse_x > 2190 && (float) ecran.mouse_y < 1770 && ecran.mouse_y > 1600 ){
+        al_draw_scaled_bitmap(jeu.classes[DONKEY_KONG].sortADisposition[RECULERADVERSAIRE].iconeSort, 0, 0, 2000, 2000, 2180, 1600, 1340 ,1340,  0) ;
+        al_draw_text(gameFont, al_map_rgb( 100, 100, 100), 730, 1660 , ALLEGRO_ALIGN_CENTER, "COUP DE POING QUI FAIT VOYAGER SON ADVERSAIRE (CARREMENT)") ;
+    } else { al_draw_scaled_bitmap(jeu.classes[DONKEY_KONG].sortADisposition[RECULERADVERSAIRE].iconeSort, 0, 0, 2000, 2000, 2180, 1600, 1290 ,1290,  0) ;}
+
+    if ((float) ecran.mouse_x < 2135 && ecran.mouse_x > 2045 && (float) ecran.mouse_y < 1765 && ecran.mouse_y > 1620 ){
+        al_draw_scaled_bitmap(jeu.classes[DONKEY_KONG].sortADisposition[SORTDEFENCE].iconeSort, 0, 0, 2000, 2000, 2000, 1580, 1350 ,1350,  0) ;
+        al_draw_text(gameFont, al_map_rgb( 100, 100, 100), 730, 1660 , ALLEGRO_ALIGN_CENTER, "SORT DEFENCE ") ;
+    } else { al_draw_scaled_bitmap(jeu.classes[DONKEY_KONG].sortADisposition[SORTDEFENCE].iconeSort, 0, 0, 2000, 2000, 2000, 1580, 1300 ,1300,  0) ;}
+
+    if ((float) ecran.mouse_x < 2500 && ecran.mouse_x > 2380 && (float) ecran.mouse_y < 1765 && ecran.mouse_y > 1620 ){
+        al_draw_scaled_bitmap(jeu.classes[DONKEY_KONG].sortADisposition[FLAMME].iconeSort, 0, 0, 2000, 2000, 2390, 1595, 850 ,850,  0) ;
+        al_draw_text(gameFont, al_map_rgb( 100, 100, 100), 730, 1660 , ALLEGRO_ALIGN_CENTER, "SORT FLEMME - ENLEVEZ UN POINT DE VIE A VOTRE ADVERSAIRE ") ;
+    } else { al_draw_scaled_bitmap(jeu.classes[DONKEY_KONG].sortADisposition[FLAMME].iconeSort, 0, 0, 2000, 2000, 2390, 1595, 800 ,800,  0) ;}
 
 
 

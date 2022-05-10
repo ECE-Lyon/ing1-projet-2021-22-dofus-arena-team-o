@@ -60,7 +60,7 @@ typedef struct Info{
 typedef struct {
     InfosSurLesJoueurs info ;
     Joueurs* joueur ;
-    Classe classes[5] ;
+    Classe classes[7] ;
     int gameMode ;
 }Jeux;
 

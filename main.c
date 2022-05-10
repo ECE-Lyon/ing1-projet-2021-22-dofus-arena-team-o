@@ -62,8 +62,8 @@ int main() {
     ALLEGRO_BITMAP *sortDefence = al_load_bitmap("../Bitmap/Sort/sortUtilisé/sortDefence.png");
     ALLEGRO_BITMAP *sortSoin = al_load_bitmap("../Bitmap/Sort/sortUtilisé/sortSoin.png");
     ALLEGRO_BITMAP *sortSaut = al_load_bitmap("../Bitmap/Sort/sortUtilisé/saut.png");
-    ALLEGRO_BITMAP *reculerAdversaire = al_load_bitmap("../Bitmap/Sort/sortUtilisé/reculerAdversaire.png.png");
-    ALLEGRO_BITMAP *couDePoingGant = al_load_bitmap("../Bitmap/Sort/sortUtilisé/poingGant.png.png");
+    ALLEGRO_BITMAP *reculerAdversaire = al_load_bitmap("../Bitmap/Sort/sortUtilisé/reculerAdversaire.png");
+    ALLEGRO_BITMAP *couDePoingGant = al_load_bitmap("../Bitmap/Sort/sortUtilisé/poingGant.png");
     ALLEGRO_BITMAP *poing2 = al_load_bitmap("../Bitmap/Sort/sortUtilisé/Poing2.png");
     ALLEGRO_BITMAP *poing = al_load_bitmap("../Bitmap/Sort/sortUtilisé/poing.png");
     ALLEGRO_BITMAP *coupDePied = al_load_bitmap("../Bitmap/Sort/sortUtilisé/coupDePied.png");
@@ -110,7 +110,7 @@ int main() {
     initialiserSortClassePACMAN (&jeu.classes[PACMAN], reculerAdversaire, sortFlemme, sortDefence);
     initialiserSortClasseMARIO (&jeu.classes[MARIO], sortCorona, sortFlemme, poing2);
     initialiserSortClassePEACH (&jeu.classes[PEACH], sortFleur, sortSoin, coupDePied);
-    initialiserSortClasseDONKEYKONG (&jeu.classes[DONKEY_KONG], sortMortel, poing, poing2);
+    initialiserSortClasseDONKEYKONG (&jeu.classes[DONKEY_KONG], sortMortel, couDePoingGant, poing2);
 
 
         initialiserMenu(&mainMenu, width, height);
