@@ -119,7 +119,7 @@ void choixJoueur(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FO
     }
 
     /// BOUTONS 2 3 4
-    al_draw_textf(gameFont, al_map_rgb(0, 0, 0), width/1.92, width/14.4, ALLEGRO_ALIGN_CENTER, "Combien de joueurs etes vous ?");
+    al_draw_textf(gameFont, al_map_rgb(0, 0, 0), width/1.92, 13*height/216, ALLEGRO_ALIGN_CENTER, "Combien de joueurs etes vous ?");
     al_draw_filled_circle(5*width/24, height/2.16, width/19.2, al_map_rgba(219, 112, 147, 200));
     al_draw_text(gameFont, al_map_rgb(0, 0, 0), width / 4.8, 95 * height / 216, ALLEGRO_ALIGN_CENTER, "2");
     al_draw_filled_circle(95*width/192, height/2.16, width/19.2, al_map_rgba(219, 112, 147, 200));

@@ -56,26 +56,26 @@ int main() {
 
                /////////////////SORTS/////////////////////
 
-    ALLEGRO_BITMAP *sortFlemme = al_load_bitmap("../Bitmap/Sort/sortFlemme.png");
-    ALLEGRO_BITMAP *sortFleur = al_load_bitmap("../Bitmap/SortFleur.png");
-    ALLEGRO_BITMAP *sortCorona = al_load_bitmap("../Bitmap/sortCorona.png");
-    ALLEGRO_BITMAP *sortDefence = al_load_bitmap("../Bitmap/sortDefence.png");
-    ALLEGRO_BITMAP *sortSoin = al_load_bitmap("../Bitmap/sortSoin.png");
-    ALLEGRO_BITMAP *sortSaut = al_load_bitmap("../Bitmap/saut.png");
-    ALLEGRO_BITMAP *reculerAdversaire = al_load_bitmap("../Bitmap/reculerAdversaire.png.png");
-    ALLEGRO_BITMAP *couDePoingGant = al_load_bitmap("../Bitmap/poingGant.png.png");
-    ALLEGRO_BITMAP *poing2 = al_load_bitmap("../Bitmap/Poing2.png");
-    ALLEGRO_BITMAP *poing = al_load_bitmap("../Bitmap/poing.png");
-    ALLEGRO_BITMAP *coupDePied = al_load_bitmap("../Bitmap/coupDePied.png");
-    ALLEGRO_BITMAP *coup = al_load_bitmap("../Bitmap/coup.png");
-    ALLEGRO_BITMAP *sortMortel = al_load_bitmap("../Bitmap/sortMortel.png");
+    ALLEGRO_BITMAP *sortFlemme = al_load_bitmap("../Bitmap/Sort/sortUtilisé/sortFlemme.png");
+    ALLEGRO_BITMAP *sortFleur = al_load_bitmap("../Bitmap/Sort/sortUtilisé/sortFleur.png");
+    ALLEGRO_BITMAP *sortCorona = al_load_bitmap("../Bitmap/Sort/sortUtilisé/sortCorona.png");
+    ALLEGRO_BITMAP *sortDefence = al_load_bitmap("../Bitmap/Sort/sortUtilisé/sortDefence.png");
+    ALLEGRO_BITMAP *sortSoin = al_load_bitmap("../Bitmap/Sort/sortUtilisé/sortSoin.png");
+    ALLEGRO_BITMAP *sortSaut = al_load_bitmap("../Bitmap/Sort/sortUtilisé/saut.png");
+    ALLEGRO_BITMAP *reculerAdversaire = al_load_bitmap("../Bitmap/Sort/sortUtilisé/reculerAdversaire.png.png");
+    ALLEGRO_BITMAP *couDePoingGant = al_load_bitmap("../Bitmap/Sort/sortUtilisé/poingGant.png.png");
+    ALLEGRO_BITMAP *poing2 = al_load_bitmap("../Bitmap/Sort/sortUtilisé/Poing2.png");
+    ALLEGRO_BITMAP *poing = al_load_bitmap("../Bitmap/Sort/sortUtilisé/poing.png");
+    ALLEGRO_BITMAP *coupDePied = al_load_bitmap("../Bitmap/Sort/sortUtilisé/coupDePied.png");
+    ALLEGRO_BITMAP *coup = al_load_bitmap("../Bitmap/Sort/sortUtilisé/coup.png");
+    ALLEGRO_BITMAP *sortMortel = al_load_bitmap("../Bitmap/Sort/sortUtilisé/sortMortel.png");
 
 
     /////////////////AFFICHAGEPVPMPA/////////////////////
 
-    ALLEGRO_BITMAP *PVversion1 = al_load_bitmap("../Bitmap/Sort/PVversion1.png");
-    ALLEGRO_BITMAP *afficherPV = al_load_bitmap("../Bitmap/Sort/afficherPV.png");
-    ALLEGRO_BITMAP *afficherSort = al_load_bitmap("../Bitmap/Sort/afficherSort.png");
+    /*ALLEGRO_BITMAP *PVversion1 = al_load_bitmap("../Bitmap/Sort/sortUtilisé/PVversion1.png");
+    ALLEGRO_BITMAP *afficherPV = al_load_bitmap("../Bitmap/Sort/sortUtilisé/afficherPV.png");*/
+    ALLEGRO_BITMAP *afficherSort = al_load_bitmap("../Bitmap/Sort/sortUtilisé/afficherSort.png");
 
 
 
@@ -106,11 +106,11 @@ int main() {
 
     ///INITIALISATION DE NOS VARIABLES
     initialiserIconeClasse(pacmanIcone, kirbyIcone, peachIcone, marioIcone, donkey_kongIcone, jeu.classes);
-    initialiserSortClasseKIRBY (jeu.classes, coupDePied, sortFlemme, poing);
-    initialiserSortClassePACMAN (jeu.classes, reculerAdversaire, sortFlemme, sortDefence);
-    initialiserSortClasseMARIO (jeu.classes, sortCorona, sortFlemme, poing2);
-    initialiserSortClassePEACH (jeu.classes, sortFleur, sortSoin, coupDePied);
-    initialiserSortClasseDONKEYKONG (jeu.classes, sortMortel, poing, poing2);
+    initialiserSortClasseKIRBY (&jeu.classes[KIRBY], coupDePied, sortFlemme, poing);
+    initialiserSortClassePACMAN (&jeu.classes[PACMAN], reculerAdversaire, sortFlemme, sortDefence);
+    initialiserSortClasseMARIO (&jeu.classes[MARIO], sortCorona, sortFlemme, poing2);
+    initialiserSortClassePEACH (&jeu.classes[PEACH], sortFleur, sortSoin, coupDePied);
+    initialiserSortClasseDONKEYKONG (&jeu.classes[DONKEY_KONG], sortMortel, poing, poing2);
 
 
         initialiserMenu(&mainMenu, width, height);
@@ -326,13 +326,14 @@ int main() {
                                         }
                                     }
                                 }
-                                if (((float) mouse_x - 1829*ecran.width/1920)*((float) mouse_x - 1829*ecran.width/1920)  + (mouse_y - 49*ecran.height/54)*(mouse_y - 49*ecran.height/54) < ecran.width/24 * ecran.width/24){
+                                if ((float) (mouse_x - 1829*ecran.width/1920)*(mouse_x - 1829*ecran.width/1920) + (mouse_y - 49*ecran.height/54)*(mouse_y - 49*ecran.height/54) < ecran.width/24 * ecran.width/24  ){
                                     jeu.gameMode = JEU;
                                 }
                                 break;
                             }
                         }
                     }
+                    break;
                 }
                 case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
                     if ((event.mouse.button & 1) == 1) {

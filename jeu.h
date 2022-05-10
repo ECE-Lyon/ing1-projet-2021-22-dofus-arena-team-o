@@ -42,7 +42,7 @@ typedef struct {
 
 typedef struct {
     ALLEGRO_BITMAP* image;
-    Sort sortADisposition[9];
+    Sort sortADisposition[20];
 }Classe;
 
 typedef struct Info{
