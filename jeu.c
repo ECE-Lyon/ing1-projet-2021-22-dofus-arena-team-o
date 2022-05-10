@@ -1,5 +1,6 @@
 #include "jeu.h"
 
+            /// INITIALISATION DES DIFFERENTES CLASSES///
 void initialiserIconeClasse(ALLEGRO_BITMAP* pacman, ALLEGRO_BITMAP* kirby, ALLEGRO_BITMAP* peach, ALLEGRO_BITMAP* mario, ALLEGRO_BITMAP* donkey_kong, Classe* classes) {
     classes[KIRBY].image = kirby ;
     classes[PACMAN].image = pacman ;
@@ -8,57 +9,37 @@ void initialiserIconeClasse(ALLEGRO_BITMAP* pacman, ALLEGRO_BITMAP* kirby, ALLEG
     classes[DONKEY_KONG].image = donkey_kong;
 }
 
-/*void initialiserSortClasseKIRBY (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* sortRalentir, ALLEGRO_BITMAP* sortSpecial, ALLEGRO_BITMAP* sortStop, ALLEGRO_BITMAP* sortReculer, ALLEGRO_BITMAP* afficherSort, ALLEGRO_BITMAP* afficherPV){
-    classe->sortADisposition[FLAMME].iconeSort = sortFlemme;
-    classe->sortADisposition[RALENTIR].iconeSort = sortRalentir;
-    classe->sortADisposition[SPECIAL].iconeSort = sortSpecial;
-    classe->sortADisposition[STOP].iconeSort = sortStop;
-    classe->sortADisposition[RECULER].iconeSort = sortReculer;
-    classe->sortADisposition[FATAL].iconeSort = sortFatal;
-    classe->sortADisposition[BARRE].iconeSort = afficherSort;
-    classe->sortADisposition[PV].iconeSort = afficherPV;
-}
-void initialiserSortClassePACMAN (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* sortRalentir, ALLEGRO_BITMAP* sortSpecial, ALLEGRO_BITMAP* sortStop, ALLEGRO_BITMAP* sortReculer, ALLEGRO_BITMAP* afficherSort, ALLEGRO_BITMAP* afficherPV){
-    classe->sortADisposition[FLAMME].iconeSort = sortFlemme;
-    classe->sortADisposition[RALENTIR].iconeSort = sortRalentir;
-    classe->sortADisposition[SPECIAL].iconeSort = sortSpecial;
-    classe->sortADisposition[STOP].iconeSort = sortStop;
-    classe->sortADisposition[RECULER].iconeSort = sortReculer;
-    classe->sortADisposition[FATAL].iconeSort = sortFatal;
-    classe->sortADisposition[BARRE].iconeSort = afficherSort;
-    classe->sortADisposition[PV].iconeSort = afficherPV;
-}
-void initialiserSortClasseMARIO (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* sortRalentir, ALLEGRO_BITMAP* sortSpecial, ALLEGRO_BITMAP* sortStop, ALLEGRO_BITMAP* sortReculer, ALLEGRO_BITMAP* afficherSort, ALLEGRO_BITMAP* afficherPV){
-    classe->sortADisposition[FLAMME].iconeSort = sortFlemme;
-    classe->sortADisposition[RALENTIR].iconeSort = sortRalentir;
-    classe->sortADisposition[SPECIAL].iconeSort = sortSpecial;
-    classe->sortADisposition[STOP].iconeSort = sortStop;
-    classe->sortADisposition[RECULER].iconeSort = sortReculer;
-    classe->sortADisposition[FATAL].iconeSort = sortFatal;
-    classe->sortADisposition[BARRE].iconeSort = afficherSort;
-    classe->sortADisposition[PV].iconeSort = afficherPV;
-}
-void initialiserSortClassePEACH (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* sortRalentir, ALLEGRO_BITMAP* sortSpecial, ALLEGRO_BITMAP* sortStop, ALLEGRO_BITMAP* sortReculer, ALLEGRO_BITMAP* afficherSort, ALLEGRO_BITMAP* afficherPV){
-    classe->sortADisposition[FLAMME].iconeSort = sortFlemme;
-    classe->sortADisposition[RALENTIR].iconeSort = sortRalentir;
-    classe->sortADisposition[SPECIAL].iconeSort = sortSpecial;
-    classe->sortADisposition[STOP].iconeSort = sortStop;
-    classe->sortADisposition[RECULER].iconeSort = sortReculer;
-    classe->sortADisposition[FATAL].iconeSort = sortFatal;
-    classe->sortADisposition[BARRE].iconeSort = afficherSort;
-    classe->sortADisposition[PV].iconeSort = afficherPV;
-}
-void initialiserSortClasseDONKEYKONG (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* sortRalentir, ALLEGRO_BITMAP* sortSpecial, ALLEGRO_BITMAP* sortStop, ALLEGRO_BITMAP* sortReculer, ALLEGRO_BITMAP* afficherSort, ALLEGRO_BITMAP* afficherPV){
-    classe->sortADisposition[FLAMME].iconeSort = sortFlemme;
-    classe->sortADisposition[RALENTIR].iconeSort = sortRalentir;
-    classe->sortADisposition[SPECIAL].iconeSort = sortSpecial;
-    classe->sortADisposition[STOP].iconeSort = sortStop;
-    classe->sortADisposition[RECULER].iconeSort = sortReculer;
-    classe->sortADisposition[FATAL].iconeSort = sortFatal;
-    classe->sortADisposition[BARRE].iconeSort = afficherSort;
-    classe->sortADisposition[PV].iconeSort = afficherPV;
-}*/
+            /// INITIALISATION DES DIFFERENTS SORTS DES CLASSES///
 
+void initialiserSortClasseKIRBY (Classe* classe, ALLEGRO_BITMAP* coupDePied, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* poing){
+    classe->sortADisposition[FLAMME].iconeSort = sortFlemme;
+    classe->sortADisposition[COUPDEPIED].iconeSort =coupDePied;
+    classe->sortADisposition[POING].iconeSort = poing;
+}
+void initialiserSortClassePACMAN (Classe* classe, ALLEGRO_BITMAP* reculerAdversaire, ALLEGRO_BITMAP* sortFlamme, ALLEGRO_BITMAP* sortDefence){
+    classe->sortADisposition[FLAMME].iconeSort = sortFlamme;
+    classe->sortADisposition[RECULERADVERSAIRE].iconeSort = reculerAdversaire;
+    classe->sortADisposition[SORTDEFENCE].iconeSort = sortDefence ;
+}
+void initialiserSortClasseMARIO (Classe* classe, ALLEGRO_BITMAP* sortCorona, ALLEGRO_BITMAP* sortFlamme, ALLEGRO_BITMAP* poing2){
+    classe->sortADisposition[FLAMME].iconeSort = sortFlamme;
+    classe->sortADisposition[POING2].iconeSort = poing2;
+    classe->sortADisposition[CORONA].iconeSort = sortCorona;
+}
+
+void initialiserSortClassePEACH (Classe* classe, ALLEGRO_BITMAP* sortFleur, ALLEGRO_BITMAP* sortSoin, ALLEGRO_BITMAP* coupDePied){
+    classe->sortADisposition[SORTFLEUR].iconeSort = sortFleur;
+    classe->sortADisposition[SORTSOIN].iconeSort = sortSoin;
+    classe->sortADisposition[COUPDEPIED].iconeSort = coupDePied;
+}
+void initialiserSortClasseDONKEYKONG (Classe* classe, ALLEGRO_BITMAP* sortMortel, ALLEGRO_BITMAP* poing, ALLEGRO_BITMAP* poing2){
+    classe->sortADisposition[MORTEL].iconeSort = sortMortel;
+    classe->sortADisposition[POING2].iconeSort = poing2;
+    classe->sortADisposition[POING].iconeSort = poing;
+}
+
+
+/// CODE DU JEU ///
 
 void initialiserJeu(Jeux* jeu) {
     jeu->gameMode = CHOIXNBJOUEUR ;
@@ -293,31 +274,6 @@ void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLE
 int getRandomInteger(int min, int max){
     int nbAleatoire = rand()%(max-min+1)+min;
     return nbAleatoire;
-}
-
-int verifierValeurTableau(int tab[], int valeurAverifier, int cbDeValeur) {
-    int i, j = 0;
-    for (i = 0; i < cbDeValeur; i++) {
-        if (tab[i] == valeurAverifier) {
-            j = 1;
-        }
-    }
-    return j;
-}
-
-int ordreDesJoueurs(Jeux jeu){
-    int i, valeur;
-    int tab[4] = {0};
-    for(i = 1; i <= jeu.info.nbJoueur; i++){
-        valeur = getRandomInteger(1, jeu.info.nbJoueur);
-        if(verifierValeurTableau(tab, valeur, 4) == 0){
-            jeu.joueur[i].ordre = valeur;
-            tab[i-1] = valeur;
-        }
-        else{
-            i--;
-        }
-    }
 }
 
 char alphabet (int keycode, int* nbLettre){

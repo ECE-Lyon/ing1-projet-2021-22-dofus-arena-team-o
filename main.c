@@ -110,9 +110,7 @@ int main() {
     initialiserSortClassePACMAN (jeu.classes, reculerAdversaire, sortFlemme, sortDefence);
     initialiserSortClasseMARIO (jeu.classes, sortCorona, sortFlemme, poing2);
     initialiserSortClassePEACH (jeu.classes, sortFleur, sortSoin, coupDePied);
-    //initialiserSortClasseDONKEYKONG (jeu.classes, sortFatal, sortFlemme, sortRalentir, sortSpecial, sortStop, sortReculer, afficherSort, afficherPV);
-//    initialiserSort (jeu.classes, sortFatal, sortFlemme, sortRalentir, sortSpecial, sortStop, sortReculer, afficherSort, afficherPV);
-
+    initialiserSortClasseDONKEYKONG (jeu.classes, sortMortel, poing, poing2);
 
 
         initialiserMenu(&mainMenu, width, height);
@@ -335,7 +333,6 @@ int main() {
                             }
                         }
                     }
-                    break;
                 }
                 case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
                     if ((event.mouse.button & 1) == 1) {
