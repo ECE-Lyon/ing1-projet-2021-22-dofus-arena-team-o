@@ -111,10 +111,12 @@ int main() {
     initialiserSortClasseMARIO (jeu.classes, sortCorona, sortFlemme, poing2);
     initialiserSortClassePEACH (jeu.classes, sortFleur, sortSoin, coupDePied);
     //initialiserSortClasseDONKEYKONG (jeu.classes, sortFatal, sortFlemme, sortRalentir, sortSpecial, sortStop, sortReculer, afficherSort, afficherPV);
+//    initialiserSort (jeu.classes, sortFatal, sortFlemme, sortRalentir, sortSpecial, sortStop, sortReculer, afficherSort, afficherPV);
 
 
 
         initialiserMenu(&mainMenu, width, height);
+    initialiserMenu(&mainMenu, width, height);
     initialiserJeu(&jeu);
     initialiserEcran(&ecran, width, height);
 
@@ -333,6 +335,7 @@ int main() {
                             }
                         }
                     }
+                    break;
                 }
                 case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
                     if ((event.mouse.button & 1) == 1) {
