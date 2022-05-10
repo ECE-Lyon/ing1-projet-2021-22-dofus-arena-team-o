@@ -306,12 +306,11 @@ int verifierValeurTableau(int tab[], int valeurAverifier, int cbDeValeur) {
 int ordreDesJoueurs(Jeux jeu){
     int i, valeur;
     int tab[4] = {0};
-    for(i = 0; i < jeu.info.nbJoueur; i++){
+    for(i = 1; i <= jeu.info.nbJoueur; i++){
         valeur = getRandomInteger(1, jeu.info.nbJoueur);
         if(verifierValeurTableau(tab, valeur, 4) == 0){
-            // il faut copier le nom du personnage le tableau avec l'ordre aléatoire des pers
-            jeu.joueur[i].ordre = i+1;
-            tab[i] = valeur;
+            jeu.joueur[i].ordre = valeur;
+            tab[i-1] = valeur;
         }
         else{
             i--;
