@@ -295,8 +295,8 @@ void drawSort( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran, ALLEGRO_BITMAP
 
 
     ///////////////   AFFICHACHAGE  BARRE SORTS //////////////
-    al_draw_scaled_bitmap(barreSort, 0, 0, 1000, 2000, 1700, 1580, 1900 ,1345,  0) ;
-    al_draw_scaled_bitmap(jeu.classes->sortADisposition[PV].iconeSort, 0, 0, 1000, 2000, 2200, 0, 1600 ,1300,  0) ;
+    al_draw_scaled_bitmap(jeu.classes->sortADisposition[BARRE].iconeSort, 0, 0, 1000, 2000, 85*ecran.width/144, 79*ecran.height/90, 95*ecran.width/144 ,269*ecran.height/360,  0) ;
+    al_draw_scaled_bitmap(jeu.classes->sortADisposition[PV].iconeSort, 0, 0, 1000, 2000, 55*ecran.width/72, 0, ecran.width/1.8 ,13*ecran.height/18,  0) ;
 
     ///////// On prend pour l'instant en compte que la Classe KIRBY Pour Exemple ///////////////  pck nsm ça marche pas cette merde
 

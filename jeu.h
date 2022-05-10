@@ -51,6 +51,7 @@ typedef struct Info{
     int nbLettrePseudo ;
     int PV, PM, PA, aChoisiClasse;
     int classe;//1 : mario      2 : Luigi     3 : Kirby     4: Peach     5 : Zelda
+    int ordre;
 }Joueurs;
 
 

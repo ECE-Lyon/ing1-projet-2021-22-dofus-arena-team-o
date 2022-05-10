@@ -9,7 +9,7 @@ void initialiserIconeClasse(ALLEGRO_BITMAP* pacman, ALLEGRO_BITMAP* kirby, ALLEG
 }
 
 void initialiserSortClasseKIRBY (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* sortRalentir, ALLEGRO_BITMAP* sortSpecial, ALLEGRO_BITMAP* sortStop, ALLEGRO_BITMAP* sortReculer, ALLEGRO_BITMAP* afficherSort, ALLEGRO_BITMAP* afficherPV){
-    classe->sortADisposition[FLEMME].iconeSort = sortFlemme;
+    classe->sortADisposition[FLAMME].iconeSort = sortFlemme;
     classe->sortADisposition[RALENTIR].iconeSort = sortRalentir;
     classe->sortADisposition[SPECIAL].iconeSort = sortSpecial;
     classe->sortADisposition[STOP].iconeSort = sortStop;
@@ -19,7 +19,7 @@ void initialiserSortClasseKIRBY (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALLE
     classe->sortADisposition[PV].iconeSort = afficherPV;
 }
 void initialiserSortClassePACMAN (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* sortRalentir, ALLEGRO_BITMAP* sortSpecial, ALLEGRO_BITMAP* sortStop, ALLEGRO_BITMAP* sortReculer, ALLEGRO_BITMAP* afficherSort, ALLEGRO_BITMAP* afficherPV){
-    classe->sortADisposition[FLEMME].iconeSort = sortFlemme;
+    classe->sortADisposition[FLAMME].iconeSort = sortFlemme;
     classe->sortADisposition[RALENTIR].iconeSort = sortRalentir;
     classe->sortADisposition[SPECIAL].iconeSort = sortSpecial;
     classe->sortADisposition[STOP].iconeSort = sortStop;
@@ -29,7 +29,7 @@ void initialiserSortClassePACMAN (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALL
     classe->sortADisposition[PV].iconeSort = afficherPV;
 }
 void initialiserSortClasseMARIO (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* sortRalentir, ALLEGRO_BITMAP* sortSpecial, ALLEGRO_BITMAP* sortStop, ALLEGRO_BITMAP* sortReculer, ALLEGRO_BITMAP* afficherSort, ALLEGRO_BITMAP* afficherPV){
-    classe->sortADisposition[FLEMME].iconeSort = sortFlemme;
+    classe->sortADisposition[FLAMME].iconeSort = sortFlemme;
     classe->sortADisposition[RALENTIR].iconeSort = sortRalentir;
     classe->sortADisposition[SPECIAL].iconeSort = sortSpecial;
     classe->sortADisposition[STOP].iconeSort = sortStop;
@@ -39,7 +39,7 @@ void initialiserSortClasseMARIO (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALLE
     classe->sortADisposition[PV].iconeSort = afficherPV;
 }
 void initialiserSortClassePEACH (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* sortRalentir, ALLEGRO_BITMAP* sortSpecial, ALLEGRO_BITMAP* sortStop, ALLEGRO_BITMAP* sortReculer, ALLEGRO_BITMAP* afficherSort, ALLEGRO_BITMAP* afficherPV){
-    classe->sortADisposition[FLEMME].iconeSort = sortFlemme;
+    classe->sortADisposition[FLAMME].iconeSort = sortFlemme;
     classe->sortADisposition[RALENTIR].iconeSort = sortRalentir;
     classe->sortADisposition[SPECIAL].iconeSort = sortSpecial;
     classe->sortADisposition[STOP].iconeSort = sortStop;
@@ -49,7 +49,7 @@ void initialiserSortClassePEACH (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALLE
     classe->sortADisposition[PV].iconeSort = afficherPV;
 }
 void initialiserSortClasseDONKEYKONG (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* sortRalentir, ALLEGRO_BITMAP* sortSpecial, ALLEGRO_BITMAP* sortStop, ALLEGRO_BITMAP* sortReculer, ALLEGRO_BITMAP* afficherSort, ALLEGRO_BITMAP* afficherPV){
-    classe->sortADisposition[FLEMME].iconeSort = sortFlemme;
+    classe->sortADisposition[FLAMME].iconeSort = sortFlemme;
     classe->sortADisposition[RALENTIR].iconeSort = sortRalentir;
     classe->sortADisposition[SPECIAL].iconeSort = sortSpecial;
     classe->sortADisposition[STOP].iconeSort = sortStop;
@@ -291,6 +291,32 @@ void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLE
 int getRandomInteger(int min, int max){
     int nbAleatoire = rand()%(max-min+1)+min;
     return nbAleatoire;
+}
+
+int verifierValeurTableau(int tab[], int valeurAverifier, int cbDeValeur) {
+    int i, j = 0;
+    for (i = 0; i < cbDeValeur; i++) {
+        if (tab[i] == valeurAverifier) {
+            j = 1;
+        }
+    }
+    return j;
+}
+
+int ordreDesJoueurs(Jeux jeu){
+    int i, valeur;
+    int tab[4] = {0};
+    for(i = 0; i < jeu.info.nbJoueur; i++){
+        valeur = getRandomInteger(1, jeu.info.nbJoueur);
+        if(verifierValeurTableau(tab, valeur, 4) == 0){
+            // il faut copier le nom du personnage le tableau avec l'ordre aléatoire des pers
+            jeu.joueur[i].ordre = i+1;
+            tab[i] = valeur;
+        }
+        else{
+            i--;
+        }
+    }
 }
 
 char alphabet (int keycode, int* nbLettre){
