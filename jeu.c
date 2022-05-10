@@ -8,7 +8,7 @@ void initialiserIconeClasse(ALLEGRO_BITMAP* pacman, ALLEGRO_BITMAP* kirby, ALLEG
     classes[DONKEY_KONG].image = donkey_kong;
 }
 
-void initialiserSortClasseKIRBY (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* sortRalentir, ALLEGRO_BITMAP* sortSpecial, ALLEGRO_BITMAP* sortStop, ALLEGRO_BITMAP* sortReculer, ALLEGRO_BITMAP* afficherSort, ALLEGRO_BITMAP* afficherPV){
+/*void initialiserSortClasseKIRBY (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* sortRalentir, ALLEGRO_BITMAP* sortSpecial, ALLEGRO_BITMAP* sortStop, ALLEGRO_BITMAP* sortReculer, ALLEGRO_BITMAP* afficherSort, ALLEGRO_BITMAP* afficherPV){
     classe->sortADisposition[FLAMME].iconeSort = sortFlemme;
     classe->sortADisposition[RALENTIR].iconeSort = sortRalentir;
     classe->sortADisposition[SPECIAL].iconeSort = sortSpecial;
@@ -57,7 +57,7 @@ void initialiserSortClasseDONKEYKONG (Classe* classe, ALLEGRO_BITMAP* sortFatal,
     classe->sortADisposition[FATAL].iconeSort = sortFatal;
     classe->sortADisposition[BARRE].iconeSort = afficherSort;
     classe->sortADisposition[PV].iconeSort = afficherPV;
-}
+}*/
 
 
 void initialiserJeu(Jeux* jeu) {
@@ -90,6 +90,8 @@ void initialiserJoueur(Jeux* jeu, Map map[20][20]) {
         jeu->joueur[0].caseY = 0;
         jeu->joueur[0].caseXDepart = jeu->joueur[0].caseX;
         jeu->joueur[0].caseYDepart = jeu->joueur[0].caseY;
+        jeu->joueur[0].xArrive=0;
+        jeu->joueur[0].yArrive=0;
         jeu->joueur[0].dep = 0;
     }
 }
