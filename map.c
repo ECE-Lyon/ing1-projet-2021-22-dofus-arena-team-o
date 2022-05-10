@@ -366,17 +366,17 @@ void drawSort( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran, ALLEGRO_BITMAP
     al_draw_scaled_bitmap(barreSort, 0, 0, 1000, 2000, 0, 1580, 1500 ,1345,  0) ;
 
 
-    if ((float) ecran.mouse_x < 2245 && ecran.mouse_x > 2130 && (float) ecran.mouse_y < 1770 && ecran.mouse_y > 1620 ){
+    if ((float) ecran.mouse_x < 2350 && ecran.mouse_x > 2190 && (float) ecran.mouse_y < 1770 && ecran.mouse_y > 1600 ){
         al_draw_scaled_bitmap(jeu.classes[KIRBY].sortADisposition[POING].iconeSort, 0, 0, 2000, 2000, 2180, 1600, 1340 ,1340,  0) ;
         al_draw_text(gameFont, al_map_rgb( 100, 100, 100), 730, 1660 , ALLEGRO_ALIGN_CENTER, "COUP DE POING QUI FAIT SUPER MAL") ;
     } else { al_draw_scaled_bitmap(jeu.classes[KIRBY].sortADisposition[POING].iconeSort, 0, 0, 2000, 2000, 2180, 1600, 1290 ,1290,  0) ;}
 
-    if ((float) ecran.mouse_x < 2065 && ecran.mouse_x > 1960 && (float) ecran.mouse_y < 1765 && ecran.mouse_y > 1620 ){
-        al_draw_scaled_bitmap(jeu.classes[KIRBY].sortADisposition[COUPDEPIED].iconeSort, 0, 0, 2000, 2000, 2000, 1590, 1438 ,1438,  0) ;
+    if ((float) ecran.mouse_x < 2135 && ecran.mouse_x > 2045 && (float) ecran.mouse_y < 1765 && ecran.mouse_y > 1620 ){
+        al_draw_scaled_bitmap(jeu.classes[KIRBY].sortADisposition[COUPDEPIED].iconeSort, 0, 0, 2000, 2000, 2000, 1568, 1410 ,1410,  0) ;
         al_draw_text(gameFont, al_map_rgb( 100, 100, 100), 730, 1660 , ALLEGRO_ALIGN_CENTER, "COUP DE PIED DE L'ENFER ") ;
-    } else { al_draw_scaled_bitmap(jeu.classes[KIRBY].sortADisposition[COUPDEPIED].iconeSort, 0, 0, 2000, 2000, 2000, 1590, 1388 ,1388,  0) ;}
+    } else { al_draw_scaled_bitmap(jeu.classes[KIRBY].sortADisposition[COUPDEPIED].iconeSort, 0, 0, 2000, 2000, 2000, 1568, 1360 ,1360,  0) ;}
 
-    if ((float) ecran.mouse_x < 2400 && ecran.mouse_x > 2280 && (float) ecran.mouse_y < 1765 && ecran.mouse_y > 1620 ){
+    if ((float) ecran.mouse_x < 2500 && ecran.mouse_x > 2380 && (float) ecran.mouse_y < 1765 && ecran.mouse_y > 1620 ){
         al_draw_scaled_bitmap(jeu.classes[KIRBY].sortADisposition[FLAMME].iconeSort, 0, 0, 2000, 2000, 2390, 1595, 850 ,850,  0) ;
         al_draw_text(gameFont, al_map_rgb( 100, 100, 100), 730, 1660 , ALLEGRO_ALIGN_CENTER, "SORT FLEMME - ENLEVEZ UN POINT DE VIE A VOTRE ADVERSAIRE ") ;
     } else { al_draw_scaled_bitmap(jeu.classes[KIRBY].sortADisposition[FLAMME].iconeSort, 0, 0, 2000, 2000, 2390, 1595, 800 ,800,  0) ;}
