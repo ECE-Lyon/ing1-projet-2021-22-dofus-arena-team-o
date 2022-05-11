@@ -365,10 +365,9 @@ int main() {
                         deplacementJoueur(jeu.joueur, map, scalex, scaley);
                         dessinerQuadrillage(width, height, scalex, scaley, black);
                         al_draw_circle(jeu.joueur[0].x, jeu.joueur[0].y, 50, black, 3);
-                        //barreSort(afficherSort);
-                        //drawSort(gameFont1, jeu, ecran, afficherSort);
+                        barreSort(afficherSort, ecran);
                         sortEnFonctionDesClasses(gameFont1, jeu, ecran, jeu.info.joueurQuiJoue, afficherSort);
-                        sortChoisi(jeu, ecran);
+                        //sortChoisi(jeu, ecran);
                         break;
                     }
                 }

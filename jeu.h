@@ -29,6 +29,7 @@ typedef struct {
 
 typedef struct {
     int nbJoueur, joueurQuiJoue ;
+    int ordre[3];
     bool entrerPseudo ;
 } InfosSurLesJoueurs;
 
@@ -48,11 +49,10 @@ typedef struct {
 typedef struct Info{
     double x,y;
     int xArrive, yArrive, caseX, caseY,caseXDepart,caseYDepart, actif, dep;
-    int sortAppuye;
     char pseudo[MAXNOM];
     int nbLettrePseudo ;
     int PV, PM, PA, aChoisiClasse;
-    int classe;//1 : mario      2 : PEACH     3 : pacman     4: KIRBY     5 : DONKEYKONG
+    int classe;//1 : mario      2 : Luigi     3 : Kirby     4: Peach     5 : Zelda
     int ordre;
 }Joueurs;
 
