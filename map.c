@@ -454,6 +454,8 @@ void drawSort( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran, ALLEGRO_BITMAP
         al_draw_text(gameFont, al_map_rgb( 100, 100, 100), 73*ecran.width/288, 83*ecran.height/90 , ALLEGRO_ALIGN_CENTER, "SORT FLEMME - ENLEVEZ UN POINT DE VIE A VOTRE ADVERSAIRE ") ;
     } else { al_draw_scaled_bitmap(jeu.classes[DONKEY_KONG].sortADisposition[SAUT].iconeSort, 0, 0, 2000, 2000, ecran.width/1.2, 7*ecran.height/8, 67*ecran.width/144 ,67*ecran.height/90,  0) ;}
 
+
+
 /*
     int nbJoueur = 3;  // o prend par exemple 3 joueurs qui jouent
     for (int i = nbJoueur; i < nbJoueur; i++) {
