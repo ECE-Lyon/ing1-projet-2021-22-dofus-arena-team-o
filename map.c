@@ -358,6 +358,7 @@ void dessinerQuadrillage(double  width, double height,double scalex,double scale
     }
 }
 
+
 void barreSort (ALLEGRO_BITMAP* barreSort){
     al_draw_scaled_bitmap(barreSort, 0, 0, 1000, 2000, 1800, 1580, 1500, 1345, 0);
     al_draw_scaled_bitmap(barreSort, 0, 0, 1000, 2000, 0, 1580, 1500, 1345, 0);

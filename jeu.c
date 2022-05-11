@@ -272,11 +272,6 @@ void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLE
 }
 
 
-int getRandomInteger(int min, int max){
-    int nbAleatoire = rand()%(max-min+1)+min;
-    return nbAleatoire;
-}
-
 char alphabet (int keycode, int* nbLettre){
     char lettreAppuye;
     if(keycode >= ALLEGRO_KEY_A && keycode <= ALLEGRO_KEY_Z) {
@@ -315,6 +310,39 @@ void afficherPseudo(Jeux jeu, float width, float height, ALLEGRO_FONT* gameFont)
     }
 }
 
+
+/// Ordre aléatoire des joueurs
+
+int getRandomInteger(int min, int max){
+    int nbAleatoire = rand()%(max-min+1)+min;
+    return nbAleatoire;
+}
+
+int verifierValeurTableau(int tab[], int valeurAverifier, int cbDeValeur) {
+    int i, j = 0;
+    for (i = 0; i < cbDeValeur; i++) {
+        if (tab[i] == valeurAverifier) {
+            j = 1;
+        }
+    }
+    return j;
+}
+
+int ordreDesJoueurs(Jeux jeu){
+    int i, valeur;
+    int tab[4] = {0};
+    for(i = 1; i <= jeu.info.nbJoueur; i++){
+        valeur = getRandomInteger(1, jeu.info.nbJoueur);
+        if(verifierValeurTableau(tab, valeur, 4) == 0){
+            // il faut copier le nom du personnage le tableau avec l'ordre aléatoire des pers
+            jeu.joueur[i].ordre = valeur;
+            tab[i-1] = valeur;
+        }
+        else{
+            i--;
+        }
+    }
+}
 
 
 

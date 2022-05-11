@@ -113,7 +113,7 @@ int main() {
     initialiserSortClasseDONKEYKONG (&jeu.classes[DONKEY_KONG], sortMortel, couDePoingGant, sortSaut);
 
 
-        initialiserMenu(&mainMenu, width, height);
+    initialiserMenu(&mainMenu, width, height);
     initialiserMenu(&mainMenu, width, height);
     initialiserJeu(&jeu);
     initialiserEcran(&ecran, width, height);
