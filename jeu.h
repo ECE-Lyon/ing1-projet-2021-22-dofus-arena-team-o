@@ -81,7 +81,7 @@ void initialiserSortClasseDONKEYKONG (Classe* classe, ALLEGRO_BITMAP* sortMortel
 void initialiserSortClassePEACH (Classe* classe, ALLEGRO_BITMAP* sortFleur, ALLEGRO_BITMAP* sortSoin, ALLEGRO_BITMAP* coupDePied);
 void initialiserSortClasseMARIO (Classe* classe, ALLEGRO_BITMAP* sortCorona, ALLEGRO_BITMAP* sortFlamme, ALLEGRO_BITMAP* poing2);
 void initialiserSortClassePACMAN (Classe* classe, ALLEGRO_BITMAP* reculerAdversaire, ALLEGRO_BITMAP* sortFlamme, ALLEGRO_BITMAP* sortDefence);
-
+void boutonSuivantDansPlay(InfoEcran ecran, ALLEGRO_FONT* gameFont, int mouse_x, int mouse_y);
 
 ///FONCTION POUR COMMENCER A JOUER
 void choixJoueur(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT * gameFont, InfosSurLesJoueurs* infojoueur) ;

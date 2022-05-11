@@ -573,9 +573,9 @@ void drawSortDONKEYKONG(ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran) {
 
 
 void sortEnFonctionDesClasses(ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran, int joueurQuiJoue,  ALLEGRO_BITMAP* barreSort){
-    /*al_draw_scaled_bitmap(barreSort, 0, 0, 1000, 2000, 1800, 1580, 1500, 1345, 0);
-    al_draw_scaled_bitmap(barreSort, 0, 0, 1000, 2000, 0, 1580, 1500, 1345, 0);
-*/
+    al_draw_scaled_bitmap(barreSort, 0, 0, 1000, 2000, ecran.width/1.6, 79*ecran.height/90, ecran.width/1.92, 269*ecran.height/360, 0);
+    al_draw_scaled_bitmap(barreSort, 0, 0, 1000, 2000, 0, 79*ecran.height/90, ecran.width/1.92, 269*ecran.height/360, 0);
+
     switch (jeu.joueur[joueurQuiJoue].classe) {
         case KIRBY :
             drawSortKIRBY(gameFont, jeu, ecran);

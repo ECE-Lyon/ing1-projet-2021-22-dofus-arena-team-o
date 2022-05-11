@@ -1,4 +1,4 @@
-
+#include "jeu.h"
 #include "menu.h"
 #include "map.h"
 
@@ -269,6 +269,9 @@ int main() {
                         switch (jeu.gameMode) {
                             case JEU : {
                                 map[0][0].t = 1;
+                                if ((float) mouse_x < 383 * ecran.width / 384 && mouse_x > ecran.width / 1.2 && (float) mouse_y < ecran.height/13.5 && mouse_y >ecran.height/216){
+                                    jeu.info.joueurQuiJoue++;
+                                }
                                 break;
                             }
                             case CHOIXNBJOUEUR : {
@@ -365,6 +368,7 @@ int main() {
                         deplacementJoueur(jeu.joueur, map, scalex, scaley);
                         dessinerQuadrillage(width, height, scalex, scaley, black);
                         al_draw_circle(jeu.joueur[0].x, jeu.joueur[0].y, 50, black, 3);
+                        boutonSuivantDansPlay(ecran, gameFont1, mouse_x, mouse_y);
                         barreSort(afficherSort, ecran);
                         sortEnFonctionDesClasses(gameFont1, jeu, ecran, jeu.info.joueurQuiJoue, afficherSort);
                         //sortChoisi(jeu, ecran);
