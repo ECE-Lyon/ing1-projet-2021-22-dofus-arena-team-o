@@ -110,7 +110,7 @@ int main() {
     initialiserSortClassePACMAN (&jeu.classes[PACMAN], reculerAdversaire, sortFlemme, sortDefence);
     initialiserSortClasseMARIO (&jeu.classes[MARIO], sortCorona, sortFlemme, poing2);
     initialiserSortClassePEACH (&jeu.classes[PEACH], sortFleur, sortSoin, coupDePied);
-    initialiserSortClasseDONKEYKONG (&jeu.classes[DONKEY_KONG], sortMortel, couDePoingGant, poing2);
+    initialiserSortClasseDONKEYKONG (&jeu.classes[DONKEY_KONG], sortMortel, couDePoingGant, sortSaut);
 
 
         initialiserMenu(&mainMenu, width, height);
@@ -365,7 +365,10 @@ int main() {
                         deplacementJoueur(jeu.joueur, map, scalex, scaley);
                         dessinerQuadrillage(width, height, scalex, scaley, black);
                         al_draw_circle(jeu.joueur[0].x, jeu.joueur[0].y, 50, black, 3);
-                        drawSort(gameFont1, jeu, ecran, afficherSort);
+                        //barreSort(afficherSort);
+                        //drawSort(gameFont1, jeu, ecran, afficherSort);
+                        sortEnFonctionDesClasses(gameFont1, jeu, ecran, jeu.info.joueurQuiJoue, afficherSort);
+                        sortChoisi(jeu, ecran);
                         break;
                     }
                 }

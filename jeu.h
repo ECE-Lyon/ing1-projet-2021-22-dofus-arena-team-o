@@ -20,7 +20,7 @@
 enum gameMode {PLAY, RULES, TEAM, MENU, CHOIXPERSO, END};
 enum personnage {MARIO, PACMAN, KIRBY, PEACH, DONKEY_KONG, VIDE};
 enum play {CHOIXNBJOUEUR, CHOIXCLASSE, PLATE, JEU};
-enum sort {AUCUN, FLAMME, POINGGANT, SAUT, MORTEL, FATAL, POING2, SPECIAL, COUPDEPIED, POING, RECULERADVERSAIRE, SORTDEFENCE, SORTSOIN,  CORONA, SORTFLEUR, BARRE};
+enum sort {AUCUN, FLAMME, POINGGANT, SAUT, MORTEL, FATAL, POING2, COUPDEPIED, POING, RECULERADVERSAIRE, SORTDEFENCE, SORTSOIN,  CORONA, SORTFLEUR, BARRE};
 
 typedef struct {
     int mouse_x, mouse_y ;
@@ -48,10 +48,11 @@ typedef struct {
 typedef struct Info{
     double x,y;
     int xArrive, yArrive, caseX, caseY,caseXDepart,caseYDepart, actif, dep;
+    int sortAppuye;
     char pseudo[MAXNOM];
     int nbLettrePseudo ;
     int PV, PM, PA, aChoisiClasse;
-    int classe;//1 : mario      2 : Luigi     3 : Kirby     4: Peach     5 : Zelda
+    int classe;//1 : mario      2 : PEACH     3 : pacman     4: KIRBY     5 : DONKEYKONG
     int ordre;
 }Joueurs;
 
