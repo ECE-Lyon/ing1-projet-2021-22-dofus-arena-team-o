@@ -62,7 +62,7 @@ int main() {
     ALLEGRO_BITMAP *sortDefence = al_load_bitmap("../Bitmap/Sort/sortUtilisé/sortDefence.png");
     ALLEGRO_BITMAP *sortSoin = al_load_bitmap("../Bitmap/Sort/sortUtilisé/sortSoin.png");
     //ALLEGRO_BITMAP *sortSaut = al_load_bitmap("../Bitmap/Sort/sortUtilisé/saut.png");
-    ALLEGRO_BITMAP *reculerAdversaire = al_load_bitmap("../Bitmap/Sort/sortUtilisé/reculerAdversaire.png.png");
+    ALLEGRO_BITMAP *reculerAdversaire = al_load_bitmap("../Bitmap/Sort/sortUtilisé/reculerAdversaire.png");
     //ALLEGRO_BITMAP *couDePoingGant = al_load_bitmap("../Bitmap/Sort/sortUtilisé/poingGant.png.png");
     ALLEGRO_BITMAP *poing2 = al_load_bitmap("../Bitmap/Sort/sortUtilisé/Poing2.png");
     ALLEGRO_BITMAP *poing = al_load_bitmap("../Bitmap/Sort/sortUtilisé/poing.png");
