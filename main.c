@@ -81,8 +81,6 @@ int main() {
     ALLEGRO_BITMAP *afficherPV = al_load_bitmap("../Bitmap/Sort/sortUtilisé/afficherPV.png");*/
     ALLEGRO_BITMAP *afficherSort = al_load_bitmap("../Bitmap/Sort/afficherSort.png");
 
-
-
     queue = al_create_event_queue();
     assert(queue);
 

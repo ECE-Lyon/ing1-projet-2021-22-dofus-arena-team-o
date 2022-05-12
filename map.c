@@ -96,7 +96,7 @@ void drawPlay(Joueurs *joueur,Map map[30][30],int mouse_x,int mouse_y,double wid
                 al_draw_filled_triangle(map[i][j].x + scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -
                                                                                                                            scaley, black);
 
-                if(map[0][0].t == 1 && joueur[0].dep == 0 && abs(joueur[0].xArrive-joueur[0].caseXDepart)+abs(joueur[0].yArrive-joueur[0].caseYDepart)<=3){
+                if(map[0][0].t == 1 && joueur[0].dep == 0 && abs(joueur[0].xArrive-joueur[0].caseXDepart)+abs(joueur[0].yArrive-joueur[0].caseYDepart)<=3 && map[joueur[0].xArrive][joueur[0].yArrive].obstacle!=1){
 
                     joueur[0].caseXDepart= joueur[0].caseX;
                     joueur[0].caseYDepart= joueur[0].caseY;
@@ -245,8 +245,7 @@ void deplacementJoueur(Joueurs *joueur, Map map[30][30],double scalex,double sca
 
         }
 
-        if (joueur[0].actif == 1 && joueur[0].dep == 1 &&
-            abs(joueur[0].xArrive - joueur[0].caseXDepart) + abs(joueur[0].yArrive - joueur[0].caseYDepart) <= 3) {
+        if (joueur[0].actif == 1 && joueur[0].dep == 1) {
 
             if (joueur[0].caseX < joueur[0].xArrive) {
                 depX = 1;
@@ -570,7 +569,7 @@ void initialiserSortEnFonctionDeLeurPosition (Jeux jeu, int joueurQuiJoue, InfoE
         }
         if (jeu.joueur[joueurQuiJoue].classe == MARIO){
             jeu.joueur[joueurQuiJoue].sortAppuye = 0;
-            //mettre la fonction du sort flemme
+            //mettre la fonction du sort flamme
         }
         if (jeu.joueur[joueurQuiJoue].classe == PACMAN){
             jeu.joueur[joueurQuiJoue].sortAppuye = 0;
@@ -610,7 +609,7 @@ void initialiserSortEnFonctionDeLeurPosition (Jeux jeu, int joueurQuiJoue, InfoE
     if (sort == 2){
         if (jeu.joueur[joueurQuiJoue].classe == KIRBY){
             jeu.joueur[joueurQuiJoue].sortAppuye = 2;
-            // mettre la fonction du sort flemme
+            // mettre la fonction du sort flamme
         }
         if (jeu.joueur[joueurQuiJoue].classe == MARIO){
             jeu.joueur[joueurQuiJoue].sortAppuye = 2;
