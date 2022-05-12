@@ -114,7 +114,7 @@ void drawPlay(Joueurs *joueur,Map map[30][30], int joueurQuiJoue, int mouse_x,in
                 al_draw_filled_triangle(map[i][j].x + scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -
                                                                                                                            scaley, black);
 
-                if(map[0][0].t == 1 && joueur[joueurQuiJoue].dep == 0 && abs(joueur[joueurQuiJoue].xArrive-joueur[joueurQuiJoue].caseXDepart)+abs(joueur[joueurQuiJoue].yArrive-joueur[joueurQuiJoue].caseYDepart)<=3){
+                if(map[0][0].t == 1 && joueur[joueurQuiJoue].dep == 0 && abs(joueur[joueurQuiJoue].xArrive-joueur[joueurQuiJoue].caseXDepart)+abs(joueur[joueurQuiJoue].yArrive-joueur[joueurQuiJoue].caseYDepart)<=3 && map[joueur[joueurQuiJoue].xArrive][joueur[joueurQuiJoue].yArrive].obstacle!=1){
 
                     joueur[joueurQuiJoue].caseXDepart= joueur[joueurQuiJoue].caseX;
                     joueur[joueurQuiJoue].caseYDepart= joueur[joueurQuiJoue].caseY;
@@ -272,8 +272,7 @@ void deplacementJoueur(Joueurs *joueur, Map map[30][30], int joueurQuiJoue, doub
 
     }
 
-    if (joueur[joueurQuiJoue].actif == 1 && joueur[joueurQuiJoue].dep == 1 &&
-        abs(joueur[joueurQuiJoue].xArrive - joueur[joueurQuiJoue].caseXDepart) + abs(joueur[joueurQuiJoue].yArrive - joueur[joueurQuiJoue].caseYDepart) <= 3) {
+        if (joueur[joueurQuiJoue].actif == 1 && joueur[joueurQuiJoue].dep == 1) {
 
         if (joueur[joueurQuiJoue].caseX < joueur[joueurQuiJoue].xArrive) {
             depX = 1;
@@ -392,6 +391,7 @@ void drawSortKIRBY( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran) {
                               0);
     }
 }
+
 void drawSortMARIO( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran) {
     if ((float) ecran.mouse_x < 119 * ecran.width / 144 && ecran.mouse_x > 73 * ecran.width / 96 &&
         (float) ecran.mouse_y < 59 * ecran.height / 60 && ecran.mouse_y > ecran.height / 1.125) {
@@ -605,7 +605,7 @@ void initialiserSortEnFonctionDeLeurPosition (Jeux jeu, int joueurQuiJoue, InfoE
         }
         if (jeu.joueur[joueurQuiJoue].classe == MARIO){
             jeu.joueur[joueurQuiJoue].sortAppuye = 0;
-            //mettre la fonction du sort flemme
+            //mettre la fonction du sort flamme
         }
         if (jeu.joueur[joueurQuiJoue].classe == PACMAN){
             jeu.joueur[joueurQuiJoue].sortAppuye = 0;
@@ -645,7 +645,7 @@ void initialiserSortEnFonctionDeLeurPosition (Jeux jeu, int joueurQuiJoue, InfoE
     if (sort == 2){
         if (jeu.joueur[joueurQuiJoue].classe == KIRBY){
             jeu.joueur[joueurQuiJoue].sortAppuye = 2;
-            // mettre la fonction du sort flemme
+            // mettre la fonction du sort flamme
         }
         if (jeu.joueur[joueurQuiJoue].classe == MARIO){
             jeu.joueur[joueurQuiJoue].sortAppuye = 2;
