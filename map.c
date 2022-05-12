@@ -594,7 +594,6 @@ void sortEnFonctionDesClasses(ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran,
 int sortChoisi (Jeux jeu, InfoEcran ecran) {
     int positionSort = 0;
     //573 --> 191
-
     if ((float) ecran.mouse_x < 2178 && ecran.mouse_x > 1987 && (float) ecran.mouse_y < 1725 && ecran.mouse_y > 1580) {
         positionSort = 0;
     }
@@ -608,13 +607,13 @@ int sortChoisi (Jeux jeu, InfoEcran ecran) {
 }
 
 
-void initialisaerSortEnFonctionDeLeurPosition (int position, Jeux jeu, int joueurQuiJoue, InfoEcran ecran, int sortA) {
-    int sort = 0;
-    sort = sortChoisi(jeu, ecran);
-    if (sort == 1){
+void initialiserSortEnFonctionDeLeurPosition (Jeux jeu, int joueurQuiJoue, InfoEcran ecran, int sort) {
+    //int sort = 0;
+    //sort = sortChoisi(jeu, ecran);
+    if (sort == 0){
         if (jeu.joueur[joueurQuiJoue].classe == KIRBY){
             jeu.joueur[joueurQuiJoue].sortAppuye = 0;
-            // mettre la fonction du sort
+            // mettre la fonction du sort coup de pied
         }
         if (jeu.joueur[joueurQuiJoue].classe == MARIO){
             jeu.joueur[joueurQuiJoue].sortAppuye = 0;
@@ -636,7 +635,7 @@ void initialisaerSortEnFonctionDeLeurPosition (int position, Jeux jeu, int joueu
     if (sort == 1) {
         if (jeu.joueur[joueurQuiJoue].classe == KIRBY) {
             jeu.joueur[joueurQuiJoue].sortAppuye = 1;
-            // mettre la fonction du sort
+            // mettre la fonction du sort poing
         }
         if (jeu.joueur[joueurQuiJoue].classe == MARIO) {
             jeu.joueur[joueurQuiJoue].sortAppuye = 1;
@@ -658,7 +657,7 @@ void initialisaerSortEnFonctionDeLeurPosition (int position, Jeux jeu, int joueu
     if (sort == 2){
         if (jeu.joueur[joueurQuiJoue].classe == KIRBY){
             jeu.joueur[joueurQuiJoue].sortAppuye = 2;
-            // mettre la fonction du sort
+            // mettre la fonction du sort flemme
         }
         if (jeu.joueur[joueurQuiJoue].classe == MARIO){
             jeu.joueur[joueurQuiJoue].sortAppuye = 2;

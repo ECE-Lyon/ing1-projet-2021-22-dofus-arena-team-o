@@ -91,6 +91,7 @@ int main() {
     Jeux jeu;
     jeu.joueur = NULL ;
     int nbJoueur = 0;
+    int sortAppuye = 0;
 
 
 
@@ -274,6 +275,8 @@ int main() {
                                 if ((float) mouse_x < 383 * ecran.width / 384 && mouse_x > ecran.width / 1.2 && (float) mouse_y < ecran.height/13.5 && mouse_y >ecran.height/216){
                                     jeu.info.joueurQuiJoue++;
                                 }
+                                sortAppuye = sortChoisi(jeu, ecran);
+                                initialiserSortEnFonctionDeLeurPosition(jeu, jeu.info.joueurQuiJoue, ecran, sortAppuye);
                                 break;
                             }
                             case CHOIXNBJOUEUR : {

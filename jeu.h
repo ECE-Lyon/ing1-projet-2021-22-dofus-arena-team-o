@@ -52,6 +52,7 @@ typedef struct Info{
     char pseudo[MAXNOM];
     int nbLettrePseudo ;
     int PV, PM, PA, aChoisiClasse;
+    int sortAppuye ;
     int classe;//1 : mario      2 : Luigi     3 : Kirby     4: Peach     5 : Zelda
     int ordre;
 }Joueurs;
