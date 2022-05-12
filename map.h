@@ -11,16 +11,15 @@ void deplacementJoueur(Joueurs *joueur,Map map[20][20],double scalex,double scal
 void caseJoueur(Joueurs *joueur,Map map[20][20]);
 bool collisionCercle(int x,int y,Map map[20][20],int i,int j,double width);
 void dessinerQuadrillage(double  width, double height,double scalex,double scaley,ALLEGRO_COLOR black);
-//void barreSort (ALLEGRO_BITMAP* barreSort);
+void barreSort (ALLEGRO_BITMAP* barreSort);
 void drawSortDONKEYKONG( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran);
 void drawSortPACMAN( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran) ;
 void drawSortPEACH( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran);
 void drawSortMARIO( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran);
 void drawSortKIRBY( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran);
 void sortEnFonctionDesClasses(ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran, int joueurQuiJoue,  ALLEGRO_BITMAP* barreSort);
-
-void sortChoisi (Jeux jeu, InfoEcran ecran);
-
+void initialisaerSortEnFonctionDeLeurPosition (int position, Jeux jeu, int joueurQuiJoue, InfoEcran ecran, int sortA);
+int sortChoisi (Jeux jeu, InfoEcran ecran);
 
 
 

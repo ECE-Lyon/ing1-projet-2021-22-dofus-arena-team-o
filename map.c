@@ -529,9 +529,9 @@ void drawSortDONKEYKONG(ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran) {
 
 
 void sortEnFonctionDesClasses(ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran, int joueurQuiJoue,  ALLEGRO_BITMAP* barreSort){
-    al_draw_scaled_bitmap(barreSort, 0, 0, 1000, 2000, 1800, 1580, 1500, 1345, 0);
+    /*al_draw_scaled_bitmap(barreSort, 0, 0, 1000, 2000, 1800, 1580, 1500, 1345, 0);
     al_draw_scaled_bitmap(barreSort, 0, 0, 1000, 2000, 0, 1580, 1500, 1345, 0);
-
+*/
     switch (jeu.joueur[joueurQuiJoue].classe) {
         case KIRBY :
             drawSortKIRBY(gameFont, jeu, ecran);
@@ -551,15 +551,93 @@ void sortEnFonctionDesClasses(ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran,
             break;
     }
 }
-/*
 
-void sortChoisi (Jeux jeu, InfoEcran ecran) {
-    if ((float) ecran.mouse_x < 2550 && ecran.mouse_x > 2397 && (float) ecran.mouse_y < 1765 && ecran.mouse_y > 1620) {
-        al_draw_scaled_bitmap(jeu.classes[DONKEY_KONG].sortADisposition[SAUT].iconeSort, 0, 0, 2000, 2000, 2400, 1575,
-                              1390, 1390, 0);
-    } else {
-        al_draw_scaled_bitmap(jeu.classes[DONKEY_KONG].sortADisposition[SAUT].iconeSort, 0, 0, 2000, 2000, 2400, 1575,
-                              1340, 1340, 0);
+
+int sortChoisi (Jeux jeu, InfoEcran ecran) {
+    int positionSort = 0;
+    //573 --> 191
+
+    if ((float) ecran.mouse_x < 2178 && ecran.mouse_x > 1987 && (float) ecran.mouse_y < 1725 && ecran.mouse_y > 1580) {
+        positionSort = 0;
+    }
+    if ((float) ecran.mouse_x < 2369 && ecran.mouse_x > 2178 && (float) ecran.mouse_y < 1725 && ecran.mouse_y > 1580) {
+        positionSort = 1;
+    }
+    if ((float) ecran.mouse_x < 2600 && ecran.mouse_x > 2400 && (float) ecran.mouse_y < 1725 && ecran.mouse_y > 1580) {
+        positionSort = 2;
+    }
+    return positionSort;
+}
+
+
+void initialisaerSortEnFonctionDeLeurPosition (int position, Jeux jeu, int joueurQuiJoue, InfoEcran ecran, int sortA) {
+    int sort = 0;
+    sort = sortChoisi(jeu, ecran);
+    if (sort == 1){
+        if (jeu.joueur[joueurQuiJoue].classe == KIRBY){
+            jeu.joueur[joueurQuiJoue].sortAppuye = 0;
+            // mettre la fonction du sort
+        }
+        if (jeu.joueur[joueurQuiJoue].classe == MARIO){
+            jeu.joueur[joueurQuiJoue].sortAppuye = 0;
+            //mettre la fonction du sort
+        }
+        if (jeu.joueur[joueurQuiJoue].classe == PACMAN){
+            jeu.joueur[joueurQuiJoue].sortAppuye = 0;
+            //mettre la fonction du sort
+        }
+        if (jeu.joueur[joueurQuiJoue].classe == DONKEY_KONG){
+            jeu.joueur[joueurQuiJoue].sortAppuye = 0;
+            //mettre la fonction du sort
+        }
+        if (jeu.joueur[joueurQuiJoue].classe == PEACH){
+            jeu.joueur[joueurQuiJoue].sortAppuye = 0;
+            //mettre la fonction du sort
+        }
+    }
+    if (sort == 1) {
+        if (jeu.joueur[joueurQuiJoue].classe == KIRBY) {
+            jeu.joueur[joueurQuiJoue].sortAppuye = 1;
+            // mettre la fonction du sort
+        }
+        if (jeu.joueur[joueurQuiJoue].classe == MARIO) {
+            jeu.joueur[joueurQuiJoue].sortAppuye = 1;
+            //mettre la fonction du sort
+        }
+        if (jeu.joueur[joueurQuiJoue].classe == PACMAN) {
+            jeu.joueur[joueurQuiJoue].sortAppuye = 1;
+            //mettre la fonction du sort
+        }
+        if (jeu.joueur[joueurQuiJoue].classe == DONKEY_KONG) {
+            jeu.joueur[joueurQuiJoue].sortAppuye = 1;
+            //mettre la fonction du sort
+        }
+        if (jeu.joueur[joueurQuiJoue].classe == PEACH) {
+            jeu.joueur[joueurQuiJoue].sortAppuye = 1;
+            //mettre la fonction du sort
+        }
+    }
+    if (sort == 2){
+        if (jeu.joueur[joueurQuiJoue].classe == KIRBY){
+            jeu.joueur[joueurQuiJoue].sortAppuye = 2;
+            // mettre la fonction du sort
+        }
+        if (jeu.joueur[joueurQuiJoue].classe == MARIO){
+            jeu.joueur[joueurQuiJoue].sortAppuye = 2;
+            //mettre la fonction du sort
+        }
+        if (jeu.joueur[joueurQuiJoue].classe == PACMAN){
+            jeu.joueur[joueurQuiJoue].sortAppuye = 2;
+            //mettre la fonction du sort
+        }
+        if (jeu.joueur[joueurQuiJoue].classe == DONKEY_KONG){
+            jeu.joueur[joueurQuiJoue].sortAppuye = 2;
+            //mettre la fonction du sort
+        }
+        if (jeu.joueur[joueurQuiJoue].classe == PEACH){
+            jeu.joueur[joueurQuiJoue].sortAppuye = 2;
+            //mettre la fonction du sort
+        }
     }
 }
-*/
+
