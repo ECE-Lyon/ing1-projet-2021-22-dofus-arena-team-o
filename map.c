@@ -607,6 +607,7 @@ int sortChoisi (InfoEcran ecran) {
 void initialiserSortEnFonctionDeLeurPosition (Jeux jeu, int joueurQuiJoue, InfoEcran ecran, int sort) {
     //int sort = 0;
     //sort = sortChoisi(jeu, ecran);
+
     if (sort == 0){
         if (jeu.joueur[joueurQuiJoue].classe == KIRBY){
             jeu.joueur[joueurQuiJoue].sortAppuye = 0;
