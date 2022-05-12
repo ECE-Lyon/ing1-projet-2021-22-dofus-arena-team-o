@@ -46,7 +46,7 @@ int main() {
     ///BITMAP
     ALLEGRO_BITMAP *background = al_load_bitmap("../Bitmap/BG.jpg");
     ALLEGRO_BITMAP *team = al_load_bitmap("../Bitmap/capture.PNG");
-    ALLEGRO_BITMAP *carte = al_load_bitmap("../Bitmap/map4.PNG");
+    //ALLEGRO_BITMAP *carte = al_load_bitmap("../Bitmap/map4.PNG");
 
 
                /////////////////PERSONNAGES LOGO/////////////////////
@@ -69,7 +69,7 @@ int main() {
     ALLEGRO_BITMAP *poing2 = al_load_bitmap("../Bitmap/Sort/sortUtilisé/Poing2.png");
     ALLEGRO_BITMAP *poing = al_load_bitmap("../Bitmap/Sort/sortUtilisé/poing.png");
     ALLEGRO_BITMAP *coupDePied = al_load_bitmap("../Bitmap/Sort/sortUtilisé/coupDePied.png");
-    ALLEGRO_BITMAP *coup = al_load_bitmap("../Bitmap/Sort/sortUtilisé/coup.png");
+    //ALLEGRO_BITMAP *coup = al_load_bitmap("../Bitmap/Sort/sortUtilisé/coup.png");
     ALLEGRO_BITMAP *sortMortel = al_load_bitmap("../Bitmap/Sort/sortUtilisé/sortMortel.png");
 
 
@@ -366,8 +366,8 @@ int main() {
                         break;
                     }
                     case JEU : {
-                        al_draw_scaled_bitmap(carte,0,0,296,149,50,50,width, height,0);
-                        //dessinerQuadrillage(width, height, scalex, scaley, black);
+                        //al_draw_scaled_bitmap(carte,0,0,296,149,50,50,width, height,0);
+                        dessinerQuadrillage(width, height, scalex, scaley, black);
                         drawPlay(jeu.joueur, map, mouse_x, mouse_y, width, height, scalex, scaley, display,white, black, gris, vert, red);
                         deplacementJoueur(jeu.joueur, map, scalex, scaley);
                         al_draw_circle(jeu.joueur[0].x, jeu.joueur[0].y, 50, black, 3);
@@ -377,6 +377,7 @@ int main() {
                         //sortChoisi(jeu, ecran);
                         break;
                     }
+                    break ;
                 }
                 al_flip_display();
                 al_clear_to_color(white);
