@@ -11,8 +11,8 @@
 #include <time.h>
 
 #define RULESPAGEMAX 3
-#define mapX 20
-#define mapY 16
+#define mapX 19
+#define mapY 14
 #define MAXNOM 11
 
 #define PI 3.141592
@@ -29,6 +29,7 @@ typedef struct {
 
 typedef struct {
     int nbJoueur, joueurQuiJoue ;
+    int ordre[3];
     bool entrerPseudo ;
 } InfosSurLesJoueurs;
 
@@ -48,11 +49,10 @@ typedef struct {
 typedef struct Info{
     double x,y;
     int xArrive, yArrive, caseX, caseY,caseXDepart,caseYDepart, actif, dep;
-    int sortAppuye;
     char pseudo[MAXNOM];
     int nbLettrePseudo ;
     int PV, PM, PA, aChoisiClasse;
-    int classe;//1 : mario      2 : PEACH     3 : pacman     4: KIRBY     5 : DONKEYKONG
+    int classe;//1 : mario      2 : Luigi     3 : Kirby     4: Peach     5 : Zelda
     int ordre;
 }Joueurs;
 
@@ -68,7 +68,7 @@ typedef struct {
 typedef struct {
     double x,y;
     int t;
-    bool obstacle;
+    int obstacle;
 } Map;
 
 void initialiserIconeClasse(ALLEGRO_BITMAP* pacman, ALLEGRO_BITMAP* kirby, ALLEGRO_BITMAP* peach, ALLEGRO_BITMAP* mario, ALLEGRO_BITMAP* donkey_kong, Classe* classes);
@@ -80,7 +80,7 @@ void initialiserSortClasseDONKEYKONG (Classe* classe, ALLEGRO_BITMAP* sortMortel
 void initialiserSortClassePEACH (Classe* classe, ALLEGRO_BITMAP* sortFleur, ALLEGRO_BITMAP* sortSoin, ALLEGRO_BITMAP* coupDePied);
 void initialiserSortClasseMARIO (Classe* classe, ALLEGRO_BITMAP* sortCorona, ALLEGRO_BITMAP* sortFlamme, ALLEGRO_BITMAP* poing2);
 void initialiserSortClassePACMAN (Classe* classe, ALLEGRO_BITMAP* reculerAdversaire, ALLEGRO_BITMAP* sortFlamme, ALLEGRO_BITMAP* sortDefence);
-
+void boutonSuivantDansPlay(InfoEcran ecran, ALLEGRO_FONT* gameFont, int mouse_x, int mouse_y);
 
 ///FONCTION POUR COMMENCER A JOUER
 void choixJoueur(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT * gameFont, InfosSurLesJoueurs* infojoueur) ;

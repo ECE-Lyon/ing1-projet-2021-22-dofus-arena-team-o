@@ -1,6 +1,5 @@
 #include "jeu.h"
 
-            /// INITIALISATION DES DIFFERENTES CLASSES///
 void initialiserIconeClasse(ALLEGRO_BITMAP* pacman, ALLEGRO_BITMAP* kirby, ALLEGRO_BITMAP* peach, ALLEGRO_BITMAP* mario, ALLEGRO_BITMAP* donkey_kong, Classe* classes) {
     classes[KIRBY].image = kirby ;
     classes[PACMAN].image = pacman ;
@@ -75,6 +74,7 @@ void initialiserJoueur(Jeux* jeu, Map map[20][20]) {
         jeu->joueur[0].xArrive=0;
         jeu->joueur[0].yArrive=0;
         jeu->joueur[0].dep = 0;
+        map[5][5].obstacle=1;
     }
 }
 
@@ -328,19 +328,31 @@ int verifierValeurTableau(int tab[], int valeurAverifier, int cbDeValeur) {
     return j;
 }
 
-int ordreDesJoueurs(Jeux jeu){
+int ordreDesJoueurs(InfosSurLesJoueurs joueurs, Jeux jeu){
     int i, valeur;
     int tab[4] = {0};
-    for(i = 1; i <= jeu.info.nbJoueur; i++){
+    for(i = 0; i < jeu.info.nbJoueur; i++){
         valeur = getRandomInteger(1, jeu.info.nbJoueur);
         if(verifierValeurTableau(tab, valeur, 4) == 0){
-            // il faut copier le nom du personnage le tableau avec l'ordre aléatoire des pers
-            jeu.joueur[i].ordre = valeur;
-            tab[i-1] = valeur;
+            joueurs.ordre[i] = valeur;
+            tab[i] = valeur;
         }
         else{
             i--;
         }
+    }
+}
+
+void boutonSuivantDansPlay(InfoEcran ecran, ALLEGRO_FONT* gameFont, int mouse_x, int mouse_y){
+
+    float police = 2 * ecran.width / 55;
+
+    if ((float) mouse_x < 383 * ecran.width / 384 && mouse_x > ecran.width / 1.2 && (float) mouse_y < ecran.height/13.5 && mouse_y >ecran.height/216) {
+        al_draw_filled_rectangle(ecran.width / 1.2, ecran.height/216, 383 * ecran.width / 384, ecran.height/13.5,al_map_rgb(200, 200, 200));
+        al_draw_text(gameFont, al_map_rgb(0, 0, 0), 59 * ecran.width / 64 - police / 50, ecran.height/54,ALLEGRO_ALIGN_CENTER, "SUIVANT");
+    } else {
+        al_draw_filled_rectangle(ecran.width / 1.2, ecran.height/216, 383 * ecran.width / 384, ecran.height/13.5,al_map_rgb(255, 255, 255));
+        al_draw_text(gameFont, al_map_rgb(0, 0, 0), 59 * ecran.width / 64 - police / 50, ecran.height/54,ALLEGRO_ALIGN_CENTER, "SUIVANT");
     }
 }
 
