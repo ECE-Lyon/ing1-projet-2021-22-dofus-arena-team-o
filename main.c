@@ -93,6 +93,7 @@ int main() {
     Jeux jeu;
     jeu.joueur = NULL ;
     int nbJoueur = 0;
+    int sortAppuye = 0;
 
 
 
@@ -277,6 +278,8 @@ int main() {
                                 if ((float) mouse_x < 383 * ecran.width / 384 && mouse_x > ecran.width / 1.2 && (float) mouse_y < ecran.height/13.5 && mouse_y >ecran.height/216){
                                     jeu.info.joueurQuiJoue++;
                                 }
+                                sortAppuye = sortChoisi(ecran);
+                                initialiserSortEnFonctionDeLeurPosition(jeu, jeu.info.joueurQuiJoue, ecran, sortAppuye);
                                 break;
                             }
                             case CHOIXNBJOUEUR : {
@@ -376,7 +379,7 @@ int main() {
                         al_draw_circle(jeu.joueur[0].x, jeu.joueur[0].y, 50, black, 3);
                         boutonSuivantDansPlay(ecran, gameFont1, mouse_x, mouse_y);
                         barreSort(afficherSort, ecran);
-                        sortEnFonctionDesClasses(gameFont1, jeu, ecran, jeu.info.joueurQuiJoue, afficherSort);
+                        sortEnFonctionDesClasses(gameFont1, jeu, ecran, jeu.info.joueurQuiJoue);
                         //sortChoisi(jeu, ecran);
                         break;
                     }

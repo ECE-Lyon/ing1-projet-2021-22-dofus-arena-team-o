@@ -52,6 +52,7 @@ typedef struct Info{
     char pseudo[MAXNOM];
     int nbLettrePseudo ;
     int PV, PM, PA, aChoisiClasse;
+    int sortAppuye ;
     int classe;//1 : mario      2 : Luigi     3 : Kirby     4: Peach     5 : Zelda
     int ordre;
 }Joueurs;
@@ -74,8 +75,7 @@ typedef struct {
 void initialiserIconeClasse(ALLEGRO_BITMAP* pacman, ALLEGRO_BITMAP* kirby, ALLEGRO_BITMAP* peach, ALLEGRO_BITMAP* mario, ALLEGRO_BITMAP* donkey_kong, Classe* classes);
 void initialiserEcran (InfoEcran* ecran, double width, double height) ;
 void initialiserJeu(Jeux* jeu) ;
-void initialiserJoueur(Jeux* jeu, Map map[30][30]) ;
-//void initialiserSort (Classe* classe, ALLEGRO_BITMAP* sortFatal, ALLEGRO_BITMAP* sortFlamme, ALLEGRO_BITMAP* sortRalentir, ALLEGRO_BITMAP* sortSpecial, ALLEGRO_BITMAP* sortStop, ALLEGRO_BITMAP* sortReculer, ALLEGRO_BITMAP* afficherSort, ALLEGRO_BITMAP* afficherPV);
+void initialiserJoueur(Jeux* jeu, Map map[20][20]) ;
 void initialiserSortClasseKIRBY (Classe* classe, ALLEGRO_BITMAP* coupDePied, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* poing);
 void initialiserSortClasseDONKEYKONG (Classe* classe, ALLEGRO_BITMAP* sortMortel, ALLEGRO_BITMAP* poing, ALLEGRO_BITMAP* poing2);
 void initialiserSortClassePEACH (Classe* classe, ALLEGRO_BITMAP* sortFleur, ALLEGRO_BITMAP* sortSoin, ALLEGRO_BITMAP* coupDePied);
