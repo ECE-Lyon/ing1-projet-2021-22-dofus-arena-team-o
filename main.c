@@ -338,6 +338,7 @@ int main() {
                             }
                         }
                     }
+                    break;
                 }
                 case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
                     if ((event.mouse.button & 1) == 1) {
