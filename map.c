@@ -14,16 +14,15 @@ void drawPlay(Joueurs *joueur,Map map[20][20],int mouse_x,int mouse_y,double wid
         for (int i = 0; i < mapX; i++) {
 
 
-            al_draw_filled_triangle(map[i][j].x - scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -
-                                                                                                                       scaley, white);
-            al_draw_filled_triangle(map[i][j].x + scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -
-            scaley, white);
+            //al_draw_filled_triangle(map[i][j].x - scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -scaley, white);
+            //al_draw_filled_triangle(map[i][j].x + scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -scaley, white);
         }
     }
 
 
     for (int j=0;j<mapY;j++) {
         for (int i = 0; i < mapX; i++) {
+            //printf(" x : %d, y : %d\n",mouse_x,mouse_y);
             if(collisionCercle(mouse_x, mouse_y, map, i, j,width) == true ){
                 al_draw_filled_triangle(map[i][j].x - scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -
                                                                                                                            scaley, black);
@@ -60,7 +59,6 @@ void caseJoueur(Joueurs *joueur,Map map[20][20]){
             if (joueur[0].x>map[i][j].x-1 && joueur[0].x<map[i][j].x+1 && joueur[0].y>map[i][j].y-1 && joueur[0].y<map[i][j].y+1 ){
                 joueur[0].caseX=i;
                 joueur[0].caseY=j;
-                printf(" t : %d\n",map[0][0].t);
                 //printf(" CaseXa: %d , CaseYa: %d\n",joueur[0].caseXDepart,joueur[0].caseYDepart);
             }
         }
@@ -162,6 +160,26 @@ void deplacementJoueur(Joueurs *joueur, Map map[20][20],double scalex,double sca
 
             }
         }
+        if (joueur[0].caseX<joueur[0].xArrive){
+            // Boucle sur x
+            for (int i = 0; i < joueur[0].xArrive-joueur[0].caseXDepart ; i++) {
+                al_draw_filled_triangle(map[joueur[0].caseXDepart + i][joueur[0].yArrive].x - scalex,
+                                        map[joueur[0].caseXDepart + i][joueur[0].yArrive].y,
+                                        map[joueur[0].caseXDepart + i][joueur[0].yArrive].x,
+                                        map[joueur[0].caseXDepart + i][joueur[0].yArrive].y + scaley,
+                                        map[joueur[0].caseXDepart + i][joueur[0].yArrive].x,
+                                        map[joueur[0].caseXDepart + i][joueur[0].yArrive].y -
+                                        scaley, vert);
+                al_draw_filled_triangle(map[joueur[0].caseXDepart + i][joueur[0].yArrive].x + scalex,
+                                        map[joueur[0].caseXDepart + i][joueur[0].yArrive].y,
+                                        map[joueur[0].caseXDepart + i][joueur[0].yArrive].x,
+                                        map[joueur[0].caseXDepart + i][joueur[0].yArrive].y + scaley,
+                                        map[joueur[0].caseXDepart + i][joueur[0].yArrive].x,
+                                        map[joueur[0].caseXDepart + i][joueur[0].yArrive].y -
+                                        scaley, vert);
+
+            }
+        }
         if (joueur[0].caseY>joueur[0].yArrive) {
             // Boucle sur y
             for (int j = 0; j < -joueur[0].yArrive + joueur[0].caseYDepart; j++) {
@@ -185,7 +203,7 @@ void deplacementJoueur(Joueurs *joueur, Map map[20][20],double scalex,double sca
             }
         }
 
-        if (joueur[0].caseY<joueur[0].yArrive){
+        if (joueur[0].caseY<joueur[0].yArrive ){
             // Boucle sur y
             for (int j = 0; j < joueur[0].yArrive-joueur[0].caseYDepart; j++) {
 
@@ -226,26 +244,6 @@ void deplacementJoueur(Joueurs *joueur, Map map[20][20],double scalex,double sca
 
         }
 
-        if (joueur[0].caseX<joueur[0].xArrive){
-            // Boucle sur x
-            for (int i = 0; i < joueur[0].xArrive-joueur[0].caseXDepart ; i++) {
-                al_draw_filled_triangle(map[joueur[0].caseXDepart + i][joueur[0].yArrive].x - scalex,
-                                        map[joueur[0].caseXDepart + i][joueur[0].yArrive].y,
-                                        map[joueur[0].caseXDepart + i][joueur[0].yArrive].x,
-                                        map[joueur[0].caseXDepart + i][joueur[0].yArrive].y + scaley,
-                                        map[joueur[0].caseXDepart + i][joueur[0].yArrive].x,
-                                        map[joueur[0].caseXDepart + i][joueur[0].yArrive].y -
-                                        scaley, vert);
-                al_draw_filled_triangle(map[joueur[0].caseXDepart + i][joueur[0].yArrive].x + scalex,
-                                        map[joueur[0].caseXDepart + i][joueur[0].yArrive].y,
-                                        map[joueur[0].caseXDepart + i][joueur[0].yArrive].x,
-                                        map[joueur[0].caseXDepart + i][joueur[0].yArrive].y + scaley,
-                                        map[joueur[0].caseXDepart + i][joueur[0].yArrive].x,
-                                        map[joueur[0].caseXDepart + i][joueur[0].yArrive].y -
-                                        scaley, vert);
-
-            }
-        }
     }
     }
 
@@ -299,8 +297,8 @@ void deplacementJoueur(Joueurs *joueur, Map map[20][20],double scalex,double sca
         }*/
 
 
-
     if(joueur[0].actif==1 && joueur[0].dep==1) {
+
         if (joueur[0].caseX<joueur[0].xArrive){
             depX = 1;
         }
@@ -317,8 +315,18 @@ void deplacementJoueur(Joueurs *joueur, Map map[20][20],double scalex,double sca
             depY = -scaley/scalex;
         }
 
+        if (joueur[0].caseX < joueur[0].xArrive && joueur[0].caseY == joueur[0].yArrive ){
+            depX = 1;
+            depY = -scaley/scalex;
+        }
+
         if (joueur[0].caseX == joueur[0].xArrive && joueur[0].caseY < joueur[0].yArrive ){
             depX = 1;
+            depY = scaley/scalex;
+        }
+
+        if (joueur[0].caseX > joueur[0].xArrive && joueur[0].caseY == joueur[0].yArrive ){
+            depX = -1;
             depY = scaley/scalex;
         }
 
@@ -327,21 +335,10 @@ void deplacementJoueur(Joueurs *joueur, Map map[20][20],double scalex,double sca
             depY = -scaley/scalex;
         }
 
-        if (joueur[0].caseX < joueur[0].xArrive && joueur[0].caseY == joueur[0].yArrive ){
-            depX = 1;
-            depY = -scaley/scalex;
-        }
-
-        if (joueur[0].caseX > joueur[0].xArrive && joueur[0].caseY == joueur[0].yArrive ){
-            depX = -1;
-            depY = scaley/scalex;
-        }
-
         caseJoueur(joueur,map);
 
-
-        joueur[0].x = joueur[0].x + depX;
         joueur[0].y = joueur[0].y + depY;
+        joueur[0].x = joueur[0].x + depX;
 
 
         if (joueur[0].caseX == joueur[0].xArrive && joueur[0].caseY==joueur[0].yArrive){joueur[0].dep=0;joueur[0].caseXDepart= joueur[0].caseX;
@@ -351,14 +348,14 @@ void deplacementJoueur(Joueurs *joueur, Map map[20][20],double scalex,double sca
 
 void dessinerQuadrillage(double  width, double height,double scalex,double scaley,ALLEGRO_COLOR black){
     for (int i = 0; i < mapX+1; i++) {
-        al_draw_line(i * scalex, height/1.8 - i * scaley, width/2.25+i*scalex , height - i * scaley, black, 2);
+        al_draw_line(i * scalex+50, height/1.95 - i * scaley, width/2.25+i*scalex +50 , height - i * scaley, black, 2);
     }
     for (int i=0;i<mapY+1;i++){
-        al_draw_line(width/1.8+i*scalex,i*scaley,i*scalex,height/1.8+scaley*i, black,2);
+        al_draw_line(width/1.8+i*scalex+50,i*scaley,i*scalex+50,height/1.95+scaley*i, black,2);
     }
 }
 
-/*void drawSort( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran){  //il faudra ajouter dans les parametres la var du nbJoueur pour la boucle de for
+void drawSort( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran){  //il faudra ajouter dans les parametres la var du nbJoueur pour la boucle de for
 
 
     ///////////////   AFFICHACHAGE  BARRE SORTS //////////////
@@ -413,4 +410,4 @@ void dessinerQuadrillage(double  width, double height,double scalex,double scale
         }
     }
 
-}*/
+}

@@ -46,6 +46,8 @@ int main() {
     ///BITMAP
     ALLEGRO_BITMAP *background = al_load_bitmap("../Bitmap/BG.jpg");
     ALLEGRO_BITMAP *team = al_load_bitmap("../Bitmap/capture.PNG");
+    ALLEGRO_BITMAP *carte = al_load_bitmap("../Bitmap/map4.PNG");
+
 
                /////////////////PERSONNAGES LOGO/////////////////////
     ALLEGRO_BITMAP *kirbyIcone = al_load_bitmap("../Bitmap/Icone/Kirby_Icone.png");
@@ -85,19 +87,21 @@ int main() {
 
 
     ///METTRE CA DANS UNE FONCTION
-    double scalex = 50.0 * width / 1800.0;
-    double scaley = 50.0 * height / 1800.0;
+    double scalex = 8 * width/296 ;
+    double scaley = 4 * height / 149;
     for (int j = 0; j < mapY; j++) {
         for (int i = 0; i < mapX; i++) {
-            map[i][j].x =  scalex + i * scalex + j * scalex;
-            map[i][j].y = height/1.8 - i * scaley + j * scaley;
+            map[i][j].x = 235+scalex + i * scalex + j * scalex;
+            map[i][j].y = height/1.76 - i * scaley + j * scaley;
             map[i][j].obstacle=0;
         }
     }
 
+
+
     ///INITIALISATION DE NOS VARIABLES
     initialiserIconeClasse(pacmanIcone, kirbyIcone, peachIcone, marioIcone, donkey_kongIcone, jeu.classes);
-//    initialiserSort (jeu.classes, sortFatal, sortFlemme, sortRalentir, sortSpecial, sortStop, sortReculer, afficherSort, afficherPV);
+    //initialiserSort (jeu.classes, sortFatal, sortFlemme, sortRalentir, sortSpecial, sortStop, sortReculer, afficherSort, afficherPV);
     initialiserMenu(&mainMenu, width, height);
     initialiserJeu(&jeu);
     initialiserEcran(&ecran, width, height);
@@ -105,10 +109,8 @@ int main() {
     float mouse_x = 0, mouse_y = 0;
     int page = 1;
 
-
     ///INITIALISATION CLASSE
     //joueur[].classe = 0;
-
 
     ///INITIALISATION DU TIMER
     times = al_create_timer(0.02);
@@ -345,17 +347,17 @@ int main() {
                         break;
                     }
                     case JEU : {
-                        drawPlay(jeu.joueur, map, mouse_x, mouse_y, width, height, scalex, scaley, display,
-                                 white, black, gris, vert, red);
+                        al_draw_scaled_bitmap(carte,0,0,296,149,50,50,width, height,0);
+                        //dessinerQuadrillage(width, height, scalex, scaley, black);
+                        drawPlay(jeu.joueur, map, mouse_x, mouse_y, width, height, scalex, scaley, display,white, black, gris, vert, red);
                         deplacementJoueur(jeu.joueur, map, scalex, scaley);
-                        dessinerQuadrillage(width, height, scalex, scaley, black);
                         al_draw_circle(jeu.joueur[0].x, jeu.joueur[0].y, 50, black, 3);
                         //drawSort(gameFont1, jeu, ecran);
                         break;
                     }
                 }
                 al_flip_display();
-                al_clear_to_color(black);
+                al_clear_to_color(white);
                 draw = 0;
             }
         }

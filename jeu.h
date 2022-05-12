@@ -11,8 +11,8 @@
 #include <time.h>
 
 #define RULESPAGEMAX 3
-#define mapX 20
-#define mapY 16
+#define mapX 19
+#define mapY 14
 #define MAXNOM 11
 
 #define PI 3.141592
@@ -67,7 +67,7 @@ typedef struct {
 typedef struct {
     double x,y;
     int t;
-    bool obstacle;
+    int obstacle;
 } Map;
 
 void initialiserIconeClasse(ALLEGRO_BITMAP* pacman, ALLEGRO_BITMAP* kirby, ALLEGRO_BITMAP* peach, ALLEGRO_BITMAP* mario, ALLEGRO_BITMAP* donkey_kong, Classe* classes);
