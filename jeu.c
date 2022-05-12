@@ -57,7 +57,7 @@ void initialiserEcran (InfoEcran* ecran, double width, double height) {
     ecran->height = height ;
 }
 
-void initialiserJoueur(Jeux* jeu, Map map[20][20]) {
+void initialiserJoueur(Jeux* jeu, Map map[30][30]) {
     if(jeu->joueur == NULL) {
         jeu->joueur = malloc(jeu->info.nbJoueur * sizeof(Joueurs));
         for (int i = 0; i < jeu->info.nbJoueur; i++) {
@@ -74,7 +74,6 @@ void initialiserJoueur(Jeux* jeu, Map map[20][20]) {
         jeu->joueur[0].xArrive=0;
         jeu->joueur[0].yArrive=0;
         jeu->joueur[0].dep = 0;
-        map[5][5].obstacle=1;
     }
 }
 

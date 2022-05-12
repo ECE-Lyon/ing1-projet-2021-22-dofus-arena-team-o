@@ -71,6 +71,8 @@ int main() {
     ALLEGRO_BITMAP *coupDePied = al_load_bitmap("../Bitmap/Sort/sortUtilisé/coupDePied.png");
     ALLEGRO_BITMAP *coup = al_load_bitmap("../Bitmap/Sort/sortUtilisé/coup.png");
     ALLEGRO_BITMAP *sortMortel = al_load_bitmap("../Bitmap/Sort/sortUtilisé/sortMortel.png");
+    FILE* lec=fopen("../Bitmap/MatriceObstacle.txt", "r");
+
 
 
     /////////////////AFFICHAGEPVPMPA/////////////////////
@@ -87,7 +89,7 @@ int main() {
     int isFin = 0, draw = 0 ;
     Menu mainMenu;
     InfoEcran ecran;
-    Map map[20][20];
+    Map map[30][30];
     Jeux jeu;
     jeu.joueur = NULL ;
     int nbJoueur = 0;
@@ -101,7 +103,7 @@ int main() {
         for (int i = 0; i < mapX; i++) {
             map[i][j].x = 235+scalex + i * scalex + j * scalex;
             map[i][j].y = height/1.76 - i * scaley + j * scaley;
-            map[i][j].obstacle=0;
+            fscanf(lec, "%d", &map[i][j].obstacle);
 
         }
     }
@@ -136,6 +138,7 @@ int main() {
     al_register_event_source(queue, al_get_mouse_event_source( ));
     al_register_event_source(queue, al_get_timer_event_source(times));
 
+    fclose(lec);
 
     al_start_timer(times);
     while (!isFin) {
