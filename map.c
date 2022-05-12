@@ -565,11 +565,8 @@ void drawSortDONKEYKONG(ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran) {
 //// c'est jeu.joueur[jeu.info.joueurQuiJoue]
 
 
-void sortEnFonctionDesClasses(ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran, int joueurQuiJoue,  ALLEGRO_BITMAP* barreSort){
-    /*
-    al_draw_scaled_bitmap(barreSort, 0, 0, 1000, 2000, ecran.width/1.6, 79*ecran.height/90, ecran.width/1.92, 269*ecran.height/360, 0);
-    al_draw_scaled_bitmap(barreSort, 0, 0, 1000, 2000, 0, 79*ecran.height/90, ecran.width/1.92, 269*ecran.height/360, 0);
-*/
+void sortEnFonctionDesClasses(ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran, int joueurQuiJoue){
+
     switch (jeu.joueur[joueurQuiJoue].classe) {
         case KIRBY :
             drawSortKIRBY(gameFont, jeu, ecran);
@@ -608,7 +605,7 @@ int sortChoisi (Jeux jeu, InfoEcran ecran) {
 }
 
 
-void initialisaerSortEnFonctionDeLeurPosition (int position, Jeux jeu, int joueurQuiJoue, InfoEcran ecran, int sortA) {
+void initialisaerSortEnFonctionDeLeurPosition (int position, Jeux jeu, int joueurQuiJoue, InfoEcran ecran, int sort) {
     int sort = 0;
     sort = sortChoisi(jeu, ecran);
     if (sort == 0){
