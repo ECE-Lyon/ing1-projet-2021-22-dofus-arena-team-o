@@ -17,44 +17,58 @@
 
 #define PI 3.141592
 
-enum gameMode {PLAY, RULES, TEAM, MENU, CHOIXPERSO, END};
+///ENUM NECESSAIRE POUR FACILITER LE CODE ET SA LECTURE
+enum gameMode {PLAY, RULES, TEAM, MENU, END};
 enum personnage {MARIO, PACMAN, KIRBY, PEACH, DONKEY_KONG, VIDE};
 enum play {CHOIXNBJOUEUR, CHOIXCLASSE, JEU};
 enum sort {AUCUN, FLAMME, POINGGANT, SAUT, MORTEL, POING2, COUPDEPIED, POING, RECULERADVERSAIRE, SORTDEFENCE, SORTSOIN,  CORONA, SORTFLEUR};
+enum animation{RESPIRATION, MARCHER, ATTAQUE1, ATTAQUE2, ATTAQUE3, NBANIMATIONS};
 
+
+///STRUCTURE QU'ON PEUT METTRE EN PARAMETRES DE FONCTION POUR EVITER TROP DE PARAMETRES
 typedef struct {
     int mouse_x, mouse_y ;
     double height, width ;
 } InfoEcran;
 
-typedef struct {
-    int nbJoueur, joueurQuiJoue ;
-    int ordre[3];
-    bool entrerPseudo ;
-} InfosSurLesJoueurs;
-
-
+///STRUCTURE DES PERSONNAGES QU'ON A BESOIN ICI ET DANS LE PERSONNAGE.C
 typedef struct {
     ALLEGRO_BITMAP* iconeSort;
     int sort;
     int animation;
     int nbSort;
 }Sort;
+typedef struct {
+    double x, y, width, height ;
+} Image ;
+typedef struct {
+    Image images[20] ;
+    int nbImages, direction ;
+    float x, y ;
+} Animation ;
 
+/// TOUTES LES INFOS DU JEU NECESSAIRES
+typedef struct {
+    int nbJoueur, joueurQuiJoue, compteur ;
+    bool entrerPseudo ;
+    int ordre[3];
+} InfosSurLesJoueurs;
 typedef struct {
     ALLEGRO_BITMAP* image;
+    ALLEGRO_BITMAP* SpriteSheet ;
     Sort sortADisposition[20];
+    Animation animations[NBANIMATIONS] ;
 }Classe;
-
 typedef struct Info{
     double x,y;
     int xArrive, yArrive, caseX, caseY,caseXDepart,caseYDepart, actif, dep;
     char pseudo[MAXNOM];
     int nbLettrePseudo ;
     int PV, PM, PA, aChoisiClasse;
-    int sortAppuye ;
     int classe;//1 : mario      2 : Luigi     3 : Kirby     4: Peach     5 : Zelda
-    int ordre;
+    int quelAnimation ;
+    int sortAppuye ;
+
 }Joueurs;
 
 
@@ -62,20 +76,22 @@ typedef struct Info{
 typedef struct {
     InfosSurLesJoueurs info ;
     Joueurs* joueur ;
-    Classe classes[7] ;
+    Classe classes[5] ;
     int gameMode ;
 }Jeux;
 
+///LA CARTE DU JEU
 typedef struct {
     double x,y;
     int t;
     int obstacle;
 } Map;
 
+///INITIALISATION JEU
 void initialiserIconeClasse(ALLEGRO_BITMAP* pacman, ALLEGRO_BITMAP* kirby, ALLEGRO_BITMAP* peach, ALLEGRO_BITMAP* mario, ALLEGRO_BITMAP* donkey_kong, Classe* classes);
 void initialiserEcran (InfoEcran* ecran, double width, double height) ;
 void initialiserJeu(Jeux* jeu) ;
-void initialiserJoueur(Jeux* jeu, Map map[20][20]) ;
+void initialiserJoueur(Jeux* jeu, Map map[30][30]) ;
 void initialiserSortClasseKIRBY (Classe* classe, ALLEGRO_BITMAP* coupDePied, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* poing);
 void initialiserSortClasseDONKEYKONG (Classe* classe, ALLEGRO_BITMAP* sortMortel, ALLEGRO_BITMAP* poing, ALLEGRO_BITMAP* poing2);
 void initialiserSortClassePEACH (Classe* classe, ALLEGRO_BITMAP* sortFleur, ALLEGRO_BITMAP* sortSoin, ALLEGRO_BITMAP* coupDePied);
