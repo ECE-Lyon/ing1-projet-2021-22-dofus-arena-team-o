@@ -593,9 +593,77 @@ int sortChoisi (InfoEcran ecran) {
     return positionSort;
 }
 
-void actionSortFlamme (Jeux jeu, int joueurQuiJoue){
-    jeu.joueur[joueurQuiJoue].PV;
 
+
+void actionSortFLAMME (Jeux jeu, int joueurQuiJoue){
+    jeu.joueur[joueurQuiJoue].PV = jeu.joueur[joueurQuiJoue].PV - 40;
+    jeu.joueur[joueurQuiJoue].PA = jeu.joueur[joueurQuiJoue].PA - 4;
+
+
+}
+
+void actionSortPOING (Jeux jeu, int joueurQuiJoue){
+    jeu.joueur[joueurQuiJoue].PV = jeu.joueur[joueurQuiJoue].PV - 30;
+    jeu.joueur[joueurQuiJoue].PA = jeu.joueur[joueurQuiJoue].PA - 2;
+
+}
+
+void actionSortCOUPDEPIED (Jeux jeu, int joueurQuiJoue){
+    jeu.joueur[joueurQuiJoue].PV = jeu.joueur[joueurQuiJoue].PV - 20;
+    jeu.joueur[joueurQuiJoue].PA = jeu.joueur[joueurQuiJoue].PA - 3;
+
+}
+
+void actionSortRECULERADVERSAIRE (Jeux jeu, int joueurQuiJoue){
+    jeu.joueur[joueurQuiJoue].PV = jeu.joueur[joueurQuiJoue].PV - 35;
+    jeu.joueur[joueurQuiJoue].PA = jeu.joueur[joueurQuiJoue].PA - 3;
+
+}
+
+void actionSortCOUPCORONA (Jeux jeu, int joueurQuiJoue){
+    jeu.joueur[joueurQuiJoue].PV = jeu.joueur[joueurQuiJoue].PV - 40;
+    jeu.joueur[joueurQuiJoue].PA = jeu.joueur[joueurQuiJoue].PA - 4;
+
+}
+
+void actionSortPOING2 (Jeux jeu, int joueurQuiJoue){
+    jeu.joueur[joueurQuiJoue].PV = jeu.joueur[joueurQuiJoue].PV - 10;
+    jeu.joueur[joueurQuiJoue].PA = jeu.joueur[joueurQuiJoue].PA - 2;
+
+}
+
+void actionSortPIEDPEACH (Jeux jeu, int joueurQuiJoue){
+    jeu.joueur[joueurQuiJoue].PV = jeu.joueur[joueurQuiJoue].PV - 20;
+    jeu.joueur[joueurQuiJoue].PA = jeu.joueur[joueurQuiJoue].PA - 2;
+
+}
+
+void actionSortFLEUR (Jeux jeu, int joueurQuiJoue){
+    jeu.joueur[joueurQuiJoue].PV = jeu.joueur[joueurQuiJoue].PV - 40;
+    jeu.joueur[joueurQuiJoue].PA = jeu.joueur[joueurQuiJoue].PA - 4;
+
+}
+
+void actionSortSOIN (Jeux jeu, int joueurQuiJoue){
+    jeu.joueur[joueurQuiJoue].PV = jeu.joueur[joueurQuiJoue].PV + 25;
+    jeu.joueur[joueurQuiJoue].PA = jeu.joueur[joueurQuiJoue].PA - 4;
+
+}
+
+void actionSortPOINGGANT (Jeux jeu, int joueurQuiJoue){
+    jeu.joueur[joueurQuiJoue].PV = jeu.joueur[joueurQuiJoue].PV - 25;
+    jeu.joueur[joueurQuiJoue].PA = jeu.joueur[joueurQuiJoue].PA - 3;
+
+}
+
+void actionSortMORTEL (Jeux jeu, int joueurQuiJoue){
+    jeu.joueur[joueurQuiJoue].PV = jeu.joueur[joueurQuiJoue].PV - 60;
+    jeu.joueur[joueurQuiJoue].PA = jeu.joueur[joueurQuiJoue].PA - 6;
+
+}
+
+void actionSortSAUTDONKEYKONG (Jeux jeu, int joueurQuiJoue){
+    jeu.joueur[joueurQuiJoue].PA = jeu.joueur[joueurQuiJoue].PA - 3;
 
 }
 
