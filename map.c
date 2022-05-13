@@ -683,7 +683,7 @@ void actionSortSAUTDONKEYKONG (Jeux jeu, int joueurQuiJoue){
 
 
 
-void verifierPADuJoueur (Jeux jeu, int joueurQuiJoue, int PA){
+void verifierPADuJoueur (Jeux jeu, int joueurQuiJoue, int PA) {
     if
 }
 
