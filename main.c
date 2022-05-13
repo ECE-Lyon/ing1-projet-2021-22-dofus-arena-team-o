@@ -404,6 +404,7 @@ int main() {
 
                         break;
                     }
+                    break ;
                 }
                 al_flip_display();
                 al_clear_to_color(white);

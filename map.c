@@ -581,13 +581,14 @@ void sortEnFonctionDesClasses(ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran,
 int sortChoisi (InfoEcran ecran) {
     int positionSort = 0;
     //573 --> 191
-    if ((float) ecran.mouse_x < 2178 && ecran.mouse_x > 1987 && (float) ecran.mouse_y < 1725 && ecran.mouse_y > 1580) {
+
+    if ((float) ecran.mouse_x < 121*ecran.width/160 && ecran.mouse_x > 1987*ecran.width/2880 && (float) ecran.mouse_y < 23*ecran.height/24 && ecran.mouse_y > 79*ecran.height/90) {
         positionSort = 0;
     }
-    if ((float) ecran.mouse_x < 2369 && ecran.mouse_x > 2178 && (float) ecran.mouse_y < 1725 && ecran.mouse_y > 1580) {
+    if ((float) ecran.mouse_x < 2369*ecran.width/2880 && ecran.mouse_x > 121*ecran.width/160 && (float) ecran.mouse_y < 23*ecran.height/24 && ecran.mouse_y > 79*ecran.height/90) {
         positionSort = 1;
     }
-    if ((float) ecran.mouse_x < 2600 && ecran.mouse_x > 2400 && (float) ecran.mouse_y < 1725 && ecran.mouse_y > 1580) {
+    if ((float) ecran.mouse_x < 65*ecran.width/72 && ecran.mouse_x > ecran.width/1.2 && (float) ecran.mouse_y < 23*ecran.height/24 && ecran.mouse_y > 79*ecran.height/90) {
         positionSort = 2;
     }
     return positionSort;
@@ -674,70 +675,95 @@ void initialiserSortEnFonctionDeLeurPosition (Jeux jeu, int joueurQuiJoue, InfoE
     if (sort == 0){
         if (jeu.joueur[joueurQuiJoue].classe == KIRBY){
             jeu.joueur[joueurQuiJoue].sortAppuye = 0;
-            // mettre la fonction du sort coup de pied
+            // mettre la fonction du sort
+            // coup de pied
         }
         if (jeu.joueur[joueurQuiJoue].classe == MARIO){
             jeu.joueur[joueurQuiJoue].sortAppuye = 0;
-            //mettre la fonction du sort flamme
+            //mettre la fonction du sort
+            // flamme
         }
         if (jeu.joueur[joueurQuiJoue].classe == PACMAN){
             jeu.joueur[joueurQuiJoue].sortAppuye = 0;
-            //mettre la fonction du sort defence
+            //mettre la fonction du sort
+            // sort defense
         }
         if (jeu.joueur[joueurQuiJoue].classe == DONKEY_KONG){
             jeu.joueur[joueurQuiJoue].sortAppuye = 0;
-            //mettre la fonction du sort poingGant
+            //mettre la fonction du sort
+            // point gant
         }
         if (jeu.joueur[joueurQuiJoue].classe == PEACH){
             jeu.joueur[joueurQuiJoue].sortAppuye = 0;
-            //mettre la fonction du sort coup de pied
+            //sortPied(jeu, joueurs, joueurQuiJoue);
         }
     }
     if (sort == 1) {
         if (jeu.joueur[joueurQuiJoue].classe == KIRBY) {
             jeu.joueur[joueurQuiJoue].sortAppuye = 1;
-            // mettre la fonction du sort poing
+            // mettre la fonction du sort
+            // poing
         }
         if (jeu.joueur[joueurQuiJoue].classe == MARIO) {
             jeu.joueur[joueurQuiJoue].sortAppuye = 1;
-            //mettre la fonction du sort corona
+            //mettre la fonction du sort
+            // corona
         }
         if (jeu.joueur[joueurQuiJoue].classe == PACMAN) {
             jeu.joueur[joueurQuiJoue].sortAppuye = 1;
-            //mettre la fonction du sort reculeAdversaire
+            //mettre la fonction du sort
+            // reculer adversaire
         }
         if (jeu.joueur[joueurQuiJoue].classe == DONKEY_KONG) {
             jeu.joueur[joueurQuiJoue].sortAppuye = 1;
-            //mettre la fonction du sort mortel
+            //mettre la fonction du sort
+            // mortel
         }
         if (jeu.joueur[joueurQuiJoue].classe == PEACH) {
             jeu.joueur[joueurQuiJoue].sortAppuye = 1;
-            //mettre la fonction du sort fleur
+            //mettre la fonction du sort
+            // sort fleur
         }
     }
     if (sort == 2){
         if (jeu.joueur[joueurQuiJoue].classe == KIRBY){
             jeu.joueur[joueurQuiJoue].sortAppuye = 2;
-            // mettre la fonction du sort flamme
+            // mettre la fonction du sort
+            // flamme
         }
         if (jeu.joueur[joueurQuiJoue].classe == MARIO){
             jeu.joueur[joueurQuiJoue].sortAppuye = 2;
-            //mettre la fonction du sort poing2
+            //mettre la fonction du sort
+            // poing 2
         }
         if (jeu.joueur[joueurQuiJoue].classe == PACMAN){
             jeu.joueur[joueurQuiJoue].sortAppuye = 2;
-            //mettre la fonction du sort flamme
+            //mettre la fonction du sort
+            // flamme
         }
         if (jeu.joueur[joueurQuiJoue].classe == DONKEY_KONG){
             jeu.joueur[joueurQuiJoue].sortAppuye = 2;
-            //mettre la fonction du sort saut
+            //mettre la fonction du sort
+            // saut
         }
         if (jeu.joueur[joueurQuiJoue].classe == PEACH){
             jeu.joueur[joueurQuiJoue].sortAppuye = 2;
-            //mettre la fonction du sort soin
+            //mettre la fonction du sort
+            // sort soin
         }
     }
 }
 
-
-
+void sortPied(Jeux jeu, InfosSurLesJoueurs joueurs, int joueurQuiJoue){
+    for(int i = 0; i < joueurs.nbJoueur; i++){
+        if (i != joueurs.joueurQuiJoue){
+            if(((jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX +1) && (jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY))
+            || ((jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX - 1) && (jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY))
+            || ((jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY +1 ) && (jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX))
+            || ((jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY - 1) && (jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX))){
+                jeu.joueur[joueurQuiJoue].PV -= 20;
+            }
+        }
+    }
+    jeu.joueur[joueurQuiJoue].PA -= 2;
+}
