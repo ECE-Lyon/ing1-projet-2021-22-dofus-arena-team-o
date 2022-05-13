@@ -598,9 +598,9 @@ int sortChoisi (InfoEcran ecran) {
 void actionSortFLAMME (Jeux jeu, int joueurQuiJoue, InfoEcran ecran){
     int PASort = 4;
     int possibiliteDeJouer = 0;
-    possibiliteDeJouer = verifierPADuJoueur(jeu, joueurQuiJoue, jeu.joueur[joueurQuiJoue].PA, PASort);
+    //possibiliteDeJouer = verifierPADuJoueur(jeu, joueurQuiJoue, jeu.joueur[joueurQuiJoue].PA, PASort);
 
-    if (possibiliteDeJouer == 0){
+   // if (possibiliteDeJouer == 0){
         for(int i = 0; i < jeu.info.nbJoueur; i++){
             if (i != jeu.info.joueurQuiJoue){
                 if(((jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX + 4) && (jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY))
@@ -612,15 +612,15 @@ void actionSortFLAMME (Jeux jeu, int joueurQuiJoue, InfoEcran ecran){
             }
         }
         jeu.joueur[joueurQuiJoue].PA -= PASort;
-    }
+   // }
 }
 
 void actionSortPOING (Jeux jeu, int joueurQuiJoue, InfoEcran ecran){
     int PASort = 2;
     int possibiliteDeJouer = 0;
-    possibiliteDeJouer = verifierPADuJoueur(jeu, joueurQuiJoue, jeu.joueur[joueurQuiJoue].PA, PASort);
+    //possibiliteDeJouer = verifierPADuJoueur(jeu, joueurQuiJoue, jeu.joueur[joueurQuiJoue].PA, PASort);
 
-    if (possibiliteDeJouer == 0){
+    //if (possibiliteDeJouer == 0){
         for(int i = 0; i < jeu.info.nbJoueur; i++){
             if (i != jeu.info.joueurQuiJoue){
                 if(((jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX +1) && (jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY))
@@ -632,15 +632,15 @@ void actionSortPOING (Jeux jeu, int joueurQuiJoue, InfoEcran ecran){
             }
         }
         jeu.joueur[joueurQuiJoue].PA -= PASort;
-    }
+   // }
 }
 
 void actionSortCOUPDEPIED (Jeux jeu, int joueurQuiJoue, Map joueur[30][30], InfoEcran ecran){
     int PASort = 3;
     int possibiliteDeJouer = 0;
-    possibiliteDeJouer = verifierPADuJoueur(jeu, joueurQuiJoue, jeu.joueur[joueurQuiJoue].PA, PASort);
+    //possibiliteDeJouer = verifierPADuJoueur(jeu, joueurQuiJoue, jeu.joueur[joueurQuiJoue].PA, PASort);
 
-    if (possibiliteDeJouer == 0){
+    //if (possibiliteDeJouer == 0){
         for(int i = 0; i < jeu.info.nbJoueur; i++){
             if (i != jeu.info.joueurQuiJoue){
                 if(((jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX +1) && (jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY))
@@ -693,15 +693,15 @@ void actionSortCOUPDEPIED (Jeux jeu, int joueurQuiJoue, Map joueur[30][30], Info
             }
         }
         jeu.joueur[joueurQuiJoue].PA -= PASort;
-    }
+    //}
 }
 
 void actionSortRECULERADVERSAIRE (Jeux jeu, int joueurQuiJoue, Map joueur[30][30]) {
     int PASort = 2;
     int possibiliteDeJouer = 0;
-    possibiliteDeJouer = verifierPADuJoueur(jeu, joueurQuiJoue, jeu.joueur[joueurQuiJoue].PA, PASort);
+    //possibiliteDeJouer = verifierPADuJoueur(jeu, joueurQuiJoue, jeu.joueur[joueurQuiJoue].PA, PASort);
 
-    if (possibiliteDeJouer == 0){
+    //if (possibiliteDeJouer == 0){
         for (int i = 0; i < jeu.info.nbJoueur; i++) {
             if (i != jeu.info.joueurQuiJoue) {
                 if (((jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX + 1) &&
@@ -762,16 +762,16 @@ void actionSortRECULERADVERSAIRE (Jeux jeu, int joueurQuiJoue, Map joueur[30][30
             }
         }
         jeu.joueur[joueurQuiJoue].PA -= PASort;
-    }
+    //}
 }
 
 
 void actionSortCOUPCORONA (Jeux jeu, int joueurQuiJoue){
     int PASort = 4;
     int possibiliteDeJouer = 0;
-    possibiliteDeJouer = verifierPADuJoueur(jeu, joueurQuiJoue, jeu.joueur[joueurQuiJoue].PA, PASort);
+    //possibiliteDeJouer = verifierPADuJoueur(jeu, joueurQuiJoue, jeu.joueur[joueurQuiJoue].PA, PASort);
 
-    if (possibiliteDeJouer == 0){
+    //if (possibiliteDeJouer == 0){
         for(int i = 0; i < jeu.info.nbJoueur; i++){
             if (i != jeu.info.joueurQuiJoue){
                 if(((jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX +5) && (jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY))
@@ -783,15 +783,15 @@ void actionSortCOUPCORONA (Jeux jeu, int joueurQuiJoue){
             }
         }
         jeu.joueur[joueurQuiJoue].PA -= PASort;
-    }
+    //}
 }
 
 void actionSortPOING2 (Jeux jeu, int joueurQuiJoue){
     int PASort = 2;
     int possibiliteDeJouer = 0;
-    possibiliteDeJouer = verifierPADuJoueur(jeu, joueurQuiJoue, jeu.joueur[joueurQuiJoue].PA, PASort);
+    //possibiliteDeJouer = verifierPADuJoueur(jeu, joueurQuiJoue, jeu.joueur[joueurQuiJoue].PA, PASort);
 
-    if (possibiliteDeJouer == 0){
+    //if (possibiliteDeJouer == 0){
         for(int i = 0; i < jeu.info.nbJoueur; i++){
             if (i != jeu.info.joueurQuiJoue){
                 if(((jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX +1) && (jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY))
@@ -803,14 +803,14 @@ void actionSortPOING2 (Jeux jeu, int joueurQuiJoue){
             }
         }
         jeu.joueur[joueurQuiJoue].PA -= PASort;
-    }
+    //}
 }
 
 void actionSortPIEDPEACH (Jeux jeu, int joueurQuiJoue, InfoEcran ecran){
     int PASort = 2;
     int possibiliteDeJouer = 0;
-    possibiliteDeJouer = verifierPADuJoueur(jeu, joueurQuiJoue, jeu.joueur[joueurQuiJoue].PA, PASort);
-    if (possibiliteDeJouer == 0){
+    //possibiliteDeJouer = verifierPADuJoueur(jeu, joueurQuiJoue, jeu.joueur[joueurQuiJoue].PA, PASort);
+    //if (possibiliteDeJouer == 0){
         for(int i = 0; i < jeu.info.nbJoueur; i++){
             if (i != jeu.info.joueurQuiJoue){
                 if(((jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX +1) && (jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY))
@@ -822,7 +822,7 @@ void actionSortPIEDPEACH (Jeux jeu, int joueurQuiJoue, InfoEcran ecran){
             }
         }
         jeu.joueur[joueurQuiJoue].PA -= PASort;
-    }
+   // }
 }
 
 void actionSortFLEUR (Jeux jeu, int joueurQuiJoue){
@@ -848,20 +848,20 @@ void actionSortFLEUR (Jeux jeu, int joueurQuiJoue){
 void actionSortSOIN (Jeux jeu, int joueurQuiJoue){
     int PASort = 4;
     int possibiliteDeJouer = 0;
-    possibiliteDeJouer = verifierPADuJoueur(jeu, joueurQuiJoue, jeu.joueur[joueurQuiJoue].PA, PASort);
+    //possibiliteDeJouer = verifierPADuJoueur(jeu, joueurQuiJoue, jeu.joueur[joueurQuiJoue].PA, PASort);
 
-    if (possibiliteDeJouer == 0){
+    //if (possibiliteDeJouer == 0){
         jeu.joueur[joueurQuiJoue].PV = jeu.joueur[joueurQuiJoue].PV + 25;
         jeu.joueur[joueurQuiJoue].PA = jeu.joueur[joueurQuiJoue].PA - PASort;
-    }
+    //}
 }
 
 void actionSortPOINGGANT (Jeux jeu, int joueurQuiJoue){
     int PASort = 3;
     int possibiliteDeJouer = 0;
-    possibiliteDeJouer = verifierPADuJoueur(jeu, joueurQuiJoue, jeu.joueur[joueurQuiJoue].PA, PASort);
+    //possibiliteDeJouer = verifierPADuJoueur(jeu, joueurQuiJoue, jeu.joueur[joueurQuiJoue].PA, PASort);
 
-    if (possibiliteDeJouer == 0){
+    //if (possibiliteDeJouer == 0){
         for(int i = 0; i < jeu.info.nbJoueur; i++){
             if (i != jeu.info.joueurQuiJoue){
                 if(((jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX +1) && (jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY))
@@ -873,15 +873,15 @@ void actionSortPOINGGANT (Jeux jeu, int joueurQuiJoue){
             }
         }
         jeu.joueur[joueurQuiJoue].PA -= PASort;
-    }
+    //}
 }
 
 void actionSortMORTEL (Jeux jeu, int joueurQuiJoue){
     int PASort = 6;
     int possibiliteDeJouer = 0;
-    possibiliteDeJouer = verifierPADuJoueur(jeu, joueurQuiJoue, jeu.joueur[joueurQuiJoue].PA, PASort);
+    //possibiliteDeJouer = verifierPADuJoueur(jeu, joueurQuiJoue, jeu.joueur[joueurQuiJoue].PA, PASort);
 
-    if (possibiliteDeJouer == 0){
+    // if (possibiliteDeJouer == 0){
         for(int i = 0; i < jeu.info.nbJoueur; i++){
             if (i != jeu.info.joueurQuiJoue){
                 if(((jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX +1) && (jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY))
@@ -893,16 +893,16 @@ void actionSortMORTEL (Jeux jeu, int joueurQuiJoue){
             }
         }
         jeu.joueur[joueurQuiJoue].PA -= PASort;
-    }
+    //}
 }
 
 
 void actionSortSAUTDONKEYKONG (Jeux jeu, int joueurQuiJoue, int mouse_x, int mouse_y, Map map[30][30], InfoEcran ecran){
     int PASort = 3;
     int possibiliteDeJouer = 0;
-    possibiliteDeJouer = verifierPADuJoueur(jeu, joueurQuiJoue, jeu.joueur[joueurQuiJoue].PA, PASort);
+    //possibiliteDeJouer = verifierPADuJoueur(jeu, joueurQuiJoue, jeu.joueur[joueurQuiJoue].PA, PASort);
 
-    if (possibiliteDeJouer == 0){
+    //if (possibiliteDeJouer == 0){
         for(int j = 0; j < mapY; j++){
             for(int i = 0; i<mapX; i++){
                 if(collisionCercle(mouse_x, mouse_y, map, i, j, ecran.width) == true){
@@ -912,7 +912,7 @@ void actionSortSAUTDONKEYKONG (Jeux jeu, int joueurQuiJoue, int mouse_x, int mou
             }
         }
         jeu.joueur[joueurQuiJoue].PA -= PASort;
-    }
+   // }
 }
 
 
@@ -1004,3 +1004,5 @@ void initialiserSortEnFonctionDeLeurPosition(Jeux jeu, int joueurQuiJoue, InfoEc
         }
     }
 }
+
+void realisationDesSorts ();
