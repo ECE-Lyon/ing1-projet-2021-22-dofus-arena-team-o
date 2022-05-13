@@ -93,8 +93,6 @@ int main() {
     int nbJoueur = 0;
     int sortAppuye = 0;
 
-
-
     ///METTRE CA DANS UNE FONCTION
     double scalex = 8 * width/296 ;
     double scaley = 4 * height / 149;
