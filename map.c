@@ -633,10 +633,20 @@ void actionSortPOING2 (Jeux jeu, int joueurQuiJoue){
 
 }
 
-void actionSortPIEDPEACH (Jeux jeu, int joueurQuiJoue){
+void actionSortPIEDPEACH (Jeux jeu, int joueurQuiJoue, InfosSurLesJoueurs joueurs){
     jeu.joueur[joueurQuiJoue].PV = jeu.joueur[joueurQuiJoue].PV - 20;
     jeu.joueur[joueurQuiJoue].PA = jeu.joueur[joueurQuiJoue].PA - 2;
-
+    for(int i = 0; i < joueurs.nbJoueur; i++){
+        if (i != joueurs.joueurQuiJoue){
+            if(((jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX +1) && (jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY))
+            || ((jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX - 1) && (jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY))
+            || ((jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY +1 ) && (jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX))
+            || ((jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY - 1) && (jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX))){
+                jeu.joueur[joueurQuiJoue].PV -= 20;
+            }
+        }
+    }
+    jeu.joueur[joueurQuiJoue].PA -= 2;
 }
 
 void actionSortFLEUR (Jeux jeu, int joueurQuiJoue){
@@ -668,7 +678,7 @@ void actionSortSAUTDONKEYKONG (Jeux jeu, int joueurQuiJoue){
 
 }
 
-void initialiserSortEnFonctionDeLeurPosition (Jeux jeu, int joueurQuiJoue, InfoEcran ecran, int sort) {
+void initialiserSortEnFonctionDeLeurPosition (Jeux jeu, int joueurQuiJoue, InfoEcran ecran, int sort, InfosSurLesJoueurs joueurs) {
     //int sort = 0;
     //sort = sortChoisi(jeu, ecran);
 
@@ -695,7 +705,7 @@ void initialiserSortEnFonctionDeLeurPosition (Jeux jeu, int joueurQuiJoue, InfoE
         }
         if (jeu.joueur[joueurQuiJoue].classe == PEACH){
             jeu.joueur[joueurQuiJoue].sortAppuye = 0;
-            //sortPied(jeu, joueurs, joueurQuiJoue);
+            sortPied(jeu, joueurs, joueurQuiJoue);
         }
     }
     if (sort == 1) {
@@ -754,16 +764,3 @@ void initialiserSortEnFonctionDeLeurPosition (Jeux jeu, int joueurQuiJoue, InfoE
     }
 }
 
-void sortPied(Jeux jeu, InfosSurLesJoueurs joueurs, int joueurQuiJoue){
-    for(int i = 0; i < joueurs.nbJoueur; i++){
-        if (i != joueurs.joueurQuiJoue){
-            if(((jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX +1) && (jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY))
-            || ((jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX - 1) && (jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY))
-            || ((jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY +1 ) && (jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX))
-            || ((jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY - 1) && (jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX))){
-                jeu.joueur[joueurQuiJoue].PV -= 20;
-            }
-        }
-    }
-    jeu.joueur[joueurQuiJoue].PA -= 2;
-}
