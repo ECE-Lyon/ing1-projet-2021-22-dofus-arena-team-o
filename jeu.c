@@ -393,7 +393,7 @@ void boutonSuivantDansPlay(InfoEcran ecran, ALLEGRO_FONT* gameFont, int mouse_x,
         al_draw_filled_rectangle(ecran.width / 1.2, ecran.height/216, 383 * ecran.width / 384, ecran.height/13.5,al_map_rgb(200, 200, 200));
         al_draw_text(gameFont, al_map_rgb(0, 0, 0), 59 * ecran.width / 64 - police / 50, ecran.height/54,ALLEGRO_ALIGN_CENTER, "SUIVANT");
     } else {
-        al_draw_filled_rectangle(ecran.width / 1.2, ecran.height/216, 383 * ecran.width / 384, ecran.height/13.5,al_map_rgb(255, 255, 255));
+        al_draw_filled_rectangle(ecran.width / 1.2, ecran.height/216, 383 * ecran.width / 384, ecran.height/13.5,al_map_rgb(240, 240, 240));
         al_draw_text(gameFont, al_map_rgb(0, 0, 0), 59 * ecran.width / 64 - police / 50, ecran.height/54,ALLEGRO_ALIGN_CENTER, "SUIVANT");
     }
 }
