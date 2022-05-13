@@ -98,8 +98,6 @@ void initialiserSortClassePEACH (Classe* classe, ALLEGRO_BITMAP* sortFleur, ALLE
 void initialiserSortClasseMARIO (Classe* classe, ALLEGRO_BITMAP* sortCorona, ALLEGRO_BITMAP* sortFlamme, ALLEGRO_BITMAP* poing2);
 void initialiserSortClassePACMAN (Classe* classe, ALLEGRO_BITMAP* reculerAdversaire, ALLEGRO_BITMAP* sortFlamme, ALLEGRO_BITMAP* sortDefence);
 void boutonSuivantDansPlay(InfoEcran ecran, ALLEGRO_FONT* gameFont, int mouse_x, int mouse_y);
-void initialiserSortEnFonctionDeLeurPosition (Jeux jeu, int joueurQuiJoue, InfoEcran ecran, int sort, InfosSurLesJoueurs joueurs);
-
 
 ///FONCTION POUR COMMENCER A JOUER
 void choixJoueur(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT * gameFont, InfosSurLesJoueurs* infojoueur) ;
@@ -111,6 +109,6 @@ void mettrePseudo(Joueurs** joueur, char lettre, int quelJoueurEstSelectionne, i
 void afficherPseudo(Jeux jeu, float width, float height, ALLEGRO_FONT* gameFont) ;
 
 /// FONCTION DES SORTS
-void sortPied(Jeux jeu, InfosSurLesJoueurs joueurs, int joueurQuiJoue);
+void sortPied(Jeux jeu, int joueurQuiJoue);
 
 #endif

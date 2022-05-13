@@ -595,7 +595,7 @@ int sortChoisi (InfoEcran ecran) {
 }
 
 
-void initialiserSortEnFonctionDeLeurPosition (Jeux jeu, int joueurQuiJoue, InfoEcran ecran, int sort, InfosSurLesJoueurs joueurs) {
+void initialiserSortEnFonctionDeLeurPosition (Jeux jeu, int joueurQuiJoue, InfoEcran ecran, int sort) {
     //int sort = 0;
     //sort = sortChoisi(jeu, ecran);
 
@@ -622,7 +622,7 @@ void initialiserSortEnFonctionDeLeurPosition (Jeux jeu, int joueurQuiJoue, InfoE
         }
         if (jeu.joueur[joueurQuiJoue].classe == PEACH){
             jeu.joueur[joueurQuiJoue].sortAppuye = 0;
-            sortPied(jeu, joueurs, joueurQuiJoue);
+            sortPied(jeu, joueurQuiJoue);
         }
     }
     if (sort == 1) {
@@ -681,9 +681,9 @@ void initialiserSortEnFonctionDeLeurPosition (Jeux jeu, int joueurQuiJoue, InfoE
     }
 }
 
-void sortPied(Jeux jeu, InfosSurLesJoueurs joueurs, int joueurQuiJoue){
-    for(int i = 0; i < joueurs.nbJoueur; i++){
-        if (i != joueurs.joueurQuiJoue){
+void sortPied(Jeux jeu, int joueurQuiJoue){
+    for(int i = 0; i < jeu.info.nbJoueur; i++){
+        if (i != jeu.info.joueurQuiJoue){
             if(((jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX +1) && (jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY))
             || ((jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX - 1) && (jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY))
             || ((jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY +1 ) && (jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX))
