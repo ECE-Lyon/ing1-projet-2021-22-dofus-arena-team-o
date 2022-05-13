@@ -41,6 +41,7 @@ typedef struct {
 typedef struct {
     double x, y, width, height ;
 } Image ;
+
 typedef struct {
     Image images[20] ;
     int nbImages, direction ;
@@ -59,6 +60,7 @@ typedef struct {
     Sort sortADisposition[20];
     Animation animations[NBANIMATIONS] ;
 }Classe;
+
 typedef struct Info{
     double x,y;
     int xArrive, yArrive, caseX, caseY,caseXDepart,caseYDepart, actif, dep;
