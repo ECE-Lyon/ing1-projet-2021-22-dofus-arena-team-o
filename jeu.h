@@ -53,7 +53,6 @@ typedef struct Info{
     int nbLettrePseudo ;
     int sortAppuye;
     int PV, PM, PA, aChoisiClasse;
-    int sortAppuye ;
     int classe;//1 : mario      2 : Luigi     3 : Kirby     4: Peach     5 : Zelda
     int ordre;
 }Joueurs;
@@ -92,5 +91,8 @@ void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLE
 char alphabet (int keycode, int* nbLettre) ;
 void mettrePseudo(Joueurs** joueur, char lettre, int quelJoueurEstSelectionne, int* nbLettre) ;
 void afficherPseudo(Jeux jeu, float width, float height, ALLEGRO_FONT* gameFont) ;
+
+/// FONCTION DES SORTS
+void sortPied(Jeux jeu, InfosSurLesJoueurs joueurs, int joueurQuiJoue);
 
 #endif

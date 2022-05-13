@@ -588,7 +588,7 @@ void sortEnFonctionDesClasses(ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran,
 }
 
 
-int sortChoisi (Jeux jeu, InfoEcran ecran) {
+int sortChoisi (InfoEcran ecran) {
     int positionSort = 0;
     //573 --> 191
 
@@ -605,9 +605,9 @@ int sortChoisi (Jeux jeu, InfoEcran ecran) {
 }
 
 
-void initialisaerSortEnFonctionDeLeurPosition (int position, Jeux jeu, int joueurQuiJoue, InfoEcran ecran, int sort) {
-    int sort = 0;
-    sort = sortChoisi(jeu, ecran);
+void initialisaerSortEnFonctionDeLeurPosition (int position, Jeux jeu, int joueurQuiJoue, InfoEcran ecran, int sort, InfosSurLesJoueurs joueurs) {
+    //int sort = 0;
+    //sort = sortChoisi(jeu, ecran);
     if (sort == 0){
         if (jeu.joueur[joueurQuiJoue].classe == KIRBY){
             jeu.joueur[joueurQuiJoue].sortAppuye = 0;
@@ -631,8 +631,7 @@ void initialisaerSortEnFonctionDeLeurPosition (int position, Jeux jeu, int joueu
         }
         if (jeu.joueur[joueurQuiJoue].classe == PEACH){
             jeu.joueur[joueurQuiJoue].sortAppuye = 0;
-            //mettre la fonction du sort
-            // coup de pied
+            sortPied(jeu, joueurs, joueurQuiJoue);
         }
     }
     if (sort == 1) {
@@ -691,3 +690,16 @@ void initialisaerSortEnFonctionDeLeurPosition (int position, Jeux jeu, int joueu
     }
 }
 
+void sortPied(Jeux jeu, InfosSurLesJoueurs joueurs, int joueurQuiJoue){
+    for(int i = 0; i < joueurs.nbJoueur; i++){
+        if (i != joueurs.joueurQuiJoue){
+            if(((jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX +1) && (jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY))
+            || ((jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX - 1) && (jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY))
+            || ((jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY +1 ) && (jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX))
+            || ((jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY - 1) && (jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX))){
+                jeu.joueur[joueurQuiJoue].PV -= 20;
+            }
+        }
+    }
+    jeu.joueur[joueurQuiJoue].PA -= 2;
+}
