@@ -10,7 +10,7 @@
 #include <time.h>
 #include "jeu.h"
 
-#define RULESPAGEMAX 3
+#define RULESPAGEMAX 10
 #define PI 3.141592
 
 typedef struct {
@@ -33,8 +33,8 @@ void initialiserMenu(Menu* mainMenu, float width, float height) ;
 void drawMenuV2(Menu* mainMenu, ALLEGRO_FONT *gameFont);
 void menuSouris(Menu* mainMenu, InfoEcran ecran) ;
 void moveGameModeArc(Menu** mainMenu) ;
-void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y, ALLEGRO_FONT* gameFontRegles, ALLEGRO_FONT* gameFont);
-void afficherPages(int pages, ALLEGRO_FONT* gameFontRegles, ALLEGRO_COLOR gameColor, float height, float width) ;
+void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y, ALLEGRO_FONT* gameFontRegles, ALLEGRO_FONT* gameFont,  ALLEGRO_BITMAP* kirbyIcone, ALLEGRO_BITMAP* pacmanIcone, ALLEGRO_BITMAP* peachIcone, ALLEGRO_BITMAP* marioIcone, ALLEGRO_BITMAP* donkey_kongIcone);
+void afficherPages(int pages, ALLEGRO_FONT* gameFontRegles, ALLEGRO_COLOR gameColor, float height, float width, ALLEGRO_BITMAP* kirbyIcone, ALLEGRO_BITMAP* pacmanIcone, ALLEGRO_BITMAP* peachIcone, ALLEGRO_BITMAP* marioIcone, ALLEGRO_BITMAP* donkey_kongIcone) ;
 void drawTeam(float height, float width, int mouse_x, int mouse_y, ALLEGRO_FONT *gameFont, ALLEGRO_BITMAP* team);
 
 

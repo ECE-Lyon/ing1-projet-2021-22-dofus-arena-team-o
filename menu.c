@@ -13,7 +13,7 @@ void initialiserMenu(Menu* mainMenu, float width, float height) {
     mainMenu->arc.currentEndTheta = 2 * PI;
 }
 
-void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y, ALLEGRO_FONT* gameFontRegles, ALLEGRO_FONT* gameFont) {
+void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y, ALLEGRO_FONT* gameFontRegles, ALLEGRO_FONT* gameFont, ALLEGRO_BITMAP* kirbyIcone, ALLEGRO_BITMAP* pacmanIcone, ALLEGRO_BITMAP* peachIcone, ALLEGRO_BITMAP* marioIcone, ALLEGRO_BITMAP* donkey_kongIcone) {
     int police = 2*width/55 ;
     int policeRegles = 40;
     float thickness = (5*height/6 - height/6) / 40 ;
@@ -66,7 +66,7 @@ void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y, 
 
 
     ///DIFFERENTES PAGES DES REGLES
-    afficherPages(*pages, gameFontRegles, gameColor, height, width) ;
+    afficherPages(*pages, gameFontRegles, gameColor, height, width, kirbyIcone, pacmanIcone, peachIcone, marioIcone, donkey_kongIcone) ;
 
     ///BOUTON RETURN
     al_draw_text(gameFont, gameColor, (5*width/32 - width/384)/2 + police/10, (2*height/27-height/216)/2 - police/3, ALLEGRO_ALIGN_CENTER, "RETURN") ;
@@ -74,7 +74,15 @@ void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y, 
     al_draw_textf(gameFont, gameColor, 7.5 * width / 15, 11 * height / 13 + height / 18, ALLEGRO_ALIGN_CENTER, "%d / %d", *pages, RULESPAGEMAX) ;
 }
 
-void afficherPages(int pages, ALLEGRO_FONT* gameFontRegles, ALLEGRO_COLOR gameColor, float height, float width ) {
+void afficherPages(int pages, ALLEGRO_FONT* gameFontRegles, ALLEGRO_COLOR gameColor, float height, float width, ALLEGRO_BITMAP* kirbyIcone, ALLEGRO_BITMAP* pacmanIcone, ALLEGRO_BITMAP* peachIcone, ALLEGRO_BITMAP* marioIcone, ALLEGRO_BITMAP* donkey_kongIcone ) {
+    float longueurCarre = 5 * height / 9 - 7 * height / 18 ;
+    float tailleKirby = 4389 / longueurCarre ;
+    float taillePacman = 1000 / longueurCarre;
+    float taillePeachX = 1200 / longueurCarre ;
+    float taillePeachY = 1355 / longueurCarre ;
+    float tailleMario = 2000 / longueurCarre ;
+    float tailleDonkey_kong = 1200/longueurCarre;
+
     switch(pages){
         case 1 : {
             //x1 : width/5, y1 : height/6 , x2: 4*width/5 , y2 : 5*height/6
@@ -91,7 +99,6 @@ void afficherPages(int pages, ALLEGRO_FONT* gameFontRegles, ALLEGRO_COLOR gameCo
             break;
         }
         case 2 : {
-            al_draw_text(gameFontRegles, gameColor, 95 * width/192 , height/5.4, ALLEGRO_ALIGN_CENTER, "Suite ") ;
             al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/3.6, ALLEGRO_ALIGN_LEFT, " Au bout de 15 secondes, le jeu passe automatiquement au personnage ") ;
             al_draw_textf(gameFontRegles, gameColor, width/4.8 , 35*height/108, ALLEGRO_ALIGN_LEFT, " suivant. Si le joueur termine ses actions avant les 15s, il peut cliquer sur") ;
             al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/2.7, ALLEGRO_ALIGN_LEFT, " le bouton Personnage suivant") ;
@@ -104,13 +111,94 @@ void afficherPages(int pages, ALLEGRO_FONT* gameFontRegles, ALLEGRO_COLOR gameCo
             break;
         }
         case 3 : {
-            al_draw_text(gameFontRegles, gameColor, 95*width/192 , height/5.4, ALLEGRO_ALIGN_CENTER, "Suite ") ;
             al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/3.6, ALLEGRO_ALIGN_LEFT, "       Attaque au corps a corps : ") ;
             al_draw_textf(gameFontRegles, gameColor, width/4.8 , 35* height/108, ALLEGRO_ALIGN_LEFT, " L'attaque au corps a corps n'est possible que sur les cases adjacentes ") ;
             al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/2.7, ALLEGRO_ALIGN_LEFT, " (voisines). Elles sont beaucoup moins puissantes qu'un sort, mais ne coutent") ;
             al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/2.4, ALLEGRO_ALIGN_LEFT, " que 2 PA. Elles peuvent enlever entre 1 et 5 PV a l'ennemi, avec 1 chance ") ;
             al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/2.16, ALLEGRO_ALIGN_LEFT, " sur 10 d'echouer (et donc n'enlever aucun PV).") ;
             break;
+        }
+        case 4 : {
+            al_draw_scaled_bitmap(kirbyIcone, 0, 0, 4389, 4389, 65*width/96, height/6, 4389/tailleKirby,4389/tailleKirby, 0) ;
+
+            al_draw_text(gameFontRegles, gameColor, 95*width/192 , height/5.4, ALLEGRO_ALIGN_CENTER, "Kirby ") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/3.6, ALLEGRO_ALIGN_LEFT, "      Sort Coup de pied : ") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , 35* height/108, ALLEGRO_ALIGN_LEFT, " Ce sort fait perdre 20 PV a vos adversaires, se situant une case a cote de ") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/2.7, ALLEGRO_ALIGN_LEFT, " vous. De plus, vous allez les faire reculer de une case. Mais rien n'est gratuit,") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/2.4, ALLEGRO_ALIGN_LEFT, " ce sort vous coutera 3 PA") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , 55*height/108, ALLEGRO_ALIGN_LEFT, "   Sort Poing :") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/1.8, ALLEGRO_ALIGN_LEFT, " Etes vous pret a faire mal a vos rivaux? Ce poing leur fait perdre 30 PV,");
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , 65*height/108, ALLEGRO_ALIGN_LEFT, " pour que vous ayez l'avantage, et cela, pour la petite somme de 2 PA. ");
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , 35*height/54, ALLEGRO_ALIGN_LEFT, " Attention, il n est valable que contre vos adversaires se situant une case");
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/1.44, ALLEGRO_ALIGN_LEFT, " a cote de vous");
+            break;
+        }
+        case 5 : {
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/3.6, ALLEGRO_ALIGN_LEFT, "       Sort Flamme : ") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , 35* height/108, ALLEGRO_ALIGN_LEFT, " Etes vous pret pour un barbecue ? Ce sort va bruler vos adversaires !!  ") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/2.7, ALLEGRO_ALIGN_LEFT, " Il est utilisable contre tous vos adversaires se situant 4 cases a cote de vous ") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/2.4, ALLEGRO_ALIGN_LEFT, " Il leur fera perdre 40 PV (Wow, la chance!!) Petit bemol, il est plus cher,") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/2.16, ALLEGRO_ALIGN_LEFT, " il vous coutera 4 PA") ;
+            break;
+        }
+        case 6 : {
+            al_draw_scaled_bitmap(pacmanIcone, 0, 0, 1000, 1000, 65*width/96, height/6, 1000/taillePacman ,1000/taillePacman, 0) ;
+
+            al_draw_text(gameFontRegles, gameColor, 95*width/192 , height/5.4, ALLEGRO_ALIGN_CENTER, "Pacman ") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/3.6, ALLEGRO_ALIGN_LEFT, "       Sort Flamme : ") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , 35* height/108, ALLEGRO_ALIGN_LEFT, " Vous disposez aussi du sort flamme. Pas besoin de le reexpliquer :) ") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/2.4, ALLEGRO_ALIGN_LEFT, "       Sort RECULER ADVERSAIRE :") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/2.16, ALLEGRO_ALIGN_LEFT, " Vous faites perdre 10 PV aux adversaires se situant a cote de vous, et ") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , 55*height/108, ALLEGRO_ALIGN_LEFT, " -3 PA pour vous. Ils ne sont pas prets pour a etre ejecter de 5 cases. ");
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , 65*height/108, ALLEGRO_ALIGN_LEFT, "    Sort Defense :");
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , 35*height/54, ALLEGRO_ALIGN_LEFT, " Vous etes protege au prochain tour, contre 6 PA");
+            break;
+        }
+        case 7 :{
+            al_draw_scaled_bitmap(marioIcone, 0, 0, 2000, 2000, 65*width/96,height/6, 2000/tailleMario ,2000/tailleMario, 0) ;
+
+            al_draw_text(gameFontRegles, gameColor, 95*width/192 , height/5.4, ALLEGRO_ALIGN_CENTER, "Mario ") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/3.6, ALLEGRO_ALIGN_LEFT, "       Sort Flamme : ") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , 35* height/108, ALLEGRO_ALIGN_LEFT, " Vous disposez egalement du sort flamme. Pas besoin de le reexpliquer :) ") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/2.4, ALLEGRO_ALIGN_LEFT, "       Sort Corona :") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/2.16, ALLEGRO_ALIGN_LEFT, " Ce sort se propage vite. Il attaque tous les adversaires vers vous  (5 cases).") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , 55*height/108, ALLEGRO_ALIGN_LEFT, " En les contaminant, ils perdent 40 PV. Ca fait mal!! Il coute 4 PA");
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , 65*height/108, ALLEGRO_ALIGN_LEFT, "   Sort Poing 2 :");
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , 35*height/54, ALLEGRO_ALIGN_LEFT, "  Vous faites perdre 10 PV a qui conque se situant une case a cote de vous. ");
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/1.44, ALLEGRO_ALIGN_LEFT, " En plus, il est pas cher, seulement 2 PA");
+            break;
+        }
+        case 8 : {
+            al_draw_scaled_bitmap(peachIcone, 0, 0, 1200, 1355, 65*width/96, height/6, 1200/taillePeachX ,1355/taillePeachY, 0) ;
+
+            al_draw_text(gameFontRegles, gameColor, 95*width/192 , height/5.4, ALLEGRO_ALIGN_CENTER, "Peach ") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/3.6, ALLEGRO_ALIGN_LEFT, "       Sort Pied : ") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , 35* height/108, ALLEGRO_ALIGN_LEFT, " Etes vous pret a perdre 2 PA pour faire perdre 20 PV a vos rivaux tout ") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/2.7, ALLEGRO_ALIGN_LEFT, " proches ? Seulement une case a cote de vous!!") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/2.16, ALLEGRO_ALIGN_LEFT, "      Sort Fleur :") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , 55*height/108, ALLEGRO_ALIGN_LEFT, " Princesse Peach fait perdre 40 PV a ses adversaires en envoyant des fleurs.") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/1.8, ALLEGRO_ALIGN_LEFT, " Il suffit quils se trouvent 3 cases a cote. En echange, vous perdez 4 PA.");
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , 35*height/54, ALLEGRO_ALIGN_LEFT, "     Sort Soin :");
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/1.44, ALLEGRO_ALIGN_LEFT, " Wow, vous etes capable de regagner des PV!! Il suffit de payer 4 PA.");
+            break;
+        }
+        case 9:{
+            al_draw_scaled_bitmap(donkey_kongIcone, 0, 0, 1200, 1200,65*width/96 , height/6 , 1200/tailleDonkey_kong, 1200/tailleDonkey_kong, 0) ;
+
+            al_draw_text(gameFontRegles, gameColor, 95*width/192 , height/5.4, ALLEGRO_ALIGN_CENTER, "Donkey kong ") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/3.6, ALLEGRO_ALIGN_LEFT, "       Sort Poing gant : ") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , 35* height/108, ALLEGRO_ALIGN_LEFT, " Vos adversaires se situent a cote de vous. Utilisez ce sort, il leur fera  ") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/2.7, ALLEGRO_ALIGN_LEFT, " perdre 25 PV. Ce sort coute 3 PA.") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/2.16, ALLEGRO_ALIGN_LEFT, "       Sort Mortel :") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , 55*height/108, ALLEGRO_ALIGN_LEFT, " Son nom fait peur, mais ses actions encore plus!! 60 PV de moins pour vos ") ;
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/1.8, ALLEGRO_ALIGN_LEFT, " adversaires, sils se trouvent a cote de vous. Et cela, contre 6 PA.");
+            break;
+        }
+        case 10 :{
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/3.6, ALLEGRO_ALIGN_LEFT, "    Sort Saut");
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , 35* height/108, ALLEGRO_ALIGN_LEFT, " Vous avez la chance de pouvoir faire un grand saut. Cela vous permet de  ");
+            al_draw_textf(gameFontRegles, gameColor, width/4.8 , height/2.7, ALLEGRO_ALIGN_LEFT, " vous deplacer de 3 cases en plus, contre 3 PA.");
+            al_draw_textf(gameFontRegles, gameColor, width/4 , 55*height/108, ALLEGRO_ALIGN_LEFT, "        Choisissez bien votre classe !! A vous les strategies ;) !!");
         }
     }
 }

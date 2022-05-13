@@ -240,7 +240,7 @@ int main() {
 
                     }
                     case RULES : {
-                        drawRules(&page, height, width, mouse_x, mouse_y, gameFontRegles, gameFont);
+                        drawRules(&page, height, width, mouse_x, mouse_y, gameFontRegles, gameFont, kirbyIcone, pacmanIcone, peachIcone, marioIcone, donkey_kongIcone);
                         break;
                     }
                 }
