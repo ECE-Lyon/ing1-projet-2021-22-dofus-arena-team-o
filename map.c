@@ -747,10 +747,14 @@ void actionSortSAUTDONKEYKONG (Jeux jeu, int joueurQuiJoue){
 }
 
 
-/*void verifierPADuJoueur (Jeux jeu, int joueurQuiJoue, int PA) {
-    if();
-}*/
+void verifierPADuJoueur (Jeux jeu, ALLEGRO_FONT* gameFont, InfoEcran ecran, int joueurQuiJoue, int PADuJoueur, int PADuSort) {
+    if (jeu.joueur[joueurQuiJoue].etat != 1){
+        if (PADuJoueur < PADuSort){
+            al_draw_text(gameFont, al_map_rgb(100, 100, 100), 280, 200,
+                         ALLEGRO_ALIGN_CENTER, "VOUS N'AVEZ PAS ASSEZ DE POINT D'ATTAQUE POUR UTILISER CE SORT ");
+        }
 
+}
 
 void initialiserSortEnFonctionDeLeurPosition (Jeux jeu, int joueurQuiJoue, InfoEcran ecran, int sort, Map joueur[30][30]) {
     //int sort = 0;
