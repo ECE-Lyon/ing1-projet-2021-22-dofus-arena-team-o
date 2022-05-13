@@ -24,7 +24,7 @@ int sortChoisi (InfoEcran ecran);
 void verifierPADuJoueur (Jeux jeu, ALLEGRO_FONT* gameFont, InfoEcran ecran, int joueurQuiJoue, int PADuJoueur, int PADuSort);
 
 
-void actionSortSAUTDONKEYKONG (Jeux jeu, int joueurQuiJoue);
+void actionSortSAUTDONKEYKONG (Jeux jeu, int joueurQuiJoue, int mouse_x, int mouse_y, Map map[30][30], InfoEcran ecran);
 void actionSortMORTEL (Jeux jeu, int joueurQuiJoue);
 void actionSortPOINGGANT (Jeux jeu, int joueurQuiJoue);
 void actionSortSOIN (Jeux jeu, int joueurQuiJoue);
@@ -32,7 +32,7 @@ void actionSortFLEUR (Jeux jeu, int joueurQuiJoue);
 void actionSortPIEDPEACH (Jeux jeu, int joueurQuiJoue);
 void actionSortPOING2 (Jeux jeu, int joueurQuiJoue);
 void actionSortCOUPCORONA (Jeux jeu, int joueurQuiJoue);
-void actionSortRECULERADVERSAIRE (Jeux jeu, int joueurQuiJoue);
+void actionSortRECULERADVERSAIRE (Jeux jeu, int joueurQuiJoue, Map joueur[30][30]);
 void actionSortCOUPDEPIED (Jeux jeu, int joueurQuiJoue, Map joueur[30][30]);
 void actionSortPOING (Jeux jeu, int joueurQuiJoue);
 void actionSortFLAMME (Jeux jeu, int joueurQuiJoue);
