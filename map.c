@@ -634,8 +634,11 @@ void actionSortPOING2 (Jeux jeu, int joueurQuiJoue){
 }
 
 void actionSortPIEDPEACH (Jeux jeu, int joueurQuiJoue, InfosSurLesJoueurs joueurs){
+
+    verifierPADuJoueur(jeu, joueurQuiJoue, jeu.joueur[joueurQuiJoue].PA);
     jeu.joueur[joueurQuiJoue].PV = jeu.joueur[joueurQuiJoue].PV - 20;
     jeu.joueur[joueurQuiJoue].PA = jeu.joueur[joueurQuiJoue].PA - 2;
+
     for(int i = 0; i < joueurs.nbJoueur; i++){
         if (i != joueurs.joueurQuiJoue){
             if(((jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX +1) && (jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY))
@@ -677,6 +680,13 @@ void actionSortSAUTDONKEYKONG (Jeux jeu, int joueurQuiJoue){
     jeu.joueur[joueurQuiJoue].PA = jeu.joueur[joueurQuiJoue].PA - 3;
 
 }
+
+
+
+void verifierPADuJoueur (Jeux jeu, int joueurQuiJoue, int PA){
+    if
+}
+
 
 void initialiserSortEnFonctionDeLeurPosition (Jeux jeu, int joueurQuiJoue, InfoEcran ecran, int sort, InfosSurLesJoueurs joueurs) {
     //int sort = 0;
