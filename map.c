@@ -913,7 +913,6 @@ void actionSortSAUTDONKEYKONG (Jeux jeu, int joueurQuiJoue, int mouse_x, int mou
    // }
 }
 
-
 int verifierPADuJoueur (Jeux jeu, int joueurQuiJoue, int PADuJoueur, int PADuSort) {
     int action = 0;
     verifierPV(jeu, joueurQuiJoue);
