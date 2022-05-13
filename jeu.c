@@ -31,6 +31,7 @@ void initialiserSortClassePEACH (Classe* classe, ALLEGRO_BITMAP* sortFleur, ALLE
     classe->sortADisposition[SORTSOIN].iconeSort = sortSoin;
     classe->sortADisposition[COUPDEPIED].iconeSort = coupDePied;
 }
+
 void initialiserSortClasseDONKEYKONG (Classe* classe, ALLEGRO_BITMAP* sortMortel, ALLEGRO_BITMAP* poingGANT, ALLEGRO_BITMAP* saut){
     classe->sortADisposition[MORTEL].iconeSort = sortMortel;
     classe->sortADisposition[POINGGANT].iconeSort = poingGANT;
