@@ -66,6 +66,7 @@ void initialiserJoueur(Jeux* jeu, Map map[30][30]) {
             (jeu->joueur[i]).nbLettrePseudo = 0;
             jeu->joueur[i].classe = VIDE;
             jeu->joueur[i].PV = 300;
+            jeu->joueur[i].etat = 0;   // 0 en vie
             jeu->joueur[i].quelAnimation = RESPIRATION;
             jeu->joueur[i].xArrive = 0;
             jeu->joueur[i].yArrive = 0;

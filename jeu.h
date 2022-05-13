@@ -38,6 +38,7 @@ typedef struct {
     int animation;
     int nbSort;
 }Sort;
+
 typedef struct {
     double x, y, width, height ;
 } Image ;
@@ -54,6 +55,7 @@ typedef struct {
     bool entrerPseudo ;
     int ordre[3];
 } InfosSurLesJoueurs;
+
 typedef struct {
     ALLEGRO_BITMAP* image;
     ALLEGRO_BITMAP* SpriteSheet ;
@@ -70,6 +72,7 @@ typedef struct Info{
     int PV, PM, PA, aChoisiClasse;
     int classe;//1 : mario      2 : Luigi     3 : Kirby     4: Peach     5 : Zelda
     int quelAnimation ;
+    int etat;      //etat 0 (par defaut) joueur en vie // etat 1 : joueur est mort
 }Joueurs;
 
 
@@ -108,8 +111,5 @@ void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLE
 char alphabet (int keycode, int* nbLettre) ;
 void mettrePseudo(Joueurs** joueur, char lettre, int quelJoueurEstSelectionne, int* nbLettre) ;
 void afficherPseudo(Jeux jeu, float width, float height, ALLEGRO_FONT* gameFont) ;
-
-/// FONCTION DES SORTS
-void sortPied(Jeux jeu, int joueurQuiJoue);
 
 #endif

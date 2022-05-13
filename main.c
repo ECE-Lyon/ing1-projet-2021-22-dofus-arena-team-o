@@ -292,6 +292,8 @@ int main() {
                                 }
                                 sortAppuye = sortChoisi(ecran);
                                 initialiserSortEnFonctionDeLeurPosition(jeu, jeu.info.joueurQuiJoue, ecran, sortAppuye, map);
+
+
                                 break;
                             }
                             case CHOIXNBJOUEUR : {
@@ -394,12 +396,11 @@ int main() {
                         al_draw_scaled_bitmap(carte,0,0,296,149,50,50,width, height,0);
                         drawPlay(jeu.joueur, map, jeu.info.joueurQuiJoue, mouse_x, mouse_y, width, height, scalex, scaley, display,
                                  white, black, gris, vert, red);
-                        deplacementJoueur(jeu.joueur, map, jeu.info.joueurQuiJoue, scalex, scaley, &jeu.classes[PACMAN].animations->direction);
-                        afficherPersonnage(jeu, scalex, scaley) ;
-                        boutonSuivantDansPlay(ecran, gameFont1, mouse_x, mouse_y);
-                        barreSort(afficherSort, ecran);
-                        sortEnFonctionDesClasses(gameFont1, jeu, ecran, jeu.info.joueurQuiJoue);
-
+                            deplacementJoueur(jeu.joueur, map, jeu.info.joueurQuiJoue, scalex, scaley, &jeu.classes[PACMAN].animations->direction);
+                            afficherPersonnage(jeu, scalex, scaley) ;
+                            boutonSuivantDansPlay(ecran, gameFont1, mouse_x, mouse_y);
+                            barreSort(afficherSort, ecran);
+                            sortEnFonctionDesClasses(gameFont1, jeu, ecran, jeu.info.joueurQuiJoue);
                         break;
                     }
                     break ;
