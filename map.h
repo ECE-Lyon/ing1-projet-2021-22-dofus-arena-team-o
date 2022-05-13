@@ -19,7 +19,7 @@ void drawSortPEACH( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran);
 void drawSortMARIO( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran);
 void drawSortKIRBY( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran);
 void sortEnFonctionDesClasses(ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran, int joueurQuiJoue);
-void initialiserSortEnFonctionDeLeurPosition (Jeux jeu, int joueurQuiJoue, InfoEcran ecran, int sort, InfosSurLesJoueurs joueurs);
+void initialiserSortEnFonctionDeLeurPosition (Jeux jeu, int joueurQuiJoue, InfoEcran ecran, int sort);
 int sortChoisi (InfoEcran ecran);
 void verifierPADuJoueur (Jeux jeu, int joueurQuiJoue, int PA);
 
