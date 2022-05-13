@@ -8,10 +8,10 @@ bool collisionCercle(int x,int y,Map map[30][30],int i,int j,double width){
         return true;
 }
 
-void drawPlay(Joueurs *joueur,Map map[30][30],int mouse_x,int mouse_y,double width, double height, double scalex, double scaley, ALLEGRO_DISPLAY *display,ALLEGRO_COLOR white, ALLEGRO_COLOR black, ALLEGRO_COLOR gris,ALLEGRO_COLOR vert,ALLEGRO_COLOR red) {
+void drawPlay(Joueurs *joueur,Map map[30][30], int joueurQuiJoue, int mouse_x,int mouse_y,double width, double height, double scalex, double scaley, ALLEGRO_DISPLAY *display,ALLEGRO_COLOR white, ALLEGRO_COLOR black, ALLEGRO_COLOR gris,ALLEGRO_COLOR vert,ALLEGRO_COLOR red) {
 
     ALLEGRO_COLOR vert2 = al_map_rgba(93, 127, 51, 200);
-    caseJoueur(joueur,map);
+    caseJoueur(joueur,map, joueurQuiJoue);
     for (int j=0;j<mapY;j++) {
         for (int i = 0; i < mapX; i++) {
             if (map[i][j].obstacle==1){
@@ -20,68 +20,86 @@ void drawPlay(Joueurs *joueur,Map map[30][30],int mouse_x,int mouse_y,double wid
         }
         }
     }
-    if (joueur[0].dep==0) {
+    if (joueur[joueurQuiJoue].dep==0) {
         for (int j = 0; j < 4; j++) {
             for (int i = 0; i < 4; i++) {
                 if (i + j <= 3) {
-                    al_draw_filled_triangle(map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].x - scalex,
-                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].y,
-                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].x,
-                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].y + scaley,
-                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].x,
-                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].y -
+                    al_draw_filled_triangle(map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart + j].x - scalex,
+                                            map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart + j].y,
+                                            map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart + j].x,
+                                            map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart + j].y + scaley,
+                                            map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart + j].x,
+                                            map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart + j].y -
                                             scaley, vert2);
-                    al_draw_filled_triangle(map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].x + scalex,
-                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].y,
-                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].x,
-                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].y + scaley,
-                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].x,
-                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart + j].y -
-                                            scaley, vert2);
-
-                    al_draw_filled_triangle(map[joueur[0].caseXDepart - i][joueur[0].caseYDepart - j].x - scalex,
-                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart - j].y,
-                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart - j].x,
-                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart - j].y + scaley,
-                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart - j].x,
-                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart - j].y -
-                                            scaley, vert2);
-                    al_draw_filled_triangle(map[joueur[0].caseXDepart - i][joueur[0].caseYDepart - j].x + scalex,
-                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart - j].y,
-                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart - j].x,
-                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart - j].y + scaley,
-                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart - j].x,
-                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart - j].y -
+                    al_draw_filled_triangle(map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart + j].x + scalex,
+                                            map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart + j].y,
+                                            map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart + j].x,
+                                            map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart + j].y + scaley,
+                                            map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart + j].x,
+                                            map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart + j].y -
                                             scaley, vert2);
 
-                    al_draw_filled_triangle(map[joueur[0].caseXDepart + i][joueur[0].caseYDepart - j].x - scalex,
-                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart - j].y,
-                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart - j].x,
-                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart - j].y + scaley,
-                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart - j].x,
-                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart - j].y -
-                                            scaley, vert2);
-                    al_draw_filled_triangle(map[joueur[0].caseXDepart + i][joueur[0].caseYDepart - j].x + scalex,
-                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart - j].y,
-                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart - j].x,
-                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart - j].y + scaley,
-                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart - j].x,
-                                            map[joueur[0].caseXDepart + i][joueur[0].caseYDepart - j].y -
-                                            scaley, vert2);
-                    al_draw_filled_triangle(map[joueur[0].caseXDepart - i][joueur[0].caseYDepart + j].x - scalex,
-                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart + j].y,
-                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart + j].x,
-                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart + j].y + scaley,
-                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart + j].x,
-                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart + j].y -
-                                            scaley, vert2);
-                    al_draw_filled_triangle(map[joueur[0].caseXDepart - i][joueur[0].caseYDepart + j].x + scalex,
-                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart + j].y,
-                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart + j].x,
-                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart + j].y + scaley,
-                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart + j].x,
-                                            map[joueur[0].caseXDepart - i][joueur[0].caseYDepart + j].y -
-                                            scaley, vert2);
+                    al_draw_filled_triangle(
+                            map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].caseYDepart - j].x -
+                            scalex,
+                            map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].caseYDepart - j].y,
+                            map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].caseYDepart - j].x,
+                            map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].caseYDepart - j].y +
+                            scaley,
+                            map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].caseYDepart - j].x,
+                            map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].caseYDepart - j].y -
+                            scaley, vert2);
+                    al_draw_filled_triangle(
+                            map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].caseYDepart - j].x +
+                            scalex,
+                            map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].caseYDepart - j].y,
+                            map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].caseYDepart - j].x,
+                            map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].caseYDepart - j].y +
+                            scaley,
+                            map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].caseYDepart - j].x,
+                            map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].caseYDepart - j].y -
+                            scaley, vert2);
+
+                    al_draw_filled_triangle(
+                            map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart - j].x -
+                            scalex,
+                            map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart - j].y,
+                            map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart - j].x,
+                            map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart - j].y +
+                            scaley,
+                            map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart - j].x,
+                            map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart - j].y -
+                            scaley, vert2);
+                    al_draw_filled_triangle(
+                            map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart - j].x +
+                            scalex,
+                            map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart - j].y,
+                            map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart - j].x,
+                            map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart - j].y +
+                            scaley,
+                            map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart - j].x,
+                            map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart - j].y -
+                            scaley, vert2);
+                    al_draw_filled_triangle(
+                            map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].caseYDepart + j].x -
+                            scalex,
+                            map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].caseYDepart + j].y,
+                            map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].caseYDepart + j].x,
+                            map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].caseYDepart + j].y +
+                            scaley,
+                            map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].caseYDepart + j].x,
+                            map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].caseYDepart + j].y -
+                            scaley, vert2);
+                    al_draw_filled_triangle(
+                            map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].caseYDepart + j].x +
+                            scalex,
+                            map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].caseYDepart + j].y,
+                            map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].caseYDepart + j].x,
+                            map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].caseYDepart + j].y +
+                            scaley,
+                            map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].caseYDepart + j].x,
+                            map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].caseYDepart + j].y -
+                            scaley, vert2);
                 }
             }
         }
@@ -96,22 +114,23 @@ void drawPlay(Joueurs *joueur,Map map[30][30],int mouse_x,int mouse_y,double wid
                 al_draw_filled_triangle(map[i][j].x + scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -
                                                                                                                            scaley, black);
 
-                if(map[0][0].t == 1 && joueur[0].dep == 0 && abs(joueur[0].xArrive-joueur[0].caseXDepart)+abs(joueur[0].yArrive-joueur[0].caseYDepart)<=3 && map[joueur[0].xArrive][joueur[0].yArrive].obstacle!=1){
+                if(map[0][0].t == 1 && joueur[joueurQuiJoue].dep == 0 && abs(joueur[joueurQuiJoue].xArrive-joueur[joueurQuiJoue].caseXDepart)+abs(joueur[joueurQuiJoue].yArrive-joueur[joueurQuiJoue].caseYDepart)<=3 && map[joueur[joueurQuiJoue].xArrive][joueur[joueurQuiJoue].yArrive].obstacle!=1){
 
-                    joueur[0].caseXDepart= joueur[0].caseX;
-                    joueur[0].caseYDepart= joueur[0].caseY;
-                    joueur[0].dep=1;
-                    joueur[0].xArrive=i;
-                    joueur[0].yArrive=j;
-                    joueur[0].actif=1;
+                    joueur[joueurQuiJoue].caseXDepart= joueur[joueurQuiJoue].caseX;
+                    joueur[joueurQuiJoue].caseYDepart= joueur[joueurQuiJoue].caseY;
+                    joueur[joueurQuiJoue].dep=1;
+                    joueur[joueurQuiJoue].quelAnimation = MARCHER ;
+                    joueur[joueurQuiJoue].xArrive=i;
+                    joueur[joueurQuiJoue].yArrive=j;
+                    joueur[joueurQuiJoue].actif=1;
                     al_draw_filled_triangle(map[i][j].x - scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -
                                                                                                                                scaley, red);
                     al_draw_filled_triangle(map[i][j].x + scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -
                                                                                                                                scaley, red);
                 }
-                if (joueur[0].dep == 0){
-                    joueur[0].xArrive=i;
-                    joueur[0].yArrive=j;
+                if (joueur[joueurQuiJoue].dep == 0){
+                    joueur[joueurQuiJoue].xArrive=i;
+                    joueur[joueurQuiJoue].yArrive=j;
                 }
 
             }
@@ -120,183 +139,198 @@ void drawPlay(Joueurs *joueur,Map map[30][30],int mouse_x,int mouse_y,double wid
     }
 }
 
-void caseJoueur(Joueurs *joueur,Map map[30][30]){
+void caseJoueur(Joueurs *joueur,Map map[30][30], int joueurQuiJoue){
     for (int j=0;j<mapY;j++) {
         for (int i = 0; i < mapX; i++) {
-            if (joueur[0].x>map[i][j].x-1 && joueur[0].x<map[i][j].x+1 && joueur[0].y>map[i][j].y-1 && joueur[0].y<map[i][j].y+1 ){
-                joueur[0].caseX=i;
-                joueur[0].caseY=j;
+            if (joueur[joueurQuiJoue].x>map[i][j].x-1 && joueur[joueurQuiJoue].x<map[i][j].x+1 && joueur[joueurQuiJoue].y>map[i][j].y-1 && joueur[joueurQuiJoue].y<map[i][j].y+1 ){
+                joueur[joueurQuiJoue].caseX=i;
+                joueur[joueurQuiJoue].caseY=j;
                 //printf(" CaseXa: %d , CaseYa: %d\n",joueur[0].caseXDepart,joueur[0].caseYDepart);
             }
         }
     }
 }
 
-void deplacementJoueur(Joueurs *joueur, Map map[30][30],double scalex,double scaley) {
+void deplacementJoueur(Joueurs *joueur, Map map[30][30], int joueurQuiJoue, double scalex,double scaley, int* direction) {
     ALLEGRO_COLOR vert = al_map_rgba(93, 127, 51, 255);
     ALLEGRO_COLOR vert2 = al_map_rgba(93, 127, 51, 200);
     double depX = 0;
     double depY = 0;
 
-    caseJoueur(joueur, map);
+    caseJoueur(joueur, map, joueurQuiJoue);
 
-    if (abs(joueur[0].xArrive - joueur[0].caseXDepart) + abs(joueur[0].yArrive - joueur[0].caseYDepart) <= 4) {
-        if (joueur[0].caseX > joueur[0].xArrive) {
+    if (abs(joueur[joueurQuiJoue].xArrive - joueur[joueurQuiJoue].caseXDepart) + abs(joueur[joueurQuiJoue].yArrive - joueur[joueurQuiJoue].caseYDepart) <= 4) {
+        if (joueur[joueurQuiJoue].caseX > joueur[joueurQuiJoue].xArrive) {
             // Boucle sur x
-            for (int i = 0; i < -joueur[0].xArrive + joueur[0].caseXDepart; i++) {
-                al_draw_filled_triangle(map[joueur[0].caseXDepart - i][joueur[0].yArrive].x - scalex,
-                                        map[joueur[0].caseXDepart - i][joueur[0].yArrive].y,
-                                        map[joueur[0].caseXDepart - i][joueur[0].yArrive].x,
-                                        map[joueur[0].caseXDepart - i][joueur[0].yArrive].y + scaley,
-                                        map[joueur[0].caseXDepart - i][joueur[0].yArrive].x,
-                                        map[joueur[0].caseXDepart - i][joueur[0].yArrive].y -
+            for (int i = 0; i < -joueur[joueurQuiJoue].xArrive + joueur[joueurQuiJoue].caseXDepart; i++) {
+                al_draw_filled_triangle(map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].yArrive].x - scalex,
+                                        map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].yArrive].y,
+                                        map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].yArrive].x,
+                                        map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].yArrive].y + scaley,
+                                        map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].yArrive].x,
+                                        map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].yArrive].y -
                                         scaley, vert);
-                al_draw_filled_triangle(map[joueur[0].caseXDepart - i][joueur[0].yArrive].x + scalex,
-                                        map[joueur[0].caseXDepart - i][joueur[0].yArrive].y,
-                                        map[joueur[0].caseXDepart - i][joueur[0].yArrive].x,
-                                        map[joueur[0].caseXDepart - i][joueur[0].yArrive].y + scaley,
-                                        map[joueur[0].caseXDepart - i][joueur[0].yArrive].x,
-                                        map[joueur[0].caseXDepart - i][joueur[0].yArrive].y -
+                al_draw_filled_triangle(map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].yArrive].x + scalex,
+                                        map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].yArrive].y,
+                                        map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].yArrive].x,
+                                        map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].yArrive].y + scaley,
+                                        map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].yArrive].x,
+                                        map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].yArrive].y -
                                         scaley, vert);
 
             }
         }
-        if (joueur[0].caseX < joueur[0].xArrive) {
+        if (joueur[joueurQuiJoue].caseX < joueur[joueurQuiJoue].xArrive) {
             // Boucle sur x
-            for (int i = 0; i < joueur[0].xArrive - joueur[0].caseXDepart; i++) {
-                al_draw_filled_triangle(map[joueur[0].caseXDepart + i][joueur[0].yArrive].x - scalex,
-                                        map[joueur[0].caseXDepart + i][joueur[0].yArrive].y,
-                                        map[joueur[0].caseXDepart + i][joueur[0].yArrive].x,
-                                        map[joueur[0].caseXDepart + i][joueur[0].yArrive].y + scaley,
-                                        map[joueur[0].caseXDepart + i][joueur[0].yArrive].x,
-                                        map[joueur[0].caseXDepart + i][joueur[0].yArrive].y -
+            for (int i = 0; i < joueur[joueurQuiJoue].xArrive - joueur[joueurQuiJoue].caseXDepart; i++) {
+                al_draw_filled_triangle(map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].yArrive].x - scalex,
+                                        map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].yArrive].y,
+                                        map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].yArrive].x,
+                                        map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].yArrive].y + scaley,
+                                        map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].yArrive].x,
+                                        map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].yArrive].y -
                                         scaley, vert);
-                al_draw_filled_triangle(map[joueur[0].caseXDepart + i][joueur[0].yArrive].x + scalex,
-                                        map[joueur[0].caseXDepart + i][joueur[0].yArrive].y,
-                                        map[joueur[0].caseXDepart + i][joueur[0].yArrive].x,
-                                        map[joueur[0].caseXDepart + i][joueur[0].yArrive].y + scaley,
-                                        map[joueur[0].caseXDepart + i][joueur[0].yArrive].x,
-                                        map[joueur[0].caseXDepart + i][joueur[0].yArrive].y -
+                al_draw_filled_triangle(map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].yArrive].x + scalex,
+                                        map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].yArrive].y,
+                                        map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].yArrive].x,
+                                        map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].yArrive].y + scaley,
+                                        map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].yArrive].x,
+                                        map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].yArrive].y -
                                         scaley, vert);
 
             }
         }
-        if (joueur[0].caseY > joueur[0].yArrive) {
+        if (joueur[joueurQuiJoue].caseY > joueur[joueurQuiJoue].yArrive) {
             // Boucle sur y
-            for (int j = 0; j < -joueur[0].yArrive + joueur[0].caseYDepart; j++) {
+            for (int j = 0; j < -joueur[joueurQuiJoue].yArrive + joueur[joueurQuiJoue].caseYDepart; j++) {
 
-                al_draw_filled_triangle(map[joueur[0].caseXDepart][joueur[0].caseYDepart - j].x - scalex,
-                                        map[joueur[0].caseXDepart][joueur[0].caseYDepart - j].y,
-                                        map[joueur[0].caseXDepart][joueur[0].caseYDepart - j].x,
-                                        map[joueur[0].caseXDepart][joueur[0].caseYDepart - j].y + scaley,
-                                        map[joueur[0].caseXDepart][joueur[0].caseYDepart - j].x,
-                                        map[joueur[0].caseXDepart][joueur[0].caseYDepart - j].y -
-                                        scaley, vert);
-                al_draw_filled_triangle(map[joueur[0].caseXDepart][joueur[0].caseYDepart - j].x + scalex,
-                                        map[joueur[0].caseXDepart][joueur[0].caseYDepart - j].y,
-                                        map[joueur[0].caseXDepart][joueur[0].caseYDepart - j].x,
-                                        map[joueur[0].caseXDepart][joueur[0].caseYDepart - j].y + scaley,
-                                        map[joueur[0].caseXDepart][joueur[0].caseYDepart - j].x,
-                                        map[joueur[0].caseXDepart][joueur[0].caseYDepart - j].y -
-                                        scaley, vert);
+                al_draw_filled_triangle(
+                        map[joueur[joueurQuiJoue].caseXDepart][joueur[joueurQuiJoue].caseYDepart - j].x - scalex,
+                        map[joueur[joueurQuiJoue].caseXDepart][joueur[joueurQuiJoue].caseYDepart - j].y,
+                        map[joueur[joueurQuiJoue].caseXDepart][joueur[joueurQuiJoue].caseYDepart - j].x,
+                        map[joueur[joueurQuiJoue].caseXDepart][joueur[joueurQuiJoue].caseYDepart - j].y + scaley,
+                        map[joueur[joueurQuiJoue].caseXDepart][joueur[joueurQuiJoue].caseYDepart - j].x,
+                        map[joueur[joueurQuiJoue].caseXDepart][joueur[joueurQuiJoue].caseYDepart - j].y -
+                        scaley, vert);
+                al_draw_filled_triangle(
+                        map[joueur[joueurQuiJoue].caseXDepart][joueur[joueurQuiJoue].caseYDepart - j].x + scalex,
+                        map[joueur[joueurQuiJoue].caseXDepart][joueur[joueurQuiJoue].caseYDepart - j].y,
+                        map[joueur[joueurQuiJoue].caseXDepart][joueur[joueurQuiJoue].caseYDepart - j].x,
+                        map[joueur[joueurQuiJoue].caseXDepart][joueur[joueurQuiJoue].caseYDepart - j].y + scaley,
+                        map[joueur[joueurQuiJoue].caseXDepart][joueur[joueurQuiJoue].caseYDepart - j].x,
+                        map[joueur[joueurQuiJoue].caseXDepart][joueur[joueurQuiJoue].caseYDepart - j].y -
+                        scaley, vert);
 
 
             }
         }
 
-        if (joueur[0].caseY < joueur[0].yArrive) {
+        if (joueur[joueurQuiJoue].caseY < joueur[joueurQuiJoue].yArrive) {
             // Boucle sur y
-            for (int j = 0; j < joueur[0].yArrive - joueur[0].caseYDepart; j++) {
-
-                al_draw_filled_triangle(map[joueur[0].caseX][joueur[0].caseY + j].x - scalex,
-                                        map[joueur[0].caseX][joueur[0].caseY + j].y,
-                                        map[joueur[0].caseX][joueur[0].caseY + j].x,
-                                        map[joueur[0].caseX][joueur[0].caseY + j].y + scaley,
-                                        map[joueur[0].caseX][joueur[0].caseY + j].x,
-                                        map[joueur[0].caseX][joueur[0].caseY + j].y -
-                                        scaley, vert);
-                al_draw_filled_triangle(map[joueur[0].caseX][joueur[0].caseY + j].x + scalex,
-                                        map[joueur[0].caseX][joueur[0].caseY + j].y,
-                                        map[joueur[0].caseX][joueur[0].caseY + j].x,
-                                        map[joueur[0].caseX][joueur[0].caseY + j].y + scaley,
-                                        map[joueur[0].caseX][joueur[0].caseY + j].x,
-                                        map[joueur[0].caseX][joueur[0].caseY + j].y -
-                                        scaley, vert);
+            for (int j = 0; j < joueur[joueurQuiJoue].yArrive - joueur[joueurQuiJoue].caseYDepart; j++) {
 
 
             }
         }
 
-        if (joueur[0].caseX == joueur[0].xArrive && joueur[0].caseY == joueur[0].yArrive) {
-            al_draw_filled_triangle(map[joueur[0].caseX][joueur[0].caseY].x - scalex,
-                                    map[joueur[0].caseX][joueur[0].caseY].y,
-                                    map[joueur[0].caseX][joueur[0].caseY].x,
-                                    map[joueur[0].caseX][joueur[0].caseY].y + scaley,
-                                    map[joueur[0].caseX][joueur[0].caseY].x,
-                                    map[joueur[0].caseX][joueur[0].caseY].y -
+        if (joueur[joueurQuiJoue].caseX == joueur[joueurQuiJoue].xArrive &&
+            joueur[joueurQuiJoue].caseY == joueur[joueurQuiJoue].yArrive) {
+            al_draw_filled_triangle(map[joueur[joueurQuiJoue].caseX][joueur[joueurQuiJoue].caseY].x - scalex,
+                                    map[joueur[joueurQuiJoue].caseX][joueur[joueurQuiJoue].caseY].y,
+                                    map[joueur[joueurQuiJoue].caseX][joueur[joueurQuiJoue].caseY].x,
+                                    map[joueur[joueurQuiJoue].caseX][joueur[joueurQuiJoue].caseY].y + scaley,
+                                    map[joueur[joueurQuiJoue].caseX][joueur[joueurQuiJoue].caseY].x,
+                                    map[joueur[joueurQuiJoue].caseX][joueur[joueurQuiJoue].caseY].y -
                                     scaley, vert);
-            al_draw_filled_triangle(map[joueur[0].caseX][joueur[0].caseY].x + scalex,
-                                    map[joueur[0].caseX][joueur[0].caseY].y,
-                                    map[joueur[0].caseX][joueur[0].caseY].x,
-                                    map[joueur[0].caseX][joueur[0].caseY].y + scaley,
-                                    map[joueur[0].caseX][joueur[0].caseY].x,
-                                    map[joueur[0].caseX][joueur[0].caseY].y -
+            al_draw_filled_triangle(map[joueur[joueurQuiJoue].caseX][joueur[joueurQuiJoue].caseY].x + scalex,
+                                    map[joueur[joueurQuiJoue].caseX][joueur[joueurQuiJoue].caseY].y,
+                                    map[joueur[joueurQuiJoue].caseX][joueur[joueurQuiJoue].caseY].x,
+                                    map[joueur[joueurQuiJoue].caseX][joueur[joueurQuiJoue].caseY].y + scaley,
+                                    map[joueur[joueurQuiJoue].caseX][joueur[joueurQuiJoue].caseY].x,
+                                    map[joueur[joueurQuiJoue].caseX][joueur[joueurQuiJoue].caseY].y -
                                     scaley, vert);
 
+
+        }
+    }
+
+    if (joueur[joueurQuiJoue].caseX == joueur[joueurQuiJoue].xArrive && joueur[joueurQuiJoue].caseY == joueur[joueurQuiJoue].yArrive) {
+        al_draw_filled_triangle(map[joueur[joueurQuiJoue].caseX][joueur[joueurQuiJoue].caseY].x - scalex,
+                                map[joueur[joueurQuiJoue].caseX][joueur[joueurQuiJoue].caseY].y,
+                                map[joueur[joueurQuiJoue].caseX][joueur[joueurQuiJoue].caseY].x,
+                                map[joueur[joueurQuiJoue].caseX][joueur[joueurQuiJoue].caseY].y + scaley,
+                                map[joueur[joueurQuiJoue].caseX][joueur[joueurQuiJoue].caseY].x,
+                                map[joueur[joueurQuiJoue].caseX][joueur[joueurQuiJoue].caseY].y -
+                                scaley, vert);
+        al_draw_filled_triangle(map[joueur[joueurQuiJoue].caseX][joueur[joueurQuiJoue].caseY].x + scalex,
+                                map[joueur[joueurQuiJoue].caseX][joueur[joueurQuiJoue].caseY].y,
+                                map[joueur[joueurQuiJoue].caseX][joueur[joueurQuiJoue].caseY].x,
+                                map[joueur[joueurQuiJoue].caseX][joueur[joueurQuiJoue].caseY].y + scaley,
+                                map[joueur[joueurQuiJoue].caseX][joueur[joueurQuiJoue].caseY].x,
+                                map[joueur[joueurQuiJoue].caseX][joueur[joueurQuiJoue].caseY].y -
+                                scaley, vert);
+
+    }
+
+        if (joueur[joueurQuiJoue].actif == 1 && joueur[joueurQuiJoue].dep == 1) {
+
+        if (joueur[joueurQuiJoue].caseX < joueur[joueurQuiJoue].xArrive) {
+            depX = 1;
+            *direction = 0;
         }
 
-        if (joueur[0].actif == 1 && joueur[0].dep == 1) {
+        if (joueur[joueurQuiJoue].caseX > joueur[joueurQuiJoue].xArrive) {
+            depX = -1;
+            *direction = 1;
+        }
 
-            if (joueur[0].caseX < joueur[0].xArrive) {
-                depX = 1;
-            }
+        if (joueur[joueurQuiJoue].caseY < joueur[joueurQuiJoue].yArrive) {
+            depY = scaley / scalex;
+        }
 
-            if (joueur[0].caseX > joueur[0].xArrive) {
-                depX = -1;
-            }
+        if (joueur[joueurQuiJoue].caseY > joueur[joueurQuiJoue].yArrive) {
+            depY = -scaley / scalex;
+        }
 
-            if (joueur[0].caseY < joueur[0].yArrive) {
-                depY = scaley / scalex;
-            }
+        if (joueur[joueurQuiJoue].caseX < joueur[joueurQuiJoue].xArrive && joueur[joueurQuiJoue].caseY == joueur[joueurQuiJoue].yArrive) {
+            depX = 1;
+            depY = -scaley / scalex;
+            *direction = 0;
+        }
 
-            if (joueur[0].caseY > joueur[0].yArrive) {
-                depY = -scaley / scalex;
-            }
+        if (joueur[joueurQuiJoue].caseX == joueur[joueurQuiJoue].xArrive && joueur[joueurQuiJoue].caseY < joueur[joueurQuiJoue].yArrive) {
+            depX = 1;
+            depY = scaley / scalex;
+            *direction = 0;
+        }
 
-            if (joueur[0].caseX < joueur[0].xArrive && joueur[0].caseY == joueur[0].yArrive) {
-                depX = 1;
-                depY = -scaley / scalex;
-            }
+        if (joueur[joueurQuiJoue].caseX > joueur[joueurQuiJoue].xArrive && joueur[joueurQuiJoue].caseY == joueur[joueurQuiJoue].yArrive) {
+            depX = -1;
+            depY = scaley / scalex;
+            *direction = 1;
+        }
 
-            if (joueur[0].caseX == joueur[0].xArrive && joueur[0].caseY < joueur[0].yArrive) {
-                depX = 1;
-                depY = scaley / scalex;
-            }
+        if (joueur[joueurQuiJoue].caseX == joueur[joueurQuiJoue].xArrive && joueur[joueurQuiJoue].caseY > joueur[joueurQuiJoue].yArrive) {
+            depX = -1;
+            depY = -scaley / scalex;
+            *direction = 1;
+        }
 
-            if (joueur[0].caseX > joueur[0].xArrive && joueur[0].caseY == joueur[0].yArrive) {
-                depX = -1;
-                depY = scaley / scalex;
-            }
+        caseJoueur(joueur, map, joueurQuiJoue);
 
-            if (joueur[0].caseX == joueur[0].xArrive && joueur[0].caseY > joueur[0].yArrive) {
-                depX = -1;
-                depY = -scaley / scalex;
-            }
-
-            caseJoueur(joueur, map);
-
-            joueur[0].y = joueur[0].y + depY;
-            joueur[0].x = joueur[0].x + depX;
+        joueur[joueurQuiJoue].y = joueur[joueurQuiJoue].y + depY;
+        joueur[joueurQuiJoue].x = joueur[joueurQuiJoue].x + depX;
 
 
-            if (joueur[0].caseX == joueur[0].xArrive && joueur[0].caseY == joueur[0].yArrive) {
-                joueur[0].dep = 0;
-                joueur[0].caseXDepart = joueur[0].caseX;
-                joueur[0].caseYDepart = joueur[0].caseY;
-            }
+        if (joueur[joueurQuiJoue].caseX == joueur[joueurQuiJoue].xArrive && joueur[joueurQuiJoue].caseY == joueur[joueurQuiJoue].yArrive) {
+            joueur[joueurQuiJoue].dep = 0;
+            joueur[joueurQuiJoue].quelAnimation = RESPIRATION ;
+            joueur[joueurQuiJoue].caseXDepart = joueur[joueurQuiJoue].caseX;
+            joueur[joueurQuiJoue].caseYDepart = joueur[joueurQuiJoue].caseY;
         }
     }
 }
+
 
 
 void dessinerQuadrillage(double  width, double height,double scalex,double scaley,ALLEGRO_COLOR black){
@@ -307,6 +341,8 @@ void dessinerQuadrillage(double  width, double height,double scalex,double scale
         al_draw_line(width/1.8+i*scalex+50,i*scaley,i*scalex+50,height/1.95+scaley*i, black,2);
     }
 }
+
+
 
 void barreSort (ALLEGRO_BITMAP* barreSort, InfoEcran ecran) {
     al_draw_scaled_bitmap(barreSort, 0, 0, 1000, 2000, ecran.width / 1.6, 79 * ecran.height / 90, ecran.width / 1.92,
@@ -545,87 +581,195 @@ void sortEnFonctionDesClasses(ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran,
 int sortChoisi (InfoEcran ecran) {
     int positionSort = 0;
     //573 --> 191
-    if ((float) ecran.mouse_x < 2178 && ecran.mouse_x > 1987 && (float) ecran.mouse_y < 1725 && ecran.mouse_y > 1580) {
+
+    if ((float) ecran.mouse_x < 121*ecran.width/160 && ecran.mouse_x > 1987*ecran.width/2880 && (float) ecran.mouse_y < 23*ecran.height/24 && ecran.mouse_y > 79*ecran.height/90) {
         positionSort = 0;
     }
-    if ((float) ecran.mouse_x < 2369 && ecran.mouse_x > 2178 && (float) ecran.mouse_y < 1725 && ecran.mouse_y > 1580) {
+    if ((float) ecran.mouse_x < 2369*ecran.width/2880 && ecran.mouse_x > 121*ecran.width/160 && (float) ecran.mouse_y < 23*ecran.height/24 && ecran.mouse_y > 79*ecran.height/90) {
         positionSort = 1;
     }
-    if ((float) ecran.mouse_x < 2600 && ecran.mouse_x > 2400 && (float) ecran.mouse_y < 1725 && ecran.mouse_y > 1580) {
+    if ((float) ecran.mouse_x < 65*ecran.width/72 && ecran.mouse_x > ecran.width/1.2 && (float) ecran.mouse_y < 23*ecran.height/24 && ecran.mouse_y > 79*ecran.height/90) {
         positionSort = 2;
     }
     return positionSort;
 }
 
 
-void initialiserSortEnFonctionDeLeurPosition (Jeux jeu, int joueurQuiJoue, InfoEcran ecran, int sort) {
+
+void actionSortFLAMME (Jeux jeu, int joueurQuiJoue){
+    jeu.joueur[joueurQuiJoue].PV = jeu.joueur[joueurQuiJoue].PV - 40;
+    jeu.joueur[joueurQuiJoue].PA = jeu.joueur[joueurQuiJoue].PA - 4;
+
+
+}
+
+void actionSortPOING (Jeux jeu, int joueurQuiJoue){
+    jeu.joueur[joueurQuiJoue].PV = jeu.joueur[joueurQuiJoue].PV - 30;
+    jeu.joueur[joueurQuiJoue].PA = jeu.joueur[joueurQuiJoue].PA - 2;
+
+}
+
+void actionSortCOUPDEPIED (Jeux jeu, int joueurQuiJoue){
+    jeu.joueur[joueurQuiJoue].PV = jeu.joueur[joueurQuiJoue].PV - 20;
+    jeu.joueur[joueurQuiJoue].PA = jeu.joueur[joueurQuiJoue].PA - 3;
+
+}
+
+void actionSortRECULERADVERSAIRE (Jeux jeu, int joueurQuiJoue){
+    jeu.joueur[joueurQuiJoue].PV = jeu.joueur[joueurQuiJoue].PV - 35;
+    jeu.joueur[joueurQuiJoue].PA = jeu.joueur[joueurQuiJoue].PA - 3;
+
+}
+
+void actionSortCOUPCORONA (Jeux jeu, int joueurQuiJoue){
+    jeu.joueur[joueurQuiJoue].PV = jeu.joueur[joueurQuiJoue].PV - 40;
+    jeu.joueur[joueurQuiJoue].PA = jeu.joueur[joueurQuiJoue].PA - 4;
+
+}
+
+void actionSortPOING2 (Jeux jeu, int joueurQuiJoue){
+    jeu.joueur[joueurQuiJoue].PV = jeu.joueur[joueurQuiJoue].PV - 10;
+    jeu.joueur[joueurQuiJoue].PA = jeu.joueur[joueurQuiJoue].PA - 2;
+
+}
+
+void actionSortPIEDPEACH (Jeux jeu, int joueurQuiJoue, InfosSurLesJoueurs joueurs){
+
+    verifierPADuJoueur(jeu, joueurQuiJoue, jeu.joueur[joueurQuiJoue].PA);
+    jeu.joueur[joueurQuiJoue].PV = jeu.joueur[joueurQuiJoue].PV - 20;
+    jeu.joueur[joueurQuiJoue].PA = jeu.joueur[joueurQuiJoue].PA - 2;
+
+    for(int i = 0; i < joueurs.nbJoueur; i++){
+        if (i != joueurs.joueurQuiJoue){
+            if(((jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX +1) && (jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY))
+            || ((jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX - 1) && (jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY))
+            || ((jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY +1 ) && (jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX))
+            || ((jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY - 1) && (jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX))){
+                jeu.joueur[joueurQuiJoue].PV -= 20;
+            }
+        }
+    }
+    jeu.joueur[joueurQuiJoue].PA -= 2;
+}
+
+void actionSortFLEUR (Jeux jeu, int joueurQuiJoue){
+    jeu.joueur[joueurQuiJoue].PV = jeu.joueur[joueurQuiJoue].PV - 40;
+    jeu.joueur[joueurQuiJoue].PA = jeu.joueur[joueurQuiJoue].PA - 4;
+
+}
+
+void actionSortSOIN (Jeux jeu, int joueurQuiJoue){
+    jeu.joueur[joueurQuiJoue].PV = jeu.joueur[joueurQuiJoue].PV + 25;
+    jeu.joueur[joueurQuiJoue].PA = jeu.joueur[joueurQuiJoue].PA - 4;
+
+}
+
+void actionSortPOINGGANT (Jeux jeu, int joueurQuiJoue){
+    jeu.joueur[joueurQuiJoue].PV = jeu.joueur[joueurQuiJoue].PV - 25;
+    jeu.joueur[joueurQuiJoue].PA = jeu.joueur[joueurQuiJoue].PA - 3;
+
+}
+
+void actionSortMORTEL (Jeux jeu, int joueurQuiJoue){
+    jeu.joueur[joueurQuiJoue].PV = jeu.joueur[joueurQuiJoue].PV - 60;
+    jeu.joueur[joueurQuiJoue].PA = jeu.joueur[joueurQuiJoue].PA - 6;
+
+}
+
+void actionSortSAUTDONKEYKONG (Jeux jeu, int joueurQuiJoue){
+    jeu.joueur[joueurQuiJoue].PA = jeu.joueur[joueurQuiJoue].PA - 3;
+
+}
+
+
+
+void verifierPADuJoueur (Jeux jeu, int joueurQuiJoue, int PA) {
+    if
+}
+
+
+void initialiserSortEnFonctionDeLeurPosition (Jeux jeu, int joueurQuiJoue, InfoEcran ecran, int sort, InfosSurLesJoueurs joueurs) {
     //int sort = 0;
     //sort = sortChoisi(jeu, ecran);
 
     if (sort == 0){
         if (jeu.joueur[joueurQuiJoue].classe == KIRBY){
             jeu.joueur[joueurQuiJoue].sortAppuye = 0;
-            // mettre la fonction du sort coup de pied
+            // mettre la fonction du sort
+            // coup de pied
         }
         if (jeu.joueur[joueurQuiJoue].classe == MARIO){
             jeu.joueur[joueurQuiJoue].sortAppuye = 0;
-            //mettre la fonction du sort flamme
+            //mettre la fonction du sort
+            // flamme
         }
         if (jeu.joueur[joueurQuiJoue].classe == PACMAN){
             jeu.joueur[joueurQuiJoue].sortAppuye = 0;
             //mettre la fonction du sort
+            // sort defense
         }
         if (jeu.joueur[joueurQuiJoue].classe == DONKEY_KONG){
             jeu.joueur[joueurQuiJoue].sortAppuye = 0;
             //mettre la fonction du sort
+            // point gant
         }
         if (jeu.joueur[joueurQuiJoue].classe == PEACH){
             jeu.joueur[joueurQuiJoue].sortAppuye = 0;
-            //mettre la fonction du sort
+            sortPied(jeu, joueurs, joueurQuiJoue);
         }
     }
     if (sort == 1) {
         if (jeu.joueur[joueurQuiJoue].classe == KIRBY) {
             jeu.joueur[joueurQuiJoue].sortAppuye = 1;
-            // mettre la fonction du sort poing
+            // mettre la fonction du sort
+            // poing
         }
         if (jeu.joueur[joueurQuiJoue].classe == MARIO) {
             jeu.joueur[joueurQuiJoue].sortAppuye = 1;
             //mettre la fonction du sort
+            // corona
         }
         if (jeu.joueur[joueurQuiJoue].classe == PACMAN) {
             jeu.joueur[joueurQuiJoue].sortAppuye = 1;
             //mettre la fonction du sort
+            // reculer adversaire
         }
         if (jeu.joueur[joueurQuiJoue].classe == DONKEY_KONG) {
             jeu.joueur[joueurQuiJoue].sortAppuye = 1;
             //mettre la fonction du sort
+            // mortel
         }
         if (jeu.joueur[joueurQuiJoue].classe == PEACH) {
             jeu.joueur[joueurQuiJoue].sortAppuye = 1;
             //mettre la fonction du sort
+            // sort fleur
         }
     }
     if (sort == 2){
         if (jeu.joueur[joueurQuiJoue].classe == KIRBY){
             jeu.joueur[joueurQuiJoue].sortAppuye = 2;
-            // mettre la fonction du sort flamme
+            // mettre la fonction du sort
+            // flamme
         }
         if (jeu.joueur[joueurQuiJoue].classe == MARIO){
             jeu.joueur[joueurQuiJoue].sortAppuye = 2;
             //mettre la fonction du sort
+            // poing 2
         }
         if (jeu.joueur[joueurQuiJoue].classe == PACMAN){
             jeu.joueur[joueurQuiJoue].sortAppuye = 2;
             //mettre la fonction du sort
+            // flamme
         }
         if (jeu.joueur[joueurQuiJoue].classe == DONKEY_KONG){
             jeu.joueur[joueurQuiJoue].sortAppuye = 2;
             //mettre la fonction du sort
+            // saut
         }
         if (jeu.joueur[joueurQuiJoue].classe == PEACH){
             jeu.joueur[joueurQuiJoue].sortAppuye = 2;
             //mettre la fonction du sort
+            // sort soin
         }
     }
 }

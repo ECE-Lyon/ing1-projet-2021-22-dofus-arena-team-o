@@ -1,6 +1,7 @@
 
 #include "menu.h"
 #include "map.h"
+#include "personnage.h"
 
 int main() {
     ///INITIALISATION DU DISPLAY ET DU TIMER
@@ -57,7 +58,6 @@ int main() {
     ALLEGRO_BITMAP *donkey_kongIcone = al_load_bitmap("../Bitmap/Icone/DonkeyKong_Icone.png") ;
 
                /////////////////SORTS/////////////////////
-
     ALLEGRO_BITMAP *sortFlemme = al_load_bitmap("../Bitmap/Sort/sortUtilisé/sortFlemme.png");
     ALLEGRO_BITMAP *sortFleur = al_load_bitmap("../Bitmap/Sort/sortUtilisé/sortFleur.png");
     ALLEGRO_BITMAP *sortCorona = al_load_bitmap("../Bitmap/Sort/sortUtilisé/sortCorona.png");
@@ -76,7 +76,6 @@ int main() {
 
 
     /////////////////AFFICHAGEPVPMPA/////////////////////
-
     /*ALLEGRO_BITMAP *PVversion1 = al_load_bitmap("../Bitmap/Sort/sortUtilisé/PVversion1.png");
     ALLEGRO_BITMAP *afficherPV = al_load_bitmap("../Bitmap/Sort/sortUtilisé/afficherPV.png");*/
     ALLEGRO_BITMAP *afficherSort = al_load_bitmap("../Bitmap/Sort/afficherSort.png");
@@ -90,16 +89,25 @@ int main() {
     Map map[30][30];
     Jeux jeu;
     jeu.joueur = NULL ;
+    jeu.classes[PACMAN].SpriteSheet = al_load_bitmap("../Bitmap/Sprite_Sheet/Pacman_Sprite.png") ;
+    jeu.classes[KIRBY].SpriteSheet = al_load_bitmap("../Bitmap/Sprite_Sheet/Kirby_Sprite.png") ;
+    jeu.classes[MARIO].SpriteSheet = al_load_bitmap("../Bitmap/Sprite_Sheet/Mario_Sprite.png") ;
+    jeu.classes[PEACH].SpriteSheet = al_load_bitmap("../Bitmap/Sprite_Sheet/Peach_Sprite.png") ;
+    jeu.classes[DONKEY_KONG].SpriteSheet = al_load_bitmap("../Bitmap/Sprite_Sheet/DK_Sprite.png") ;
+
+
+
+
     int nbJoueur = 0;
     int sortAppuye = 0;
 
     ///METTRE CA DANS UNE FONCTION
-    double scalex = 8 * width/296 ;
+    double scalex = 8 * width/ 296 ;
     double scaley = 4 * height / 149;
     for (int j = 0; j < mapY; j++) {
         for (int i = 0; i < mapX; i++) {
-            map[i][j].x = 235+scalex + i * scalex + j * scalex;
-            map[i][j].y = height/1.76 - i * scaley + j * scaley;
+            map[i][j].x = width/12.5 +scalex + i * scalex + j * scalex;
+            map[i][j].y = height/1.7 - i * scaley + j * scaley;
             fscanf(lec, "%d", &map[i][j].obstacle);
 
         }
@@ -108,7 +116,15 @@ int main() {
 
 
     ///INITIALISATION DE NOS VARIABLES
-    initialiserIconeClasse(pacmanIcone, kirbyIcone, peachIcone, marioIcone, donkey_kongIcone, jeu.classes);
+    //ANIMATIONS
+    initialiserImageAnimationsMario(jeu.classes[MARIO].animations) ;
+    initialiserImageAnimationsPeach(jeu.classes[PEACH].animations) ;
+    initialiserImageAnimationsDK(jeu.classes[DONKEY_KONG].animations) ;
+    initialiserImageAnimationsKirby(jeu.classes[KIRBY].animations) ;
+    initialiserImageAnimationsPacman(jeu.classes[PACMAN].animations) ;
+
+    //IMAGE
+    initialiserIconeClasse(pacmanIcone, kirbyIcone, peachIcone, marioIcone, donkey_kongIcone, jeu.classes) ;
     initialiserSortClasseKIRBY (&jeu.classes[KIRBY], coupDePied, sortFlemme, poing);
     initialiserSortClassePACMAN (&jeu.classes[PACMAN], reculerAdversaire, sortFlemme, sortDefence);
     initialiserSortClasseMARIO (&jeu.classes[MARIO], sortCorona, sortFlemme, poing2);
@@ -122,10 +138,7 @@ int main() {
     initialiserEcran(&ecran, width, height);
 
     float mouse_x = 0, mouse_y = 0;
-    int page = 1;
-
-    ///INITIALISATION CLASSE
-    //joueur[].classe = 0;
+    int page = 1, tour = 0;
 
     ///INITIALISATION DU TIMER
     times = al_create_timer(0.02);
@@ -273,6 +286,9 @@ int main() {
                                 map[0][0].t = 1;
                                 if ((float) mouse_x < 383 * ecran.width / 384 && mouse_x > ecran.width / 1.2 && (float) mouse_y < ecran.height/13.5 && mouse_y >ecran.height/216){
                                     jeu.info.joueurQuiJoue++;
+                                    if(jeu.info.joueurQuiJoue > jeu.info.nbJoueur-1) {
+                                        jeu.info.joueurQuiJoue = 0 ;
+                                    }
                                 }
                                 sortAppuye = sortChoisi(ecran);
                                 initialiserSortEnFonctionDeLeurPosition(jeu, jeu.info.joueurQuiJoue, ecran, sortAppuye);
@@ -335,6 +351,7 @@ int main() {
                                 }
                                 if (((float) mouse_x - 1829*ecran.width/1920)*((float) mouse_x - 1829*ecran.width/1920)  + (mouse_y - 49*ecran.height/54)*(mouse_y - 49*ecran.height/54) < ecran.width/24 * ecran.width/24){
                                     jeu.gameMode = JEU;
+                                    jeu.info.joueurQuiJoue = 0 ;
                                 }
                                 break;
                             }
@@ -344,12 +361,19 @@ int main() {
                 }
                 case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
                     if ((event.mouse.button & 1) == 1) {
-                        map[0][0].t = 0;
-
+                        switch (jeu.gameMode) {
+                            case JEU : {
+                                map[0][0].t = 0;
+                            }
+                        }
                     }
                     break;
 
                 case ALLEGRO_EVENT_TIMER : {
+                    if(tour%5 == 0) {
+                        jeu.info.compteur++ ;
+                    }
+                    tour++ ;
                     draw = 1;
                     break;
                 }
@@ -364,21 +388,21 @@ int main() {
                     case CHOIXCLASSE : {
                         al_draw_scaled_bitmap(background, 0, 0, 7680, 4320, 0, 0, width, height, 0);
                         drawChooseCharacter(ecran, gameFont1, jeu, bigGameFont);
-                        afficherPseudo(jeu, width, height, gameFont1);
                         break;
                     }
                     case JEU : {
                         al_draw_scaled_bitmap(carte,0,0,296,149,50,50,width, height,0);
-                        //dessinerQuadrillage(width, height, scalex, scaley, black);
-                        drawPlay(jeu.joueur, map, mouse_x, mouse_y, width, height, scalex, scaley, display,white, black, gris, vert, red);
-                        deplacementJoueur(jeu.joueur, map, scalex, scaley);
-                        al_draw_circle(jeu.joueur[0].x, jeu.joueur[0].y, 50, black, 3);
+                        drawPlay(jeu.joueur, map, jeu.info.joueurQuiJoue, mouse_x, mouse_y, width, height, scalex, scaley, display,
+                                 white, black, gris, vert, red);
+                        deplacementJoueur(jeu.joueur, map, jeu.info.joueurQuiJoue, scalex, scaley, &jeu.classes[PACMAN].animations->direction);
+                        afficherPersonnage(jeu, scalex, scaley) ;
                         boutonSuivantDansPlay(ecran, gameFont1, mouse_x, mouse_y);
                         barreSort(afficherSort, ecran);
                         sortEnFonctionDesClasses(gameFont1, jeu, ecran, jeu.info.joueurQuiJoue);
-                        //sortChoisi(jeu, ecran);
+
                         break;
                     }
+                    break ;
                 }
                 al_flip_display();
                 al_clear_to_color(white);
