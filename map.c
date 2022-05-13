@@ -597,22 +597,89 @@ int sortChoisi (InfoEcran ecran) {
 
 
 void actionSortFLAMME (Jeux jeu, int joueurQuiJoue){
-    jeu.joueur[joueurQuiJoue].PV = jeu.joueur[joueurQuiJoue].PV - 40;
-    jeu.joueur[joueurQuiJoue].PA = jeu.joueur[joueurQuiJoue].PA - 4;
-
-
+    verifierPADuJoueur(jeu, joueurQuiJoue, jeu.joueur[joueurQuiJoue].PA);
+    for(int i = 0; i < jeu.info.nbJoueur; i++){
+        if (i != jeu.info.joueurQuiJoue){
+            if(((jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX + 4) && (jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY))
+               || ((jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX - 4) && (jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY))
+               || ((jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY + 4 ) && (jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX))
+               || ((jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY - 4) && (jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX))){
+                jeu.joueur[i].PV -= 40;
+            }
+        }
+    }
+    jeu.joueur[joueurQuiJoue].PA -= 4;
 }
 
 void actionSortPOING (Jeux jeu, int joueurQuiJoue){
-    jeu.joueur[joueurQuiJoue].PV = jeu.joueur[joueurQuiJoue].PV - 30;
-    jeu.joueur[joueurQuiJoue].PA = jeu.joueur[joueurQuiJoue].PA - 2;
-
+    verifierPADuJoueur(jeu, joueurQuiJoue, jeu.joueur[joueurQuiJoue].PA);
+    for(int i = 0; i < jeu.info.nbJoueur; i++){
+        if (i != jeu.info.joueurQuiJoue){
+            if(((jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX +1) && (jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY))
+               || ((jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX - 1) && (jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY))
+               || ((jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY +1 ) && (jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX))
+               || ((jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY - 1) && (jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX))){
+                jeu.joueur[i].PV -= 30;
+            }
+        }
+    }
+    jeu.joueur[joueurQuiJoue].PA -= 2;
 }
 
-void actionSortCOUPDEPIED (Jeux jeu, int joueurQuiJoue){
-    jeu.joueur[joueurQuiJoue].PV = jeu.joueur[joueurQuiJoue].PV - 20;
-    jeu.joueur[joueurQuiJoue].PA = jeu.joueur[joueurQuiJoue].PA - 3;
-
+void actionSortCOUPDEPIED (Jeux jeu, int joueurQuiJoue, Map joueur[30][30]){
+    verifierPADuJoueur(jeu, joueurQuiJoue, jeu.joueur[joueurQuiJoue].PA);
+    for(int i = 0; i < jeu.info.nbJoueur; i++){
+        if (i != jeu.info.joueurQuiJoue){
+            if(((jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX +1) && (jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY))
+               || ((jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX - 1) && (jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY))
+               || ((jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY +1 ) && (jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX))
+               || ((jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY - 1) && (jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX))) {
+                jeu.joueur[i].PV -= 20;
+                if (jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX + 1) {
+                    if (joueur[jeu.joueur[i].caseX + 1][jeu.joueur[i].caseY].obstacle != 1) {
+                        jeu.joueur[i].caseX++;
+                    }
+                    else if(joueur[jeu.joueur[i].caseX][jeu.joueur[i].caseY+1].obstacle != 1){
+                        jeu.joueur[i].caseY++;
+                    }
+                    else if(joueur[jeu.joueur[i].caseX][jeu.joueur[i].caseY - 1].obstacle != 1){
+                        jeu.joueur[i].caseY--;
+                    }
+                } else if (jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX - 1) {
+                    if (joueur[jeu.joueur[i].caseX - 1][jeu.joueur[i].caseY].obstacle != 1) {
+                        jeu.joueur[i].caseX--;
+                    }
+                    else if(joueur[jeu.joueur[i].caseX][jeu.joueur[i].caseY+1].obstacle != 1){
+                        jeu.joueur[i].caseY++;
+                    }
+                    else if(joueur[jeu.joueur[i].caseX][jeu.joueur[i].caseY - 1].obstacle != 1){
+                        jeu.joueur[i].caseY--;
+                    }
+                } else if (jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY + 1) {
+                    if (joueur[jeu.joueur[i].caseX][jeu.joueur[i].caseY + 1].obstacle != 1) {
+                        jeu.joueur[i].caseY++;
+                    }
+                    else if (joueur[jeu.joueur[i].caseX - 1][jeu.joueur[i].caseY].obstacle != 1) {
+                        jeu.joueur[i].caseX--;
+                    }
+                    else if (joueur[jeu.joueur[i].caseX + 1][jeu.joueur[i].caseY].obstacle != 1) {
+                        jeu.joueur[i].caseX++;
+                    }
+                } else if (jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY - 1) {
+                    if (joueur[jeu.joueur[i].caseX][jeu.joueur[i].caseY - 1].obstacle != 1) {
+                        jeu.joueur[i].caseY--;
+                    }
+                    else if(joueur[jeu.joueur[i].caseX - 1][jeu.joueur[i].caseY].obstacle != 1) {
+                        jeu.joueur[i].caseX--;
+                    }
+                    else if (joueur[jeu.joueur[i].caseX + 1][jeu.joueur[i].caseY].obstacle != 1) {
+                        jeu.joueur[i].caseX++;
+                    }
+                }
+            }
+        }
+    }
+    jeu.joueur[joueurQuiJoue].PA -= 3;
 }
 
 void actionSortRECULERADVERSAIRE (Jeux jeu, int joueurQuiJoue){
@@ -633,19 +700,17 @@ void actionSortPOING2 (Jeux jeu, int joueurQuiJoue){
 
 }
 
-void actionSortPIEDPEACH (Jeux jeu, int joueurQuiJoue, InfosSurLesJoueurs joueurs){
+void actionSortPIEDPEACH (Jeux jeu, int joueurQuiJoue){
 
     verifierPADuJoueur(jeu, joueurQuiJoue, jeu.joueur[joueurQuiJoue].PA);
-    jeu.joueur[joueurQuiJoue].PV = jeu.joueur[joueurQuiJoue].PV - 20;
-    jeu.joueur[joueurQuiJoue].PA = jeu.joueur[joueurQuiJoue].PA - 2;
 
-    for(int i = 0; i < joueurs.nbJoueur; i++){
-        if (i != joueurs.joueurQuiJoue){
+    for(int i = 0; i < jeu.info.nbJoueur; i++){
+        if (i != jeu.info.joueurQuiJoue){
             if(((jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX +1) && (jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY))
             || ((jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX - 1) && (jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY))
             || ((jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY +1 ) && (jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX))
             || ((jeu.joueur[i].caseY == jeu.joueur[joueurQuiJoue].caseY - 1) && (jeu.joueur[i].caseX == jeu.joueur[joueurQuiJoue].caseX))){
-                jeu.joueur[joueurQuiJoue].PV -= 20;
+                jeu.joueur[i].PV -= 20;
             }
         }
     }
@@ -682,26 +747,23 @@ void actionSortSAUTDONKEYKONG (Jeux jeu, int joueurQuiJoue){
 }
 
 
+/*void verifierPADuJoueur (Jeux jeu, int joueurQuiJoue, int PA) {
+    if();
+}*/
 
-void verifierPADuJoueur (Jeux jeu, int joueurQuiJoue, int PA) {
-    if
-}
 
-
-void initialiserSortEnFonctionDeLeurPosition (Jeux jeu, int joueurQuiJoue, InfoEcran ecran, int sort, InfosSurLesJoueurs joueurs) {
+void initialiserSortEnFonctionDeLeurPosition (Jeux jeu, int joueurQuiJoue, InfoEcran ecran, int sort, Map joueur[30][30]) {
     //int sort = 0;
     //sort = sortChoisi(jeu, ecran);
 
     if (sort == 0){
         if (jeu.joueur[joueurQuiJoue].classe == KIRBY){
             jeu.joueur[joueurQuiJoue].sortAppuye = 0;
-            // mettre la fonction du sort
-            // coup de pied
+            actionSortCOUPDEPIED (jeu, joueurQuiJoue, joueur);
         }
         if (jeu.joueur[joueurQuiJoue].classe == MARIO){
             jeu.joueur[joueurQuiJoue].sortAppuye = 0;
-            //mettre la fonction du sort
-            // flamme
+            actionSortFLAMME (jeu, joueurQuiJoue);
         }
         if (jeu.joueur[joueurQuiJoue].classe == PACMAN){
             jeu.joueur[joueurQuiJoue].sortAppuye = 0;
@@ -715,14 +777,13 @@ void initialiserSortEnFonctionDeLeurPosition (Jeux jeu, int joueurQuiJoue, InfoE
         }
         if (jeu.joueur[joueurQuiJoue].classe == PEACH){
             jeu.joueur[joueurQuiJoue].sortAppuye = 0;
-            sortPied(jeu, joueurs, joueurQuiJoue);
+            actionSortPIEDPEACH (jeu, joueurQuiJoue);
         }
     }
     if (sort == 1) {
         if (jeu.joueur[joueurQuiJoue].classe == KIRBY) {
             jeu.joueur[joueurQuiJoue].sortAppuye = 1;
-            // mettre la fonction du sort
-            // poing
+            actionSortPOING (jeu, joueurQuiJoue);
         }
         if (jeu.joueur[joueurQuiJoue].classe == MARIO) {
             jeu.joueur[joueurQuiJoue].sortAppuye = 1;
@@ -748,8 +809,7 @@ void initialiserSortEnFonctionDeLeurPosition (Jeux jeu, int joueurQuiJoue, InfoE
     if (sort == 2){
         if (jeu.joueur[joueurQuiJoue].classe == KIRBY){
             jeu.joueur[joueurQuiJoue].sortAppuye = 2;
-            // mettre la fonction du sort
-            // flamme
+            actionSortFLAMME (jeu, joueurQuiJoue);
         }
         if (jeu.joueur[joueurQuiJoue].classe == MARIO){
             jeu.joueur[joueurQuiJoue].sortAppuye = 2;
@@ -758,8 +818,7 @@ void initialiserSortEnFonctionDeLeurPosition (Jeux jeu, int joueurQuiJoue, InfoE
         }
         if (jeu.joueur[joueurQuiJoue].classe == PACMAN){
             jeu.joueur[joueurQuiJoue].sortAppuye = 2;
-            //mettre la fonction du sort
-            // flamme
+            actionSortFLAMME (jeu, joueurQuiJoue);
         }
         if (jeu.joueur[joueurQuiJoue].classe == DONKEY_KONG){
             jeu.joueur[joueurQuiJoue].sortAppuye = 2;
@@ -773,4 +832,3 @@ void initialiserSortEnFonctionDeLeurPosition (Jeux jeu, int joueurQuiJoue, InfoE
         }
     }
 }
-

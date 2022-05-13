@@ -293,7 +293,7 @@ int main() {
                                     }
                                 }
                                 sortAppuye = sortChoisi(ecran);
-                                initialiserSortEnFonctionDeLeurPosition(jeu, jeu.info.joueurQuiJoue, ecran, sortAppuye);
+                                initialiserSortEnFonctionDeLeurPosition(jeu, jeu.info.joueurQuiJoue, ecran, sortAppuye, map);
                                 break;
                             }
                             case CHOIXNBJOUEUR : {
