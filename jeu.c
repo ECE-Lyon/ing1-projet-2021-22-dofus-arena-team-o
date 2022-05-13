@@ -26,7 +26,6 @@ void initialiserSortClasseMARIO (Classe* classe, ALLEGRO_BITMAP* sortCorona, ALL
     classe->sortADisposition[POING2].iconeSort = poing2;
     classe->sortADisposition[CORONA].iconeSort = sortCorona;
 }
-
 void initialiserSortClassePEACH (Classe* classe, ALLEGRO_BITMAP* sortFleur, ALLEGRO_BITMAP* sortSoin, ALLEGRO_BITMAP* coupDePied){
     classe->sortADisposition[SORTFLEUR].iconeSort = sortFleur;
     classe->sortADisposition[SORTSOIN].iconeSort = sortSoin;
@@ -45,6 +44,7 @@ void initialiserJeu(Jeux* jeu) {
     jeu->gameMode = CHOIXNBJOUEUR ;
     jeu->info.nbJoueur = 0 ;
     jeu->info.joueurQuiJoue = 0 ;
+    jeu->info.compteur = 0 ;
     if(jeu->joueur != NULL) {
         free(jeu->joueur) ;
     }
@@ -57,25 +57,64 @@ void initialiserEcran (InfoEcran* ecran, double width, double height) {
     ecran->height = height ;
 }
 
-void initialiserJoueur(Jeux* jeu, Map map[20][20]) {
-    if(jeu->joueur == NULL) {
+void initialiserJoueur(Jeux* jeu, Map map[30][30]) {
+    if (jeu->joueur == NULL) {
         jeu->joueur = malloc(jeu->info.nbJoueur * sizeof(Joueurs));
         for (int i = 0; i < jeu->info.nbJoueur; i++) {
             strcpy(jeu->joueur[i].pseudo, "");
             (jeu->joueur[i]).nbLettrePseudo = 0;
-            jeu->joueur[i].classe = VIDE ;
+            jeu->joueur[i].classe = VIDE;
+            jeu->joueur[i].PV = 300;
+            jeu->joueur[i].quelAnimation = RESPIRATION;
+            jeu->joueur[i].xArrive = 0;
+            jeu->joueur[i].yArrive = 0;
+            jeu->joueur[i].dep = 0;
+            jeu->joueur[i].caseX = (i % 2) * 18;
+            jeu->joueur[i].caseY = (i % 2) * 13;
+            jeu->joueur[i].caseXDepart = jeu->joueur[i].caseX;
+            jeu->joueur[i].caseYDepart = jeu->joueur[i].caseY;
+            jeu->joueur[i].x = map[(i%2) * 18][(i%2) * 13].x;
+            jeu->joueur[i].y = map[(i%2) * 18][(i%2) * 13].y;
+            if (i >= 2) {
+                jeu->joueur[i].caseX = ((i+1)%2) * 18;
+                jeu->joueur[i].caseY = (i%2) * 13;
+                jeu->joueur[i].caseXDepart = jeu->joueur[i].caseX;
+                jeu->joueur[i].caseYDepart = jeu->joueur[i].caseY;
+                jeu->joueur[i].x = map[((i+1)%2) * 18][(i%2) * 13].x;
+                jeu->joueur[i].y = map[((i+1)%2) * 18][(i%2) * 13].y;
+            }
         }
-        jeu->joueur[0].x = map[0][0].x;
-        jeu->joueur[0].y = map[0][0].y;
-        jeu->joueur[0].caseX = 0;
-        jeu->joueur[0].caseY = 0;
-        jeu->joueur[0].caseXDepart = jeu->joueur[0].caseX;
-        jeu->joueur[0].caseYDepart = jeu->joueur[0].caseY;
-        jeu->joueur[0].xArrive=0;
-        jeu->joueur[0].yArrive=0;
-        jeu->joueur[0].dep = 0;
+        /*jeu->joueur[0].caseX = 0 ;
+            jeu->joueur[0].caseY = 0 ;
+            jeu->joueur[0].caseXDepart = jeu->joueur[0].caseX;
+            jeu->joueur[0].caseYDepart = jeu->joueur[0].caseY;
+            jeu->joueur[0].x = map[0][0].x;
+            jeu->joueur[0].y = map[0][0].y;
+
+        jeu->joueur[1].caseX = 0 ;
+        jeu->joueur[1].caseY = 13 ;
+        jeu->joueur[1].caseXDepart = jeu->joueur[1].caseX;
+        jeu->joueur[1].caseYDepart = jeu->joueur[1].caseY;
+        jeu->joueur[1].x = map[0][13].x;
+        jeu->joueur[1].y = map[0][13].y;
+
+        jeu->joueur[2].caseX = 19 ;
+        jeu->joueur[2].caseY = 0 ;
+        jeu->joueur[2].caseXDepart = jeu->joueur[2].caseX;
+        jeu->joueur[2].caseYDepart = jeu->joueur[2].caseY;
+        jeu->joueur[2].x = map[17][0].x;
+        jeu->joueur[2].y = map[17][0].y;
+
+        jeu->joueur[3].caseX = 19 ;
+        jeu->joueur[3].caseY = 13 ;
+        jeu->joueur[3].caseXDepart = jeu->joueur[3].caseX;
+        jeu->joueur[3].caseYDepart = jeu->joueur[3].caseY;
+        jeu->joueur[3].x = map[10][8].x;
+        jeu->joueur[3].y = map[10][8].y;
         map[5][5].obstacle=1;
+    */
     }
+
 }
 
 
@@ -269,6 +308,7 @@ void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLE
             case DONKEY_KONG : al_draw_scaled_bitmap(jeu.classes[DONKEY_KONG].image, 0, 0, 1200, 1200, ecran.width/9 + i*tailleRectangle ,17.2*ecran.height/25, 17*ecran.width/64 - 7*ecran.width/64, 17*ecran.width/64 - 7*ecran.width/64, 0); break ;
         }
     }
+    afficherPseudo(jeu, ecran.width, ecran.height, gameFont) ;
 }
 
 
