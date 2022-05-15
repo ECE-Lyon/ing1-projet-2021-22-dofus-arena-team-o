@@ -1,11 +1,17 @@
 #include "jeu.h"
 
-void initialiserIconeClasse(ALLEGRO_BITMAP* pacman, ALLEGRO_BITMAP* kirby, ALLEGRO_BITMAP* peach, ALLEGRO_BITMAP* mario, ALLEGRO_BITMAP* donkey_kong, Classe* classes) {
+void initialiserIconeClasse(ALLEGRO_BITMAP* pacman, ALLEGRO_BITMAP* kirby, ALLEGRO_BITMAP* peach, ALLEGRO_BITMAP* mario, ALLEGRO_BITMAP* donkey_kong, ALLEGRO_BITMAP* pacmanRond, ALLEGRO_BITMAP* kirbyRond, ALLEGRO_BITMAP* peachRond, ALLEGRO_BITMAP* marioRond, ALLEGRO_BITMAP* donkey_kongRond, Classe* classes) {
     classes[KIRBY].image = kirby ;
     classes[PACMAN].image = pacman ;
     classes[PEACH].image = peach ;
     classes[MARIO].image = mario ;
     classes[DONKEY_KONG].image = donkey_kong;
+
+    classes[KIRBY].icone = kirbyRond ;
+    classes[PACMAN].icone = pacmanRond ;
+    classes[PEACH].icone = peachRond ;
+    classes[MARIO].icone = marioRond ;
+    classes[DONKEY_KONG].icone = donkey_kongRond;
 }
 
             /// INITIALISATION DES DIFFERENTS SORTS DES CLASSES///
@@ -13,51 +19,111 @@ void initialiserIconeClasse(ALLEGRO_BITMAP* pacman, ALLEGRO_BITMAP* kirby, ALLEG
 
 void initialiserSortClasseKIRBY (Classe* classe, ALLEGRO_BITMAP* coupDePied, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* poing){
     classe->sortADisposition[FLAMME].iconeSort = sortFlemme;
+    classe->sortADisposition[FLAMME].portee = 3 ;
+    classe->sortADisposition[FLAMME].degatsOUsoin = 40 ;
+    classe->sortADisposition[FLAMME].PA = 4 ;
+
+
     classe->sortADisposition[COUPDEPIED].iconeSort =coupDePied;
+    classe->sortADisposition[COUPDEPIED].portee = 1 ;
+    classe->sortADisposition[COUPDEPIED].degatsOUsoin = 20 ;
+    classe->sortADisposition[COUPDEPIED].PA = 3 ;
+
     classe->sortADisposition[POING].iconeSort = poing;
+    classe->sortADisposition[POING].portee = 1 ;
+    classe->sortADisposition[POING].degatsOUsoin = 30 ;
+    classe->sortADisposition[POING].PA = 2 ;
+
 }
 void initialiserSortClassePACMAN (Classe* classe, ALLEGRO_BITMAP* reculerAdversaire, ALLEGRO_BITMAP* sortFlamme, ALLEGRO_BITMAP* sortDefence){
     classe->sortADisposition[FLAMME].iconeSort = sortFlamme;
+    classe->sortADisposition[FLAMME].portee = 3 ;
+    classe->sortADisposition[FLAMME].degatsOUsoin = 40 ;
+    classe->sortADisposition[FLAMME].PA = 4 ;
+
     classe->sortADisposition[RECULERADVERSAIRE].iconeSort = reculerAdversaire;
+    classe->sortADisposition[RECULERADVERSAIRE].portee = 1 ;
+    classe->sortADisposition[RECULERADVERSAIRE].degatsOUsoin = 10 ;
+    classe->sortADisposition[RECULERADVERSAIRE].PA = 2 ;
+
     classe->sortADisposition[SORTDEFENCE].iconeSort = sortDefence ;
+    classe->sortADisposition[SORTDEFENCE].portee = 0 ;
+    classe->sortADisposition[SORTDEFENCE].degatsOUsoin = 0 ;
+    classe->sortADisposition[SORTDEFENCE].PA = 6 ;
+
+
 }
 void initialiserSortClasseMARIO (Classe* classe, ALLEGRO_BITMAP* sortCorona, ALLEGRO_BITMAP* sortFlamme, ALLEGRO_BITMAP* poing2){
     classe->sortADisposition[FLAMME].iconeSort = sortFlamme;
+    classe->sortADisposition[FLAMME].portee = 3;
+    classe->sortADisposition[FLAMME].degatsOUsoin = 40 ;
+    classe->sortADisposition[FLAMME].PA = 4 ;
+
     classe->sortADisposition[POING2].iconeSort = poing2;
+    classe->sortADisposition[POING2].portee = 1 ;
+    classe->sortADisposition[POING2].degatsOUsoin = 10 ;
+    classe->sortADisposition[POING2].PA = 2 ;
+
     classe->sortADisposition[CORONA].iconeSort = sortCorona;
+    classe->sortADisposition[CORONA].portee = 5;
+    classe->sortADisposition[CORONA].degatsOUsoin = 40 ;
+    classe->sortADisposition[CORONA].PA = 4 ;
+
 }
 void initialiserSortClassePEACH (Classe* classe, ALLEGRO_BITMAP* sortFleur, ALLEGRO_BITMAP* sortSoin, ALLEGRO_BITMAP* coupDePied){
     classe->sortADisposition[SORTFLEUR].iconeSort = sortFleur;
-    classe->sortADisposition[SORTSOIN].iconeSort = sortSoin;
-    classe->sortADisposition[COUPDEPIED].iconeSort = coupDePied;
-}
+    classe->sortADisposition[SORTFLEUR].portee = 3 ;
+    classe->sortADisposition[SORTFLEUR].degatsOUsoin = 40 ;
+    classe->sortADisposition[SORTFLEUR].PA = 4 ;
 
+    classe->sortADisposition[SORTSOIN].iconeSort = sortSoin;
+    classe->sortADisposition[SORTSOIN].portee = 0 ;
+    classe->sortADisposition[SORTSOIN].degatsOUsoin = 25 ;
+    classe->sortADisposition[SORTSOIN].PA = 4 ;
+
+    classe->sortADisposition[COUPDEPIED].iconeSort = coupDePied;
+    classe->sortADisposition[COUPDEPIED].portee = 1 ;
+    classe->sortADisposition[COUPDEPIED].degatsOUsoin = 20 ;
+    classe->sortADisposition[COUPDEPIED].PA = 2 ;
+
+}
 void initialiserSortClasseDONKEYKONG (Classe* classe, ALLEGRO_BITMAP* sortMortel, ALLEGRO_BITMAP* poingGANT, ALLEGRO_BITMAP* saut){
     classe->sortADisposition[MORTEL].iconeSort = sortMortel;
+    classe->sortADisposition[MORTEL].portee = 1;
+    classe->sortADisposition[MORTEL].degatsOUsoin = 60 ;
+    classe->sortADisposition[MORTEL].PA = 6 ;
+
     classe->sortADisposition[POINGGANT].iconeSort = poingGANT;
+    classe->sortADisposition[POINGGANT].portee = 1;
+    classe->sortADisposition[POINGGANT].degatsOUsoin = 25 ;
+    classe->sortADisposition[POINGGANT].PA = 3 ;
+
     classe->sortADisposition[SAUT].iconeSort = saut;
+    classe->sortADisposition[SAUT].portee = 5 ;
+    classe->sortADisposition[SAUT].degatsOUsoin = 0 ;
+    classe->sortADisposition[SAUT].PA = 3 ;
 }
 
 
 /// CODE DU JEU ///
-
 void initialiserJeu(Jeux* jeu) {
     jeu->gameMode = CHOIXNBJOUEUR ;
+    jeu->gameMode2 = ORDRE ;
     jeu->info.nbJoueur = 0 ;
     jeu->info.joueurQuiJoue = 0 ;
     jeu->info.compteur = 0 ;
+    jeu->info.collisionSourisMap[0][0] = 0 ;
+    jeu->info.collisionSourisMap[1][0] = 0 ;
     if(jeu->joueur != NULL) {
         free(jeu->joueur) ;
     }
     jeu->joueur = NULL ;
     jeu->info.entrerPseudo = false ;
 }
-
 void initialiserEcran (InfoEcran* ecran, double width, double height) {
     ecran->width = width ;
     ecran->height = height ;
 }
-
 void initialiserJoueur(Jeux* jeu, Map map[30][30]) {
     if (jeu->joueur == NULL) {
         jeu->joueur = malloc(jeu->info.nbJoueur * sizeof(Joueurs));
@@ -66,6 +132,10 @@ void initialiserJoueur(Jeux* jeu, Map map[30][30]) {
             (jeu->joueur[i]).nbLettrePseudo = 0;
             jeu->joueur[i].classe = VIDE;
             jeu->joueur[i].PV = 300;
+            jeu->joueur[i].PA = 6 ;
+            jeu->joueur[i].PM = 3 ;
+            jeu->joueur[i].sortAppuye = 3;
+            jeu->joueur[i].sortSpecial = 0 ;
             jeu->joueur[i].etat = 0;   // 0 en vie
             jeu->joueur[i].quelAnimation = RESPIRATION;
             jeu->joueur[i].xArrive = 0;
@@ -77,6 +147,7 @@ void initialiserJoueur(Jeux* jeu, Map map[30][30]) {
             jeu->joueur[i].caseYDepart = jeu->joueur[i].caseY;
             jeu->joueur[i].x = map[(i%2) * 18][(i%2) * 13].x;
             jeu->joueur[i].y = map[(i%2) * 18][(i%2) * 13].y;
+            map[(i%2) * 18][(i%2) * 13].joueurPresentDessus = i+1 ;
             if (i >= 2) {
                 jeu->joueur[i].caseX = ((i+1)%2) * 18;
                 jeu->joueur[i].caseY = (i%2) * 13;
@@ -84,6 +155,7 @@ void initialiserJoueur(Jeux* jeu, Map map[30][30]) {
                 jeu->joueur[i].caseYDepart = jeu->joueur[i].caseY;
                 jeu->joueur[i].x = map[((i+1)%2) * 18][(i%2) * 13].x;
                 jeu->joueur[i].y = map[((i+1)%2) * 18][(i%2) * 13].y;
+                map[((i+1)%2) * 18][(i%2) * 13].joueurPresentDessus = i+1 ;
             }
         }
         /*jeu->joueur[0].caseX = 0 ;
@@ -118,6 +190,8 @@ void initialiserJoueur(Jeux* jeu, Map map[30][30]) {
     }
 
 }
+
+
 
 
 void choixJoueur(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT* gameFont, InfosSurLesJoueurs* infoJoueur) {
@@ -183,7 +257,6 @@ void choixJoueur(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FO
         al_draw_text(gameFont, al_map_rgb(0, 0, 0), width / 1.28, 95 * height / 216, ALLEGRO_ALIGN_CENTER, "4");
     }
 }
-
 void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLEGRO_FONT* bigGameFont) {
     al_draw_filled_rectangle(0, 0, ecran.width, ecran.height, al_map_rgba(150, 150, 150, 150));
 
@@ -204,7 +277,7 @@ void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLE
     if(jeu.info.entrerPseudo == false) {
         al_draw_text(gameFont, al_map_rgb(0, 0, 0), ecran.width/2, 5*ecran.height/54, ALLEGRO_ALIGN_CENTER, "Choisissez un personnage") ;
     }
-    else if(jeu.joueur[jeu.info.nbJoueur-1].pseudo[0] != '\0') {
+    else if(jeu.joueur[jeu.info.ordre[jeu.info.nbJoueur - 1]].pseudo[0] != '\0') {
         if (((float) ecran.mouse_x - 1829*ecran.width/1920)*((float) ecran.mouse_x - 1829*ecran.width/1920) + ((float) ecran.mouse_y - 49*ecran.height/54)*((float) ecran.mouse_y - 49*ecran.height/54) < 80*80 ) {
             al_draw_filled_circle(1829*ecran.width/1920, 49*ecran.height/54, ecran.width/24, al_map_rgb(200, 200, 200));
             al_draw_text(gameFont, al_map_rgb(0, 0, 0), 91*ecran.width/96, 191*ecran.height/216, ALLEGRO_ALIGN_CENTER, "PLAY") ;
@@ -216,8 +289,8 @@ void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLE
         al_draw_text(gameFont, al_map_rgb(0, 0, 0), ecran.width/2, 5*ecran.height/54, ALLEGRO_ALIGN_CENTER, "Entrez votre pseudo") ;
     }
     else al_draw_text(gameFont, al_map_rgb(0, 0, 0), ecran.width/2, 5*ecran.height/54, ALLEGRO_ALIGN_CENTER, "Entrez votre pseudo") ;
-    if(jeu.joueur[jeu.info.joueurQuiJoue].classe != VIDE) {
-        if (jeu.joueur[jeu.info.joueurQuiJoue].pseudo[0] == '\0') {
+    if(jeu.joueur[jeu.info.ordre[jeu.info.joueurQuiJoue]].classe != VIDE) {
+        if (jeu.joueur[jeu.info.ordre[jeu.info.joueurQuiJoue]].pseudo[0] == '\0') {
             if (jeu.info.entrerPseudo == false) {
                 al_draw_filled_rectangle(2 * ecran.width / 5, 7 * ecran.height / 27, 3 * ecran.width / 5,9 * ecran.height / 27, al_map_rgb(100, 100, 100));
                 al_draw_text(gameFont, al_map_rgb(255, 255, 255), 2.5 * ecran.width / 5, 7.4 * ecran.height / 27,ALLEGRO_ALIGN_CENTER, "CONFIRMER");
@@ -302,7 +375,7 @@ void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLE
 
     ///AFFICHAGE DU CHOIX DES JOUEURS
     for(int i = 0 ; i < jeu.info.nbJoueur ; i++) {
-        switch (jeu.joueur[i].classe) {
+        switch (jeu.joueur[jeu.info.ordre[i]].classe) {
             case KIRBY : al_draw_scaled_bitmap(jeu.classes[KIRBY].image, 0, 0, 4389, 4389, ecran.width/9 + i*tailleRectangle, 25*ecran.height/36, 17*ecran.width/64 - 7*ecran.width/64,17*ecran.width/64 - 7*ecran.width/64, 0) ; break ;
             case MARIO : al_draw_scaled_bitmap(jeu.classes[MARIO].image, 0, 0, 2000, 2000, ecran.width/9 + i*tailleRectangle,17.5*ecran.height/25, 17*ecran.width/64 - 7*ecran.width/64,17*ecran.width/64 - 7*ecran.width/64, 0); break ;
             case PACMAN : al_draw_scaled_bitmap(jeu.classes[PACMAN].image, 0, 0, 1000, 1000, ecran.width/9 + i*tailleRectangle,25 * ecran.height / 36, 17*ecran.width/64 - 7*ecran.width/64, 17*ecran.width/64 - 7*ecran.width/64, 0); break ;
@@ -331,7 +404,6 @@ char alphabet (int keycode, int* nbLettre){
     }
     else return 0 ;
 }
-
 void mettrePseudo(Joueurs** joueur, char lettre, int quelJoueurEstSelectionne, int* nbLettre) {
     if(*nbLettre+1 < MAXNOM) {
         (*joueur)[quelJoueurEstSelectionne].pseudo[*nbLettre] = lettre ;
@@ -344,14 +416,55 @@ void mettrePseudo(Joueurs** joueur, char lettre, int quelJoueurEstSelectionne, i
         (*joueur)[quelJoueurEstSelectionne].pseudo[*nbLettre] = '\0' ;
     }
 }
-
 void afficherPseudo(Jeux jeu, float width, float height, ALLEGRO_FONT* gameFont) {
     for (int i = 0; i < jeu.info.nbJoueur; i++) {
         al_draw_textf(gameFont, al_map_rgb(20, 20, 20), 5*(17 * width / 64 - 7.5 * width / 64)/4 + (width/4.8)*i, 46 * height / 50,
-                      ALLEGRO_ALIGN_CENTER, "%s", jeu.joueur[i].pseudo);
+                      ALLEGRO_ALIGN_CENTER, "%s", jeu.joueur[jeu.info.ordre[i]].pseudo);
     }
 }
 
+
+
+void boutonSuivantDansPlay(InfoEcran ecran, ALLEGRO_FONT* gameFont, int mouse_x, int mouse_y){
+    float police = 2 * ecran.width / 55;
+    if ((float) mouse_x < 383 * ecran.width / 384 && mouse_x > ecran.width / 1.2 && (float) mouse_y < ecran.height/13.5 && mouse_y >ecran.height/216) {
+        al_draw_filled_rectangle(ecran.width / 1.2, ecran.height/216, 383 * ecran.width / 384, ecran.height/13.5,al_map_rgb(200, 200, 200));
+        al_draw_text(gameFont, al_map_rgb(20, 20, 20), 59 * ecran.width / 64 - police / 50, ecran.height/54,ALLEGRO_ALIGN_CENTER, "SUIVANT");
+    } else {
+        al_draw_filled_rectangle(ecran.width / 1.2, ecran.height/216, 383 * ecran.width / 384, ecran.height/13.5,al_map_rgb(240, 240, 240));
+        al_draw_text(gameFont, al_map_rgb(20, 20, 20), 59 * ecran.width / 64 - police / 50, ecran.height/54,ALLEGRO_ALIGN_CENTER, "SUIVANT");
+    }
+}
+void afficherCaracteristiqueJoueur(Jeux jeu, InfoEcran ecran, int joueurQuiJoue, ALLEGRO_FONT* gameFont) {
+    for(int i = 0 ; i < jeu.info.nbJoueur ; i++) {
+        if(i != joueurQuiJoue) {
+            if (i <=  joueurQuiJoue) {
+                al_draw_textf(gameFont, al_map_rgb(20, 20, 20), 17*ecran.width/192, 19*ecran.height/216 + i*5*ecran.height/36, ALLEGRO_ALIGN_LEFT, "%s", jeu.joueur[i].pseudo) ;
+                al_draw_filled_rectangle(5*ecran.width/96, ecran.height/8 + i*5*ecran.height/36, 5*ecran.width/32, ecran.height/8 + i*5*ecran.height/36 + 7 * ecran.height / 108,al_map_rgb(50, 50, 50) ) ;
+                al_draw_textf(gameFont, al_map_rgb(150, 150, 150), 11*ecran.width/96, ecran.height/8 + (7 * ecran.height / 108)/4 + i*5*ecran.height/36, ALLEGRO_ALIGN_CENTER, "%d", jeu.joueur[i].PV );
+                al_draw_filled_rectangle(5*ecran.width/96, 7*ecran.height/54 + i*5*ecran.height/36, jeu.joueur[i].PV*(59*ecran.width/384)/300, 7*ecran.height/54 + i*5*ecran.height/36 + ecran.height / 18,al_map_rgb(0, 255, 128) ) ;
+                al_draw_filled_circle(5*ecran.width/96,ecran.height/8 + i*5*ecran.height/36, 7 * ecran.width / 192, al_map_rgb(50, 50, 50));
+                al_draw_scaled_bitmap(jeu.classes[jeu.joueur[i].classe].icone, 0, 0, 979, 977, ecran.width/48,5*ecran.height/72 + i*5*ecran.height/36, ecran.width / 16, ecran.width / 16, 0);
+            }
+            else {
+                al_draw_textf(gameFont, al_map_rgb(20, 20, 20), 17*ecran.width/192, 19*ecran.height/216 + (i-1)*5*ecran.height/36, ALLEGRO_ALIGN_LEFT, "%s", jeu.joueur[i].pseudo) ;
+                al_draw_filled_rectangle(5*ecran.width/96, ecran.height/8 + (i-1)*5*ecran.height/36, 5*ecran.width/32, ecran.height/8 + (i-1)*5*ecran.height/36 + 7 * ecran.height / 108,al_map_rgb(50, 50, 50) ) ;
+                al_draw_textf(gameFont, al_map_rgb(150, 150, 150), 11*ecran.width/96, ecran.height/8 + (7 * ecran.height / 108)/4 + (i-1)*5*ecran.height/36, ALLEGRO_ALIGN_CENTER, "%d", jeu.joueur[i].PV );
+                al_draw_filled_rectangle(5*ecran.width/96, 7*ecran.height/54 + (i-1)*5*ecran.height/36, jeu.joueur[i].PV*(59*ecran.width/384)/300, 7*ecran.height/54 + (i-1)*5*ecran.height/36 + ecran.height / 18,al_map_rgb(0, 255, 128) ) ;
+                al_draw_filled_circle(5*ecran.width/96,ecran.height/8 + (i-1)*5*ecran.height/36, 7 * ecran.width / 192, al_map_rgb(50, 50, 50));
+                al_draw_scaled_bitmap(jeu.classes[jeu.joueur[i].classe].icone, 0, 0, 979, 977, ecran.width/48 ,5*ecran.height/72 + (i-1)*5*ecran.height/36, ecran.width / 16, ecran.width / 16, 0);
+            }
+        }
+    }
+
+    al_draw_filled_circle(35*ecran.width/384, 64*ecran.height/72, 5*ecran.width/96 , al_map_rgb(0, 0, 0)) ;
+    al_draw_scaled_bitmap(jeu.classes[jeu.joueur[jeu.info.joueurQuiJoue].classe].icone, 0, 0, 979, 977, 5*ecran.width/96, 59*ecran.height/72, 5*ecran.width/64, 5*ecran.width/64, 0) ;
+    al_draw_arc(35*ecran.width/384, 64*ecran.height/72, 17*ecran.width/384, PI/2, jeu.joueur[joueurQuiJoue].PV*(3*PI/2)/300, al_map_rgb(0, 255, 128), ecran.width/96) ;
+    al_draw_textf(gameFont, al_map_rgb(50, 50, 50), 65*ecran.width/384, 65*ecran.height/72, ALLEGRO_ALIGN_LEFT, "PA   %d", jeu.joueur[jeu.info.joueurQuiJoue].PA) ;
+    al_draw_textf(gameFont, al_map_rgb(50, 50, 50), 65*ecran.width/384, 68*ecran.height/72, ALLEGRO_ALIGN_LEFT, "PM   %d", jeu.joueur[jeu.info.joueurQuiJoue].PA) ;
+    al_draw_textf(gameFont, al_map_rgb(50, 50, 50), 85*ecran.width/384, 66.5*ecran.height/72, ALLEGRO_ALIGN_LEFT, "PV   %d", jeu.joueur[jeu.info.joueurQuiJoue].PV) ;
+
+}
 
 /// Ordre aléatoire des joueurs
 
@@ -359,7 +472,6 @@ int getRandomInteger(int min, int max){
     int nbAleatoire = rand()%(max-min+1)+min;
     return nbAleatoire;
 }
-
 int verifierValeurTableau(int tab[], int valeurAverifier, int cbDeValeur) {
     int i, j = 0;
     for (i = 0; i < cbDeValeur; i++) {
@@ -369,66 +481,46 @@ int verifierValeurTableau(int tab[], int valeurAverifier, int cbDeValeur) {
     }
     return j;
 }
-
-int ordreDesJoueurs(InfosSurLesJoueurs joueurs, Jeux jeu){
+int ordreDesJoueurs(InfosSurLesJoueurs* joueurs, int nbJoueur){
     int i, valeur;
-    int tab[4] = {0};
-    for(i = 0; i < jeu.info.nbJoueur; i++){
-        valeur = getRandomInteger(1, jeu.info.nbJoueur);
-        if(verifierValeurTableau(tab, valeur, 4) == 0){
-            joueurs.ordre[i] = valeur;
+    int tab[4] = {10, 10, 10, 10};
+    for(i = 0; i < nbJoueur; i++){
+        valeur = getRandomInteger(0, nbJoueur-1);
+        if(verifierValeurTableau(tab, valeur, nbJoueur) == 0){
+            joueurs->ordre[i] = valeur;
             tab[i] = valeur;
         }
-        else{
+        else {
             i--;
         }
     }
 }
 
-void boutonSuivantDansPlay(InfoEcran ecran, ALLEGRO_FONT* gameFont, int mouse_x, int mouse_y){
+void afficherOrdre(Jeux jeu, InfoEcran ecran, ALLEGRO_FONT* gameFont) {
+    /// FOND D'ECRAN GRISTARE
+    al_draw_filled_rectangle(0, 0, ecran.width, ecran.height, al_map_rgba(150, 150, 150, 150));
+    al_draw_filled_rounded_rectangle(ecran.width/3, ecran.height/6, 2*ecran.width/3, 5*ecran.height/6, 15, 15,al_map_rgb(150, 150, 150)) ;
 
-    float police = 2 * ecran.width / 55;
+    al_draw_filled_circle(ecran.width/2, ecran.height/2, ecran.height/4, al_map_rgba(100, 100, 100, 140)) ;
+    al_draw_filled_rectangle(20*ecran.width/48, ecran.height/2-ecran.height/4, 23*ecran.width/48, ecran.height/2+ecran.height/4, al_map_rgb(150, 150, 150)) ;
+    al_draw_filled_rectangle(ecran.width/2-ecran.height/4, 30*ecran.height/54, ecran.width/2+ecran.height/4, 33*ecran.height/54, al_map_rgb(150, 150, 150)) ;
 
-    if ((float) mouse_x < 383 * ecran.width / 384 && mouse_x > ecran.width / 1.2 && (float) mouse_y < ecran.height/13.5 && mouse_y >ecran.height/216) {
-        al_draw_filled_rectangle(ecran.width / 1.2, ecran.height/216, 383 * ecran.width / 384, ecran.height/13.5,al_map_rgb(200, 200, 200));
-        al_draw_text(gameFont, al_map_rgb(0, 0, 0), 59 * ecran.width / 64 - police / 50, ecran.height/54,ALLEGRO_ALIGN_CENTER, "SUIVANT");
-    } else {
-        al_draw_filled_rectangle(ecran.width / 1.2, ecran.height/216, 383 * ecran.width / 384, ecran.height/13.5,al_map_rgb(240, 240, 240));
-        al_draw_text(gameFont, al_map_rgb(0, 0, 0), 59 * ecran.width / 64 - police / 50, ecran.height/54,ALLEGRO_ALIGN_CENTER, "SUIVANT");
+    al_draw_text(gameFont, al_map_rgb(250, 250, 250), ecran.width/2, 2*ecran.height/11, ALLEGRO_ALIGN_CENTER, "ORDRE DES JOUEURS") ;
+    for(int i = 0 ; i < jeu.info.nbJoueur ; i++) {
+        al_draw_textf(gameFont, al_map_rgb(250, 250, 250), 16.5*ecran.width/48, 2*ecran.height/7 + (5*ecran.width/96)*i, ALLEGRO_ALIGN_LEFT, "%d", i+1);
+        al_draw_scaled_bitmap(jeu.classes[jeu.joueur[i].classe].icone, 0, 0, 979, 977, 17.5*ecran.width/48 ,2*ecran.height/7 + (5*ecran.width/96)*i - (5*ecran.width/350), (5*ecran.width/96), (5*ecran.width/96), 0) ;
+        al_draw_textf(gameFont, al_map_rgb(250, 250, 250), 21*ecran.width/48, 2*ecran.height/7 + (5*ecran.width/96)*i, ALLEGRO_ALIGN_LEFT, "%s", jeu.joueur[i].pseudo);
     }
+    if((ecran.mouse_x - 9 * ecran.width / 15) * (ecran.mouse_x - 9 * ecran.width / 15) + (ecran.mouse_y - 10 * ecran.height / 13) * (ecran.mouse_y - 10 * ecran.height / 13) < ecran.width / 38.4 * ecran.width / 38.4) {
+        al_draw_filled_circle(9 * ecran.width / 15, 10 * ecran.height / 13, ecran.width / 38.4, al_map_rgb(100, 100, 100));
+    }
+
+    al_draw_circle(9*ecran.width/15, 10*ecran.height/13, ecran.width/38.4, al_map_rgb(250, 250, 250), 4) ;
+    al_draw_line(9*ecran.width/15 - ecran.width/64 , 10*ecran.height/13, 9*ecran.width/15 + ecran.width/64, 10*ecran.height/13, al_map_rgb(250, 250, 250), 3);
+    al_draw_line(9*ecran.width/15 + ecran.width/64, 10*ecran.height/13, 9*ecran.width/15 + ecran.width/192, 10*ecran.height/13 - ecran.height/43.2 , al_map_rgb(250, 250, 250), 3);
+    al_draw_line(9*ecran.width/15 + ecran.width/64, 10*ecran.height/13, 9*ecran.width/15 + ecran.width/192, 10*ecran.height/13 + ecran.height/43.2 , al_map_rgb(250, 250, 250), 3);
+
+
 }
 
-
-
-// autre methode pour entrer un nom
-/*
-void entrerPseudo (ALLEGRO_EVENT* event, InfosJoueur tabJoueur[], int joueurActuel){
-    int numCharPseudo = 0;
-    if (event.type == ALLEGRO_KEY_DOWN){
-        if ( numCharPseudo < MAXNOM && event.keyboard.keycode >= ALLEGRO_KEY_A && event.keyboard.keycode <= ALLEGRO_KEY_Z) {
-            tabJoueur[joueurActuel].pseudo[numCharPseudo] = (char) (event.keyboard.keycode + 96);
-            numCharPseudo++;
-        }
-        if (event.keyboard.keycode == ALLEGRO_KEY_BACKSPACE){
-            if (numCharPseudo >= 1){
-                numCharPseudo--;
-                tabJoueur[joueurActuel].pseudo[numCharPseudo] = '\0';
-            }
-        }
-    }
-}*/
-
-
-
-/*void deplacementJoueur(Joueur *joueur[],Map map[20][20]){
-    joueur[0]->x = map[0][0].x;
-    joueur[0]->y = map[0][0].y;
-    if(joueur[0]->t==1) {
-        if (joueur[0]->xp< map[joueur[0]->a][joueur[0]->b].x && joueur[0]->xp != map[joueur[0]->a][joueur[0]->b].x){
-            joueur[0]->xp = joueur[0]->xp + 1;
-        }
-        if (joueur[0]->xp>map[joueur[0]->a][joueur[0]->b].x && joueur[0]->xp != map[joueur[0]->a][joueur[0]->b].x){
-            joueur[0]->xp = joueur[0]->xp - 1;
-        }
-*/
 

@@ -10,19 +10,25 @@
 #include <allegro5/allegro_image.h>
 #include <time.h>
 
-#define RULESPAGEMAX 3
+#define RULESPAGEMAX 10
 #define mapX 19
 #define mapY 14
 #define MAXNOM 11
 
 #define PI 3.141592
 
+enum sortPeach {COUPDEPIED, SORTFLEUR, SORTSOIN, NBSORT};
+enum sortMario {POING2, CORONA, FLAMME};
+enum sortPacman {SORTDEFENCE, RECULERADVERSAIRE, FLAMME1};
+enum sortDK {POINGGANT, MORTEL, SAUT};
+enum sortKirby {COUPDEPIED1, POING, FLAMME3};
+
 ///ENUM NECESSAIRE POUR FACILITER LE CODE ET SA LECTURE
 enum gameMode {PLAY, RULES, TEAM, MENU, END};
 enum personnage {MARIO, PACMAN, KIRBY, PEACH, DONKEY_KONG, VIDE};
-enum play {CHOIXNBJOUEUR, CHOIXCLASSE, JEU};
-enum sort {AUCUN, FLAMME, POINGGANT, SAUT, MORTEL, POING2, COUPDEPIED, POING, RECULERADVERSAIRE, SORTDEFENCE, SORTSOIN,  CORONA, SORTFLEUR};
+enum play {CHOIXNBJOUEUR, CHOIXCLASSE, JEU, ORDRE, JOUER};
 enum animation{RESPIRATION, MARCHER, ATTAQUE1, ATTAQUE2, ATTAQUE3, NBANIMATIONS};
+//enum sort{AUCUN, FLAMME, POINGGANT, SAUT, MORTEL, POING2, COUPDEPIED, POING, RECULERADVERSAIRE, SORTDEFENCE, SORTSOIN,  CORONA, SORTFLEUR};
 
 
 ///STRUCTURE QU'ON PEUT METTRE EN PARAMETRES DE FONCTION POUR EVITER TROP DE PARAMETRES
@@ -34,15 +40,13 @@ typedef struct {
 ///STRUCTURE DES PERSONNAGES QU'ON A BESOIN ICI ET DANS LE PERSONNAGE.C
 typedef struct {
     ALLEGRO_BITMAP* iconeSort;
-    int sort;
-    int animation;
-    int nbSort;
+    int degatsOUsoin, portee, PA ;
 }Sort;
+
 
 typedef struct {
     double x, y, width, height ;
 } Image ;
-
 typedef struct {
     Image images[20] ;
     int nbImages, direction ;
@@ -53,11 +57,14 @@ typedef struct {
 typedef struct {
     int nbJoueur, joueurQuiJoue, compteur ;
     bool entrerPseudo ;
-    int ordre[3];
+    int ordre[4];
+    int collisionSourisMap[2][1] ;
+    int clickSouris ;
 } InfosSurLesJoueurs;
 
 typedef struct {
     ALLEGRO_BITMAP* image;
+    ALLEGRO_BITMAP* icone;
     ALLEGRO_BITMAP* SpriteSheet ;
     Sort sortADisposition[20];
     Animation animations[NBANIMATIONS] ;
@@ -69,9 +76,9 @@ typedef struct Info{
     char pseudo[MAXNOM];
     int nbLettrePseudo ;
     int sortAppuye;
-    int PV, PM, PA, aChoisiClasse;
-    int classe;//1 : mario      2 : Luigi     3 : Kirby     4: Peach     5 : Zelda
-    int quelAnimation ;
+    int PV, PM, PA ;
+    int classe;
+    int quelAnimation, sortSpecial ;
     int etat;      //etat 0 (par defaut) joueur en vie // etat 1 : joueur est mort
 }Joueurs;
 
@@ -81,7 +88,7 @@ typedef struct {
     InfosSurLesJoueurs info ;
     Joueurs* joueur ;
     Classe classes[5] ;
-    int gameMode ;
+    int gameMode, gameMode2 ;
 }Jeux;
 
 ///LA CARTE DU JEU
@@ -89,10 +96,11 @@ typedef struct {
     double x,y;
     int t;
     int obstacle;
+    int joueurPresentDessus ;
 } Map;
 
 ///INITIALISATION JEU
-void initialiserIconeClasse(ALLEGRO_BITMAP* pacman, ALLEGRO_BITMAP* kirby, ALLEGRO_BITMAP* peach, ALLEGRO_BITMAP* mario, ALLEGRO_BITMAP* donkey_kong, Classe* classes);
+void initialiserIconeClasse(ALLEGRO_BITMAP* pacman, ALLEGRO_BITMAP* kirby, ALLEGRO_BITMAP* peach, ALLEGRO_BITMAP* mario, ALLEGRO_BITMAP* donkey_kong, ALLEGRO_BITMAP* pacmanRond, ALLEGRO_BITMAP* kirbyRond, ALLEGRO_BITMAP* peachRond, ALLEGRO_BITMAP* marioRond, ALLEGRO_BITMAP* donkey_kongRond, Classe* classes) ;
 void initialiserEcran (InfoEcran* ecran, double width, double height) ;
 void initialiserJeu(Jeux* jeu) ;
 void initialiserJoueur(Jeux* jeu, Map map[30][30]) ;
@@ -111,5 +119,13 @@ void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLE
 char alphabet (int keycode, int* nbLettre) ;
 void mettrePseudo(Joueurs** joueur, char lettre, int quelJoueurEstSelectionne, int* nbLettre) ;
 void afficherPseudo(Jeux jeu, float width, float height, ALLEGRO_FONT* gameFont) ;
+
+void afficherCaracteristiqueJoueur(Jeux jeu, InfoEcran ecran, int joueurQuiJoue, ALLEGRO_FONT* gameFont) ;
+
+int getRandomInteger(int min, int max) ;
+int verifierValeurTableau(int tab[], int valeurAverifier, int cbDeValeur) ;
+int ordreDesJoueurs(InfosSurLesJoueurs* joueurs, int nbJoueur);
+void afficherOrdre(Jeux jeu, InfoEcran ecran, ALLEGRO_FONT* gameFont) ;
+
 
 #endif

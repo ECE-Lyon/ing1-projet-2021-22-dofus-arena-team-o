@@ -362,26 +362,6 @@ void initialiserImageAnimationsMario(Animation animations[]) {
 
     ///IMAGE 4
     animations[RESPIRATION].images[3].x = 84 * 2.5;
-
-                    /// ANIMATION 3 ///
-    animations[ATTAQUE1].nbImages = 6 ;
-    for(int i = 0 ; i < animations[ATTAQUE1].nbImages ; i++) {
-        animations[ATTAQUE1].images[i].y = 305 * 2.5;
-        animations[ATTAQUE1].images[i].height = 35 * 2.5;
-    }
-    ///IMAGE 1
-    animations[ATTAQUE1].images[0].x = 13 * 2.5;
-    animations[ATTAQUE1].images[0].width = 33 * 2.5;
-
-    ///IMAGE 1
-    animations[ATTAQUE1].images[1].x = 13 * 2.5;
-    animations[ATTAQUE1].images[1].width = 33 * 2.5;
-
-    ///IMAGE 1
-    animations[ATTAQUE1].images[2].x = 13 * 2.5;
-    animations[ATTAQUE1].images[2].width = 33 * 2.5;
-
-
 }
 void initialiserImageAnimationsDK(Animation animations[]) {
              /// ANIMATION 1 ///
@@ -422,7 +402,7 @@ void initialiserImageAnimationsDK(Animation animations[]) {
     animations[MARCHER].images[7].x = 464 * 2.6;
     animations[MARCHER].images[7].width = 29 * 2.6;
 
-            /// ANIMATION 1 ///
+            /// ANIMATION 2 ///
     animations[RESPIRATION].nbImages = 8 ;
     for(int i = 0 ; i < animations[RESPIRATION].nbImages ; i++) {
         animations[RESPIRATION].images[i].y = 107 * 2.6;
@@ -459,11 +439,49 @@ void initialiserImageAnimationsDK(Animation animations[]) {
     ///IMAGE 8
     animations[RESPIRATION].images[7].x = 489 * 2.6;
     animations[RESPIRATION].images[7].width = 29 * 2.6;
+
+                     /// ANIMATION 3 ///
+    animations[ATTAQUE1].nbImages = 8 ;
+    for(int i = 0 ; i < animations[ATTAQUE1].nbImages ; i++) {
+        animations[ATTAQUE1].images[i].y = 155 * 2.6;
+        animations[ATTAQUE1].images[i].height = 39 * 2.6;
+    }
+    ///IMAGE 1
+    animations[ATTAQUE1].images[0].x = 247 * 2.6;
+    animations[ATTAQUE1].images[0].width = 29 * 2.6;
+
+    ///IMAGE 2
+    animations[ATTAQUE1].images[1].x = 276 * 2.6;
+    animations[ATTAQUE1].images[1].width = 31 * 2.6;
+
+    ///IMAGE 3
+    animations[ATTAQUE1].images[2].x = 307 * 2.6;
+    animations[ATTAQUE1].images[2].width = 34 * 2.6;
+
+    ///IMAGE 4
+    animations[ATTAQUE1].images[3].x = 341 * 2.6;
+    animations[ATTAQUE1].images[3].width = 37 * 2.6;
+
+    ///IMAGE 5
+    animations[ATTAQUE1].images[4].x = 378 * 2.6;
+    animations[ATTAQUE1].images[4].width = 41 * 2.6;
+
+    ///IMAGE 6
+    animations[ATTAQUE1].images[5].x = 419 * 2.6;
+    animations[ATTAQUE1].images[5].width = 45 * 2.6;
+
+    ///IMAGE 7
+    animations[ATTAQUE1].images[6].x = 464 * 2.6;
+    animations[ATTAQUE1].images[6].width = 48 * 2.6;
+
+    ///IMAGE 8
+    animations[ATTAQUE1].images[7].x = 512 * 2.6;
+    animations[ATTAQUE1].images[7].width = 51 * 2.6;
 }
 
 
 
-void afficherPersonnage(Jeux jeu, double scalex, double scaley) {
+void afficherPersonnage(Jeux jeu, InfoEcran ecran, double scalex, double scaley, ALLEGRO_BITMAP* shield) {
     for (int i = 0; i < jeu.info.nbJoueur; i++) {
         switch (jeu.joueur[i].classe) {
             case KIRBY : {
@@ -476,6 +494,9 @@ void afficherPersonnage(Jeux jeu, double scalex, double scaley) {
             }
             case PACMAN : {
                 al_draw_bitmap_region(jeu.classes[PACMAN].SpriteSheet, jeu.classes[PACMAN].animations[jeu.joueur[i].quelAnimation].images[jeu.info.compteur%jeu.classes[PACMAN].animations[jeu.joueur[i].quelAnimation].nbImages].x, jeu.classes[PACMAN].animations[jeu.joueur[i].quelAnimation].images[jeu.info.compteur%jeu.classes[PACMAN].animations[jeu.joueur[i].quelAnimation].nbImages].y, jeu.classes[PACMAN].animations[jeu.joueur[i].quelAnimation].images[jeu.info.compteur%jeu.classes[PACMAN].animations[jeu.joueur[i].quelAnimation].nbImages].width, jeu.classes[PACMAN].animations[jeu.joueur[i].quelAnimation].images[jeu.info.compteur%jeu.classes[PACMAN].animations[jeu.joueur[i].quelAnimation].nbImages].height, jeu.joueur[i].x - jeu.classes[PACMAN].animations[jeu.joueur[i].quelAnimation].images[jeu.info.compteur%jeu.classes[PACMAN].animations[jeu.joueur[i].quelAnimation].nbImages].width + 3*scalex/4, jeu.joueur[i].y - jeu.classes[PACMAN].animations[jeu.joueur[i].quelAnimation].images[jeu.info.compteur%jeu.classes[PACMAN].animations[jeu.joueur[i].quelAnimation].nbImages].height +  3*scaley/4, jeu.classes[PACMAN].animations->direction) ;
+                if(jeu.joueur[i].sortSpecial == 1) {
+                    al_draw_scaled_bitmap(shield, 0, 0, 556, 556, jeu.joueur[i].x - 5*ecran.width/192, jeu.joueur[i].y - 5*ecran.height/54, 5*ecran.width/96, 5*ecran.height/54, 0) ;
+                }
                 break ;
             }
             case PEACH : {

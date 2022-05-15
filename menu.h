@@ -10,7 +10,6 @@
 #include <time.h>
 #include "jeu.h"
 
-#define RULESPAGEMAX 10
 #define PI 3.141592
 
 typedef struct {
