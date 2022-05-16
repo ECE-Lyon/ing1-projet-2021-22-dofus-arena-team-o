@@ -13,7 +13,7 @@ void drawSortKIRBY( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran) {
         al_draw_scaled_bitmap(jeu.classes[KIRBY].sortADisposition[POING].iconeSort, 0, 0, 2000, 2000,
                               109 * ecran.width / 144, ecran.height / 1.125, 67 * ecran.width / 144,
                               67 * ecran.height / 90, 0);
-        al_draw_text(gameFont, al_map_rgb(100, 100, 100), 73 * ecran.width / 288, 83 * ecran.height / 90,
+        al_draw_text(gameFont, al_map_rgb(100, 100, 100), 2300, 1400,
                      ALLEGRO_ALIGN_CENTER, "SORT POING");
     } else {
         al_draw_scaled_bitmap(jeu.classes[KIRBY].sortADisposition[POING].iconeSort, 0, 0, 2000, 2000,
@@ -26,7 +26,7 @@ void drawSortKIRBY( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran) {
         al_draw_scaled_bitmap(jeu.classes[KIRBY].sortADisposition[COUPDEPIED].iconeSort, 0, 0, 2000, 2000,
                               ecran.width / 1.44, 79 * ecran.height / 90, 47 * ecran.width / 96, 47 * ecran.height / 60,
                               0);
-        al_draw_text(gameFont, al_map_rgb(100, 100, 100), 73 * ecran.width / 288, 83 * ecran.height / 90,
+        al_draw_text(gameFont, al_map_rgb(100, 100, 100), 2300, 1400,
                      ALLEGRO_ALIGN_CENTER, "SORT COUP DE PIED");
     } else {
         al_draw_scaled_bitmap(jeu.classes[KIRBY].sortADisposition[COUPDEPIED].iconeSort, 0, 0, 2000, 2000,
@@ -39,7 +39,7 @@ void drawSortKIRBY( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran) {
         al_draw_scaled_bitmap(jeu.classes[KIRBY].sortADisposition[FLAMME].iconeSort, 0, 0, 2000, 2000,
                               239 * ecran.width / 288, 319 * ecran.height / 360, 85 * ecran.width / 288,
                               17 * ecran.height / 36, 0);
-        al_draw_text(gameFont, al_map_rgb(100, 100, 100), 73 * ecran.width / 288, 83 * ecran.height / 90,
+        al_draw_text(gameFont, al_map_rgb(100, 100, 100), 2300, 1400,
                      ALLEGRO_ALIGN_CENTER, "SORT FLAMME ");
     } else {
         al_draw_scaled_bitmap(jeu.classes[KIRBY].sortADisposition[FLAMME].iconeSort, 0, 0, 2000, 2000,
@@ -54,7 +54,7 @@ void drawSortMARIO( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran) {
         al_draw_scaled_bitmap(jeu.classes[MARIO].sortADisposition[CORONA].iconeSort, 0, 0, 2000, 2000,
                               73 * ecran.width / 96, 79 * ecran.height / 90, 127 * ecran.width / 288,
                               127 * ecran.height / 180, 0);
-        al_draw_text(gameFont, al_map_rgb(100, 100, 100), 73 * ecran.width / 288, 83 * ecran.height / 90,
+        al_draw_text(gameFont, al_map_rgb(100, 100, 100), 2300, 1400,
                      ALLEGRO_ALIGN_CENTER, "SORT CORONA");
     } else {
         al_draw_scaled_bitmap(jeu.classes[MARIO].sortADisposition[CORONA].iconeSort, 0, 0, 2000, 2000,
@@ -67,7 +67,7 @@ void drawSortMARIO( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran) {
         al_draw_scaled_bitmap(jeu.classes[MARIO].sortADisposition[FLAMME].iconeSort, 0, 0, 2000, 2000,
                               ecran.width / 1.44, 319 * ecran.height / 360, 85 * ecran.width / 288,
                               17 * ecran.height / 36, 0);
-        al_draw_text(gameFont, al_map_rgb(100, 100, 100), 73 * ecran.width / 288, 83 * ecran.height / 90,
+        al_draw_text(gameFont, al_map_rgb(100, 100, 100), 2300, 1400,
                      ALLEGRO_ALIGN_CENTER, "SORT FLAMME");
     } else {
         al_draw_scaled_bitmap(jeu.classes[MARIO].sortADisposition[FLAMME].iconeSort, 0, 0, 2000, 2000,
@@ -79,7 +79,7 @@ void drawSortMARIO( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran) {
         al_draw_scaled_bitmap(jeu.classes[MARIO].sortADisposition[POING2].iconeSort, 0, 0, 2000, 2000,
                               161 * ecran.width / 192, 319 * ecran.height / 360, 113 * ecran.width / 288,
                               113 * ecran.height / 180, 0);
-        al_draw_text(gameFont, al_map_rgb(100, 100, 100), 73 * ecran.width / 288, 83 * ecran.height / 90,
+        al_draw_text(gameFont, al_map_rgb(100, 100, 100), 2300, 1400,
                      ALLEGRO_ALIGN_CENTER, "SORT POING 2 ");
     } else {
         al_draw_scaled_bitmap(jeu.classes[MARIO].sortADisposition[POING2].iconeSort, 0, 0, 2000, 2000,
@@ -94,7 +94,7 @@ void drawSortPEACH( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran) {
         al_draw_scaled_bitmap(jeu.classes[PEACH].sortADisposition[SORTFLEUR].iconeSort, 0, 0, 2000, 2000,
                               55 * ecran.width / 72, 809 * ecran.height / 900, 29 * ecran.width / 72,
                               29 * ecran.height / 45, 0);
-        al_draw_text(gameFont, al_map_rgb(100, 100, 100), 73 * ecran.width / 288, 83 * ecran.height / 90,
+        al_draw_text(gameFont, al_map_rgb(100, 100, 100), 2300, 1400,
                      ALLEGRO_ALIGN_CENTER, "SORT FLEUR");
     } else {
         al_draw_scaled_bitmap(jeu.classes[PEACH].sortADisposition[SORTFLEUR].iconeSort, 0, 0, 2000, 2000,
