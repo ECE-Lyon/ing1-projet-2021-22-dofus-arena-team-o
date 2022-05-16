@@ -440,6 +440,7 @@ int main() {
                     chrono = chrono + 1;
                     if(chrono >= 750){
                         chrono = 0;
+                        jeu.info.joueurQuiJoue ++;
                     }
 
                     if(tour%5 == 0) {
