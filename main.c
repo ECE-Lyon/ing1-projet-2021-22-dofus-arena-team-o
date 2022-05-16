@@ -112,7 +112,8 @@ int main() {
     queue = al_create_event_queue();
     assert(queue);
 
-    int isFin = 0, draw = 0 ;
+    int isFin = 0, draw = 0;
+    int chrono;
     Menu mainMenu;
     InfoEcran ecran;
     Map map[30][30];
@@ -436,6 +437,12 @@ int main() {
                     else {
                         jeu.info.collisionSourisMap[0][0] = 30;
                         jeu.info.collisionSourisMap[1][0] = 30;
+                    }
+
+                    chrono = chrono + 1;
+                    if(chrono >= 750){
+                        chrono = 0;
+                        jeu.info.joueurQuiJoue ++;
                     }
 
                     if(tour%5 == 0) {
