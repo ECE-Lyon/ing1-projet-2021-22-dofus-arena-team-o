@@ -107,7 +107,7 @@ void drawSortPEACH( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran) {
         al_draw_scaled_bitmap(jeu.classes[PEACH].sortADisposition[COUPDEPIED].iconeSort, 0, 0, 2000, 2000,
                               ecran.width / 1.44, 79 * ecran.height / 90, 47 * ecran.width / 96, 47 * ecran.height / 60,
                               0);
-        al_draw_text(gameFont, al_map_rgb(100, 100, 100), 73 * ecran.width / 288, 83 * ecran.height / 90,
+        al_draw_text(gameFont, al_map_rgb(100, 100, 100), 2300, 1400,
                      ALLEGRO_ALIGN_CENTER, "SORT COUP DE PIED ");
     } else {
         al_draw_scaled_bitmap(jeu.classes[PEACH].sortADisposition[COUPDEPIED].iconeSort, 0, 0, 2000, 2000,
@@ -120,7 +120,7 @@ void drawSortPEACH( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran) {
         al_draw_scaled_bitmap(jeu.classes[PEACH].sortADisposition[SORTSOIN].iconeSort, 0, 0, 2000, 2000,
                               161 * ecran.width / 192, 323 * ecran.height / 360, 113 * ecran.width / 288,
                               113 * ecran.height / 180, 0);
-        al_draw_text(gameFont, al_map_rgb(100, 100, 100), 73 * ecran.width / 288, 83 * ecran.height / 90,
+        al_draw_text(gameFont, al_map_rgb(100, 100, 100), 2300, 1400,
                      ALLEGRO_ALIGN_CENTER, " SORT SOIN");
     } else {
         al_draw_scaled_bitmap(jeu.classes[PEACH].sortADisposition[SORTSOIN].iconeSort, 0, 0, 2000, 2000,
@@ -135,7 +135,7 @@ void drawSortPACMAN( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran) {
         al_draw_scaled_bitmap(jeu.classes[PACMAN].sortADisposition[RECULERADVERSAIRE].iconeSort, 0, 0, 2000, 2000,
                               109 * ecran.width / 144, ecran.height / 1.125, 67 * ecran.width / 144,
                               67 * ecran.height / 90, 0);
-        al_draw_text(gameFont, al_map_rgb(100, 100, 100), 73 * ecran.width / 288, 83 * ecran.height / 90,
+        al_draw_text(gameFont, al_map_rgb(100, 100, 100), 2300, 1400,
                      ALLEGRO_ALIGN_CENTER, "SORT RECULER ADVERSAIRE");
     } else {
         al_draw_scaled_bitmap(jeu.classes[PACMAN].sortADisposition[RECULERADVERSAIRE].iconeSort, 0, 0, 2000, 2000,
@@ -145,7 +145,7 @@ void drawSortPACMAN( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran) {
 
     if ((float) ecran.mouse_x < 427 * ecran.width / 576 && ecran.mouse_x > 409 * ecran.width / 576 &&(float) ecran.mouse_y < 353 * ecran.height / 360 && ecran.mouse_y > 9 * ecran.height / 10) {
         al_draw_scaled_bitmap(jeu.classes[PACMAN].sortADisposition[SORTDEFENCE].iconeSort, 0, 0, 2000, 2000,ecran.width / 1.44, 79 * ecran.height / 90, 15 * ecran.width / 32, 3 * ecran.height / 4,0);
-        al_draw_text(gameFont, al_map_rgb(100, 100, 100), 73 * ecran.width / 288, 83 * ecran.height / 90,
+        al_draw_text(gameFont, al_map_rgb(100, 100, 100), 2300, 1400,
                      ALLEGRO_ALIGN_CENTER, "SORT DEFENCE ");
     } else {
         al_draw_scaled_bitmap(jeu.classes[PACMAN].sortADisposition[SORTDEFENCE].iconeSort, 0, 0, 2000, 2000,
@@ -158,7 +158,7 @@ void drawSortPACMAN( ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran) {
         al_draw_scaled_bitmap(jeu.classes[PACMAN].sortADisposition[FLAMME].iconeSort, 0, 0, 2000, 2000,
                               239 * ecran.width / 288, 319 * ecran.height / 360, 85 * ecran.width / 288,
                               17 * ecran.height / 36, 0);
-        al_draw_text(gameFont, al_map_rgb(100, 100, 100), 73 * ecran.width / 288, 83 * ecran.height / 90,
+        al_draw_text(gameFont, al_map_rgb(100, 100, 100), 2300, 1400,
                      ALLEGRO_ALIGN_CENTER, "SORT FLAMME ");
     } else {
         al_draw_scaled_bitmap(jeu.classes[PACMAN].sortADisposition[FLAMME].iconeSort, 0, 0, 2000, 2000,
@@ -173,7 +173,7 @@ void drawSortDONKEYKONG(ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran) {
         al_draw_scaled_bitmap(jeu.classes[DONKEY_KONG].sortADisposition[MORTEL].iconeSort, 0, 0, 2000, 2000,
                               242 * ecran.width / 320, 53 * ecran.height / 60, 131 * ecran.width / 288,
                               131 * ecran.height / 180, 0);
-        al_draw_text(gameFont, al_map_rgb(100, 100, 100), 73 * ecran.width / 288, 83 * ecran.height / 90,
+        al_draw_text(gameFont, al_map_rgb(100, 100, 100), 2300, 1400,
                      ALLEGRO_ALIGN_CENTER, "SORT MORTEL");
     } else {
         al_draw_scaled_bitmap(jeu.classes[DONKEY_KONG].sortADisposition[MORTEL].iconeSort, 0, 0, 2000, 2000,
@@ -185,7 +185,7 @@ void drawSortDONKEYKONG(ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran) {
         (float) ecran.mouse_y < 353 * ecran.height / 360 && ecran.mouse_y > 9 * ecran.height / 10) {
         al_draw_scaled_bitmap(jeu.classes[DONKEY_KONG].sortADisposition[POINGGANT].iconeSort, 0, 0, 2000, 2000,
                               ecran.width / 1.44, ecran.height / 1.125, 15 * ecran.width / 32, 3 * ecran.height / 4, 0);
-        al_draw_text(gameFont, al_map_rgb(100, 100, 100), 73 * ecran.width / 288, 83 * ecran.height / 90,
+        al_draw_text(gameFont, al_map_rgb(100, 100, 100), 2300, 1400,
                      ALLEGRO_ALIGN_CENTER, "SORT POING GANT ");
     } else {
         al_draw_scaled_bitmap(jeu.classes[DONKEY_KONG].sortADisposition[POINGGANT].iconeSort, 0, 0, 2000, 2000,
@@ -198,7 +198,7 @@ void drawSortDONKEYKONG(ALLEGRO_FONT* gameFont, Jeux jeu, InfoEcran ecran) {
         al_draw_scaled_bitmap(jeu.classes[DONKEY_KONG].sortADisposition[SAUT].iconeSort, 0, 0, 2000, 2000,
                               ecran.width / 1.2, 7 * ecran.height / 8, 139 * ecran.width / 288,
                               139 * ecran.height / 180, 0);
-        al_draw_text(gameFont, al_map_rgb(100, 100, 100), 73 * ecran.width / 288, 83 * ecran.height / 90,
+        al_draw_text(gameFont, al_map_rgb(100, 100, 100), 2300, 1400,
                      ALLEGRO_ALIGN_CENTER, "SORT SAUT");
     } else {
         al_draw_scaled_bitmap(jeu.classes[DONKEY_KONG].sortADisposition[SAUT].iconeSort, 0, 0, 2000, 2000,
