@@ -104,7 +104,8 @@ int main() {
     ALLEGRO_BITMAP *coup = al_load_bitmap("../Bitmap/Sort/sortUtilisé/coup.png");
     ALLEGRO_BITMAP *sortMortel = al_load_bitmap("../Bitmap/Sort/sortUtilisé/sortMortel.png");
     ALLEGRO_BITMAP *afficherSort = al_load_bitmap("../Bitmap/Sort/afficherSort.png");
-    ALLEGRO_BITMAP *shield = al_load_bitmap("../Bitmap/Sprite_Sheet/spr_shield.png") ;
+    ALLEGRO_BITMAP *shield = al_load_bitmap("../Bitmap/Sprite_Sheet/spr_shield.png");
+    ALLEGRO_BITMAP *fond = al_load_bitmap("../Bitmap/fond.png");
     FILE* lec=fopen("../Bitmap/MatriceObstacle.txt", "r");
 
 
@@ -128,13 +129,15 @@ int main() {
     double scaley = 4 * height / 149;
     for (int j = 0; j < mapY; j++) {
         for (int i = 0; i < mapX; i++) {
-            map[i][j].x = width/12.5 +scalex + i * scalex + j * scalex;
-            map[i][j].y = height/1.7 - i * scaley + j * scaley;
+            map[i][j].x = 235 +scalex + i * scalex + j * scalex;
+            map[i][j].y = height/1.76 - i * scaley + j * scaley;
             map[i][j].joueurPresentDessus = 0 ;
             fscanf(lec, "%d", &map[i][j].obstacle);
 
         }
     }
+
+    fclose(lec);
 
     ///INITIALISATION DE NOS VARIABLES
     //ANIMATIONS
@@ -170,7 +173,6 @@ int main() {
     al_register_event_source(queue, al_get_timer_event_source(times));
     al_start_timer(times);
 
-    fclose(lec);
     while (!isFin) {
         while (mainMenu.gameMode != PLAY && mainMenu.gameMode != END) {
             al_wait_for_event(queue, &event);
@@ -457,6 +459,7 @@ int main() {
                         break;
                     }
                     case JEU : {
+                        al_draw_scaled_bitmap(fond,0,0,1920,1054,0,0,width,height,0);
                         al_draw_scaled_bitmap(carte,0,0,296,149,50,50,width, height,0);
                         dessinerJeu(&jeu, map, ecran, scalex, scaley, gameFont1, smallGameFont, afficherSort, shield) ;
                         appuyerSortSurMap(&jeu, map);
