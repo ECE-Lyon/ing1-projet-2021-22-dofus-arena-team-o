@@ -461,7 +461,7 @@ void afficherCaracteristiqueJoueur(Jeux jeu, InfoEcran ecran, int joueurQuiJoue,
     al_draw_scaled_bitmap(jeu.classes[jeu.joueur[jeu.info.joueurQuiJoue].classe].icone, 0, 0, 979, 977, 5*ecran.width/96, 59*ecran.height/72, 5*ecran.width/64, 5*ecran.width/64, 0) ;
     al_draw_arc(35*ecran.width/384, 64*ecran.height/72, 17*ecran.width/384, PI/2, jeu.joueur[joueurQuiJoue].PV*(3*PI/2)/300, al_map_rgb(0, 255, 128), ecran.width/96) ;
     al_draw_textf(gameFont, al_map_rgb(50, 50, 50), 65*ecran.width/384, 65*ecran.height/72, ALLEGRO_ALIGN_LEFT, "PA   %d", jeu.joueur[jeu.info.joueurQuiJoue].PA) ;
-    al_draw_textf(gameFont, al_map_rgb(50, 50, 50), 65*ecran.width/384, 68*ecran.height/72, ALLEGRO_ALIGN_LEFT, "PM   %d", jeu.joueur[jeu.info.joueurQuiJoue].PA) ;
+    al_draw_textf(gameFont, al_map_rgb(50, 50, 50), 65*ecran.width/384, 68*ecran.height/72, ALLEGRO_ALIGN_LEFT, "PM   %d", jeu.joueur[jeu.info.joueurQuiJoue].PM) ;
     al_draw_textf(gameFont, al_map_rgb(50, 50, 50), 85*ecran.width/384, 66.5*ecran.height/72, ALLEGRO_ALIGN_LEFT, "PV   %d", jeu.joueur[jeu.info.joueurQuiJoue].PV) ;
 
 }

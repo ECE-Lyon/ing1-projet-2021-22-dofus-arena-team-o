@@ -21,9 +21,9 @@ void drawPlay(Joueurs *joueur,Map map[30][30], int joueurQuiJoue, int mouse_x,in
         }
     }
     if (joueur[joueurQuiJoue].dep==0 && joueur[joueurQuiJoue].sortAppuye == 3) {
-        for (int j = 0; j < 4; j++) {
-            for (int i = 0; i < 4; i++) {
-                if (i + j <= 3) {
+        for (int j = 0; j < joueur[joueurQuiJoue].PM+1; j++) {
+            for (int i = 0; i < joueur[joueurQuiJoue].PM+1; i++) {
+                if (i + j <= joueur[joueurQuiJoue].PM) {
                     al_draw_filled_triangle(map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart + j].x - scalex,
                                             map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart + j].y,
                                             map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart + j].x,
@@ -114,7 +114,7 @@ void drawPlay(Joueurs *joueur,Map map[30][30], int joueurQuiJoue, int mouse_x,in
                 al_draw_filled_triangle(map[i][j].x + scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -
                                                                                                                            scaley, black);
 
-                if(map[0][0].t == 1 && joueur[joueurQuiJoue].dep == 0 && abs(joueur[joueurQuiJoue].xArrive-joueur[joueurQuiJoue].caseXDepart)+abs(joueur[joueurQuiJoue].yArrive-joueur[joueurQuiJoue].caseYDepart)<=3 && map[joueur[joueurQuiJoue].xArrive][joueur[joueurQuiJoue].yArrive].obstacle!=1){
+                if(map[0][0].t == 1 && joueur[joueurQuiJoue].dep == 0 && abs(joueur[joueurQuiJoue].xArrive-joueur[joueurQuiJoue].caseXDepart)+abs(joueur[joueurQuiJoue].yArrive-joueur[joueurQuiJoue].caseYDepart)<=3 && map[joueur[joueurQuiJoue].xArrive][joueur[joueurQuiJoue].yArrive].obstacle!=1 && joueur[joueurQuiJoue].PM>0){
                     joueur[joueurQuiJoue].caseXDepart= joueur[joueurQuiJoue].caseX;
                     joueur[joueurQuiJoue].caseYDepart= joueur[joueurQuiJoue].caseY;
                     joueur[joueurQuiJoue].dep=1;
@@ -145,11 +145,12 @@ void caseJoueur(Joueurs *joueur,Map map[30][30], int joueurQuiJoue){
             if (joueur[joueurQuiJoue].x>map[i][j].x-1 && joueur[joueurQuiJoue].x<map[i][j].x+1 && joueur[joueurQuiJoue].y>map[i][j].y-1 && joueur[joueurQuiJoue].y<map[i][j].y+1 ){
                 joueur[joueurQuiJoue].caseX=i;
                 joueur[joueurQuiJoue].caseY=j;
+
+                }
                 //printf(" CaseXa: %d , CaseYa: %d\n",joueur[0].caseXDepart,joueur[0].caseYDepart);
             }
         }
     }
-}
 
 void deplacementJoueur(Joueurs *joueur, Map map[30][30], int joueurQuiJoue, double scalex,double scaley, int* direction) {
     ALLEGRO_COLOR vert = al_map_rgba(93, 127, 51, 255);
@@ -158,9 +159,9 @@ void deplacementJoueur(Joueurs *joueur, Map map[30][30], int joueurQuiJoue, doub
     double depY = 0;
 
     caseJoueur(joueur, map, joueurQuiJoue);
-
+    if (joueur[joueurQuiJoue].PM>0){
     if (abs(joueur[joueurQuiJoue].xArrive - joueur[joueurQuiJoue].caseXDepart) +
-        abs(joueur[joueurQuiJoue].yArrive - joueur[joueurQuiJoue].caseYDepart) <= 4 &&
+        abs(joueur[joueurQuiJoue].yArrive - joueur[joueurQuiJoue].caseYDepart) <= joueur[joueurQuiJoue].PM+1 &&
         joueur[joueurQuiJoue].sortAppuye == 3) {
         if (joueur[joueurQuiJoue].caseX > joueur[joueurQuiJoue].xArrive) {
             // Boucle sur x
@@ -291,7 +292,7 @@ void deplacementJoueur(Joueurs *joueur, Map map[30][30], int joueurQuiJoue, doub
 
     }
 
-    if (joueur[joueurQuiJoue].actif == 1 && joueur[joueurQuiJoue].dep == 1  && joueur[joueurQuiJoue].sortAppuye == 3) {
+    if (joueur[joueurQuiJoue].actif == 1 && joueur[joueurQuiJoue].dep == 1  && joueur[joueurQuiJoue].PM>0 && joueur[joueurQuiJoue].sortAppuye == 3 && joueur[joueurQuiJoue].PM+1>=abs(abs(joueur[joueurQuiJoue].xArrive - joueur[joueurQuiJoue].caseXDepart) + abs(joueur[joueurQuiJoue].yArrive - joueur[joueurQuiJoue].caseYDepart))){
 
         if (joueur[joueurQuiJoue].caseX < joueur[joueurQuiJoue].xArrive) {
             depX = 1;
@@ -348,13 +349,21 @@ void deplacementJoueur(Joueurs *joueur, Map map[30][30], int joueurQuiJoue, doub
         if (joueur[joueurQuiJoue].caseX == joueur[joueurQuiJoue].xArrive &&
             joueur[joueurQuiJoue].caseY == joueur[joueurQuiJoue].yArrive) {
             joueur[joueurQuiJoue].dep = 0;
+            if (abs(joueur[joueurQuiJoue].xArrive - joueur[joueurQuiJoue].caseXDepart) +
+                abs(joueur[joueurQuiJoue].yArrive - joueur[joueurQuiJoue].caseYDepart<=joueur[joueurQuiJoue].PM)){
+                joueur[joueurQuiJoue].PM=joueur[joueurQuiJoue].PM-abs(abs(joueur[joueurQuiJoue].xArrive - joueur[joueurQuiJoue].caseXDepart) +
+                                     abs(joueur[joueurQuiJoue].yArrive - joueur[joueurQuiJoue].caseYDepart));
+            }
             joueur[joueurQuiJoue].quelAnimation = RESPIRATION;
             joueur[joueurQuiJoue].caseXDepart = joueur[joueurQuiJoue].caseX;
             joueur[joueurQuiJoue].caseYDepart = joueur[joueurQuiJoue].caseY;
             map[joueur[joueurQuiJoue].caseX][joueur[joueurQuiJoue].caseY].joueurPresentDessus = joueurQuiJoue + 1;
         }
     }
+
 }
+}
+
 
 
 
@@ -366,15 +375,6 @@ void dessinerQuadrillage(double  width, double height,double scalex,double scale
         al_draw_line(width/1.8+i*scalex+50,i*scaley,i*scalex+50,height/1.95+scaley*i, black,2);
     }
 }
-
-
-
-/*void verifierPADuJoueur (Jeux jeu, int joueurQuiJoue, int PA) {
-    if();
-}*/
-
-
-
 
 void dessinerCase(Map map[30][30], int caseX, int caseY, double scalex, double scaley) {
     ALLEGRO_COLOR red = al_map_rgba(255, 50, 50, 100);
