@@ -467,7 +467,6 @@ void afficherCaracteristiqueJoueur(Jeux jeu, InfoEcran ecran, int joueurQuiJoue,
 }
 
 
-void dessinerChrono ()
 /// Ordre aléatoire des joueurs
 
 int getRandomInteger(int min, int max){
