@@ -139,7 +139,10 @@ int main() {
     }
 
     fclose(lec);
-
+    al_install_audio();
+    al_init_acodec_addon();
+    ALLEGRO_SAMPLE *musique = al_load_sample("../Bitmap/musique1.flac");
+    al_reserve_samples(1);
     ///INITIALISATION DE NOS VARIABLES
     //ANIMATIONS
     initialiserImageAnimationsMario(jeu.classes[MARIO].animations) ;
@@ -175,6 +178,8 @@ int main() {
     al_start_timer(times);
 
     while (!isFin) {
+        al_play_sample(musique, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, 0);
+
         while (mainMenu.gameMode != PLAY && mainMenu.gameMode != END) {
             al_wait_for_event(queue, &event);
             switch (event.type) {
@@ -482,6 +487,8 @@ int main() {
             }
         }
         else isFin = 1;
+        al_destroy_sample(musique);
+
     }
     return 0;
 }
