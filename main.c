@@ -179,7 +179,6 @@ int main() {
 
     while (!isFin) {
         al_play_sample(musique, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, 0);
-
         while (mainMenu.gameMode != PLAY && mainMenu.gameMode != END) {
             al_wait_for_event(queue, &event);
             switch (event.type) {
@@ -444,11 +443,11 @@ int main() {
                         jeu.info.collisionSourisMap[1][0] = 30;
                     }
 
-                    chrono = chrono + 1;
-                    if(chrono >= 750){
+                    /*chrono = chrono + 1;
+                    /if(chrono >= 750){
                         chrono = 0;
                         jeu.info.joueurQuiJoue ++;
-                    }
+                    }*/
 
                     if(tour%5 == 0) {
                         jeu.info.compteur++ ;
@@ -487,9 +486,8 @@ int main() {
             }
         }
         else isFin = 1;
-        al_destroy_sample(musique);
-
     }
+    al_destroy_sample(musique);
     return 0;
 }
 

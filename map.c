@@ -157,8 +157,14 @@ void deplacementJoueur(Joueurs *joueur, Map map[30][30], int joueurQuiJoue, doub
     ALLEGRO_COLOR vert2 = al_map_rgba(93, 127, 51, 200);
     double depX = 0;
     double depY = 0;
+    int a=0;
 
     caseJoueur(joueur, map, joueurQuiJoue);
+    for (int i=0; i<joueur[joueurQuiJoue].xArrive; i++){
+        if (map[i][0].obstacle==1){
+            a=1;
+        }
+    }
     if (joueur[joueurQuiJoue].PM>0){
     if (abs(joueur[joueurQuiJoue].xArrive - joueur[joueurQuiJoue].caseXDepart) +
         abs(joueur[joueurQuiJoue].yArrive - joueur[joueurQuiJoue].caseYDepart) <= joueur[joueurQuiJoue].PM+1 &&
@@ -292,7 +298,7 @@ void deplacementJoueur(Joueurs *joueur, Map map[30][30], int joueurQuiJoue, doub
 
     }
 
-    if (joueur[joueurQuiJoue].actif == 1 && joueur[joueurQuiJoue].dep == 1  && joueur[joueurQuiJoue].PM>0 && joueur[joueurQuiJoue].sortAppuye == 3 && joueur[joueurQuiJoue].PM+1>=abs(abs(joueur[joueurQuiJoue].xArrive - joueur[joueurQuiJoue].caseXDepart) + abs(joueur[joueurQuiJoue].yArrive - joueur[joueurQuiJoue].caseYDepart))){
+    if (joueur[joueurQuiJoue].actif == 1 && joueur[joueurQuiJoue].dep == 1  && joueur[joueurQuiJoue].PM>0 && joueur[joueurQuiJoue].sortAppuye == 3 && joueur[joueurQuiJoue].PM+1>=abs(abs(joueur[joueurQuiJoue].xArrive - joueur[joueurQuiJoue].caseXDepart) + abs(joueur[joueurQuiJoue].yArrive - joueur[joueurQuiJoue].caseYDepart)) && a==0){
 
         if (joueur[joueurQuiJoue].caseX < joueur[joueurQuiJoue].xArrive) {
             depX = 1;
