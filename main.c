@@ -6,19 +6,21 @@
 #include "personnage.h"
 
 /// FONCTION OU TOUT LE JEU EST DESSINER SUR A L'ECRAN
-void dessinerJeu(Jeux* jeu, Map map[30][30], InfoEcran ecran, double scalex, double scaley, ALLEGRO_FONT* gameFont, ALLEGRO_FONT* smallGameFont, ALLEGRO_BITMAP* barreSortLogo, ALLEGRO_BITMAP* shield) {
+void dessinerJeu(Jeux* jeu, Map map[30][30], InfoEcran ecran, Timer timerJeu[], double scalex, double scaley, ALLEGRO_FONT* gameFont, ALLEGRO_FONT* smallGameFont, ALLEGRO_BITMAP* barreSortLogo, ALLEGRO_BITMAP* shield, ALLEGRO_BITMAP* effect) {
+    if(jeu->joueur[jeu->info.joueurQuiJoue].quelAnimation != MARCHER) {
+        determinerDirection(*jeu);
+    }
     //AFFICHAGE DU PLATEAU
     drawPlay(jeu->joueur, map, jeu->info.joueurQuiJoue, ecran.mouse_x, ecran.mouse_y, ecran.width, ecran.height, scalex, scaley,
              al_map_rgb(255, 255, 255), al_map_rgb(0, 0, 0), al_map_rgb(128, 128, 128), al_map_rgba(93, 127, 51, 255), al_map_rgb(255, 0, 0));
-
     //DEPLACEMENT DES JOUEURS
-    deplacementJoueur(jeu->joueur, map, jeu->info.joueurQuiJoue, scalex, scaley, &jeu->classes[PACMAN].animations->direction);
+    deplacementJoueur(jeu->joueur, map, jeu->info.joueurQuiJoue, scalex, scaley);
 
     //AFFICHAGE DES PORTEES DES SORTS S'ILS SONT APPUYES
     afficherPortee(map, scalex, scaley, *jeu, jeu->info.joueurQuiJoue) ;
 
     //AFFICHAGE DES PERSONNAGE + ANIMATIONS
-    afficherPersonnage(*jeu, ecran, scalex, scaley, shield) ;
+    afficherPersonnage(*jeu, map, ecran, &timerJeu[1], scalex, scaley, shield, effect, smallGameFont) ;
     if(jeu->joueur[jeu->info.joueurQuiJoue].PM < 3 || jeu->joueur[jeu->info.joueurQuiJoue].PA < 6 ) {
         boutonSuivantDansPlay(ecran, gameFont, ecran.mouse_x, ecran.mouse_y);
     }
@@ -26,7 +28,7 @@ void dessinerJeu(Jeux* jeu, Map map[30][30], InfoEcran ecran, double scalex, dou
     //AFFICHAGE DES SORTS EN FONCTION DU JOUEUR
     barreSort(barreSortLogo, ecran);
     sortEnFonctionDesClasses(gameFont, smallGameFont, *jeu, ecran, jeu->info.joueurQuiJoue);
-    afficherCaracteristiqueJoueur(*jeu, ecran, jeu->info.joueurQuiJoue, smallGameFont) ;
+    afficherCaracteristiqueJoueur(*jeu, ecran, jeu->info.joueurQuiJoue, smallGameFont, timerJeu[0].secondes) ;
 }
 
 int main() {
@@ -105,6 +107,7 @@ int main() {
     ALLEGRO_BITMAP *sortMortel = al_load_bitmap("../Bitmap/Sort/sortUtilisé/sortMortel.png");
     ALLEGRO_BITMAP *afficherSort = al_load_bitmap("../Bitmap/Sort/afficherSort.png");
     ALLEGRO_BITMAP *shield = al_load_bitmap("../Bitmap/Sprite_Sheet/spr_shield.png");
+    ALLEGRO_BITMAP *effect = al_load_bitmap("../Bitmap/Sprite_Sheet/effect.png");
     ALLEGRO_BITMAP *fond = al_load_bitmap("../Bitmap/fond.png");
     FILE* lec=fopen("../Bitmap/MatriceObstacle.txt", "r");
 
@@ -113,7 +116,7 @@ int main() {
     assert(queue);
 
     int isFin = 0, draw = 0;
-    int chrono;
+    float endScreenX = 0, endScreenY = 0;
     Menu mainMenu;
     InfoEcran ecran;
     Map map[30][30];
@@ -130,8 +133,8 @@ int main() {
     double scaley = 4 * height / 149;
     for (int j = 0; j < mapY; j++) {
         for (int i = 0; i < mapX; i++) {
-            map[i][j].x = 235 +scalex + i * scalex + j * scalex;
-            map[i][j].y = height/1.76 - i * scaley + j * scaley;
+                map[i][j].x = width/12 +scalex + i * scalex + j * scalex;
+            map[i][j].y = height/1.7 - i * scaley + j * scaley;
             map[i][j].joueurPresentDessus = 0 ;
             fscanf(lec, "%d", &map[i][j].obstacle);
 
@@ -171,6 +174,14 @@ int main() {
 
 
     ///INITIALISATION DU TIMER
+    Timer timerJeu[3] ;
+    timerJeu[0].compteur = 0 ;
+    timerJeu[0].secondes = 0 ;
+    timerJeu[1].compteur = 0 ;
+    timerJeu[1].secondes = 0 ;
+    timerJeu[2].compteur = 0 ;
+    timerJeu[2].secondes = 0 ;
+
     times = al_create_timer(0.02);
     al_register_event_source(queue, al_get_keyboard_event_source());
     al_register_event_source(queue, al_get_mouse_event_source( ));
@@ -178,7 +189,7 @@ int main() {
     al_start_timer(times);
 
     while (!isFin) {
-        al_play_sample(musique, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, 0);
+        //al_play_sample(musique, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, 0);
         while (mainMenu.gameMode != PLAY && mainMenu.gameMode != END) {
             al_wait_for_event(queue, &event);
             switch (event.type) {
@@ -258,7 +269,7 @@ int main() {
                 al_draw_scaled_bitmap(background, 0, 0, 7680, 4320, 0, 0, width, height, 0);
                 switch (mainMenu.gameMode) {
                     case MENU : {
-                        drawMenuV2(&mainMenu, gameFont);
+                        drawMenuV2(&mainMenu, gameFont1);
                         break;
                     }
                     case TEAM : {
@@ -267,7 +278,7 @@ int main() {
 
                     }
                     case RULES : {
-                        drawRules(&page, height, width, mouse_x, mouse_y, gameFontRegles, gameFont, kirbyIcone, pacmanIcone, peachIcone, marioIcone, donkey_kongIcone);
+                        drawRules(&page, height, width, mouse_x, mouse_y, gameFontRegles, gameFont, gameFont1, kirbyIcone, pacmanIcone, peachIcone, marioIcone, donkey_kongIcone);
                         break;
                     }
                 }
@@ -318,21 +329,12 @@ int main() {
                                     if (jeu.joueur[jeu.info.joueurQuiJoue].quelAnimation == RESPIRATION) {
                                         sortChoisi(ecran, &jeu.joueur[jeu.info.joueurQuiJoue].sortAppuye);
                                     }
-                                    if (jeu.joueur[jeu.info.joueurQuiJoue].PM < 3 ||
-                                        jeu.joueur[jeu.info.joueurQuiJoue].PA < 6) {
-                                        if ((float) mouse_x < 383 * ecran.width / 384 && mouse_x > ecran.width / 1.2 &&
-                                            (float) mouse_y < ecran.height / 13.5 && mouse_y > ecran.height / 216) {
-                                            jeu.info.joueurQuiJoue++;
-                                            if (jeu.info.joueurQuiJoue > jeu.info.nbJoueur - 1) {
-                                                jeu.info.joueurQuiJoue = 0;
-                                                for (int i = 0; i < jeu.info.nbJoueur; i++) {
-                                                    jeu.joueur[i].PA = 6;
-                                                    jeu.joueur[i].PM = 3;
-                                                }
-                                            }
+                                    if (jeu.joueur[jeu.info.joueurQuiJoue].PM < 3 || jeu.joueur[jeu.info.joueurQuiJoue].PA < 6 && jeu.joueur[jeu.info.joueurQuiJoue].sortAppuye == 3 && jeu.joueur[jeu.info.joueurQuiJoue].dep == 0) {
+                                        if ((float) mouse_x < 383 * ecran.width / 384 - 6*ecran.width/48 && mouse_x > ecran.width / 1.2 - 6*ecran.width/48 && (float) mouse_y < ecran.height/13.5 && mouse_y >ecran.height/216) {
+                                            nextPlayer(&jeu, timerJeu) ;
                                         }
                                     }
-                                    if (jeu.joueur[jeu.info.joueurQuiJoue].sortAppuye != 3) {
+                                    if (jeu.joueur[jeu.info.joueurQuiJoue].sortAppuye != 3 && jeu.joueur[jeu.info.joueurQuiJoue].quelAnimation == RESPIRATION) {
                                         if ((float) ecran.mouse_x < 11 * ecran.width / 13 &&
                                             ecran.mouse_x > 6 * ecran.width / 8 &&
                                             (float) ecran.mouse_y < 80 * ecran.height / 90 &&
@@ -346,9 +348,16 @@ int main() {
                                         jeu.gameMode2 = JOUER ;
                                     }
                                 }
+                                else if(jeu.gameMode2 == FINJEU) {
+                                    if ((float) ecran.mouse_x < 79*ecran.width/96 && ecran.mouse_x > 2*ecran.width/3 && (float) ecran.mouse_y < 5*ecran.height/6 && ecran.mouse_y > 3*ecran.height/4) {
+                                        jeu.gameMode2 = ORDRE ;
+                                        jeu.gameMode = CHOIXNBJOUEUR ;
+                                        mainMenu.gameMode = MENU ;
+                                        initialiserJeu(&jeu) ;
+                                    }
+                                }
                                 break;
                             }
-
                             case CHOIXNBJOUEUR : {
                                 /// INITIALISER A ZERO SI ON REVIENT AVANT
                                 if (mouse_x < 5 * width / 32 && mouse_x > width / 384 &&
@@ -394,7 +403,7 @@ int main() {
                                         jeu.joueur[jeu.info.ordre[jeu.info.joueurQuiJoue]].classe = DONKEY_KONG;
                                     }
                                 }
-                                if((float) ecran.mouse_x < 3*ecran.width/5 && ecran.mouse_x > 2*ecran.width/5 && (float) ecran.mouse_y < 9*ecran.height/27 && ecran.mouse_y > 7*ecran.height/27) {
+                                if((float) ecran.mouse_x < 3*ecran.width/5 && ecran.mouse_x > 2*ecran.width/5 && (float) ecran.mouse_y < 9*ecran.height/27 && ecran.mouse_y > 7*ecran.height/27&& jeu.joueur[jeu.info.ordre[jeu.info.joueurQuiJoue]].classe != VIDE) {
                                     if(jeu.info.entrerPseudo == false) {
                                         jeu.info.entrerPseudo = true;
                                     }
@@ -428,31 +437,52 @@ int main() {
                     break;
                 }
                 case ALLEGRO_EVENT_TIMER : {
-                    if(jeu.info.clickSouris == 1) {
+                    if (jeu.info.clickSouris == 1) {
                         for (int j = 0; j < mapY; j++) {
                             for (int i = 0; i < mapX; i++) {
                                 if (collisionCercle(mouse_x, mouse_y, map, i, j, width) == true) {
                                     jeu.info.collisionSourisMap[0][0] = i;
                                     jeu.info.collisionSourisMap[1][0] = j;
+                                    jeu.info.xClick = jeu.info.collisionSourisMap[0][0];
+                                    jeu.info.yClick = jeu.info.collisionSourisMap[1][0];
                                 }
                             }
                         }
-                    }
-                    else {
+                    } else {
                         jeu.info.collisionSourisMap[0][0] = 30;
                         jeu.info.collisionSourisMap[1][0] = 30;
                     }
-
-                    /*chrono = chrono + 1;
-                    /if(chrono >= 750){
-                        chrono = 0;
-                        jeu.info.joueurQuiJoue ++;
-                    }*/
-
-                    if(tour%5 == 0) {
-                        jeu.info.compteur++ ;
+                    ///POUR LES ANIMATIONS
+                    if (tour % 5 == 0) {
+                        jeu.info.compteur++;
                     }
-                    tour++ ;
+                    tour++;
+
+                    ///CHRONO DU JEU
+                    if(jeu.gameMode2 == JOUER) {
+                        timerJeu[0].secondes = (float) timerJeu[0].compteur / (float) 50;
+                        if (timerJeu[0].secondes > 15 && jeu.joueur[jeu.info.joueurQuiJoue].quelAnimation == RESPIRATION) {
+                            nextPlayer(&jeu, timerJeu);
+                        }
+                        timerJeu[0].compteur++;
+                    }
+                    if(timerJeu[2].startTimer == 1) {
+                        timerJeu[2].secondes = (float) timerJeu[2].compteur / (float) 50;
+                        if (timerJeu[2].secondes > 2) {
+                            jeu.gameMode2 = FINJEU ;
+                            jeu.info.joueurGagnant = verifierFinDuJeu(jeu) - 1 ;
+                        }
+                       if(timerJeu[2].secondes > 4) {
+                            endScreenX += 3.2f * timerJeu[2].secondes/2 ;
+                            endScreenY += 2.25f * timerJeu[2].secondes/2;
+                        }
+                        timerJeu[2].compteur++;
+                    }
+
+                    /// VERIFIER LA FIN DU JEU
+                    if(verifierFinDuJeu(jeu) != 0) {
+                        timerJeu[2].startTimer = 1 ;
+                    }
                     draw = 1;
                     break;
                 }
@@ -470,14 +500,19 @@ int main() {
                         break;
                     }
                     case JEU : {
-                        al_draw_scaled_bitmap(fond,0,0,1920,1054,0,0,width,height,0);
-                        al_draw_scaled_bitmap(carte,0,0,296,149,50,50,width, height,0);
-                        dessinerJeu(&jeu, map, ecran, scalex, scaley, gameFont1, smallGameFont, afficherSort, shield) ;
-                        appuyerSortSurMap(&jeu, map);
-                        if(jeu.gameMode2 == ORDRE) {
-                            afficherOrdre(jeu, ecran, gameFont1) ;
+                        al_draw_scaled_bitmap(fond, 0, 0, 1920, 1054, 0, 0, width, height, 0) ;
+                        if(jeu.gameMode2 == FINJEU) {
+                            afficherFinGagnant(jeu, ecran, endScreenX, endScreenY, gameFont1, bigGameFont) ;
                         }
-                         break;
+                        else {
+                            al_draw_scaled_bitmap(carte, 0, 0, 296, 149, 50, 50, width, height, 0);
+                            appuyerSortSurMap(&jeu, map, &timerJeu[1]);
+                            dessinerJeu(&jeu, map, ecran, timerJeu, scalex, scaley, gameFont1, smallGameFont, afficherSort, shield, effect);
+                            if (jeu.gameMode2 == ORDRE) {
+                                afficherOrdre(jeu, ecran, gameFont1);
+                            }
+                        }
+                        break;
                     }
                 }
                 al_flip_display();

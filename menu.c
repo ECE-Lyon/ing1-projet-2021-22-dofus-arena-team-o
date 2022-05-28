@@ -13,7 +13,7 @@ void initialiserMenu(Menu* mainMenu, float width, float height) {
     mainMenu->arc.currentEndTheta = 2 * PI;
 }
 
-void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y, ALLEGRO_FONT* gameFontRegles, ALLEGRO_FONT* gameFont, ALLEGRO_BITMAP* kirbyIcone, ALLEGRO_BITMAP* pacmanIcone, ALLEGRO_BITMAP* peachIcone, ALLEGRO_BITMAP* marioIcone, ALLEGRO_BITMAP* donkey_kongIcone) {
+void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y, ALLEGRO_FONT* gameFontRegles, ALLEGRO_FONT* gameFont, ALLEGRO_FONT* gameFont1, ALLEGRO_BITMAP* kirbyIcone, ALLEGRO_BITMAP* pacmanIcone, ALLEGRO_BITMAP* peachIcone, ALLEGRO_BITMAP* marioIcone, ALLEGRO_BITMAP* donkey_kongIcone) {
     int police = 2*width/55 ;
     int policeRegles = 40;
     float thickness = (5*height/6 - height/6) / 40 ;
@@ -69,7 +69,7 @@ void drawRules(int* pages, float height, float width, int mouse_x, int mouse_y, 
     afficherPages(*pages, gameFontRegles, gameColor, height, width, kirbyIcone, pacmanIcone, peachIcone, marioIcone, donkey_kongIcone) ;
 
     ///BOUTON RETURN
-    al_draw_text(gameFont, gameColor, (5*width/32 - width/384)/2 + police/10, (2*height/27-height/216)/2 - police/3, ALLEGRO_ALIGN_CENTER, "RETURN") ;
+    al_draw_text(gameFont1, gameColor, (5*width/32 - width/384)/2 + police/10, (2*height/27-height/216)/2 - police/3, ALLEGRO_ALIGN_CENTER, "RETURN") ;
     al_draw_rectangle(width/384, height/216, 5*width/32, 2*height/27, gameColor, 3) ;
     al_draw_textf(gameFont, gameColor, 7.5 * width / 15, 11 * height / 13 + height / 18, ALLEGRO_ALIGN_CENTER, "%d / %d", *pages, RULESPAGEMAX) ;
 }

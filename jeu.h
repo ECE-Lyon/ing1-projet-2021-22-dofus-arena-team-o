@@ -28,10 +28,15 @@ enum sortKirby {COUPDEPIED1, POING, FLAMME3};
 ///ENUM NECESSAIRE POUR FACILITER LE CODE ET SA LECTURE
 enum gameMode {PLAY, RULES, TEAM, MENU, END};
 enum personnage {MARIO, PACMAN, KIRBY, PEACH, DONKEY_KONG, VIDE};
-enum play {CHOIXNBJOUEUR, CHOIXCLASSE, JEU, ORDRE, JOUER};
-enum animation{RESPIRATION, MARCHER, ATTAQUE1, ATTAQUE2, ATTAQUE3, NBANIMATIONS};
-//enum sort{AUCUN, FLAMME, POINGGANT, SAUT, MORTEL, POING2, COUPDEPIED, POING, RECULERADVERSAIRE, SORTDEFENCE, SORTSOIN,  CORONA, SORTFLEUR};
+enum play {CHOIXNBJOUEUR, CHOIXCLASSE, JEU, ORDRE, JOUER, FINJEU};
+enum animation{RESPIRATION, MARCHER, ATTAQUE1, ATTAQUE2, ATTAQUE3, EFFET, NBANIMATIONS};
 
+
+///STRUCTURE POUR COMPTER LE TEMPS
+typedef struct  {
+    int compteur, startTimer, joueurAttaque ;
+    float secondes ;
+} Timer ;
 
 ///STRUCTURE QU'ON PEUT METTRE EN PARAMETRES DE FONCTION POUR EVITER TROP DE PARAMETRES
 typedef struct {
@@ -51,16 +56,16 @@ typedef struct {
 } Image ;
 typedef struct {
     Image images[20] ;
-    int nbImages, direction ;
+    int nbImages;
     float x, y ;
 } Animation ;
 
 /// TOUTES LES INFOS DU JEU NECESSAIRES
 typedef struct {
-    int nbJoueur, joueurQuiJoue, compteur ;
+    int nbJoueur, nbJoueurMort, joueurQuiJoue, compteur, joueurGagnant ;
     bool entrerPseudo ;
     int ordre[4];
-    int collisionSourisMap[2][1] ;
+    int collisionSourisMap[2][1], xClick, yClick ;
     int clickSouris ;
 } InfosSurLesJoueurs;
 
@@ -78,7 +83,7 @@ typedef struct Info{
     char pseudo[MAXNOM];
     int nbLettrePseudo ;
     int sortAppuye;
-    int PV, PM, PA ;
+    int PV, PM, PA, direction ;
     int classe;
     int quelAnimation, sortSpecial ;
     int etat;      //etat 0 (par defaut) joueur en vie // etat 1 : joueur est mort
@@ -122,12 +127,15 @@ char alphabet (int keycode, int* nbLettre) ;
 void mettrePseudo(Joueurs** joueur, char lettre, int quelJoueurEstSelectionne, int* nbLettre) ;
 void afficherPseudo(Jeux jeu, float width, float height, ALLEGRO_FONT* gameFont) ;
 
-void afficherCaracteristiqueJoueur(Jeux jeu, InfoEcran ecran, int joueurQuiJoue, ALLEGRO_FONT* gameFont) ;
+void afficherCaracteristiqueJoueur(Jeux jeu, InfoEcran ecran, int joueurQuiJoue, ALLEGRO_FONT* gameFont, float seconde) ;
 
 int getRandomInteger(int min, int max) ;
 int verifierValeurTableau(int tab[], int valeurAverifier, int cbDeValeur) ;
 int ordreDesJoueurs(InfosSurLesJoueurs* joueurs, int nbJoueur);
 void afficherOrdre(Jeux jeu, InfoEcran ecran, ALLEGRO_FONT* gameFont) ;
+void nextPlayer(Jeux* jeu, Timer* timerJeu) ;
+int verifierFinDuJeu(Jeux jeu) ;
+void afficherFinGagnant(Jeux jeu, InfoEcran ecran, float endScreenX, float endScreenY, ALLEGRO_FONT* gameFont, ALLEGRO_FONT* bigGameFont) ;
 
 
 #endif
