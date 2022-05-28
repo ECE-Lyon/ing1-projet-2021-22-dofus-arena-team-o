@@ -23,7 +23,7 @@ void drawPlay(Joueurs *joueur,Map map[30][30], int joueurQuiJoue, int mouse_x,in
         }
     }*/
 
-    }*/
+
     if (joueur[joueurQuiJoue].dep==0 && joueur[joueurQuiJoue].sortAppuye == 3) {
         for (int j = 0; j < joueur[joueurQuiJoue].PM+1; j++) {
             for (int i = 0; i < joueur[joueurQuiJoue].PM+1; i++) {
@@ -153,7 +153,7 @@ void caseJoueur(Joueurs *joueur,Map map[30][30], int joueurQuiJoue){
         }
     }
 
-void deplacementJoueur(Joueurs *joueur, Map map[30][30], int joueurQuiJoue, double scalex,double scaley, int* direction) {
+void deplacementJoueur(Joueurs *joueur, Map map[30][30], int joueurQuiJoue, double scalex,double scaley) {
     ALLEGRO_COLOR vert = al_map_rgba(93, 127, 51, 255);
     double depX = 0;
     double depY = 0;
@@ -391,7 +391,7 @@ void deplacementJoueur(Joueurs *joueur, Map map[30][30], int joueurQuiJoue, doub
     }
 
 }
-}
+}}
 
 void dessinerCase(Map map[30][30], int caseX, int caseY, double scalex, double scaley) {
     ALLEGRO_COLOR red = al_map_rgba(255, 50, 50, 100);

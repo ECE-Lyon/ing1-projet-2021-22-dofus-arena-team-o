@@ -5,7 +5,7 @@
 
 ///FONCTION DU QUADRILLAGE DE LA MAP
 void drawPlay(Joueurs *joueur,Map map[30][30], int joueurQuiJoue, int mouse_x,int mouse_y,double width, double scalex, double scaley, ALLEGRO_COLOR black,ALLEGRO_COLOR red);
-void deplacementJoueur(Joueurs *joueur,Map map[30][30], int joueurQuiJoue, double scalex,double scaley, int* direction);
+void deplacementJoueur(Joueurs *joueur,Map map[30][30], int joueurQuiJoue, double scalex,double scaley);
 void caseJoueur(Joueurs *joueur,Map map[30][30], int joueurQuiJoue);
 bool collisionCercle(int x,int y,Map map[30][30],int i,int j,double width);
 
