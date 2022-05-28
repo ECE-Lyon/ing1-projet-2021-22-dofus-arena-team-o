@@ -81,7 +81,9 @@ typedef struct Info{
     int PV, PM, PA ;
     int classe;
     int quelAnimation, sortSpecial ;
-    int etat;      //etat 0 (par defaut) joueur en vie // etat 1 : joueur est mort
+    int etat;
+    int obstacle;
+    //etat 0 (par defaut) joueur en vie // etat 1 : joueur est mort
 }Joueurs;
 
 

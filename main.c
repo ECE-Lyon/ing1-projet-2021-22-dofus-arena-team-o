@@ -8,8 +8,8 @@
 /// FONCTION OU TOUT LE JEU EST DESSINER SUR A L'ECRAN
 void dessinerJeu(Jeux* jeu, Map map[30][30], InfoEcran ecran, double scalex, double scaley, ALLEGRO_FONT* gameFont, ALLEGRO_FONT* smallGameFont, ALLEGRO_BITMAP* barreSortLogo, ALLEGRO_BITMAP* shield) {
     //AFFICHAGE DU PLATEAU
-    drawPlay(jeu->joueur, map, jeu->info.joueurQuiJoue, ecran.mouse_x, ecran.mouse_y, ecran.width, ecran.height, scalex, scaley,
-             al_map_rgb(255, 255, 255), al_map_rgb(0, 0, 0), al_map_rgb(128, 128, 128), al_map_rgba(93, 127, 51, 255), al_map_rgb(255, 0, 0));
+    drawPlay(jeu->joueur, map, jeu->info.joueurQuiJoue, ecran.mouse_x, ecran.mouse_y, ecran.width, scalex, scaley,
+              al_map_rgb(0, 0, 0), al_map_rgb(255, 0, 0));
 
     //DEPLACEMENT DES JOUEURS
     deplacementJoueur(jeu->joueur, map, jeu->info.joueurQuiJoue, scalex, scaley, &jeu->classes[PACMAN].animations->direction);
