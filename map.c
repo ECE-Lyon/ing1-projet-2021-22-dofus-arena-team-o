@@ -121,8 +121,7 @@ void drawPlay(Joueurs *joueur,Map map[30][30], int joueurQuiJoue, int mouse_x,in
                                                                                                                            scaley, black);
                 al_draw_filled_triangle(map[i][j].x + scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -
                                                                                                                            scaley, black);
-
-                if(map[0][0].t == 1 && joueur[joueurQuiJoue].dep == 0 && abs(joueur[joueurQuiJoue].xArrive-joueur[joueurQuiJoue].caseXDepart)+abs(joueur[joueurQuiJoue].yArrive-joueur[joueurQuiJoue].caseYDepart)<=3 && map[joueur[joueurQuiJoue].xArrive][joueur[joueurQuiJoue].yArrive].obstacle!=1 && joueur[joueurQuiJoue].PM>0 && joueur[joueurQuiJoue].obstacle==0){
+                if(map[0][0].t == 1 && joueur[joueurQuiJoue].dep == 0 && abs(joueur[joueurQuiJoue].xArrive-joueur[joueurQuiJoue].caseXDepart)+abs(joueur[joueurQuiJoue].yArrive-joueur[joueurQuiJoue].caseYDepart)<=3 && map[joueur[joueurQuiJoue].xArrive][joueur[joueurQuiJoue].yArrive].obstacle!=1 && joueur[joueurQuiJoue].PM>0 && joueur[joueurQuiJoue].obstacle==0 && map[joueur[joueurQuiJoue].xArrive][joueur[joueurQuiJoue].yArrive].joueurPresentDessus == 0){
                     joueur[joueurQuiJoue].caseXDepart= joueur[joueurQuiJoue].caseX;
                     joueur[joueurQuiJoue].caseYDepart= joueur[joueurQuiJoue].caseY;
                     joueur[joueurQuiJoue].dep=1;

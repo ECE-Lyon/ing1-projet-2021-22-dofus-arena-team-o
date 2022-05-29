@@ -1,21 +1,19 @@
 #include "jeu.h"
 
+/// INITIALISATION DES STRUCTURES UTILES AU JEU
 void initialiserIconeClasse(ALLEGRO_BITMAP* pacman, ALLEGRO_BITMAP* kirby, ALLEGRO_BITMAP* peach, ALLEGRO_BITMAP* mario, ALLEGRO_BITMAP* donkey_kong, ALLEGRO_BITMAP* pacmanRond, ALLEGRO_BITMAP* kirbyRond, ALLEGRO_BITMAP* peachRond, ALLEGRO_BITMAP* marioRond, ALLEGRO_BITMAP* donkey_kongRond, Classe* classes) {
-    classes[KIRBY].image = kirby ;
-    classes[PACMAN].image = pacman ;
-    classes[PEACH].image = peach ;
-    classes[MARIO].image = mario ;
-    classes[DONKEY_KONG].image = donkey_kong;
+                classes[KIRBY].image = kirby ;
+                classes[PACMAN].image = pacman ;
+                classes[PEACH].image = peach ;
+                classes[MARIO].image = mario ;
+                classes[DONKEY_KONG].image = donkey_kong;
 
-    classes[KIRBY].icone = kirbyRond ;
-    classes[PACMAN].icone = pacmanRond ;
-    classes[PEACH].icone = peachRond ;
-    classes[MARIO].icone = marioRond ;
-    classes[DONKEY_KONG].icone = donkey_kongRond;
-}
-
-            /// INITIALISATION DES DIFFERENTS SORTS DES CLASSES///
-
+                classes[KIRBY].icone = kirbyRond ;
+                classes[PACMAN].icone = pacmanRond ;
+                classes[PEACH].icone = peachRond ;
+                classes[MARIO].icone = marioRond ;
+                classes[DONKEY_KONG].icone = donkey_kongRond;
+            }
 
 void initialiserSortClasseKIRBY (Classe* classe, ALLEGRO_BITMAP* coupDePied, ALLEGRO_BITMAP* sortFlemme, ALLEGRO_BITMAP* poing){
     classe->sortADisposition[FLAMME].iconeSort = sortFlemme;
@@ -38,8 +36,8 @@ void initialiserSortClasseKIRBY (Classe* classe, ALLEGRO_BITMAP* coupDePied, ALL
 void initialiserSortClassePACMAN (Classe* classe, ALLEGRO_BITMAP* reculerAdversaire, ALLEGRO_BITMAP* sortFlamme, ALLEGRO_BITMAP* sortDefence){
     classe->sortADisposition[FLAMME].iconeSort = sortFlamme;
     classe->sortADisposition[FLAMME].portee = 3 ;
-    classe->sortADisposition[FLAMME].degatsOUsoin = 100 ;
-    classe->sortADisposition[FLAMME].PA = 0 ;
+    classe->sortADisposition[FLAMME].degatsOUsoin = 40 ;
+    classe->sortADisposition[FLAMME].PA = 4 ;
 
     classe->sortADisposition[RECULERADVERSAIRE].iconeSort = reculerAdversaire;
     classe->sortADisposition[RECULERADVERSAIRE].portee = 1 ;
@@ -104,8 +102,6 @@ void initialiserSortClasseDONKEYKONG (Classe* classe, ALLEGRO_BITMAP* sortMortel
     classe->sortADisposition[SAUT].PA = 3 ;
 }
 
-
-/// CODE DU JEU ///
 void initialiserJeu(Jeux* jeu) {
     jeu->gameMode = CHOIXNBJOUEUR ;
     jeu->gameMode2 = ORDRE ;
@@ -126,6 +122,14 @@ void initialiserEcran (InfoEcran* ecran, double width, double height) {
     ecran->width = width ;
     ecran->height = height ;
 }
+void initialiserTimer(Timer timerJeu[]) {
+    for(int i = 0; i < 3 ; i++) {
+        timerJeu[i].startTimer = 0;
+        timerJeu[i].compteur = 0 ;
+        timerJeu[i].secondes = 0 ;
+    }
+}
+
 void initialiserJoueur(Jeux* jeu, Map map[30][30]) {
     map[18][0].joueurPresentDessus = map[18][13].joueurPresentDessus = map[0][0].joueurPresentDessus = map[0][13].joueurPresentDessus = 0 ;
     if (jeu->joueur == NULL) {
@@ -199,8 +203,7 @@ void initialiserJoueur(Jeux* jeu, Map map[30][30]) {
 }
 
 
-
-
+///CHOIX DES CLASSES
 void choixJoueur(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT* gameFont, InfosSurLesJoueurs* infoJoueur) {
     /// FOND D'ECRAN GRISTARE
     al_draw_filled_rectangle(0, 0, width, height, al_map_rgba(150, 150, 150, 150));
@@ -393,7 +396,7 @@ void drawChooseCharacter(InfoEcran ecran, ALLEGRO_FONT* gameFont, Jeux jeu, ALLE
     afficherPseudo(jeu, ecran.width, ecran.height, gameFont) ;
 }
 
-
+///PSEUDO
 char alphabet (int keycode, int* nbLettre){
     char lettreAppuye;
     if(keycode >= ALLEGRO_KEY_A && keycode <= ALLEGRO_KEY_Z) {
@@ -461,7 +464,12 @@ void afficherCaracteristiqueJoueur(Jeux jeu, InfoEcran ecran, int joueurQuiJoue,
             if (i <=  joueurQuiJoue) {
                 al_draw_textf(gameFont, al_map_rgb(20, 20, 20), 17*ecran.width/192, 19*ecran.height/216 + i*5*ecran.height/36, ALLEGRO_ALIGN_LEFT, "%s", jeu.joueur[i].pseudo) ;
                 al_draw_filled_rectangle(5*ecran.width/96, ecran.height/8 + i*5*ecran.height/36, 5*ecran.width/32, ecran.height/8 + i*5*ecran.height/36 + 7 * ecran.height / 108,al_map_rgb(50, 50, 50) ) ;
-                al_draw_textf(gameFont, al_map_rgb(150, 150, 150), 11*ecran.width/96, ecran.height/8 + (7 * ecran.height / 108)/4 + i*5*ecran.height/36, ALLEGRO_ALIGN_CENTER, "%d", jeu.joueur[i].PV );
+                if(jeu.joueur[i].PV > 0) {
+                    al_draw_textf(gameFont, al_map_rgb(150, 150, 150), 11 * ecran.width / 96,ecran.height / 8 + (7 * ecran.height / 108) / 4 + i * 5 * ecran.height / 36,ALLEGRO_ALIGN_CENTER, "%d", jeu.joueur[i].PV);
+                }
+                else {
+                    al_draw_textf(gameFont, al_map_rgb(150, 150, 150), 11 * ecran.width / 96,ecran.height / 8 + (7 * ecran.height / 108) / 4 + i * 5 * ecran.height / 36,ALLEGRO_ALIGN_CENTER, "MORT");
+                }
                 al_draw_filled_rectangle(6*ecran.width/96, 7*ecran.height/54 + i*5*ecran.height/36, 6*ecran.width/96+jeu.joueur[i].PV*(35*ecran.width/384)/300, 7*ecran.height/54 + i*5*ecran.height/36 + ecran.height / 18,al_map_rgb(0, 255, 128) ) ;
                 al_draw_filled_circle(5*ecran.width/96,ecran.height/8 + i*5*ecran.height/36, 7 * ecran.width / 192, al_map_rgb(50, 50, 50));
                 al_draw_scaled_bitmap(jeu.classes[jeu.joueur[i].classe].icone, 0, 0, 979, 977, ecran.width/48,5*ecran.height/72 + i*5*ecran.height/36, ecran.width / 16, ecran.width / 16, 0);
@@ -469,7 +477,12 @@ void afficherCaracteristiqueJoueur(Jeux jeu, InfoEcran ecran, int joueurQuiJoue,
             else {
                 al_draw_textf(gameFont, al_map_rgb(20, 20, 20), 17*ecran.width/192, 19*ecran.height/216 + (i-1)*5*ecran.height/36, ALLEGRO_ALIGN_LEFT, "%s", jeu.joueur[i].pseudo) ;
                 al_draw_filled_rectangle(5*ecran.width/96, ecran.height/8 + (i-1)*5*ecran.height/36, 5*ecran.width/32, ecran.height/8 + (i-1)*5*ecran.height/36 + 7 * ecran.height / 108,al_map_rgb(50, 50, 50) ) ;
-                al_draw_textf(gameFont, al_map_rgb(150, 150, 150), 11*ecran.width/96, ecran.height/8 + (7 * ecran.height / 108)/4 + (i-1)*5*ecran.height/36, ALLEGRO_ALIGN_CENTER, "%d", jeu.joueur[i].PV );
+                if(jeu.joueur[i].PV > 0) {
+                    al_draw_textf(gameFont, al_map_rgb(150, 150, 150), 11*ecran.width/96, ecran.height/8 + (7 * ecran.height / 108)/4 + (i-1)*5*ecran.height/36, ALLEGRO_ALIGN_CENTER, "%d", jeu.joueur[i].PV );
+                }
+                else  {
+                    al_draw_textf(gameFont, al_map_rgb(150, 150, 150), 11*ecran.width/96, ecran.height/8 + (7 * ecran.height / 108)/4 + (i-1)*5*ecran.height/36, ALLEGRO_ALIGN_CENTER, "MORT");
+                }
                 al_draw_filled_rectangle(6*ecran.width/96, 7*ecran.height/54 + (i-1)*5*ecran.height/36, 6*ecran.width/96+jeu.joueur[i].PV*(35*ecran.width/384)/300, 7*ecran.height/54 + (i-1)*5*ecran.height/36 + ecran.height / 18,al_map_rgb(0, 255, 128) ) ;
                 al_draw_filled_circle(5*ecran.width/96,ecran.height/8 + (i-1)*5*ecran.height/36, 7 * ecran.width / 192, al_map_rgb(50, 50, 50));
                 al_draw_scaled_bitmap(jeu.classes[jeu.joueur[i].classe].icone, 0, 0, 979, 977, ecran.width/48 ,5*ecran.height/72 + (i-1)*5*ecran.height/36, ecran.width / 16, ecran.width / 16, 0);
@@ -488,7 +501,6 @@ void afficherCaracteristiqueJoueur(Jeux jeu, InfoEcran ecran, int joueurQuiJoue,
 
 
 /// Ordre aléatoire des joueurs
-
 int getRandomInteger(int min, int max){
     int nbAleatoire = rand()%(max-min+1)+min;
     return nbAleatoire;
@@ -569,7 +581,6 @@ int verifierFinDuJeu(Jeux jeu) {
     }
     else return 0 ;
 }
-
 void afficherFinGagnant(Jeux jeu, InfoEcran ecran, float endScreenX, float endScreenY, ALLEGRO_FONT* gameFont, ALLEGRO_FONT* bigGameFont) {
     al_draw_filled_triangle(ecran.width/3, 0, ecran.width/3, ecran.height, 0, ecran.height, al_map_rgb(156, 25, 0)) ;
     al_draw_filled_triangle(ecran.width/3, 0, ecran.width/3, ecran.height, 18*ecran.width/25, 0, al_map_rgb(156, 25, 0)) ;
@@ -600,4 +611,49 @@ void afficherFinGagnant(Jeux jeu, InfoEcran ecran, float endScreenX, float endSc
     al_draw_filled_rectangle(1920, 0, 480 + 3*endScreenX, 2*360 - 2*endScreenY, al_map_rgb(0, 0, 0)) ;
     //4
     al_draw_filled_rectangle(0, 1080, 480 - endScreenX, 2*360 + endScreenY, al_map_rgb(0, 0, 0)) ;
+}
+
+void remiseAzero(Jeux* jeu, Map map[30][30]) {
+    /*for (int j = 0; j < mapY; j++) {
+        for (int i = 0; i < mapX; i++) {
+            map[i][j].joueurPresentDessus = 0 ;
+        }
+    }
+    for (int i = 0; i < jeu->info.nbJoueur; i++) {
+        jeu->joueur[i].PV = 300;
+        jeu->joueur[i].PA = 6 ;
+        jeu->joueur[i].PM = 3 ;
+        jeu->joueur[i].direction = 0 ;
+        jeu->joueur[i].sortAppuye = 3;
+        jeu->joueur[i].sortSpecial = 0 ;
+        jeu->joueur[i].etat = 0;   // 0 en vie
+        jeu->joueur[i].quelAnimation = RESPIRATION;
+        jeu->joueur[i].xArrive = 0;
+        jeu->joueur[i].yArrive = 0;
+        jeu->joueur[i].dep = 0;
+        jeu->joueur[i].caseX = (i % 2) * 18;
+        jeu->joueur[i].caseY = (i % 2) * 13;
+        jeu->joueur[i].caseXDepart = jeu->joueur[i].caseX;
+        jeu->joueur[i].caseYDepart = jeu->joueur[i].caseY;
+        jeu->joueur[i].x = map[(i%2) * 18][(i%2) * 13].x;
+        jeu->joueur[i].y = map[(i%2) * 18][(i%2) * 13].y;
+        if (i >= 2) {
+            jeu->joueur[i].caseX = ((i+1)%2) * 18;
+            jeu->joueur[i].caseY = (i%2) * 13;
+            jeu->joueur[i].caseXDepart = jeu->joueur[i].caseX;
+            jeu->joueur[i].caseYDepart = jeu->joueur[i].caseY;
+            jeu->joueur[i].x = map[((i+1)%2) * 18][(i%2) * 13].x;
+            jeu->joueur[i].y = map[((i+1)%2) * 18][(i%2) * 13].y;
+            map[( (i+1) % 2) * 18][(i%2) * 13].joueurPresentDessus = i+1 ;
+        }
+        else  map[(i%2) * 18][(i%2) * 13].joueurPresentDessus = i+1 ;
+    }*/
+    jeu->joueur[jeu->info.joueurQuiJoue].quelAnimation = RESPIRATION;
+    jeu->joueur[jeu->info.joueurQuiJoue].xArrive = 0;
+    jeu->joueur[jeu->info.joueurQuiJoue].yArrive = 0;
+    jeu->joueur[jeu->info.joueurQuiJoue].dep = 0;
+    jeu->joueur[jeu->info.joueurQuiJoue].caseX = jeu->joueur[jeu->info.joueurQuiJoue].caseXDepart ;
+    jeu->joueur[jeu->info.joueurQuiJoue].caseY = jeu->joueur[jeu->info.joueurQuiJoue].caseYDepart ;
+    jeu->joueur[jeu->info.joueurQuiJoue].x = map[jeu->joueur[jeu->info.joueurQuiJoue].caseXDepart][jeu->joueur[jeu->info.joueurQuiJoue].caseYDepart].x;
+    jeu->joueur[jeu->info.joueurQuiJoue].y = map[jeu->joueur[jeu->info.joueurQuiJoue].caseXDepart][jeu->joueur[jeu->info.joueurQuiJoue].caseYDepart].y;
 }

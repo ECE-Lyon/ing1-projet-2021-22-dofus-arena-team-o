@@ -119,6 +119,7 @@ void initialiserSortClassePEACH (Classe* classe, ALLEGRO_BITMAP* sortFleur, ALLE
 void initialiserSortClasseMARIO (Classe* classe, ALLEGRO_BITMAP* sortCorona, ALLEGRO_BITMAP* sortFlamme, ALLEGRO_BITMAP* poing2);
 void initialiserSortClassePACMAN (Classe* classe, ALLEGRO_BITMAP* reculerAdversaire, ALLEGRO_BITMAP* sortFlamme, ALLEGRO_BITMAP* sortDefence);
 void boutonSuivantDansPlay(InfoEcran ecran, ALLEGRO_FONT* gameFont, int mouse_x, int mouse_y);
+void initialiserTimer(Timer timerJeu[]) ;
 
 ///FONCTION POUR COMMENCER A JOUER
 void choixJoueur(float width, float height, int mouse_x, int mouse_y, ALLEGRO_FONT * gameFont, InfosSurLesJoueurs* infojoueur) ;
@@ -139,5 +140,6 @@ void nextPlayer(Jeux* jeu, Timer* timerJeu) ;
 int verifierFinDuJeu(Jeux jeu) ;
 void afficherFinGagnant(Jeux jeu, InfoEcran ecran, float endScreenX, float endScreenY, ALLEGRO_FONT* gameFont, ALLEGRO_FONT* bigGameFont) ;
 
+void remiseAzero(Jeux* jeu, Map map[30][30]) ;
 
 #endif
