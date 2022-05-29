@@ -13,17 +13,6 @@ void drawPlay(Joueurs *joueur,Map map[30][30], int joueurQuiJoue, int mouse_x,in
     ALLEGRO_COLOR vert2 = al_map_rgba(93, 127, 51, 200);
     caseJoueur(joueur,map, joueurQuiJoue);
 
-    /*for (int j=0;j<mapY;j++) {
-    /*for (int j=0;j<mapY;j++) {
-        for (int i = 0; i < mapX; i++) {
-            if (map[i][j].obstacle==1){
-            al_draw_filled_triangle(map[i][j].x - scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -scaley, white);
-            al_draw_filled_triangle(map[i][j].x + scalex, map[i][j].y, map[i][j].x, map[i][j].y + scaley, map[i][j].x, map[i][j].y -scaley, white);
-        }
-        }
-    }*/
-
-
     if (joueur[joueurQuiJoue].dep==0 && joueur[joueurQuiJoue].sortAppuye == 3) {
         for (int j = 0; j < joueur[joueurQuiJoue].PM+1; j++) {
             for (int i = 0; i < joueur[joueurQuiJoue].PM+1; i++) {
