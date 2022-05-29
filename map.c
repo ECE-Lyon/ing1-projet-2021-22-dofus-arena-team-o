@@ -363,17 +363,6 @@ void deplacementJoueur(Joueurs *joueur, Map map[30][30], int joueurQuiJoue, doub
         joueur[joueurQuiJoue].y = joueur[joueurQuiJoue].y + depY;
         joueur[joueurQuiJoue].x = joueur[joueurQuiJoue].x + depX;
 
-        /*if (joueur[joueurQuiJoue].dep==1){
-
-            if (map[joueur[joueurQuiJoue].caseX][joueur[joueurQuiJoue].caseY+1].obstacle==1){joueur[joueurQuiJoue].obstacle=1;}
-            else joueur[joueurQuiJoue].obstacle=0;
-            if (map[joueur[joueurQuiJoue].caseX-1][joueur[joueurQuiJoue].caseY].obstacle==1){joueur[joueurQuiJoue].obstacle=1;}
-            else joueur[joueurQuiJoue].obstacle=0;
-            if (map[joueur[joueurQuiJoue].caseX][joueur[joueurQuiJoue].caseY-1].obstacle==1){joueur[joueurQuiJoue].obstacle=1;}
-            joueur[joueurQuiJoue].obstacle=0;
-        }*/
-
-
         if (joueur[joueurQuiJoue].caseX == joueur[joueurQuiJoue].xArrive &&
             joueur[joueurQuiJoue].caseY == joueur[joueurQuiJoue].yArrive) {
             joueur[joueurQuiJoue].dep = 0;
