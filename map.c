@@ -28,7 +28,7 @@ void drawPlay(Joueurs *joueur,Map map[30][30], int joueurQuiJoue, int mouse_x,in
         for (int j = 0; j < joueur[joueurQuiJoue].PM+1; j++) {
             for (int i = 0; i < joueur[joueurQuiJoue].PM+1; i++) {
                 if (i + j <= joueur[joueurQuiJoue].PM ) {
-                    if (joueur[joueurQuiJoue].caseXDepart + i>=0 && joueur[joueurQuiJoue].caseYDepart + j>=0){
+                    if (joueur[joueurQuiJoue].caseXDepart + i>=0 && joueur[joueurQuiJoue].caseYDepart + j>=0 && map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart + j].obstacle==0 ){
                     al_draw_filled_triangle(map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart + j].x - scalex,
                                             map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart + j].y,
                                             map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart + j].x,
@@ -43,7 +43,7 @@ void drawPlay(Joueurs *joueur,Map map[30][30], int joueurQuiJoue, int mouse_x,in
                                             map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart + j].x,
                                             map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart + j].y -
                                             scaley, vert2);}
-                    if (joueur[joueurQuiJoue].caseXDepart - i>=0 && joueur[joueurQuiJoue].caseYDepart - j>=0){
+                    if (joueur[joueurQuiJoue].caseXDepart - i>=0 && joueur[joueurQuiJoue].caseYDepart - j>=0 && map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].caseYDepart - j].obstacle==0){
                     al_draw_filled_triangle(
                             map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].caseYDepart - j].x -
                             scalex,
@@ -64,7 +64,7 @@ void drawPlay(Joueurs *joueur,Map map[30][30], int joueurQuiJoue, int mouse_x,in
                             map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].caseYDepart - j].x,
                             map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].caseYDepart - j].y -
                             scaley, vert2);}
-                    if (joueur[joueurQuiJoue].caseXDepart + i>=0 && joueur[joueurQuiJoue].caseYDepart - j>=0) {
+                    if (joueur[joueurQuiJoue].caseXDepart + i>=0 && joueur[joueurQuiJoue].caseYDepart - j>=0 && map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart - j].obstacle==0) {
                         al_draw_filled_triangle(
                                 map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart - j].x -
                                 scalex,
@@ -86,7 +86,7 @@ void drawPlay(Joueurs *joueur,Map map[30][30], int joueurQuiJoue, int mouse_x,in
                                 map[joueur[joueurQuiJoue].caseXDepart + i][joueur[joueurQuiJoue].caseYDepart - j].y -
                                 scaley, vert2);
                     }
-                    if (joueur[joueurQuiJoue].caseXDepart - i>=0 && joueur[joueurQuiJoue].caseYDepart + j>=0){
+                    if (joueur[joueurQuiJoue].caseXDepart - i>=0 && joueur[joueurQuiJoue].caseYDepart + j>=0 && map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].caseYDepart + j].obstacle==0){
                     al_draw_filled_triangle(
                             map[joueur[joueurQuiJoue].caseXDepart - i][joueur[joueurQuiJoue].caseYDepart + j].x -
                             scalex,
