@@ -134,8 +134,8 @@ int main() {
     double scaley = 4 * height / 149;
     for (int j = 0; j < mapY; j++) {
         for (int i = 0; i < mapX; i++) {
-                map[i][j].x = width/12 +scalex + i * scalex + j * scalex;
-            map[i][j].y = height/1.7 - i * scaley + j * scaley;
+            map[i][j].x = 235 +scalex + i * scalex + j * scalex;
+            map[i][j].y = height/1.76 - i * scaley + j * scaley;
             map[i][j].joueurPresentDessus = 0 ;
             fscanf(lec, "%d", &map[i][j].obstacle);
 
