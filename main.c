@@ -359,7 +359,7 @@ int main() {
                                     }
                                 }
                                 ///PASSER SUR LE JEU
-                                if (((float) mouse_x - 1829 * ecran.width / 1920) *((float) mouse_x - 1829 * ecran.width / 1920) +(mouse_y - 49 * ecran.height / 54) * (mouse_y - 49 * ecran.height / 54) <ecran.width / 24 * ecran.width / 24) {
+                                if (((float) mouse_x - 1829 * ecran.width / 1920) *((float) mouse_x - 1829 * ecran.width / 1920) +(mouse_y - 49 * ecran.height / 54) * (mouse_y - 49 * ecran.height / 54) <ecran.width / 24 * ecran.width / 24 && jeu.joueur[jeu.info.ordre[jeu.info.nbJoueur - 1]].pseudo[0] != '\0') {
                                     jeu.gameMode = JEU;
                                     jeu.info.joueurQuiJoue = 0;
                                 }
@@ -405,7 +405,7 @@ int main() {
                                 if ((ecran.mouse_x - 95*ecran.width/96) * (ecran.mouse_x - 95*ecran.width/96) + (ecran.mouse_y - ecran.height/54) * (ecran.mouse_y - ecran.height/54) < ecran.width/96 * ecran.width/96) {
                                     remiseAzero(&jeu, map) ;
                                 }
-                                    break;
+                                break;
                             }
                         }
                     }
