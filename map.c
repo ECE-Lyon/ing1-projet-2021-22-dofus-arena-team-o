@@ -154,7 +154,6 @@ void caseJoueur(Joueurs *joueur,Map map[30][30], int joueurQuiJoue){
                 joueur[joueurQuiJoue].caseY=j;
 
                 }
-                //printf(" CaseXa: %d , CaseYa: %d\n",joueur[0].caseXDepart,joueur[0].caseYDepart);
             }
         }
     }
@@ -222,7 +221,7 @@ void deplacementJoueur(Joueurs *joueur, Map map[30][30], int joueurQuiJoue, doub
         if (joueur[joueurQuiJoue].caseY > joueur[joueurQuiJoue].yArrive) {
             // Boucle sur y
             for (int j = 0; j < -joueur[joueurQuiJoue].yArrive + joueur[joueurQuiJoue].caseYDepart; j++) {
-                if (map[joueur[joueurQuiJoue].caseXDepart][joueur[joueurQuiJoue].yArrive-j].obstacle==1){joueur[joueurQuiJoue].obstacle=1;}
+                if (map[joueur[joueurQuiJoue].caseXDepart][joueur[joueurQuiJoue].caseYDepart-j].obstacle==1){joueur[joueurQuiJoue].obstacle=1;}
                 else joueur[joueurQuiJoue].obstacle=0;
 
                 al_draw_filled_triangle(
@@ -249,7 +248,7 @@ void deplacementJoueur(Joueurs *joueur, Map map[30][30], int joueurQuiJoue, doub
         if (joueur[joueurQuiJoue].caseY < joueur[joueurQuiJoue].yArrive) {
             // Boucle sur y
             for (int j = 0; j < joueur[joueurQuiJoue].yArrive - joueur[joueurQuiJoue].caseYDepart; j++) {
-                if (map[joueur[joueurQuiJoue].caseXDepart][joueur[joueurQuiJoue].yArrive+j].obstacle==1){joueur[joueurQuiJoue].obstacle=1;}
+                if (map[joueur[joueurQuiJoue].caseX][joueur[joueurQuiJoue].caseY+j].obstacle==1){joueur[joueurQuiJoue].obstacle=1;}
                 else joueur[joueurQuiJoue].obstacle=0;
                 al_draw_filled_triangle(map[joueur[joueurQuiJoue].caseX][joueur[joueurQuiJoue].caseY + j].x - scalex,
                                         map[joueur[joueurQuiJoue].caseX][joueur[joueurQuiJoue].caseY + j].y,
